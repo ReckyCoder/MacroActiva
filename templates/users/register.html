@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block content %} 
+
+    <div class="centrar" style=" justify-content: center; ">
     <h1>Registrar nuevo usuario</h1>
     <form action="" method="POST">{% csrf_token %}
         {{ form.as_p }}
         <button class="submit">Registrar</button>
     </form>
-</body>
-</html>
+    <img src="{% static 'img/holaaaaa.jpg' %}" alt="">
+    </div>
+
+{% endblock %}

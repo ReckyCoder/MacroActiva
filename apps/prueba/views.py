@@ -21,4 +21,7 @@ class UserFormView(FormView):
         )
 
         return super(UserFormView, self).form_valid(form)
-    
+
+
+def base(request):
+    return render(request, 'users/base.html')
