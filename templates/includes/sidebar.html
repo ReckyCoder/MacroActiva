@@ -1,0 +1,275 @@
+{% load i18n static admin_corporate %}
+
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start " id="sidenav-main">
+  <div class="sidenav-header">
+    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+    <a class="navbar-brand d-flex align-items-center m-0" href="/">
+      <span class="font-weight-bold text-lg">Corporate UI</span>
+    </a>
+  </div>
+  <div class="collapse navbar-collapse px-4  w-auto " id="sidenav-collapse-main">
+    <ul class="navbar-nav" id="mainmenu">
+      <li class="nav-item dropdown">
+        {% if request.user.is_superuser %}
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
+        {% else %}
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
+        {% endif %}
+          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>dashboard</title>
+              <g id="dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="template" transform="translate(12.000000, 12.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                  <path class="color-foreground" d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 L24,5.14285714 C24,6.08962286 23.2325143,6.85714286 22.2857143,6.85714286 L1.71428571,6.85714286 C0.76752,6.85714286 0,6.08962286 0,5.14285714 L0,1.71428571 Z" id="Path"></path>
+                  <path class="color-background" d="M0,12 C0,11.0532171 0.76752,10.2857143 1.71428571,10.2857143 L12,10.2857143 C12.9468,10.2857143 13.7142857,11.0532171 13.7142857,12 L13.7142857,22.2857143 C13.7142857,23.2325143 12.9468,24 12,24 L1.71428571,24 C0.76752,24 0,23.2325143 0,22.2857143 L0,12 Z" id="Path"></path>
+                  <path class="color-background" d="M18.8571429,10.2857143 C17.9103429,10.2857143 17.1428571,11.0532171 17.1428571,12 L17.1428571,22.2857143 C17.1428571,23.2325143 17.9103429,24 18.8571429,24 L22.2857143,24 C23.2325143,24 24,23.2325143 24,22.2857143 L24,12 C24,11.0532171 23.2325143,10.2857143 22.2857143,10.2857143 L18.8571429,10.2857143 Z" id="Path"></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- Si es usuario con privilegios para ver-->
+        <!-- Para ventas el cliente debe ser del departamento correspondiente para visualizar-->
+        {% if request.user.is_superuser %}<!-- Aqui iria la condicionante -->
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
+        {% else %}
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
+        {% endif %}
+          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+            <svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <title>clientes y ventas</title>
+              <path fill="#ffffff" d="M312 24V34.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8V232c0 13.3-10.7 24-24 24s-24-10.7-24-24V220.6c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2V24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5H192 32c-17.7 0-32-14.3-32-32V416c0-17.7 14.3-32 32-32H68.8l44.9-36c22.7-18.2 50.9-28 80-28H272h16 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H288 272c-8.8 0-16 7.2-16 16s7.2 16 16 16H392.6l119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384l0 0-.9 0c.3 0 .6 0 .9 0z"/>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Clientes y ventas</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- Si es usuario con privilegios inicio sesion podra ver-->
+        <!-- Para finanzas el cliente debe ser del departamento correspondiente para visualizar-->
+        {% if request.user.is_superuser %}<!-- Aqui iria la condicionante -->
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
+        {% else %}
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
+        {% endif %}
+          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <title>finanzas</title>
+              <path fill="#ffffff" d="M512 80c0 18-14.3 34.6-38.4 48c-29.1 16.1-72.5 27.5-122.3 30.9c-3.7-1.8-7.4-3.5-11.3-5C300.6 137.4 248.2 128 192 128c-8.3 0-16.4 .2-24.5 .6l-1.1-.6C142.3 114.6 128 98 128 80c0-44.2 86-80 192-80S512 35.8 512 80zM160.7 161.1c10.2-.7 20.7-1.1 31.3-1.1c62.2 0 117.4 12.3 152.5 31.4C369.3 204.9 384 221.7 384 240c0 4-.7 7.9-2.1 11.7c-4.6 13.2-17 25.3-35 35.5c0 0 0 0 0 0c-.1 .1-.3 .1-.4 .2l0 0 0 0c-.3 .2-.6 .3-.9 .5c-35 19.4-90.8 32-153.6 32c-59.6 0-112.9-11.3-148.2-29.1c-1.9-.9-3.7-1.9-5.5-2.9C14.3 274.6 0 258 0 240c0-34.8 53.4-64.5 128-75.4c10.5-1.5 21.4-2.7 32.7-3.5zM416 240c0-21.9-10.6-39.9-24.1-53.4c28.3-4.4 54.2-11.4 76.2-20.5c16.3-6.8 31.5-15.2 43.9-25.5V176c0 19.3-16.5 37.1-43.8 50.9c-14.6 7.4-32.4 13.7-52.4 18.5c.1-1.8 .2-3.5 .2-5.3zm-32 96c0 18-14.3 34.6-38.4 48c-1.8 1-3.6 1.9-5.5 2.9C304.9 404.7 251.6 416 192 416c-62.8 0-118.6-12.6-153.6-32C14.3 370.6 0 354 0 336V300.6c12.5 10.3 27.6 18.7 43.9 25.5C83.4 342.6 135.8 352 192 352s108.6-9.4 148.1-25.9c7.8-3.2 15.3-6.9 22.4-10.9c6.1-3.4 11.8-7.2 17.2-11.2c1.5-1.1 2.9-2.3 4.3-3.4V304v5.7V336zm32 0V304 278.1c19-4.2 36.5-9.5 52.1-16c16.3-6.8 31.5-15.2 43.9-25.5V272c0 10.5-5 21-14.9 30.9c-16.3 16.3-45 29.7-81.3 38.4c.1-1.7 .2-3.5 .2-5.3zM192 448c56.2 0 108.6-9.4 148.1-25.9c16.3-6.8 31.5-15.2 43.9-25.5V432c0 44.2-86 80-192 80S0 476.2 0 432V396.6c12.5 10.3 27.6 18.7 43.9 25.5C83.4 438.6 135.8 448 192 448z"/>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Finanzas</span>
+        </a>
+
+      </li>
+      <li class="nav-item">
+        <!-- Si es usuario con privilegios inicio sesion podra ver-->
+        <!-- Para produccion el cliente debe ser del departamento correspondiente para visualizar-->
+        {% if request.user.is_superuser %}
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
+        {% else %}
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
+        {% endif %}
+          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <title>produccion</title>
+              <path fill="#ffffff" d="M64 32C46.3 32 32 46.3 32 64V304v48 80c0 26.5 21.5 48 48 48H496c26.5 0 48-21.5 48-48V304 152.2c0-18.2-19.4-29.7-35.4-21.1L352 215.4V152.2c0-18.2-19.4-29.7-35.4-21.1L160 215.4V64c0-17.7-14.3-32-32-32H64z"/>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Producción</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- Si es usuario con privilegios inicio sesion podra ver-->
+        <!-- Para recursos humanos el cliente debe ser del departamento correspondiente para visualizar-->
+        {% if request.user.is_superuser %} <!-- Aqui iria la condicionante -->
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
+        {% else %}
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
+        {% endif %}
+          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+            <svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+              <title>recursos humanos</title>
+              <path fill="#ffffff" d="M192 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm-8 384V352h16V480c0 17.7 14.3 32 32 32s32-14.3 32-32V192h56 64 16c17.7 0 32-14.3 32-32s-14.3-32-32-32H384V64H576V256H384V224H320v48c0 26.5 21.5 48 48 48H592c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H368c-26.5 0-48 21.5-48 48v80H243.1 177.1c-33.7 0-64.9 17.7-82.3 46.6l-58.3 97c-9.1 15.1-4.2 34.8 10.9 43.9s34.8 4.2 43.9-10.9L120 256.9V480c0 17.7 14.3 32 32 32s32-14.3 32-32z"/>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Recursos humanos</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <!-- Si es usuario con privilegios inicio sesion podra ver-->
+        <!-- Para administracion el cliente debe ser del departamento correspondiente para visualizar-->
+        {% if request.user.is_superuser %} <!-- Aqui iria la condicionante -->
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
+        {% else %}
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
+        {% endif %}
+          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+              <title>administracion</title>
+              <path fill="#ffffff" d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h89.9c-6.3-10.2-9.9-22.2-9.9-35.1c0-46.9 25.8-87.8 64-109.2V271.8 48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zM576 272a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM352 477.1c0 19.3 15.6 34.9 34.9 34.9H605.1c19.3 0 34.9-15.6 34.9-34.9c0-51.4-41.7-93.1-93.1-93.1H445.1c-51.4 0-93.1 41.7-93.1 93.1z"/>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Administracion</span>
+        </a>
+      </li>
+
+      {% admin_get_menu as app_list %}
+      {% if app_list %}
+          {% for app in app_list %}
+              {% if app.has_perms and not app.pinned %}
+                  <li class="nav-item mt-2">
+                    <div class="d-flex align-items-center nav-link">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" class="ms-2" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd" d="M15.75 1.5a6.75 6.75 0 00-6.651 7.906c.067.39-.032.717-.221.906l-6.5 6.499a3 3 0 00-.878 2.121v2.818c0 .414.336.75.75.75H6a.75.75 0 00.75-.75v-1.5h1.5A.75.75 0 009 19.5V18h1.5a.75.75 0 00.53-.22l2.658-2.658c.19-.189.517-.288.906-.22A6.75 6.75 0 1015.75 1.5zm0 3a.75.75 0 000 1.5A2.25 2.25 0 0118 8.25a.75.75 0 001.5 0 3.75 3.75 0 00-3.75-3.75z" clip-rule="evenodd" />
+                      </svg>
+                      <span class="font-weight-normal text-md ms-2">{{ app.label|slice:15 }}{% if app.label|length > 15 %}..{% endif %}</span>
+                    </div>
+                  </li>
+                  {% if app.models %}
+                        {% for model in app.models %}
+                          {% if model.url %}
+                            <li class="nav-item border-start my-0 pt-2">
+                              <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{{ model.url }}">
+                                <span class="nav-link-text ms-1">{{ model.label }}</span>
+                              </a>
+                            </li>
+                          {% else %}
+                            <li class="nav-item list-unstyled text-light">{{ model.label }}</li>
+                          {% endif %}
+                        {% endfor %}
+                  {% endif %}
+              {% endif %}
+          {% endfor %}
+      {% endif %}
+      
+      {% if request.user.is_superuser or not request.user.is_authenticated %}
+      <li class="nav-item mt-2">
+        <div class="d-flex align-items-center nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ms-2" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+          </svg>
+          <span class="font-weight-normal text-md ms-2">Account Pages</span>
+        </div>
+      </li>
+      {% if not request.user.is_authenticated %}
+      <li class="nav-item border-start my-0 pt-2">
+        <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'login' %}">
+          <span class="nav-link-text ms-1">Sign In</span>
+        </a>
+      </li>
+      <li class="nav-item border-start my-0 pt-2">
+        <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'register' %}">
+          <span class="nav-link-text ms-1">Sign Up</span>
+        </a>
+      </li>
+      {% endif %}
+      {% if request.user.is_superuser %}
+      <li class="nav-item border-start my-0 pt-2">
+        <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'admin:password_change' %}">
+          <span class="nav-link-text ms-1">Change Password</span>
+        </a>
+      </li>
+      <li class="nav-item border-start my-0 pt-2">
+        <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'admin:logout' %}">
+          <span class="nav-link-text ms-1">Logout</span>
+        </a>
+      </li>
+      {% endif %}
+      {% endif %}
+
+      {% if request.user.is_authenticated and not request.user.is_superuser %}
+      <li class="nav-item">
+        <a class="nav-link {% if 'tables' in segment %}active{% endif %} " href="{% url 'tables' %}">
+          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>table</title>
+              <g id="table" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="view-grid" transform="translate(12.000000, 12.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                  <path class="color-foreground" d="M3.42857143,0 C1.53502286,0 0,1.53502286 0,3.42857143 L0,6.85714286 C0,8.75069143 1.53502286,10.2857143 3.42857143,10.2857143 L6.85714286,10.2857143 C8.75069143,10.2857143 10.2857143,8.75069143 10.2857143,6.85714286 L10.2857143,3.42857143 C10.2857143,1.53502286 8.75069143,0 6.85714286,0 L3.42857143,0 Z" id="Path"></path>
+                  <path class="color-background" d="M3.42857143,13.7142857 C1.53502286,13.7142857 0,15.2492571 0,17.1428571 L0,20.5714286 C0,22.4650286 1.53502286,24 3.42857143,24 L6.85714286,24 C8.75069143,24 10.2857143,22.4650286 10.2857143,20.5714286 L10.2857143,17.1428571 C10.2857143,15.2492571 8.75069143,13.7142857 6.85714286,13.7142857 L3.42857143,13.7142857 Z" id="Path"></path>
+                  <path class="color-background" d="M13.7142857,3.42857143 C13.7142857,1.53502286 15.2492571,0 17.1428571,0 L20.5714286,0 C22.4650286,0 24,1.53502286 24,3.42857143 L24,6.85714286 C24,8.75069143 22.4650286,10.2857143 20.5714286,10.2857143 L17.1428571,10.2857143 C15.2492571,10.2857143 13.7142857,8.75069143 13.7142857,6.85714286 L13.7142857,3.42857143 Z" id="Path"></path>
+                  <path class="color-foreground" d="M13.7142857,17.1428571 C13.7142857,15.2492571 15.2492571,13.7142857 17.1428571,13.7142857 L20.5714286,13.7142857 C22.4650286,13.7142857 24,15.2492571 24,17.1428571 L24,20.5714286 C24,22.4650286 22.4650286,24 20.5714286,24 L17.1428571,24 C15.2492571,24 13.7142857,22.4650286 13.7142857,20.5714286 L13.7142857,17.1428571 Z" id="Path"></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Tables</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  {% if 'wallet' in segment %}active{% endif %}" href="{% url 'wallet' %}">
+          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>wallet</title>
+              <g id="wallet" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
+                  <path class="color-background" d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z" id="Path" fill-rule="nonzero"></path>
+                  <path class="color-foreground" d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z" id="Shape"></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Wallet</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if 'rtl' in segment %}active{% endif %} " href="{% url 'rtl' %}">
+          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>rtl</title>
+              <g id="rtl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="menu-alt-3" transform="translate(12.000000, 14.000000)" fill="#FFFFFF">
+                  <path class="color-foreground" d="M0,1.71428571 C0,0.76752 0.76752,0 1.71428571,0 L22.2857143,0 C23.2325143,0 24,0.76752 24,1.71428571 C24,2.66105143 23.2325143,3.42857143 22.2857143,3.42857143 L1.71428571,3.42857143 C0.76752,3.42857143 0,2.66105143 0,1.71428571 Z" id="Path"></path>
+                  <path class="color-background" d="M0,10.2857143 C0,9.33894857 0.76752,8.57142857 1.71428571,8.57142857 L22.2857143,8.57142857 C23.2325143,8.57142857 24,9.33894857 24,10.2857143 C24,11.2325143 23.2325143,12 22.2857143,12 L1.71428571,12 C0.76752,12 0,11.2325143 0,10.2857143 Z" id="Path"></path>
+                  <path class="color-background" d="M10.2857143,18.8571429 C10.2857143,17.9103429 11.0532343,17.1428571 12,17.1428571 L22.2857143,17.1428571 C23.2325143,17.1428571 24,17.9103429 24,18.8571429 C24,19.8039429 23.2325143,20.5714286 22.2857143,20.5714286 L12,20.5714286 C11.0532343,20.5714286 10.2857143,19.8039429 10.2857143,18.8571429 Z" id="Path"></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">RTL</span>
+        </a>
+      </li>
+      <li class="nav-item mt-2">
+        <div class="d-flex align-items-center nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ms-2" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+          </svg>
+          <span class="font-weight-normal text-md ms-2">Account Pages</span>
+        </div>
+      </li>
+      <li class="nav-item border-start my-0 pt-2">
+        <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'profile' %}">
+          <span class="nav-link-text ms-1">Profile</span>
+        </a>
+      </li>
+      <li class="nav-item border-start my-0 pt-2">
+        <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'login' %}">
+          <span class="nav-link-text ms-1">Sign In</span>
+        </a>
+      </li>
+      <li class="nav-item border-start my-0 pt-2">
+        <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'register' %}">
+          <span class="nav-link-text ms-1">Sign Up</span>
+        </a>
+      </li>
+      {% if request.user.is_authenticated %}
+      <li class="nav-item border-start my-0 pt-2">
+        <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'password_change' %}">
+          <span class="nav-link-text ms-1">Change Password</span>
+        </a>
+      </li>
+      <li class="nav-item border-start my-0 pt-2">
+        <a class="nav-link position-relative ms-0 ps-2 py-2 " href="{% url 'logout' %}">
+          <span class="nav-link-text ms-1">Logout</span>
+        </a>
+      </li>
+      {% endif %}
+
+      {% endif %}
+    </ul>
+  </div>
+</aside>
