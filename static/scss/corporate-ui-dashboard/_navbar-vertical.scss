@@ -792,3 +792,21 @@
     }
   }
 }
+
+
+// ╔Contenido agregado
+// ╠══Submenus
+
+.navbar-vertical {
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        .navbar-nav.collapse{
+          #sub-item {
+            background-color: red;
+          }
+        } 
+      }
+    }
+  }
+}

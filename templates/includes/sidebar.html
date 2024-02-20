@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse px-4  w-auto " id="sidenav-collapse-main">
     <ul class="navbar-nav" id="mainmenu">
 
-      <li class="nav-item dropdown">
+      <li class="nav-item">
         {% if request.user.is_superuser %}
         <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
         {% else %}
@@ -32,7 +32,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item dropdown">
         <!-- Si es usuario con privilegios para ver-->
         <!-- Para ventas el cliente debe ser del departamento correspondiente para visualizar-->
         {% if request.user.is_superuser %}<!-- Aqui iria la condicionante -->
@@ -48,9 +48,9 @@
           </div>
           <span class="nav-link-text ms-1">Clientes y ventas</span>
         </a>
-        <ul class="nav-item collapse" id="submenuventas" data-bs-parent="#mainmenu">
-          <li class="nav-item">
-            <a href="#" class="nav-link active ">Zonas</a>
+        <ul class="navbar-nav collapse" id="submenuventas" data-bs-parent="#mainmenu">
+          <li class="nav-item" id="sub-item">
+            <a href="#" class="nav-link">Zonas</a>
           </li>
         </ul>
       </li>
@@ -93,9 +93,9 @@
         <!-- Si es usuario con privilegios inicio sesion podra ver-->
         <!-- Para recursos humanos el cliente debe ser del departamento correspondiente para visualizar-->
         {% if request.user.is_superuser %} <!-- Aqui iria la condicionante -->
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenurrhh" data-bs-toggle="collapse" aria-expanded="false">
         {% else %}
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenurrhh" data-bs-toggle="collapse" aria-expanded="false">
         {% endif %}
           <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
             <svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
@@ -105,6 +105,36 @@
           </div>
           <span class="nav-link-text ms-1">Recursos humanos</span>
         </a>
+        <ul class="navbar-nav  collapse" id="submenurrhh" data-bs-parent="#mainmenu">
+          <li class="nav-item">
+            <a href="#" class="nav-link  ">Empleados</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link  ">Postulaciones</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link  ">Contrataciones</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link  ">Turnos</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link  ">Remuneraciones</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link  ">Evaluaciones</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link  ">Capacitaciones</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link  ">Centro de costos</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link ">Desvinculaciones</a>
+          </li>
+        </ul>
+        
       </li>
       <li class="nav-item">
         <!-- Si es usuario con privilegios inicio sesion podra ver-->
