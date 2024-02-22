@@ -223,10 +223,10 @@
       <li class="nav-item">
         <!-- Si es usuario con privilegios inicio sesion podra ver-->
         <!-- Para produccion el cliente debe ser del departamento correspondiente para visualizar-->
-        {% if request.user.is_superuser %}
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
+        {% if request.user.is_superuser %} <!-- Aqui iria la condicionante -->
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuproduccion" data-bs-toggle="collapse" aria-expanded="false">
         {% else %}
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
+        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuproduccion" data-bs-toggle="collapse" aria-expanded="false">
         {% endif %}
           <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
             <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
