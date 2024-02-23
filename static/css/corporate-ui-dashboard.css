@@ -17388,7 +17388,7 @@ pre[class*="language-"] {
   /* there must be 'right' for ps__thumb-y */
   right: 2px;
   /* please don't change 'position' */
-  position: fixed; }
+  position: absolute; }
 
 .ps__rail-x:hover > .ps__thumb-x,
 .ps__rail-x:focus > .ps__thumb-x,
