@@ -1,0 +1,47 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<div class="container mt-4">
+  <h1 class="text-center">Departamentos</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="p-3 border bg-light">
+        <h2>Ventas</h2>
+        <p>Nr. Trabajadores: 35</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-3 border bg-light">
+        <h2>Compras</h2>
+        <p>Nr. Trabajadores: 10</p>
+      </div>
+    </div>
+    <!-- Agrega otras columnas para otros departamentos -->
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <h2>Registro de Modificaciones</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Fecha</th>
+            <th>Usuario</th>
+            <th>Detalles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Agrega filas de tabla para cada registro de modificación -->
+          <tr>
+            <td>1587687</td>
+            <td>19 May, 2021: 10:10 AM</td>
+            <td>Usuario Admin011</td>
+            <td>Agregado registro XXXX</td>
+          </tr>
+          <!-- Otras filas de tabla -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% include 'includes/footer.html' %}
+</div>
+
+{% endblock content %}
