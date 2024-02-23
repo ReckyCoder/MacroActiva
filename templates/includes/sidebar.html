@@ -7,11 +7,7 @@
       <span class="font-weight-bold text-lg">ActivaERP</span>
     </a>
   </div>
-<<<<<<< HEAD
   <div class="collapse navbar-collapse px-4  w-auto" id="sidenav-collapse-main" style="overflow-x: hidden;">
-=======
-  <div class="collapse h-auto navbar-collapse px-4  " id="sidenav-collapse-main" style="overflow-x: hidden; position: relative;">
->>>>>>> c38aec15c0ec3a34481f99425dff3df6fa98386c
 
     <!--Menu de funciones de personal-->
     <ul class="navbar-nav mb-3" id="personalmenu">
@@ -184,15 +180,6 @@
         </a>
       </li>
 
-<<<<<<< HEAD
-      <li class="nav-item dropdown">
-        <!-- Si es usuario con privilegios para ver-->
-        <!-- Para ventas el cliente debe ser del departamento correspondiente para visualizar-->
-        {% if request.user.is_superuser %}<!-- Aqui iria la condicionante -->
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed" href="#submenuventas" data-bs-toggle="collapse" aria-expanded="false">
-        {% else %}
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed" href="#submenuventas" data-bs-toggle="collapse" aria-expanded="false">
-=======
       <li class="nav-item">
         <!-- Si es usuario con privilegios para ver-->
         <!-- Para ventas el cliente debe ser del departamento correspondiente para visualizar-->
@@ -200,7 +187,6 @@
         <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapse" href="#submenuClientesVentas" data-bs-toggle="collapse" aria-expanded="false">
         {% else %}
         <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapse" href="#submenuClientesVentas" data-bs-toggle="collapse" aria-expanded="false">
->>>>>>> c38aec15c0ec3a34481f99425dff3df6fa98386c
         {% endif %}
           <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
             <svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -210,11 +196,6 @@
           </div>
           <span class="nav-link-text ms-1">Clientes y ventas</span>
         </a>
-<<<<<<< HEAD
-        <ul class="navbar-nav collapse" id="submenuventas" data-bs-parent="#mainmenu">
-          <!--Aqui van los modulos-->
-        </ul>
-=======
         <ul class="navbar-nav collapse" id="submenuClientesVentas" data-bs-parent="#mainmenu">
           <li class="nav-item border-start my-0">
             <!--{ if request.user.is_autenticated }-->
@@ -302,7 +283,6 @@
           </li>
         </ul>
 
->>>>>>> c38aec15c0ec3a34481f99425dff3df6fa98386c
       </li>
 
       <li class="nav-item">
@@ -327,17 +307,10 @@
       <li class="nav-item">
         <!-- Si es usuario con privilegios inicio sesion podra ver-->
         <!-- Para produccion el cliente debe ser del departamento correspondiente para visualizar-->
-<<<<<<< HEAD
-        {% if request.user.is_superuser %}
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
-        {% else %}
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
-=======
         {% if request.user.is_superuser %} <!-- Aqui iria la condicionante -->
         <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuproduccion" data-bs-toggle="collapse" aria-expanded="false">
         {% else %}
         <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuproduccion" data-bs-toggle="collapse" aria-expanded="false">
->>>>>>> c38aec15c0ec3a34481f99425dff3df6fa98386c
         {% endif %}
           <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
             <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -347,8 +320,6 @@
           </div>
           <span class="nav-link-text ms-1">Producción</span>
         </a>
-<<<<<<< HEAD
-=======
         <ul class="navbar-nav collapse" id="submenuproduccion" data-bs-parent="#mainmenu">
           <li class="nav-item border-start my-0">
             <!--{ if request.user.is_autenticated }-->
@@ -430,7 +401,6 @@
             </a>
           </li>
         </ul>
->>>>>>> c38aec15c0ec3a34481f99425dff3df6fa98386c
       </li>
 
 
@@ -502,11 +472,7 @@
                 <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                   <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
                     <title>remuneraciones</title>
-<<<<<<< HEAD
-                    <<path fill="#ffffff" d="M12.89,11.1c-1.78-0.59-2.64-0.96-2.64-1.9c0-1.02,1.11-1.39,1.81-1.39c1.31,0,1.79,0.99,1.9,1.34l1.58-0.67 C15.39,8.03,14.72,6.56,13,6.24V5h-2v1.26C8.52,6.82,8.51,9.12,8.51,9.22c0,2.27,2.25,2.91,3.35,3.31 c1.58,0.56,2.28,1.07,2.28,2.03c0,1.13-1.05,1.61-1.98,1.61c-1.82,0-2.34-1.87-2.4-2.09L8.1,14.75c0.63,2.19,2.28,2.78,2.9,2.96V19 h2v-1.24c0.4-0.09,2.9-0.59,2.9-3.22C15.9,13.15,15.29,11.93,12.89,11.1z M3,21H1v-6h6v2l-2.48,0c1.61,2.41,4.36,4,7.48,4 c4.97,0,9-4.03,9-9h2c0,6.08-4.92,11-11,11c-3.72,0-7.01-1.85-9-4.67L3,21z M1,12C1,5.92,5.92,1,12,1c3.72,0,7.01,1.85,9,4.67L21,3 h2v6h-6V7l2.48,0C17.87,4.59,15.12,3,12,3c-4.97,0-9,4.03-9,9H1z"></path>
-=======
                     <path fill="#ffffff" d="M12.89,11.1c-1.78-0.59-2.64-0.96-2.64-1.9c0-1.02,1.11-1.39,1.81-1.39c1.31,0,1.79,0.99,1.9,1.34l1.58-0.67 C15.39,8.03,14.72,6.56,13,6.24V5h-2v1.26C8.52,6.82,8.51,9.12,8.51,9.22c0,2.27,2.25,2.91,3.35,3.31 c1.58,0.56,2.28,1.07,2.28,2.03c0,1.13-1.05,1.61-1.98,1.61c-1.82,0-2.34-1.87-2.4-2.09L8.1,14.75c0.63,2.19,2.28,2.78,2.9,2.96V19 h2v-1.24c0.4-0.09,2.9-0.59,2.9-3.22C15.9,13.15,15.29,11.93,12.89,11.1z M3,21H1v-6h6v2l-2.48,0c1.61,2.41,4.36,4,7.48,4 c4.97,0,9-4.03,9-9h2c0,6.08-4.92,11-11,11c-3.72,0-7.01-1.85-9-4.67L3,21z M1,12C1,5.92,5.92,1,12,1c3.72,0,7.01,1.85,9,4.67L21,3 h2v6h-6V7l2.48,0C17.87,4.59,15.12,3,12,3c-4.97,0-9,4.03-9,9H1z"></path>
->>>>>>> c38aec15c0ec3a34481f99425dff3df6fa98386c
                   </svg>
                 </div>               
                 <span class="nav-link">Remuneraciones</span>
@@ -561,27 +527,6 @@
       </li>
 
 
-<<<<<<< HEAD
-      <li class="nav-item">
-        <!-- Si es usuario con privilegios inicio sesion podra ver-->
-        <!-- Para administracion el cliente debe ser del departamento correspondiente para visualizar-->
-        {% if request.user.is_superuser %} <!-- Aqui iria la condicionante -->
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'admin:index' %}">
-        {% else %}
-        <a class="nav-link {% if 'dashboard' in segment %}active{% endif %}" href="{% url 'dashboard' %}">
-        {% endif %}
-          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-              <title>administracion</title>
-              <path fill="#ffffff" d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h89.9c-6.3-10.2-9.9-22.2-9.9-35.1c0-46.9 25.8-87.8 64-109.2V271.8 48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zM576 272a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM352 477.1c0 19.3 15.6 34.9 34.9 34.9H605.1c19.3 0 34.9-15.6 34.9-34.9c0-51.4-41.7-93.1-93.1-93.1H445.1c-51.4 0-93.1 41.7-93.1 93.1z"/>
-            </svg>
-          </div>
-          <span class="nav-link-text ms-1">Administracion</span>
-        </a>
-      </li>
-
-    </ul>
-=======
 
      
         <li class="nav-item">
@@ -683,7 +628,6 @@
             </ul>
           </div>
         </li>
->>>>>>> c38aec15c0ec3a34481f99425dff3df6fa98386c
 
     <hr class="my-0">
 
@@ -700,10 +644,7 @@
           </div>
           <span class="nav-link ">Empresa</span>
         </a>
-<<<<<<< HEAD
-=======
         
->>>>>>> c38aec15c0ec3a34481f99425dff3df6fa98386c
       </li>
     </ul>
 
