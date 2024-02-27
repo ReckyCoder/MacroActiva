@@ -22,6 +22,15 @@ def departamentos(request):
     
     return render(request, 'pages/Administración/departamentos.html', context=context)
 
+def vistadepartamento(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Administración"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+    
+    return render(request, 'pages/Administración/Vista-Departamento.html', context=context)
+
 def productos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
     modulo = "Administración"
