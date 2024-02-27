@@ -19,7 +19,7 @@
             <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
           </svg>
           {% if request.user.is_authenticated %}
-          <span class="font-weight-normal text-md ms-2">Bienvenido, [Admin] </span><!--Capturar mediante contexto el nombre del usuario-->
+          <span class="font-weight-normal text-md ms-2">Bienvenido, {{ request.user }} </span><!--Capturar mediante contexto el nombre del usuario-->
           {% else %}
           <span class="font-weight-normal text-md ms-2">Identificate</span>
           {% endif %}
@@ -302,6 +302,18 @@
           <span class="nav-link-text ms-1">Finanzas</span>
         </a>
         <ul class="navbar-nav collapse" id="submenufinanzas" data-bs-parent="#mainmenu">
+          <li class="nav-item border-start my-0">
+            <!--{ if request.user.is_autenticated }-->
+            <a href="#" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
+              <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <title>Departamentos</title>
+                  <path fill="#ffffff" d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16z"/>
+                </svg>
+              </div>
+              <span class="nav-link ">Departamentos</span>
+            </a>
+          </li>
           <li class="nav-item border-start my-0">
             <!--{ if request.user.is_autenticated }-->
             <a href="#" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
