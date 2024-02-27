@@ -5,10 +5,21 @@
   <div class="container-fluid py-1 px-2">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
-        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard</a></li>
-        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{ segment|replace_value:"_" }}</li>
+        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="{% url 'dashboard' %}">{{mainModuleName|replace_value:"_"}}</a></li>
+        {%  for modulo in modulos %}
+          {% if modulo.childModuleName %}
+            {% if modulo.parentModuleName %}
+            <li class="breadcrumb-item text-sm text-dark" aria-current="page"><a href="{{deafultUrl}}">{{ modulo.parentModuleName|replace_value:"_" }}</a></li>
+            {% endif %}
+          {% else %}
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="">{{ modulo.parentModuleName|replace_value:"_" }}</a></li>
+          {% endif %}
+        {% if modulo.childModuleName %}
+        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{ modulo.childModuleName|replace_value:"_" }}</li>
+        {% endif %}
+        {% endfor %}
       </ol>
-      <h6 class="font-weight-bold mb-0">{{ segment|replace_value:"_" }}</h6>
+      <h6 class="font-weight-bold mb-0">{{ parentModuleName|replace_value:"_" }}</h6>
     </nav>
     <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
       <div class="ms-md-auto pe-md-3 d-flex align-items-center">

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os, random, string
 from pathlib import Path
 from dotenv import load_dotenv
+from apps.rh.empleado.apps import EmpleadoConfig
+
 
 load_dotenv()  # take environment variables from .env.
 
@@ -52,6 +54,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "home",
+    "apps.rh.empleado"
 ]
 
 MIDDLEWARE = [

@@ -5,10 +5,10 @@ from django.http import HttpResponse
 
 def index(request):
 
-    context = {}
-
-    # Add context data here
-    # context['test'] = 'OK'
+    context = {
+        'mainModuleName': 'inicio',
+        'defaultUrl':'dashboard',
+    }
 
     # Page from the theme 
     return render(request, 'pages/dashboard.html', context=context)
