@@ -7,6 +7,7 @@ from apps.rh.empleado.models import *
 
 class Cargo(models.Model):
     nombre  = models.CharField(max_length=50)
+    perfil = models.CharField(max_field=3000)
 
     def __str__(self):
         return self.nombre
