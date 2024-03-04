@@ -1,5 +1,222 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+{% block content %}
+
+
+
+<style>
+    /* Ajustar el tamaño del calendario para que se ajuste a la altura de la tarjeta */
+
+    #calendar {
+      margin-top: 20px;
+    }
+
+    .day {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #ccc;
+      margin: 2px;
+      cursor: pointer;
+    }
+
+    .day.active {
+      background-color: #007bff;
+      color: white;
+    }
+</style>
+
 <div class="container-fluid py-4 px-5">
+
+  <div class="row align-items-end">
+    <div class="col text-left">
+      <h1>Certificaciones</h1>
+    </div>
+    
+  </div>
+  <div class="row my-4">
+    <div class="col-md-9">
+      <div class="card shadow-xs border h-100">
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-md-4">
+              <h4>Listado de Certificaciones</h4>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Buscar...">
+            </div>
+            <div class="col-md-4 text-start">
+                <button type="button" class="btn btn-primary">Buscar</button>
+                <button type="button" class="btn btn-secondary">Filtrar</button>
+            </div>
+          </div>
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Código</th>
+                      <th>Nombre</th>
+                      <th>Departamento</th>
+                      <th>Duración</th>
+                      <th>Estado</th>
+                      <th>Detalles</th>            
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>123456</td>
+                    <td>Calidad</td>
+                    <td>Producción</td>
+                    <td>2 años</td>
+                    <td>(icono)Vigente</td>
+                    <td>(icono)info</td>
+                  </tr>
+                  <tr>
+                    <td>123456</td>
+                    <td>Calidad</td>
+                    <td>Producción</td>
+                    <td>2 años</td>
+                    <td>(icono)Vigente</td>
+                    <td>(icono)info</td>
+                  </tr>
+                  <tr>
+                    <td>123456</td>
+                    <td>Calidad</td>
+                    <td>Producción</td>
+                    <td>2 años</td>
+                    <td>(icono)Vigente</td>
+                    <td>(icono)info</td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="row">
+        <button type="button" class="btn btn-dark">Generar Certificación</button>
+      </div>
+      <div class="row">
+        <div class="card shadow-xs border h-100">
+          <div class="card-header">
+            <h5>Vencimientos Próximos</h5>
+          </div>
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>Operaciones</td>
+                  <td>123456</td>
+                  <td>(icono)</td>
+                </tr>
+                <tr>
+                  <td>Operaciones</td>
+                  <td>123456</td>
+                  <td>(icono)</td>            
+                </tr>
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-md-6 dates-container">
+      <div class="card shadow-xs border h-100">
+        <div class="card-header" >
+          <h5>Calendario</h5>
+        </div>
+        <div class="card-body">
+          <div id="calendar">
+            <div id="currentMonthYear"></div>
+            <div class="calendar-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 dates-container">
+        <div class="card shadow-xs border h-100">
+          <div class="card-header">
+            <h5>Próximas Fechas</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">01/01/2023 - Licencia de Software</li>
+            <li class="list-group-item">05/05/2023 - Certificación ISO</li>
+            <li class="list-group-item">10/10/2023 - Auditoría de Sistemas</li>
+            <li class="list-group-item">12/12/2023 - Renovación de Dominio</li>
+          </ul>
+        </div>
+    </div>
+    
+  </div>
+
   {% include 'includes/footer.html' %}
 </div>
-{% endblock content %}
+{% endblock content %} 
+{% block extrascripts %}
+
+<script>
+  // Datos simulados para fechas con información relevante
+  const data = {
+    "2024-03-01": "Reunión importante",
+    "2024-03-05": "Entrega de proyecto",
+    "2024-03-10": "Cumpleaños de Juan",
+    // Agrega más fechas y eventos según sea necesario
+  };
+
+  // Función para mostrar información cuando se hace clic en una fecha
+  function showInfo(date) {
+    const info = data[date];
+    if (info) {
+      alert(info);
+    } else {
+      alert("No hay información para esta fecha.");
+    }
+  }
+
+  // Función para generar el calendario
+  function generateCalendar() {
+  const calendarGrid = document.querySelector(".calendar-grid");
+  const currentMonthYear = document.getElementById("currentMonthYear");
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+  currentMonthYear.textContent = monthNames[currentMonth] + " " + currentYear;
+
+  // Limpiar el contenido anterior del calendario
+  calendarGrid.innerHTML = "";
+
+  // Generar días del mes
+  for (let i = 1; i <= daysInMonth; i++) {
+    const dayDiv = document.createElement("div");
+    dayDiv.textContent = i;
+    dayDiv.classList.add("day");
+
+    const dateString = new Date(currentYear, currentMonth, i).toISOString().split("T")[0];
+    if (data[dateString]) {
+      dayDiv.classList.add("active");
+      dayDiv.addEventListener("click", function() {
+        showInfo(dateString);
+      });
+    }
+
+    calendarGrid.appendChild(dayDiv);
+  }
+}
+
+// Genera el calendario al cargar la página
+generateCalendar();
+</script>
+
+{% endblock extrascripts %}

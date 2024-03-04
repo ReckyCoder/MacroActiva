@@ -22,9 +22,94 @@
       <h1>Departamentos</h1>
     </div>
     <div class="col-auto text-right">
-      <button type="button" class="btn btn-success btn-sm">Agregar</button>
+      <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
       <button type="button" class="btn btn-warning btn-sm">Editar</button>
       <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Departamento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- formulario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Departamento</div>
+              <div style="height: 20px;"></div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="nombreDepartamento" class="form-label">NOMBRE</label>
+                  <input type="text" class="form-control" id="nombreDepartamento" value="John">
+                </div>
+                <div class="mb-3">
+                  <label for="gerenteDepartamento" class="form-label">GERENTE</label>
+                  <input type="text" class="form-control" id="gerenteDepartamento" value="John">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="areaDepartamento" class="form-label">AREA</label>
+                  <select id="areaDepartamento" class="form-select">
+                    <option value="Select">Seleccionar</option>
+                    <option id="Doe" value="Doe">Doe</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="idDepartamento" class="form-label">ID</label>
+                  <input type="text" class="form-control" id="idDepartamento" value="Doe">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label for="descripcionDepartamento" class="form-label">DESCRIPCIÓN</label>
+                  <textarea class="form-control" id="descripcionDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="funcionesDepartamento" class="form-label">FUNCIONES</label>
+                  <textarea class="form-control" id="funcionesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="responsabilidadesDepartamento" class="form-label">RESPONSABILIDADES</label>
+                  <textarea class="form-control" id="responsabilidadesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="mb-3">
+                <label for="iconoDepartamento" class="form-label">Icono</label>
+                <div class="d-flex align-items-center">
+                  <img id="iconoDepartamentoPreview" src="" alt="Generic PNG" style="height: 32px; width: auto;">
+                  <input type="file" id="iconoDepartamentoInput" style="display: none;">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <button type="button" class="btn btn-secondary ms-2">Subir archivo</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
     </div>
   </div>
  

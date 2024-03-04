@@ -1,5 +1,111 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block content %}
-<div class="container-fluid py-4 px-5">
-  {% include 'includes/footer.html' %}
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+
+{% block content %}
+<div class="container-fluid mt-4">
+  
+    <div class="row align-items-end">
+      <div class="col text-left">
+        <h1>Productos</h1>
+      </div>
+      <div class="col-auto text-right">
+        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+        <button type="button" class="btn btn-warning btn-sm">Editar</button>
+        <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+      </div>
+    </div>
+  <div class="card shadow-xs border h-100">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-3">
+          <h4>Listado de Productos</h4>
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Buscar...">
+        </div>
+        <div class="col-md-6 text-start">
+            <button type="button" class="btn btn-primary">Buscar</button>
+            <button type="button" class="btn btn-secondary">Filtrar</button>
+        </div>
+      </div>
+      <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <th>Estado</th>
+                  <th>Código</th>
+                  <th>Departamento</th>
+                  <th>Categoría</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Check</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>Operaciones</td>
+                <td>123456</td>
+                <td>Logistica y Operaciones</td>
+                <td>Herramienta</td>
+                <td>Taladro</td>
+                <td>$50,000</td>
+                <td>18.3</td>
+                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+              </tr>
+              <tr>
+                <td>Operaciones</td>
+                <td>123456</td>
+                <td>Logistica y Operaciones</td>
+                <td>Herramienta</td>
+                <td>Taladro</td>
+                <td>$50,000</td>
+                <td>18.3</td>
+                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+              </tr>
+              <tr>
+                <td>Operaciones</td>
+                <td>123456</td>
+                <td>Logistica y Operaciones</td>
+                <td>Herramienta</td>
+                <td>Taladro</td>
+                <td>$50,000</td>
+                <td>18.3</td>
+                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+              </tr>
+              <tr>
+                <td>Operaciones</td>
+                <td>123456</td>
+                <td>Logistica y Operaciones</td>
+                <td>Herramienta</td>
+                <td>Taladro</td>
+                <td>$50,000</td>
+                <td>18.3</td>
+                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+              </tr>
+              <tr>
+                <td>Operaciones</td>
+                <td>123456</td>
+                <td>Logistica y Operaciones</td>
+                <td>Herramienta</td>
+                <td>Taladro</td>
+                <td>$50,000</td>
+                <td>18.3</td>
+                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+              </tr>
+              <!-- Añadir mas filas de producto si es necesario -->
+          </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-{% endblock content %}
+
+
+
+    {% include 'includes/footer.html' %}
+
+{% endblock content %} 
+
+{% block extrascripts %}
+
+
+{% endblock extrascripts %}
