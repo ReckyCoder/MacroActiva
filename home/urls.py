@@ -1,17 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('inventario', views.inventario, name='inventario'),
-    path('ingenieria', views.ingenieria, name='ingenieria'),
-    path('procesos', views.procesos, name='procesos'),
-    path('produccion', views.produccion, name='produccion'),
-    path('logistica', views.logistica, name='logistica'),
-    path('mantenimiento', views.mantenimiento, name='mantenimiento'),
-    path('seguridad', views.seguridad, name='seguridad'),
+    path('', include('apps.produccion.urls')),
     path('departamentos', views.departamentos, name='departamentos'),
     path('departamento', views.vistadepartamento, name='departamento'),
     path('productos', views.productos, name='productos'),
