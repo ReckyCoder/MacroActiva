@@ -4,11 +4,11 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    
-    context = {}
 
-    # Add context data here
-    # context['test'] = 'OK'
+    context = {
+        'mainModuleName': 'inicio',
+        'defaultUrl':'dashboard',
+    }
 
     # Page from the theme 
     return render(request, 'pages/dashboard.html', context=context)
@@ -84,6 +84,15 @@ def departamentos(request):
 
     
     return render(request, 'pages/Administración/departamentos.html', context=context)
+
+def vistadepartamento(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Administración"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+    
+    return render(request, 'pages/Administración/Vista-Departamento.html', context=context)
 
 def productos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
