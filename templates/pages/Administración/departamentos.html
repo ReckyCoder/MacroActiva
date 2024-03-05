@@ -22,9 +22,9 @@
       <h1>Departamentos</h1>
     </div>
     <div class="col-auto text-right">
-      <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
-      <button type="button" class="btn btn-warning btn-sm">Editar</button>
-      <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+      <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+      <button type="button" class="btn btn-secondary btn-md">Editar</button>
+      <button type="button" class="btn btn-secondary btn-md">Eliminar</button>
     </div>
   </div>
 
@@ -116,7 +116,7 @@
   <hr />
   <div class="row">
     <div class="col-md-3 col-sm-6 mb-3">
-      <a href="{% url 'departamento' %}" class="card-link">
+      <a href="{% url 'app_administracion:departamento' %}" class="card-link">
       <div class="card border shadow-xs mb-4">
         <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
             <div class="fs-5 w-100">
@@ -300,39 +300,43 @@
   <div class="row mt-4">
     <div class="col">
       <h2>Registro de Modificaciones</h2>
-      <div class="card shadow-xs border h-100">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Código</th>
-              <th>Fecha</th>
-              <th>Usuario</th>
-              <th>Detalles</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Agrega filas de tabla para cada registro de modificación -->
-            <tr>
-              <td>1587687</td>
-              <td>19 May, 2021: 10:10 AM</td>
-              <td>Usuario Admin011</td>
-              <td>Agregado registro XXXX</td>
-            </tr>
-            <tr>
-              <td>1587687</td>
-              <td>19 May, 2021: 10:10 AM</td>
-              <td>Usuario Admin011</td>
-              <td>Agregado registro XXXX</td>
-            </tr>
-            <tr>
-              <td>1587687</td>
-              <td>19 May, 2021: 10:10 AM</td>
-              <td>Usuario Admin011</td>
-              <td>Agregado registro XXXX</td>
-            </tr>
-            <!-- Otras filas de tabla -->
-          </tbody>
-        </table>
+      <div class="card shadow-xs border">
+        <div class="card-body px-0 py-0">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center justify-content-center mb-0">
+              <thead class="bg-gray-100">
+              <tr>
+                <th>Código</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Detalles</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Agrega filas de tabla para cada registro de modificación -->
+              <tr>
+                <td>1587687</td>
+                <td>19 May, 2021: 10:10 AM</td>
+                <td>Usuario Admin011</td>
+                <td>Agregado registro XXXX</td>
+              </tr>
+              <tr>
+                <td>1587687</td>
+                <td>19 May, 2021: 10:10 AM</td>
+                <td>Usuario Admin011</td>
+                <td>Agregado registro XXXX</td>
+              </tr>
+              <tr>
+                <td>1587687</td>
+                <td>19 May, 2021: 10:10 AM</td>
+                <td>Usuario Admin011</td>
+                <td>Agregado registro XXXX</td>
+              </tr>
+              <!-- Otras filas de tabla -->
+            </tbody>
+          </table>
+        </div>
+      </div>
       </div>
     </div>
   </div>
