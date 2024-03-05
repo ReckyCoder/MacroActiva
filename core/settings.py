@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os, random, string
 from pathlib import Path
 from dotenv import load_dotenv
+from apps.rh.empleado.apps import EmpleadoConfig
+
 
 load_dotenv()  # take environment variables from .env.
 
@@ -52,7 +54,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "home",
-    "apps.finanzas"
+    "apps.finanzas",
+    "apps.rh.empleado",
 ]
 
 MIDDLEWARE = [
@@ -168,4 +171,5 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/admin/logout'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
