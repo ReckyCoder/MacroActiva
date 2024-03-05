@@ -30,6 +30,52 @@ def campaña(request):
   
     return render(request, 'pages/CLIENTES-VENTAS/campaña.html', context=context)
 
+def clientes_leads(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Clientes Ventas"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+  
+    return render(request, 'pages/CLIENTES-VENTAS/leads-clientes.html', context=context)
+
+def cotizaciones(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Clientes Ventas"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+  
+    return render(request, 'pages/CLIENTES-VENTAS/cotizaciones.html', context=context)
+
+def ventas(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Clientes Ventas"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+  
+    return render(request, 'pages/CLIENTES-VENTAS/ventas.html', context=context)
+
+def contratoscv(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Clientes Ventas"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+  
+    return render(request, 'pages/CLIENTES-VENTAS/contratoscv.html', context=context)
+
+def postventa(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Clientes Ventas"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+  
+    return render(request, 'pages/CLIENTES-VENTAS/postventa.html', context=context)
+
+
 def departamentos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
     modulo = "Administración"

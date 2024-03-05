@@ -2,7 +2,7 @@
 
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start" id="sidenav-main">
   <div class="sidenav-header">
-    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+    <i class="fas fa-times p-3 cursor-pointer text-secondary position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand d-flex align-items-center m-0" href="/">
       <span class="font-weight-bold text-lg">ActivaERP</span>
     </a>
@@ -223,7 +223,7 @@
           </li>
           <li class="nav-item border-start my-0">
             <!--{ if request.user.is_autenticated }-->
-            <a href="#" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
+            <a href="{% url 'clientes_leads' %}" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                 <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                   <title>Leads/Clientes</title>
@@ -235,7 +235,7 @@
           </li>
           <li class="nav-item border-start my-0">
             <!--{ if request.user.is_autenticated }-->
-            <a href="#" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
+            <a href="{% url 'cotizaciones' %}" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                 <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                   <title>Cotizaciones</title>
@@ -247,7 +247,7 @@
           </li>
           <li class="nav-item border-start my-0">
             <!--{ if request.user.is_autenticated }-->
-            <a href="#" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
+            <a href="{% url 'ventas' %}" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                 <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                   <title>Ventas</title>
@@ -259,7 +259,7 @@
           </li>
           <li class="nav-item border-start my-0">
             <!--{ if request.user.is_autenticated }-->
-            <a href="#" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
+            <a href="{% url 'contratoscv' %}" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                 <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                   <title>Contratos</title>
@@ -271,7 +271,7 @@
           </li>
           <li class="nav-item border-start my-0">
             <!--{ if request.user.is_autenticated }-->
-            <a href="#" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
+            <a href="{% url 'postventa' %}" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                 <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <title>Post Venta</title>
