@@ -11,19 +11,33 @@
     text-overflow: ellipsis;
     -webkit-line-clamp: 2; /* Número de líneas a mostrar */
   }
-  
+
+  .col {
+    display: inline-block;
+    vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
+  }
+  .active a {
+    color: rgb(1, 1, 39); /* Color activo para el título seleccionado */
+    text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
+  .inactive a {
+      color: gray; /* Color inactivo para el título no seleccionado */
+      text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
 </style>
   
   <div class="row align-items-end">
-    <div class="col text-left">
-      <h1>Productos</h1>
+    <div id="productos-col" class="col-auto text-left">
+      <h1 class="title active"><a href="{% url 'app_administracion:productos' %}" class="title-link">Productos</a></h1>
     </div>
-    <div class="col-auto text-right">
-      <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
-      <button type="button" class="btn btn-secondary btn-md">Editar</button>
-      <button type="button" class="btn btn-secondary btn-md">Eliminar</button>
+    <div class="col-auto text-left">
+      <h1>/</h1>
     </div>
+    <div id="ordenes-col" class="col-auto text-left">
+      <h1 class="title inactive"><a href="{% url 'app_administracion:ordenesproductos' %}">Órdenes Productos</a></h1>
     </div>
+  </div>
+  
   <div class="row">
     <div class="col-md-3">
       <input type="text" class="form-control" placeholder="Buscar...">
@@ -31,6 +45,11 @@
     <div class="col-md-6 text-start">
         <button type="button" class="btn btn-secondary">Buscar</button>
         <button type="button" class="btn btn-secondary">Filtrar</button>
+    </div>
+    <div class="col-md-3 text-end">
+      <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+      <button type="button" class="btn btn-secondary btn-md">Editar</button>
+      <button type="button" class="btn btn-secondary btn-md">Eliminar</button>
     </div>
   </div>
   <div class="row">
@@ -447,6 +466,7 @@
 {% endblock content %} 
 
 {% block extrascripts %}
+
 
 
 {% endblock extrascripts %}
