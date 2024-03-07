@@ -1,0 +1,407 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+    {% block header %}
+    <header>
+        <h1 class="text-center my-5">Flujos de Caja</h1>
+    </header>
+
+    {% endblock header %}
+
+    <div class="container">
+        <div class="col">
+            <div class="card shadow-xs border">
+              <div class="card-header border-bottom pb-0">
+                <div class="pb-3 d-sm-flex align-items-center">
+                    <div class="input-group w-sm-50 w-lg-25 mx-auto my-3 my-sm-0">
+                        <span class="input-group-text text-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                            </svg>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Buscar ...">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'app_finanzas:crearVenta' %}" class="btn btn-secondary my-auto">Crear Flujo de Caja</a>
+                    </div>
+                </div>
+              </div>
+              <div class="card-body px-0 py-0">
+                <div class="table-responsive p-0">
+                  <table class="table table-hover table-bordered  align-items-center justify-content-center mb-0">
+                    <thead class="bg-gray-100 text-center">
+                      <tr>
+                        <th class="text-secondary text-sm font-weight-bold bg-success">Detalle de Ingresos</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 1</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 2</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 3</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 4</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 5</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 6</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 7</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 8</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 9</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 10</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 11</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2 bg-success">Mes 12</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-center">
+                      <tr>
+                        <td class="ps-4">
+                          <span class="text-sm font-weight-normal">Ingresos</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                          <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                        <th class="text-secondary text-sm font-weight-bold">Total de Ingresos</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                      </tr>
+                      <tr class="bg-gray-100">
+                        <th class="text-secondary text-sm font-weight-bold">Detalle de Egresos</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                      </tr>
+                      <tr>
+                        <td class="ps-4">
+                          <span class="text-sm font-weight-normal">Egresos</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                          <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                        </td>
+                      </tr>
+                      <tr class="bg-gray-100">
+                        <th class="text-secondary text-sm font-weight-bold">Total de Egresos</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                      </tr>
+                      <tr class="bg-gray-100">
+                        <th class="text-secondary text-sm font-weight-bold">Saldo Neto</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                      </tr>
+                      <tr class="bg-gray-100">
+                        <th class="text-secondary text-sm font-weight-bold">Saldo Neto Acumulado</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                        <th class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <!-- <td class="align-middle">
+                          <a href="{% url 'app_finanzas:editarVenta' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Venta">
+                            <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" fill="#64748B"/>
+                            </svg>
+                          </a>
+                          <span data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                              <a type="button" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Venta">
+                                <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" fill="#64748B"/>
+                                </svg>
+                              </a>
+                          </span>
+                        </td>
+                        <td class="align-middle">
+                            <span data-bs-toggle="modal" data-bs-target="#modalList">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Lista de Ingresos">
+                                  <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                      <path d="M0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224z" fill="#64748B"/>
+                                  </svg>
+                              </a>
+                            </span>
+                        </td> -->
+
+    <div class="modal fade" id="modalList" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalListLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalListLabel">Datos y Lista de la Orden de Venta</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Factura:</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">N° Orden de Venta:</label>
+                        <input disabled id="formInput" class="form-control" type="text" placeholder="123 ...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Fecha de Inicio de la Venta:</label>
+                        <input disabled id="formInput" class="form-control" type="date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Fecha Limite de la Venta:</label>
+                        <input disabled id="formInput" class="form-control" type="date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Vendedor:</label>
+                        <input disabled id="formInput" class="form-control" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Cuenta Corriente:</label>
+                        <input disabled id="formInput" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Cliente:</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Cliente:</label>
+                        <input disabled id="formInput" class="form-control" type="text" list="lista-cliente" placeholder="cliente ...">
+                        <datalist class="d-none" id="lista-cliente">
+                            <option value="Juan"></option>
+                            <option value="Pedro"></option>
+                            <option value="Oscar"></option>
+                        </datalist>
+                    </div>
+                    <div>
+                        <p class="font-weight-bold mb-3">Razón Social: <span class="font-weight-normal">Esperando Cliente ...</span></p>
+                        <p class="font-weight-bold mb-3">Giro Comercial: <span class="font-weight-normal">Esperando Cliente ...</span></p>
+                        <p class="font-weight-bold mb-3">Rut Empresa: <span class="font-weight-normal">Esperando Cliente ...</span></p>
+                        <p class="font-weight-bold mb-3">Rut: <span class="font-weight-normal">Esperando Cliente ...</span></p>
+                        <p class="font-weight-bold mb-3">Ciudad: <span class="font-weight-normal">Esperando Cliente ...</span></p>
+                        <p class="font-weight-bold mb-3">Direción: <span class="font-weight-normal">Esperando Cliente ...</span></p>
+                        <p class="font-weight-bold mb-3">Teléfono: <span class="font-weight-normal">Esperando Cliente ...</span></p>
+                        <p class="font-weight-bold mb-3">Correo: <span class="font-weight-normal">Esperando Cliente ...</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Lista de la Orden de Venta:</p>
+                    </div>
+                    <div class="card-body px-0 pb-0">
+                        <div class="table-responsive p-0">
+                          <table class="table table-hover table-bordered align-items-center justify-content-center mb-0">
+                            <thead class="bg-gray-100">
+                              <tr>
+                                <th class="text-secondary text-xs font-weight-bold">Código</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Descripción</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Cantidad</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Neto</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Impuesto</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Total</th>
+                              </tr>
+                            </thead>
+                                <tbody class="items">
+                                    <tr class="text-center">
+                                        <td class="ps-1">
+                                            <span class="">123 ...</span>
+                                        </td>
+                                        <td class="ps-1">
+                                            <span class="descripcion">Item 1 ...</span>
+                                        </td>
+                                        <td class="ps-1">
+                                            <span class="cantidad">2 ...</span>
+                                        </td>
+                                        <td class="ps-1">
+                                            <span class="neto">$00.000.000</span>
+                                        </td>
+                                        <td class="ps-1 text-center">
+                                            <span class="text-sm font-weight-normal">0.19</span>
+                                        </td>
+                                        <td class="ps-1 text-center">
+                                            <span class="text-sm font-weight-normal total"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="dotted">
+            <div class="row">
+                <div class="col-12 d-flex flex-column justify-content-center">
+                    <div class="my-2 my-md-1">
+                        <label for="facturacion" class="form-label font-weight-bold">Facturación: </label>
+                        <select disabled name="" id="facturacion" class="form-select">
+                            <option selected value="Por Facturar">Por Facturar</option>
+                            <option disabled value="Facturado">Facturado</option>
+                        </select>
+                    </div>
+                    <div class="my-2 my-md-1">
+                        <label for="cobro" class="form-label font-weight-bold">Estado del Cobro: </label>
+                        <select disabled name="" id="cobro" class="form-select">
+                            <option selected value="Por Cobrar">Por Cobrar</option>
+                            <option disabled value="Cobrado">Cobrado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 d-flex flex-column align-items-end">
+                    <p class="mt-3">Total sin Impuesto: $<span class="total-sin-impuesto">00.000.000</span></p>
+                    <p class="mb-1">Con Impuesto: $<span class="total-impuesto">00.000.000</span></p>
+                    <hr class="w-50 dotted">
+                    <p class="font-weight-bold">Total: $<span id="totalOrden">00.000.000</span></p>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de Eliminar</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Los cambios seran realizados al presupuesto actual, en caso de no estar seguro cierre esta ventana.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:presupuestosCDC' %}">Confirmar</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination d-flex justify-content-center flex-wrap ">
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+{% endblock content %}
+    
