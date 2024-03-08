@@ -90,41 +90,83 @@ class EditarPresupuestosP(TemplateView):
 
 
 #------------------------------------------------------------------------------------------
+    
 
-#---------------------------- Vista de Compras de Centro de Costos con CRUD ------------------------------
+#---------------------------- Vista de Compras con CRUD ------------------------------
     
 #ListView
-class CompraCDC(TemplateView):
-    template_name = "finanzas/compra/centro-de-costos/compra.html"
+class Compra(TemplateView):
+    template_name = "finanzas/compra/compra.html"
 
 
 #CreateView
-class CrearCompraCDC(TemplateView):
-    template_name = "finanzas/compra/centro-de-costos/crearCompra.html"
+class CrearCompra(TemplateView):
+    template_name = "finanzas/compra/crearCompra.html"
 
 #UpdateView
-class EditarCompraCDC(TemplateView):
-    template_name = "finanzas/compra/centro-de-costos/editarCompra.html"
+class EditarCompra(TemplateView):
+    template_name = "finanzas/compra/editarCompra.html"
 
 #------------------------------------------------------------------------------------------
     
-#---------------------------- Vista de Compras de Proyectos con CRUD ------------------------------
+
+#---------------------------- Vista de Cotizaciones de Compra con CRUD ------------------------------
     
+
 #ListView
-class CompraP(TemplateView):
-    template_name = "finanzas/compra/proyectos/compra.html"
+class CotizacionesCompra(TemplateView):
+    template_name = "finanzas/compra/cotizaciones/cotizaciones.html"
+
 
 #CreateView
-class CrearCompraP(TemplateView):
-    template_name = "finanzas/compra/proyectos/crearCompra.html"
+class CrearCotizacionesCompra(TemplateView):
+    template_name = "finanzas/compra/cotizaciones/crearCotizaciones.html"
 
 #UpdateView
-class EditarCompraP(TemplateView):
-    template_name = "finanzas/compra/proyectos/editarCompra.html"
+class EditarCotizacionesCompra(TemplateView):
+    template_name = "finanzas/compra/cotizaciones/editarCotizaciones.html"
+    
 
 #------------------------------------------------------------------------------------------
     
-#---------------------------- Vista de ventas con CRUD ------------------------------
+
+#---------------------------- Vista de Ordenes de Compra con CRUD ------------------------------
+    
+#ListView
+class OrdenesDeCompra(TemplateView):
+    template_name = "finanzas/compra/OrdenesDeCompra/ordenesDeCompra.html"
+
+
+#CreateView
+class CrearOrdenesDeCompra(TemplateView):
+    template_name = "finanzas/compra/OrdenesDeCompra/crearOrdenesDeCompra.html"
+
+#UpdateView
+class EditarOrdenesDeCompra(TemplateView):
+    template_name = "finanzas/compra/OrdenesDeCompra/editarOrdenesDeCompra.html"
+
+#------------------------------------------------------------------------------------------
+    
+#---------------------------- Vista de Cotizaciones de Compra con CRUD ------------------------------
+    
+
+#ListView
+class FacturasCompra(TemplateView):
+    template_name = "finanzas/compra/facturas/facturas.html"
+
+#CreateView
+class CrearFacturasCompra(TemplateView):
+    template_name = "finanzas/compra/facturas/crearFactura.html"
+
+#UpdateView
+class EditarFacturasCompra(TemplateView):
+    template_name = "finanzas/compra/facturas/editarFactura.html"
+
+
+#------------------------------------------------------------------------------------------
+    
+    
+#---------------------------- Vista de Ventas con CRUD ------------------------------
     
 #ListView
 class Venta(TemplateView):
@@ -137,6 +179,59 @@ class CrearVenta(TemplateView):
 #UpdateView
 class EditarVenta(TemplateView):
     template_name = "finanzas/venta/editarVenta.html"
+
+#------------------------------------------------------------------------------------------
+
+#---------------------------- Vista de Cotizaciones de Venta con CRUD ------------------------------
+    
+
+#ListView
+class CotizacionesVenta(TemplateView):
+    template_name = "finanzas/venta/cotizaciones/cotizaciones.html"
+
+
+#CreateView
+class CrearCotizacionesVenta(TemplateView):
+    template_name = "finanzas/venta/cotizaciones/crearCotizaciones.html"
+
+#UpdateView
+class EditarCotizacionesVenta(TemplateView):
+    template_name = "finanzas/venta/cotizaciones/editarCotizaciones.html"
+
+
+#------------------------------------------------------------------------------------------
+    
+#---------------------------- Vista de Ordenes de Venta con CRUD ------------------------------
+    
+#ListView
+class OrdenesDeVenta(TemplateView):
+    template_name = "finanzas/venta/OrdenesDeVenta/ordenesDeVenta.html"
+
+
+#CreateView
+class CrearOrdenesDeVenta(TemplateView):
+    template_name = "finanzas/venta/OrdenesDeVenta/crearOrdenesDeVenta.html"
+
+#UpdateView
+class EditarOrdenesDeVenta(TemplateView):
+    template_name = "finanzas/venta/OrdenesDeVenta/editarOrdenesDeVenta.html"
+
+#------------------------------------------------------------------------------------------
+    
+#---------------------------- Vista de Cotizaciones de Venta con CRUD ------------------------------
+    
+
+#ListView
+class FacturasVenta(TemplateView):
+    template_name = "finanzas/venta/facturas/facturas.html"
+
+#CreateView
+class CrearFacturasVenta(TemplateView):
+    template_name = "finanzas/venta/facturas/crearFactura.html"
+
+#UpdateView
+class EditarFacturasVenta(TemplateView):
+    template_name = "finanzas/venta/facturas/editarFactura.html"
 
 
 #------------------------------------------------------------------------------------------
@@ -183,3 +278,11 @@ class CrearFlujoDeCaja(TemplateView):
 #UpdateView
 class EditarFlujoDeCaja(TemplateView):
     template_name = "finanzas/flujo-de-caja/editarFlujoDeCaja.html"
+
+
+#---------------------------- Vista de Contabilidad ------------------------------
+    
+
+#ListView
+class Contabilidad(TemplateView):
+    template_name = "finanzas/contabilidad/contabilidad.html"

@@ -38,8 +38,9 @@
                         <label for="formInput" class="form-label" for="">Código del Centro de Costos:</label>
                         <input id="formInput" class="form-control" type="text" placeholder="123 ...">
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Actualizar</button>
+                    <div class="d-flex justify-content-center flex-wrap">
+                        <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Actualizar</button>
+                        <a href="{% url 'app_finanzas:centroDeCostos' %}" class="btn btn-secondary mx-1">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -59,7 +60,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:centroDeCostos' %}">Confirmar</a>
+              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:centroDeCostos' %}">Actualizar</a>
             </div>
           </div>
         </div>

@@ -18,32 +18,54 @@
     </div>
 
     <div class="container">
-        <div class="card w-lg-50 mx-lg-auto">
+        <div class="card w-lg-70 w-xl-50 mx-lg-auto">
             <div class="card-body">
-                <form action="">
+                <form class="p-3" action="">
                     <div class="mb-3">
                         <label for="formInput" class="form-label" for="">Departamento:</label>
                         <input id="formInput" class="form-control" type="text" list="lista" placeholder="Departamento ...">
                         <datalist class="d-none" id="lista">
-                            <option value="1"></option>
-                            <option value="2"></option>
-                            <option value="3"></option>
+                            <option value="departamento 1"></option>
+                            <option value="departamento 2"></option>
+                            <option value="departamento 3"></option>
                         </datalist>
                     </div>
                     <div class="mb-3">
-                        <label for="formInput" class="form-label" for="">Centro de Costos:</label>
-                        <input id="formInput" class="form-control" type="text" placeholder="Nombre ...">
+                        <label for="formInput" class="form-label" for="CDC">Centro de Costos:</label>
+                        <input id="CDC" class="form-control" type="text" placeholder="Nombre ...">
                     </div>
                     <div class="mb-3">
-                        <label for="formInput" class="form-label" for="">Código del Centro de Costos:</label>
-                        <input id="formInput" class="form-control" type="text" placeholder="123 ...">
+                        <label for="formInput" class="form-label" for="Código">Código del Centro de Costos:</label>
+                        <input id="Código" class="form-control" type="text" placeholder="123 ...">
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <a class="btn btn-secondary" href="{% url 'app_finanzas:centroDeCostos' %}">Crear</a>
+                    <div class="d-flex justify-content-center flex-wrap">
+                        <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#modalCrear">Crear</button>
+                        <a class="btn btn-secondary mx-1" href="{% url 'app_finanzas:centroDeCostos' %}">Cancelar</a>
                     </div>
                 </form>
             </div>
           </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalCrear" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalCrearLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalCrearLabel">Antes de Crear un Centro de Costos</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div>
+                <p>Se creara un nuevo registro como centro de costos, si no esta seguro cierre esta ventana</p>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <a class="btn btn-primary" href="{% url 'app_finanzas:centroDeCostos' %}">Confirmar</a>
+            </div>
+        </div>
+        </div>
     </div>
 
 {% endblock content %}
