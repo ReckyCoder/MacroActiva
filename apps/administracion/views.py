@@ -29,14 +29,14 @@ def productos(request):
     
     return render(request, 'pages/Administración/productos.html', context=context)
 
-def ordenesproductos(request):
+def gestionproductos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
     modulo = "Administración"
     nombre_vista = request.resolver_match.url_name
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/ordenesproductos.html', context=context)
+    return render(request, 'pages/Administración/gestionproductos.html', context=context)
 
 def contratos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION

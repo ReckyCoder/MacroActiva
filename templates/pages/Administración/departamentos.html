@@ -21,19 +21,24 @@
     <div class="col text-left">
       <h1>Departamentos</h1>
     </div>
-    <div class="col-auto text-right">
-      <button type="button" class="btn btn-secondary btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
-      <button type="button" class="btn btn-secondary btn-md">Editar</button>
-      <button type="button" class="btn btn-secondary btn-md">Eliminar</button>
-    </div>
   </div>
+  <hr>
+  <div class="row">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+      <button type="button" class="btn btn-dark btn-md me-1">Editar</button>
+      <button type="button" class="btn btn-dark btn-md">Eliminar</button>
+    </div>
+  <div class="row">
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Departamento</h5>
+          <div class="container bg-dark rounded">
+            <h5 class="modal-title text-white" id="exampleModalLabel">Agregar Nuevo Departamento</h5>
+          </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -100,7 +105,7 @@
             </div>
             <div class="row">
               <div class="mb-3">
-                <button type="button" class="btn btn-secondary ms-2">Subir archivo</button>
+                <button type="button" class="btn btn-dark ms-2">Subir archivo</button>
               </div>
             </div>
           </form>
@@ -112,8 +117,6 @@
       </div>
     </div>
   </div>
- 
-  <hr />
   <div class="row">
     <div class="col-md-3 col-sm-6 mb-3">
       <a href="{% url 'app_administracion:departamento' %}" class="card-link">
@@ -217,8 +220,8 @@
     <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
       <div class="card shadow-xs border h-100">
         <div class="card-header pb-0">
-          <h6 class="font-weight-semibold text-lg mb-0">Balances over time</h6>
-          <p class="text-sm">Here you have details about the balance.</p>
+          <h6 class="font-weight-semibold text-lg mb-0">Saldo Deparamentos en el tiempo</h6>
+          <p class="text-sm">Detalles de balance.</p>
           <div
             class="btn-group"
             role="group"
@@ -233,7 +236,7 @@
               checked
             />
             <label class="btn btn-white px-3 mb-0" for="btnradio1"
-              >12 months</label
+              >12 Meses</label
             >
             <input
               type="radio"
@@ -243,7 +246,7 @@
               autocomplete="off"
             />
             <label class="btn btn-white px-3 mb-0" for="btnradio2"
-              >30 days</label
+              >30 días</label
             >
             <input
               type="radio"
@@ -253,7 +256,7 @@
               autocomplete="off"
             />
             <label class="btn btn-white px-3 mb-0" for="btnradio3"
-              >7 days</label
+              >7 días</label
             >
           </div>
         </div>
@@ -261,7 +264,7 @@
           <div class="chart mb-2">
             <canvas id="chart-bars" class="chart-canvas" height="240"></canvas>
           </div>
-          <button class="btn btn-white mb-0 ms-auto">View report</button>
+          <button class="btn btn-white mb-0 ms-auto">Ver Reporte</button>
         </div>
       </div>
     </div>
@@ -270,13 +273,11 @@
         <div class="card-header pb-0">
           <div class="d-sm-flex align-items-center mb-3">
             <div>
-              <h6 class="font-weight-semibold text-lg mb-0">Overview balance</h6>
-              <p class="text-sm mb-sm-0 mb-2">Here you have details about the balance.</p>
+              <h6 class="font-weight-semibold text-lg mb-0">Saldo General Deparamentos</h6>
+              <p class="text-sm mb-sm-0 mb-2">Detalles de balance.</p>
             </div>
             <div class="ms-auto d-flex">
-              <button type="button" class="btn btn-sm btn-white mb-0 me-2">
-                View report
-              </button>
+              <button type="button" class="btn btn-sm btn-white mb-0 me-2">Ver Reporte</button>
             </div>
           </div>
           <div class="d-sm-flex align-items-center">
@@ -304,15 +305,15 @@
         <div class="card-body px-0 py-0">
           <div class="table-responsive p-0">
             <table class="table align-items-center justify-content-center mb-0">
-              <thead class="bg-gray-100">
-              <tr>
+              <thead style="background-color: #0f172a;">
+              <tr class="text-center" style="color: white;">
                 <th>Código</th>
                 <th>Fecha</th>
                 <th>Usuario</th>
                 <th>Detalles</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center" style="vertical-align: middle;">
               <!-- Agrega filas de tabla para cada registro de modificación -->
               <tr>
                 <td>1587687</td>
