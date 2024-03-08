@@ -117,8 +117,9 @@
                         <p class="font-weight-bold">Total: $<span id="totalOrden">00.000.000</span></p>
                     </div>
                     <hr class="dotted">
-                    <div class="d-flex justify-content-center mt-5">
-                        <button type="button" class="btn bg-dark text-light font-weight-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Crear Presupuesto</button>
+                    <div class="d-flex justify-content-center mt-5 flex-wrap">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Crear Presupuesto</button>
+                        <a class="btn btn-secondary mx-1" href="{% url 'app_finanzas:presupuestosCDC' %}">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -137,7 +138,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:presupuestosCDC' %}">Confirmar</a>
+              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:presupuestosCDC' %}">Crear Presupuesto</a>
             </div>
           </div>
         </div>
