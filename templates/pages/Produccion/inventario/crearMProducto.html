@@ -1,0 +1,85 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<div class="container-fluid py-4 px-5">
+  <h1>Crear Categoria Materias Primas</h1>
+  <hr>
+    <div class="card w-lg-70 mx-lg-auto">
+        <div class="card-body">
+            <form action="">
+                <div class="row">
+                  <div class="bg-dark rounded">
+                    <h3 class="ps-3 py-1 text-light font-weight-bold text-center">Crear Categoria:</h3>
+                </div>
+                      <div class="col-12 col-md-6">
+                          <div class="mb-3">
+                            <label>Nombre Producto:</label>
+                            <input class="form-control">
+                        </div>
+                        
+                        <div class="mb-3">
+                          <label>Proveedor:</label>
+                          <input class="form-control">
+                        </div>
+                        
+                        <div class="mb-3">
+                          <label>Departamento:</label>
+                          <Select class="form-control">
+                            <option>Departamento 1</option>
+                            <option>Departamento 2</option>
+                            <option>Departamento 3</option>
+                            <option>Departamento 4</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label>Ubicación:</label>
+                          <input class="form-control">
+                        </div>
+                        <div class="mb-3">
+                          <label>Descripción:</label>
+                          <textarea class="form-control"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="mb-3">
+                          <label>Categoria:</label>
+                          <Select class="form-control">
+                            <option>Categoria 1</option>
+                            <option>Categoria 2</option>
+                            <option>Categoria 3</option>
+                            <option>Categoria 4</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label>Precio Unitario:</label>
+                          <input type="number"class="form-control">
+                        </div>
+                        <div class="mb-3">
+                          <label>Centro Costo:</label>
+                          <Select class="form-control">
+                            <option>Centro Costo 1</option>
+                            <option>Centro Costo 2</option>
+                            <option>Centro Costo 3</option>
+                            <option>Centro Costo 4</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label>Cantidad:</label>
+                          <input type=number class="form-control">
+                        </div>
+                        <div class="mb-3">
+                          <label>Unidad de medida:</label>
+                          <input class="form-control">
+                        </div>
+                      </div>
+                <hr class="dotted">
+                <div class="d-flex justify-content-center mt-5">
+                    <button type="button" class="btn bg-dark text-light font-weight-bold m-1">Agregar Producto</button>
+                    <a class="btn bg-secondary text-light font-weight-bold m-1" href="{% url 'app_produccion:inventario' %}">Cancelar</a>
+                </div>
+            </form>
+        </div>
+      </div>
+  </div>
+  
+  {% include 'includes/footer.html' %}
+</div>
+{% endblock content %}
