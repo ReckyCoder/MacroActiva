@@ -21,17 +21,105 @@
     <div class="col text-left">
       <h1>Departamentos</h1>
     </div>
-    <div class="col-auto text-right">
-      <button type="button" class="btn btn-success btn-sm">Agregar</button>
-      <button type="button" class="btn btn-warning btn-sm">Editar</button>
-      <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+      <button type="button" class="btn btn-dark btn-md me-1">Editar</button>
+      <button type="button" class="btn btn-dark btn-md">Eliminar</button>
+    </div>
+  <div class="row">
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="container bg-dark rounded">
+            <h5 class="modal-title text-white" id="exampleModalLabel">Agregar Nuevo Departamento</h5>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- formulario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Departamento</div>
+              <div style="height: 20px;"></div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="nombreDepartamento" class="form-label">NOMBRE</label>
+                  <input type="text" class="form-control" id="nombreDepartamento" value="John">
+                </div>
+                <div class="mb-3">
+                  <label for="gerenteDepartamento" class="form-label">GERENTE</label>
+                  <input type="text" class="form-control" id="gerenteDepartamento" value="John">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="areaDepartamento" class="form-label">AREA</label>
+                  <select id="areaDepartamento" class="form-select">
+                    <option value="Select">Seleccionar</option>
+                    <option id="Doe" value="Doe">Doe</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="idDepartamento" class="form-label">ID</label>
+                  <input type="text" class="form-control" id="idDepartamento" value="Doe">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label for="descripcionDepartamento" class="form-label">DESCRIPCIÓN</label>
+                  <textarea class="form-control" id="descripcionDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="funcionesDepartamento" class="form-label">FUNCIONES</label>
+                  <textarea class="form-control" id="funcionesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="responsabilidadesDepartamento" class="form-label">RESPONSABILIDADES</label>
+                  <textarea class="form-control" id="responsabilidadesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="mb-3">
+                <label for="iconoDepartamento" class="form-label">Icono</label>
+                <div class="d-flex align-items-center">
+                  <img id="iconoDepartamentoPreview" src="" alt="Generic PNG" style="height: 32px; width: auto;">
+                  <input type="file" id="iconoDepartamentoInput" style="display: none;">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <button type="button" class="btn btn-dark ms-2">Subir archivo</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
     </div>
   </div>
- 
-  <hr />
   <div class="row">
     <div class="col-md-3 col-sm-6 mb-3">
-      <a href="{% url 'departamento' %}" class="card-link">
+      <a href="{% url 'app_administracion:departamento' %}" class="card-link">
       <div class="card border shadow-xs mb-4">
         <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
             <div class="fs-5 w-100">
@@ -132,8 +220,8 @@
     <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
       <div class="card shadow-xs border h-100">
         <div class="card-header pb-0">
-          <h6 class="font-weight-semibold text-lg mb-0">Balances over time</h6>
-          <p class="text-sm">Here you have details about the balance.</p>
+          <h6 class="font-weight-semibold text-lg mb-0">Saldo Deparamentos en el tiempo</h6>
+          <p class="text-sm">Detalles de balance.</p>
           <div
             class="btn-group"
             role="group"
@@ -148,7 +236,7 @@
               checked
             />
             <label class="btn btn-white px-3 mb-0" for="btnradio1"
-              >12 months</label
+              >12 Meses</label
             >
             <input
               type="radio"
@@ -158,7 +246,7 @@
               autocomplete="off"
             />
             <label class="btn btn-white px-3 mb-0" for="btnradio2"
-              >30 days</label
+              >30 días</label
             >
             <input
               type="radio"
@@ -168,7 +256,7 @@
               autocomplete="off"
             />
             <label class="btn btn-white px-3 mb-0" for="btnradio3"
-              >7 days</label
+              >7 días</label
             >
           </div>
         </div>
@@ -176,7 +264,7 @@
           <div class="chart mb-2">
             <canvas id="chart-bars" class="chart-canvas" height="240"></canvas>
           </div>
-          <button class="btn btn-white mb-0 ms-auto">View report</button>
+          <button class="btn btn-white mb-0 ms-auto">Ver Reporte</button>
         </div>
       </div>
     </div>
@@ -185,13 +273,11 @@
         <div class="card-header pb-0">
           <div class="d-sm-flex align-items-center mb-3">
             <div>
-              <h6 class="font-weight-semibold text-lg mb-0">Overview balance</h6>
-              <p class="text-sm mb-sm-0 mb-2">Here you have details about the balance.</p>
+              <h6 class="font-weight-semibold text-lg mb-0">Saldo General Deparamentos</h6>
+              <p class="text-sm mb-sm-0 mb-2">Detalles de balance.</p>
             </div>
             <div class="ms-auto d-flex">
-              <button type="button" class="btn btn-sm btn-white mb-0 me-2">
-                View report
-              </button>
+              <button type="button" class="btn btn-sm btn-white mb-0 me-2">Ver Reporte</button>
             </div>
           </div>
           <div class="d-sm-flex align-items-center">
@@ -215,39 +301,43 @@
   <div class="row mt-4">
     <div class="col">
       <h2>Registro de Modificaciones</h2>
-      <div class="card shadow-xs border h-100">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Código</th>
-              <th>Fecha</th>
-              <th>Usuario</th>
-              <th>Detalles</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Agrega filas de tabla para cada registro de modificación -->
-            <tr>
-              <td>1587687</td>
-              <td>19 May, 2021: 10:10 AM</td>
-              <td>Usuario Admin011</td>
-              <td>Agregado registro XXXX</td>
-            </tr>
-            <tr>
-              <td>1587687</td>
-              <td>19 May, 2021: 10:10 AM</td>
-              <td>Usuario Admin011</td>
-              <td>Agregado registro XXXX</td>
-            </tr>
-            <tr>
-              <td>1587687</td>
-              <td>19 May, 2021: 10:10 AM</td>
-              <td>Usuario Admin011</td>
-              <td>Agregado registro XXXX</td>
-            </tr>
-            <!-- Otras filas de tabla -->
-          </tbody>
-        </table>
+      <div class="card shadow-xs border">
+        <div class="card-body px-0 py-0">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center justify-content-center mb-0">
+              <thead style="background-color: #0f172a;">
+              <tr class="text-center" style="color: white;">
+                <th>Código</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Detalles</th>
+              </tr>
+            </thead>
+            <tbody class="text-center" style="vertical-align: middle;">
+              <!-- Agrega filas de tabla para cada registro de modificación -->
+              <tr>
+                <td>1587687</td>
+                <td>19 May, 2021: 10:10 AM</td>
+                <td>Usuario Admin011</td>
+                <td>Agregado registro XXXX</td>
+              </tr>
+              <tr>
+                <td>1587687</td>
+                <td>19 May, 2021: 10:10 AM</td>
+                <td>Usuario Admin011</td>
+                <td>Agregado registro XXXX</td>
+              </tr>
+              <tr>
+                <td>1587687</td>
+                <td>19 May, 2021: 10:10 AM</td>
+                <td>Usuario Admin011</td>
+                <td>Agregado registro XXXX</td>
+              </tr>
+              <!-- Otras filas de tabla -->
+            </tbody>
+          </table>
+        </div>
+      </div>
       </div>
     </div>
   </div>

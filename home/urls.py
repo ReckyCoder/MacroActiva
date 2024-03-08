@@ -7,12 +7,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('', include('apps.produccion.urls')),
     path('', include('apps.finanzas.urls')),
-    path('departamentos', views.departamentos, name='departamentos'),
-    path('departamento', views.vistadepartamento, name='departamento'),
-    path('productos', views.productos, name='productos'),
-    path('contratos', views.contratos, name='contratos'),
-    path('certificaciones', views.certificaciones, name='certificaciones'),
-    path('proveedores', views.proveedores, name='proveedores'),
-    path('proyectos', views.proyectos, name='proyectos'),
-    path('kpi', views.kpi, name='kpi')
+    path('', include('apps.administracion.urls')),
 ]
