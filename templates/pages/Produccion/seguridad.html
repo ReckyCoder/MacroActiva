@@ -1,5 +1,101 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
 <div class="container-fluid py-4 px-5">
+  <div class="col-12">
+    <h3>Seguridad</h3>
+    <hr>
+    <br>
+    <div class="card border shadow-xs mb-4">
+      <div class="card-header border-bottom pb-0">
+        <div class="d-sm-flex align-items-center mb-3">
+          <div>
+            <h6 class="font-weight-semibold text-lg mb-0">Protocolos</h6>
+            <p class="text-sm mb-sm-0">Listado de protocolos por categoria</p>
+          </div>
+          <div class="ms-auto d-flex">
+            <div class="input-group input-group-sm ms-auto me-2">
+              <span class="input-group-text text-body">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                </svg>
+              </span>
+              <input type="text" class="form-control form-control-sm" placeholder="Buscar">
+            </div>
+            <a type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+              <span class="btn-inner--icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 16 16">
+                  <title>Agregar Categoría</title>
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                </svg>
+              </span>
+              <span class="btn-inner--text">Categoría</span>
+            </a>
+            <a data-bs-toggle="modal" data-bs-target="#modalAgregarP"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+              <span class="btn-inner--icon" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 16 16">
+                  <title>Agregar Protocolo</title>
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                </svg>
+              </span>
+              <span class="btn-inner--text">Protocolo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body px-3 py-3">
+        <div class="list-group">
+          <span href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Protocolo de Acceso</h5>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">Acceso restringido: Limitar el acceso a las instalaciones solo a personal autorizado mediante sistemas de tarjetas de acceso, códigos PIN o biometría.</li>
+              <li class="list-group-item">Vigilancia por vídeo: Instalar cámaras de seguridad en puntos clave para monitorear las áreas sensibles y registrar cualquier actividad sospechosa.</li>
+              <li class="list-group-item">Control de visitantes: Implementar un proceso de registro para visitantes que incluya identificación, registro de entrada y salida, así como escolta dentro de las instalaciones.</li>
+              <li class="list-group-item">Identificación de empleados: Requerir que los empleados usen identificaciones visibles en todo momento mientras estén en el lugar de trabajo.</li>
+              <li class="list-group-item">Alarma contra intrusos: Instalar sistemas de alarma que se activen en caso de intrusión no autorizada o intentos de acceso no autorizados fuera del horario laboral.</li>
+            </ul>
+          </span>
+        </div>
+      </div>
+      <div class="card-body px-3 py-3">
+        <div class="list-group">
+          <span href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Protocolo de Vigilancia</h5>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">Monitoreo continuo: Establecer un sistema de monitoreo continuo mediante cámaras de seguridad tanto en áreas interiores como exteriores de la empresa.</li>
+              <li class="list-group-item">Análisis de riesgos y amenazas: Realizar evaluaciones regulares de riesgos y amenazas para identificar áreas críticas que requieran una mayor vigilancia y atención.</li>
+              <li class="list-group-item">Grabación y almacenamiento de imágenes: Asegurar que las imágenes capturadas por las cámaras de vigilancia se graben y almacenen de manera segura durante un período adecuado de tiempo, según los requisitos legales y las políticas de la empresa.</li>
+              <li class="list-group-item">Acceso restringido a las imágenes: Limitar el acceso a las imágenes de vigilancia solo al personal autorizado, como el equipo de seguridad y la alta dirección, para proteger la privacidad y la confidencialidad de la información.</li>
+              <li class="list-group-item">Revisión y análisis de imágenes: Realizar revisiones periódicas de las imágenes de vigilancia para detectar comportamientos o actividades sospechosas, y tomar medidas preventivas o correctivas según sea necesario.</li>
+            </ul>
+          </span>
+        </div>
+      </div>
+      <div class="card-body px-3 py-3">
+        <div class="list-group">
+          <span href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Protocolo de Resguardo de Activos</h5>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">Inventario de activos: Realizar un inventario completo y actualizado de todos los activos de la empresa, incluidos equipos, suministros, inventario de productos y cualquier otro bien de valor.</li>
+              <li class="list-group-item">Identificación de activos críticos: Identificar y priorizar los activos críticos de la empresa que requieran un nivel más alto de protección y vigilancia, como equipos costosos o información confidencial.</li>
+              <li class="list-group-item">Control de acceso: Implementar medidas de control de acceso físico y digital para proteger los activos de la empresa contra accesos no autorizados, como sistemas de tarjetas de acceso, códigos PIN y autenticación biométrica.</li>
+              <li class="list-group-item">Almacenamiento seguro: Almacenar los activos de manera segura en áreas designadas, como almacenes o salas de servidores, con medidas adicionales de seguridad, como cerraduras, cámaras de vigilancia y alarmas contra intrusos.</li>
+              <li class="list-group-item">Registro de movimiento de activos: Mantener un registro detallado de todos los movimientos de activos dentro y fuera de la empresa, incluidos traslados, préstamos y devoluciones, para rastrear su ubicación y asegurar su integridad.</li>
+              
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+        
+      <hr>
+      </div>
+    </div>
   {% include 'includes/footer.html' %}
 </div>
 {% endblock content %}
+
