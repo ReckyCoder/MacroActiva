@@ -47,6 +47,15 @@ def contratos(request):
     
     return render(request, 'pages/Administración/contratos.html', context=context)
 
+def contrato(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Administración"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+    
+    return render(request, 'pages/Administración/contrato.html', context=context)
+
 def certificaciones(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
     modulo = "Administración"
