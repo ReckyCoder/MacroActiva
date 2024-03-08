@@ -38,8 +38,9 @@
                         <label for="formInput" class="form-label" for="">Código del Proyecto:</label>
                         <input id="formInput" class="form-control" type="text" placeholder="123 ...">
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Actualizar</button>
+                    <div class="d-flex justify-content-center flex-wrap">
+                        <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#modalActualizar">Actualizar</button>
+                        <a class="btn btn-secondary mx-1" href="{% url 'app_finanzas:proyectos' %}">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -47,11 +48,11 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalActualizar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalActualizarLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Antes de Actualizar</h1>
+              <h1 class="modal-title fs-5" id="modalActualizarLabel">Antes de Actualizar</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -59,7 +60,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:proyectos' %}">Confirmar</a>
+                <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:proyectos' %}">Actualizar</a>
             </div>
           </div>
         </div>
