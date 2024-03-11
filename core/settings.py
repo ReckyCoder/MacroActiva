@@ -54,9 +54,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     
     "home",
-    "apps.finanzas",
     "apps.rh.empleado",
     "apps.crmventas",
+    "apps.produccion",
+    "apps.finanzas",
+    "apps.administracion",
 ]
 
 MIDDLEWARE = [

@@ -4,7 +4,7 @@
 {% block content %}
     {% block header %}
         <header>
-            <h1 class="text-center my-5">Crear Presupuesto</h1>
+            <h1 class="text-center my-5">Actualizar Presupuesto</h1>
         </header>
 
     {% endblock header %}
@@ -117,8 +117,9 @@
                         <p class="font-weight-bold">Total: $<span id="totalOrden">00.000.000</span></p>
                     </div>
                     <hr class="dotted">
-                    <div class="d-flex justify-content-center mt-5">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Crear Presupuesto</button>
+                    <div class="d-flex justify-content-center mt-5 flex-wrap">
+                        <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Actualizar Presupuesto</button>
+                        <a type="button" class="btn btn-secondary mx-1" href="{% url 'app_finanzas:presupuestosP' %}">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -137,7 +138,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:presupuestosP' %}">Confirmar</a>
+              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:presupuestosP' %}">Actualizar Presupuesto</a>
             </div>
           </div>
         </div>
