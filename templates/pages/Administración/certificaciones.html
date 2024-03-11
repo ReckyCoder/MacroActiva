@@ -1,5 +1,274 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+{% block content %}
+
+
+
+<style>
+    /* Ajustar el tamaño del calendario para que se ajuste a la altura de la tarjeta */
+
+    #calendar {
+      width: 100%;
+    }
+
+    .calendar-grid td {
+      width: calc(100% / 7);
+      text-align: center;
+    }
+
+
+    .day {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #ccc;
+      margin: 2px;
+      cursor: pointer;
+    }
+
+    .day.active {
+      background-color: #0f172a;
+      color: white;
+    }
+    .event-day {
+      background-color: #0f172a; /* Cambia el color de fondo de los días con eventos */
+      color: white;
+    }
+</style>
+
 <div class="container-fluid py-4 px-5">
+
+  <div class="row align-items-end">
+    <div class="col text-left">
+      <h1>Certificaciones</h1>
+    </div>
+  </div>
+  <hr>
+  <div class="row my-4">
+    <div class="col-md-9">
+      <div class="card shadow-xs border h-100">
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-md-4">
+              <h4>Listado de Certificaciones</h4>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Buscar...">
+            </div>
+            <div class="col-md-4 text-start">
+                <button type="button" class="btn btn-dark btn-md">Buscar</button>
+                <button type="button" class="btn btn-dark btn-md">Filtrar</button>
+            </div>
+          </div>
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Código</th>
+                      <th>Nombre</th>
+                      <th>Categoria</th>
+                      <th>Departamento</th>
+                      <th>Duración</th>
+                      <th>Estado</th>
+                      <th>Detalles</th>            
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>123456</td>
+                    <td>Calidad</td>
+                    <td>Calidad</td>
+                    <td>Producción</td>
+                    <td>2 años</td>
+                    <td>(icono)Vigente</td>
+                    <td>(icono)info</td>
+                  </tr>
+                  <tr>
+                    <td>123456</td>
+                    <td>Calidad</td>
+                    <td>Calidad</td>
+                    <td>Producción</td>
+                    <td>2 años</td>
+                    <td>(icono)Vigente</td>
+                    <td>(icono)info</td>
+                  </tr>
+                  <tr>
+                    <td>123456</td>
+                    <td>Calidad</td>
+                    <td>Calidad</td>
+                    <td>Producción</td>
+                    <td>2 años</td>
+                    <td>(icono)Vigente</td>
+                    <td>(icono)info</td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="row">
+        <button type="button" class="btn btn-dark">Generar Certificación</button>
+      </div>
+      <div class="row">
+        <div class="card shadow-xs border h-100">
+          <div class="card-header">
+            <h5>Vencimientos Próximos</h5>
+          </div>
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>Operaciones</td>
+                  <td>123456</td>
+                  <td>(icono)</td>
+                </tr>
+                <tr>
+                  <td>Operaciones</td>
+                  <td>123456</td>
+                  <td>(icono)</td>            
+                </tr>
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-md-6 dates-container">
+      <div class="card shadow-xs border h-100">
+        <div class="card-header" >
+          <h5>Calendario</h5>
+        </div>
+        <div class="card-body">
+          <div id="calendar">
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="7" id="currentMonthYear"></th>
+                </tr>
+                <tr style="text-align: center;">
+                  <th>Lunes</th>
+                  <th>Martes</th>
+                  <th>Miércoles</th>
+                  <th>Jueves</th>
+                  <th>Viernes</th>
+                  <th>Sábado</th>
+                  <th>Domingo</th>
+                </tr>
+              </thead>
+              <tbody class="calendar-grid"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 dates-container">
+        <div class="card shadow-xs border h-100">
+          <div class="card-header">
+            <h5>Próximas Fechas</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">01/03/2024 - Licencia de Software</li>
+            <li class="list-group-item">05/03/2024 - Certificación ISO</li>
+            <li class="list-group-item">10/03/2024 - Auditoría de Sistemas</li>
+            <li class="list-group-item">12/03/2024 - Renovación de Dominio</li>
+          </ul>
+        </div>
+    </div>
+    
+  </div>
+
   {% include 'includes/footer.html' %}
 </div>
-{% endblock content %}
+{% endblock content %} 
+{% block extrascripts %}
+
+<script>
+  // Datos simulados para fechas con información relevante
+  const data = {
+    "2024-03-01": "Licencia de Software",
+    "2024-03-05": "Certificación ISO",
+    "2024-03-10": "Auditoría de Sistemas",
+    "2024-03-12": "Renovación de Dominio",
+    // Agrega más fechas y eventos según sea necesario
+  };
+
+  // Función para mostrar información cuando se hace clic en una fecha
+  function showInfo(dateString) {
+    const info = data[dateString];
+    if (info) {
+      alert(info);
+    } else {
+      alert("No hay información para esta fecha.");
+    }
+  }
+
+  // Función para generar el calendario
+  function generateCalendar() {
+    const calendarGrid = document.querySelector(".calendar-grid");
+    const currentMonthYear = document.getElementById("currentMonthYear");
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const dayNames = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+
+    currentMonthYear.textContent = monthNames[currentMonth] + " " + currentYear;
+
+    // Limpiar el contenido anterior del calendario
+    calendarGrid.innerHTML = "";
+
+    // Obtener el primer día de la semana (0 para domingo, 1 para lunes, etc.)
+    const firstDayOfWeek = (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7;
+
+    // Calcular cuántos días de la semana deben estar vacíos antes del primer día del mes
+    const emptyCellsBefore = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
+
+    // Calcular cuántos días de la semana deben estar vacíos después del último día del mes
+    const emptyCellsAfter = 7 - ((emptyCellsBefore + daysInMonth) % 7);
+
+    let dayCount = 1;
+    for (let i = 0; i < Math.ceil((daysInMonth + emptyCellsBefore + emptyCellsAfter) / 7); i++) {
+      const row = document.createElement("tr");
+      for (let j = 0; j < 7; j++) {
+        const cell = document.createElement("td");
+        if (i === 0 && j < emptyCellsBefore) {
+          // Celdas vacías antes del primer día del mes
+        } else if (dayCount > daysInMonth) {
+          // Celdas vacías después del último día del mes
+        } else {
+          const dayString = dayCount.toString().padStart(2, "0"); // Agregar cero a la izquierda si es necesario
+          const dateString = `${currentYear}-${(currentMonth + 1).toString().padStart(2, "0")}-${dayString}`;
+
+          cell.textContent = dayCount;
+          if (data[dateString]) {
+            cell.classList.add("active");
+            cell.classList.add("event-day"); // Agregar clase para el estilo de día con evento
+            cell.dataset.event = data[dateString]; // Asignar la palabra clave del evento a través de un atributo de datos
+            cell.addEventListener("click", function() {
+              showInfo(dateString);
+            });
+          }
+          dayCount++;
+        }
+        row.appendChild(cell);
+      }
+      calendarGrid.appendChild(row);
+    }
+  }
+
+  // Genera el calendario al cargar la página
+  generateCalendar();
+</script>
+
+{% endblock extrascripts %}
