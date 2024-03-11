@@ -16,6 +16,7 @@
             </div>
         </div>
         </div>
+
     </div>
     <hr class="my-0">
     <!-- modales -->
@@ -150,7 +151,7 @@
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <label for="formInput" class="form-label" for="">Comuna:</label>
-                                <select id="region" class="form-control" name="region" >
+                                <select id="comuna" class="form-control" name="comuna" >
                                     <option value="Metropolitana">Ñuñoa</option>
                                     <option value="Arica y Parinacota">Ñuble</option>
                                     <option value="Tarapacá">Melipilla</option>
@@ -161,7 +162,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="formInput" class="form-label" for="">Campaña:</label>
-                        <select id="region" class="form-control" name="region" >
+                        <select id="campaña" class="form-control" name="campaña" >
                             <option value="Metropolitana">Venta - puertas</option>
                             <option value="Arica y Parinacota">Venta - sillas</option>
                             <option value="Tarapacá">venta</option>                         
@@ -188,7 +189,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary">Crear</button>
+              <button type="button" class="btn btn-primary">Guardar</button>
             </div>
           </div>
         </div>
@@ -242,6 +243,46 @@
                     <label class="btn btn-white px-3 mb-0" for="btnradiotable2">Clientes</label>
                     <input type="radio" class="btn-check" name="btnradiotable" id="btnradiotable3" autocomplete="off">
                     <label class="btn btn-white px-3 mb-0" for="btnradiotable3">Leads</label>
+                </div>
+                
+                <div class="btn-group ms-sm-4" role="group" aria-label="Basic radio toggle button group">
+                    <label for="region" class="form-label me-sm-1">Filtrar por:</label>
+                    <input type="radio" class="btn-check" name="btnradiotable" id="btnradiotable4" autocomplete="off">
+                    <select id="region" class="form-control" name="region" >
+                        <option value="Metropolitana">Region</option>
+                        <option value="Metropolitana">Región Metropolitana</option>
+                        <option value="Arica y Parinacota">Región de Arica y Parinacota</option>
+                        <option value="Tarapacá">Región de Tarapacá</option>
+                        <option value="Antofagasta">Región de Antofagasta</option>
+                        <option value="Atacama">Región de Atacama</option>
+                        <option value="Coquimbo">Región de Coquimbo</option>
+                        <option value="Valparaíso">Región de Valparaíso</option>
+                        <option value="O’Higgins">Región de O’Higgins</option>
+                        <option value="Maule">Región del Maule</option>
+                        <option value="Ñuble">Región del Ñuble</option>
+                        <option value="Biobío">Región del Biobío</option>
+                        <option value="Araucanía">Región de La Araucanía</option>
+                        <option value="Ríos">Región de Los Ríos</option>
+                        <option value="Lagos">Región de Los Lagos</option>
+                        <option value="Aysén">Región de Aysén</option>
+                        <option value="Magallanes">Región de Magallanes</option>
+                    </select>
+
+                    <input type="radio" class="btn-check" name="btnradiotable" id="btnradiotable4" autocomplete="off">
+                    <select id="comuna" class="form-control" name="comuna" >
+                        <option value="Metropolitana">Comuna</option>
+                        <option value="Metropolitana">Ñuñoa</option>
+                        <option value="Arica y Parinacota">Ñuble</option>
+                        <option value="Tarapacá">Melipilla</option>
+                        <option value="Antofagasta">Cerrillos</option>
+                    </select>
+                    <input type="radio" class="btn-check" name="btnradiotable" id="btnradiotable4" autocomplete="off">
+                    <select id="campaña" class="form-control " name="campaña" >
+                        <option value="Metropolitana">Campaña</option>
+                        <option value="Metropolitana">Venta - puertas</option>
+                        <option value="Arica y Parinacota">Venta - sillas</option>
+                        <option value="Tarapacá">venta</option>                         
+                    </select>
                 </div>
                 <div class="input-group w-sm-25 ms-auto">
                     <span class="input-group-text text-body">
