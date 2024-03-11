@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "home",
     "apps.finanzas",
     "apps.rh.empleado",
+    "apps.crmventas",
 ]
 
 MIDDLEWARE = [

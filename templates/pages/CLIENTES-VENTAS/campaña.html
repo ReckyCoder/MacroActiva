@@ -3,6 +3,10 @@
 
 
 {% block content %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="../../../static/css/crmventas/crm.css">
+{% endblock extrastyle %}
+
 <div class="container-fluid py-4 px-5">
     <div class="row">
         <div class="col-md-12">
@@ -16,7 +20,99 @@
     </div>
 
     <hr class="my-0">
-
+    <!-- modal agregar lista campaña -->
+    <div class="modal fade" id="agregarcampaña" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="agregarcampaña">Agregar Campaña</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                    </svg>
+                </button>
+            </div>  
+            <div class="modal-body  ">
+                
+                <form action="">
+                    <div class="container bg-dark rounded text-center">
+                        <p class="py-1 text-light font-weight-bold">Nueva Campaña</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Nombre campaña:</label>
+                        <input id="inputcampaña" class="form-control" type="text"  placeholder="Nombre campaña">
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="mb-3">
+                                <label for="formInput" class="form-label" for="">Region:</label>
+                                <select id="region" class="form-control" name="region" >
+                                    <option value="Metropolitana">Región Metropolitana</option>
+                                    <option value="Arica y Parinacota">Región de Arica y Parinacota</option>
+                                    <option value="Tarapacá">Región de Tarapacá</option>
+                                    <option value="Antofagasta">Región de Antofagasta</option>
+                                    <option value="Atacama">Región de Atacama</option>
+                                    <option value="Coquimbo">Región de Coquimbo</option>
+                                    <option value="Valparaíso">Región de Valparaíso</option>
+                                    <option value="O’Higgins">Región de O’Higgins</option>
+                                    <option value="Maule">Región del Maule</option>
+                                    <option value="Ñuble">Región del Ñuble</option>
+                                    <option value="Biobío">Región del Biobío</option>
+                                    <option value="Araucanía">Región de La Araucanía</option>
+                                    <option value="Ríos">Región de Los Ríos</option>
+                                    <option value="Lagos">Región de Los Lagos</option>
+                                    <option value="Aysén">Región de Aysén</option>
+                                    <option value="Magallanes">Región de Magallanes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="mb-3">
+                                <label for="formInput" class="form-label" for="">Comuna:</label>
+                                <select id="region" class="form-control" name="region" >
+                                    <option value="Metropolitana">Ñuñoa</option>
+                                    <option value="Arica y Parinacota">Ñuble</option>
+                                    <option value="Tarapacá">Melipilla</option>
+                                    <option value="Antofagasta">Cerrillos</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="mb-3">
+                                <label for="formInput" class="form-label" for="">Fecha de Inicio :</label>
+                                <input  id="inputfechaini" class="form-control" type="date">  
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="mb-3">
+                                <label for="formInput" class="form-label" for="">Fecha termino:</label>
+                                <input  id="inputfechafinal" class="form-control" type="date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Presupuesto:</label>
+                        <input id="inputpresupuesto" class="form-control" type="number" placeholder="999999">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Tipo de publico:</label>
+                        <input id="inputtpublico" class="form-control" type="text"  placeholder="Tipo de publico">
+                    </div>
+                    
+                </form>
+            </div>
+            
+            <div class="modal-footer">        
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  >Cerrar</button>
+                <a href="{% url 'app_crmventas:campaña'%}"><button type="button" class="btn btn-primary">Crear</button></a>
+            </div>
+            </div> 
+        </div>
+        </div>
+    </div>
+    <!-- lista campañas -->
     <div class="row my-4">  
         <div class="tabla-campañas col-lg-8 col-md-6 " id="campañas">
         <div class="card shadow-xs border">
@@ -27,7 +123,7 @@
                     <p class="text-sm mb-sm-0 mb-2">Lista</p>
                 </div>
                 <div class="ms-auto d-flex">
-                    <button type="button" class="btn btn-sm btn-white mb-0 me-2">
+                    <button type="button" class="btn btn-sm btn-white mb-0 me-2" data-bs-toggle="modal" data-bs-target="#agregarcampaña">
                         Agregar
                     </button>
                     <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
@@ -71,6 +167,7 @@
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha termino</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Presupuesto</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">T_Publico</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Detalles</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,7 +183,7 @@
                         <p class="text-sm font-weight-normal mb-0">Venta de puertas</p>
                         </td>
                         <td>
-                        <span class="text-sm font-weight-normal ">0001</span>
+                        <span class="text-sm font-weight-normal " data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Region Metropolitana - Melipilla">0001</span>
                         </td>
                         <td class="align-middle">
                         <div class="d-flex">
@@ -108,6 +205,15 @@
                         <td class="align-middle">
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">General</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <a href="#" id="mostrarDetalle">
+                                    <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/>
+                                    </svg>
+                                </a>
                             </div>
                         </td>
                     </tr>
@@ -145,6 +251,13 @@
                         <td class="align-middle">
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">General</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/>
+                                </svg>
                             </div>
                         </td>
                     </tr>
@@ -184,6 +297,13 @@
                                 <p class="text-sm text-sm mb-0">General</p>
                             </div>
                         </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/>
+                                </svg>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -219,6 +339,13 @@
                         <td class="align-middle">
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">General</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/>
+                                </svg>
                             </div>
                         </td>
                     </tr>
@@ -258,6 +385,13 @@
                                 <p class="text-sm text-sm mb-0">General</p>
                             </div>
                         </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/>
+                                </svg>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -293,23 +427,373 @@
                         <td class="align-middle">
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">General</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/>
+                                </svg>
                             </div>
                         </td>
                     </tr>
                     
                     </tbody>
                 </table>
+                <!-- navegacion -->
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination mt-3 d-flex justify-content-center flex-wrap ">
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
+                    </ul>
+                </nav>
                 </div>
             </div>
             </div>
     </div>
+    <!-- detalle campaña -->
     <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
         <div class="card shadow-xs border h-100">
-          <div class="card-header pb-0">
-            
+          <div class="card-header pb-0  ">
+            <form action="">
+                <div class="container bg-dark rounded text-center ">
+                    <p class="py-1 text-light font-weight-bold ">Detalle campaña - Venta puertas</p>
+                </div>
+                <div class="mostrar detalle-campania">
+                <div class="mb-3" id="canalesMarketing">
+                    <label for="formInput" class="form-label">Canales de marketing</label>
+                    <input id="inputcanalesmark" class="form-control" type="text" placeholder="Ingresa un canal de marketing">
+                </div>
+                <div class="mb-3 " >
+                    <label for="formInput" class="form-label " >Calendario de Actividades: </label>
+                    <a href="{% url 'app_crmventas:calendariocampaña'%}">
+                    <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0" data-bs-toggle="modal" data-bs-target="#calendarioactividades">
+                        <svg width="20px" heigth="20px"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path fill="#ffffff" d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z"/>
+                        </svg>
+                    </button>
+                    </a>
+                </div>
+                <label for="objetivo" class="form-label">Objetivo:</label>
+                        <input type="text" id="encargado" name="objetivo" class="form-control" placeholder="Escribe aqui!.">
+                <div class="mb-3">
+                    <label for="formInput" class="form-label" for="">Descripcion</label>
+                    <textarea id="descripcion" class="form-control" name="descripcion" rows="5" cols="30" placeholder="Escribe la descripcion aqui ..."></textarea>
+                </div>   
+                           
+            </form>
+            <div class="mb-3 justify-content-center d-flex">
+                <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0 ">
+                    <span class="btn-inner--text">Guardar</span>
+                </button>
+            </div>
+            </div> 
           </div>
         </div>
     </div> 
+
+    <!-- lista-clientes -->
+    <div class="row my-4">
+    <div class="tabla-clientesleads col-lg-8 col-md-6 " id="lista-clientes">
+        <div class="card shadow-xs border">
+            <div class="card-header border-bottom pb-0">
+                <div class="d-sm-flex align-items-center mb-3">
+                <div>
+                    <h6 class="font-weight-semibold text-lg mb-0">Clientes/Leads - Venta de puertas</h6>
+                    <p class="text-sm mb-sm-0 mb-2">Lista</p>
+                </div>
+                <div class="ms-auto d-flex">
+                    <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+                    <span class="btn-inner--icon">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                    </span>
+                    <span class="btn-inner--text">Exportar</span>
+                    </button>
+                </div>
+                </div>
+                <div class="pb-3 d-sm-flex align-items-center">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes" autocomplete="off" checked>
+                    <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes">Todos</label>
+                    <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes2" autocomplete="off">
+                    <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes2">Clientes</label>
+                    <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes3" autocomplete="off">
+                    <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes3">Leads</label>
+                </div>
+                <div class="input-group w-sm-25 ms-auto">
+                    <span class="input-group-text text-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                    </svg>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Buscar">
+                </div>
+                </div>
+            </div>
+            <div class="card-body px-0 py-0">
+                <div class="table-responsive p-0">
+                <table class="table align-items-center justify-content-center mb-0">
+                    <thead class="bg-gray-100">
+                    <tr>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7">Rut</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nombre/Razon Socual</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha de nacimiento</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Correo</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Telefono</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Direccion</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                        <div class="d-flex px-2">
+                            <div class="my-auto">
+                                <h6 class="mb-0 text-sm">17.503.923-2</h6>
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <p class="text-sm font-weight-normal mb-0">Juan Perez</p>
+                        </td>
+                        <td>
+                        <span class="text-sm font-weight-normal ">24/01/1975</span>
+                        </td>
+                        <td class="align-middle">
+                        <div class="d-flex">
+                            <div class="ms-2">
+                            <p class="text-sm text-sm mb-0">juan@ejemplo.com</p>
+                            </div>
+                        </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">+56 942824222</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">Calle 123, Ciudad</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="d-flex px-2">
+                            <div class="my-auto">
+                                <h6 class="mb-0 text-sm">15.343.133-4</h6>
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <p class="text-sm font-weight-normal mb-0">Sebastian Lee</p>
+                        </td>
+                        <td>
+                        <span class="text-sm font-weight-normal ">24/01/1990</span>
+                        </td>
+                        <td class="align-middle">
+                        <div class="d-flex">
+                            <div class="ms-2">
+                            <p class="text-sm text-sm mb-0">sebastian@ejemplo.com</p>
+                            </div>
+                        </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">+56 942824222</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">Calle 4242, ciudad</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="d-flex px-2">
+                            <div class="my-auto">
+                                <h6 class="mb-0 text-sm">17.503.923-2</h6>
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <p class="text-sm font-weight-normal mb-0">Juan Perez</p>
+                        </td>
+                        <td>
+                        <span class="text-sm font-weight-normal ">24/01/1975</span>
+                        </td>
+                        <td class="align-middle">
+                        <div class="d-flex">
+                            <div class="ms-2">
+                            <p class="text-sm text-sm mb-0">juan@ejemplo.com</p>
+                            </div>
+                        </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">+56 942824222</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">Calle 123, Ciudad</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="d-flex px-2">
+                            <div class="my-auto">
+                                <h6 class="mb-0 text-sm">14.492.423-3</h6>
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <p class="text-sm font-weight-normal mb-0">Leandro Favio</p>
+                        </td>
+                        <td>
+                        <span class="text-sm font-weight-normal ">23/05/1956</span>
+                        </td>
+                        <td class="align-middle">
+                        <div class="d-flex">
+                            <div class="ms-2">
+                            <p class="text-sm text-sm mb-0">Leandro@ejemplo.com</p>
+                            </div>
+                        </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">+56 944314112</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">Calle 1142, Ciudad</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="d-flex px-2">
+                            <div class="my-auto">
+                                <h6 class="mb-0 text-sm">15.343.133-4</h6>
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <p class="text-sm font-weight-normal mb-0">Sebastian Lee</p>
+                        </td>
+                        <td>
+                        <span class="text-sm font-weight-normal ">24/01/1990</span>
+                        </td>
+                        <td class="align-middle">
+                        <div class="d-flex">
+                            <div class="ms-2">
+                            <p class="text-sm text-sm mb-0">sebastian@ejemplo.com</p>
+                            </div>
+                        </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">+56 942824222</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">Calle 4242, ciudad</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="d-flex px-2">
+                            <div class="my-auto">
+                                <h6 class="mb-0 text-sm">17.503.923-2</h6>
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <p class="text-sm font-weight-normal mb-0">Juan Perez</p>
+                        </td>
+                        <td>
+                        <span class="text-sm font-weight-normal ">24/01/1975</span>
+                        </td>
+                        <td class="align-middle">
+                        <div class="d-flex">
+                            <div class="ms-2">
+                            <p class="text-sm text-sm mb-0">juan@ejemplo.com</p>
+                            </div>
+                        </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">+56 942824222</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">Calle 123, Ciudad</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="d-flex px-2">
+                            <div class="my-auto">
+                                <h6 class="mb-0 text-sm">14.492.423-3</h6>
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <p class="text-sm font-weight-normal mb-0">Leandro Favio</p>
+                        </td>
+                        <td>
+                        <span class="text-sm font-weight-normal ">23/05/1956</span>
+                        </td>
+                        <td class="align-middle">
+                        <div class="d-flex">
+                            <div class="ms-2">
+                            <p class="text-sm text-sm mb-0">Leandro@ejemplo.com</p>
+                            </div>
+                        </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">+56 944314112</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2">
+                                <p class="text-sm text-sm mb-0">Calle 1142, Ciudad</p>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination mt-3 d-flex justify-content-center flex-wrap ">
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+            </div>
+    </div>
     
 </div> 
 {% endblock content %}
+
+{% block extrascripts %}
+    <script src="../../../static/js/crmventas/campaña.js"></script>
+{% endblock extrascripts %}

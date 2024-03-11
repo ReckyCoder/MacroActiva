@@ -6,13 +6,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     #Clientes Ventas
-    path('zona', views.zona, name='zona'),
-    path('campaña', views.campaña, name='campaña'),
-    path('clientes_leads', views.clientes_leads, name='clientes_leads'),
-    path('cotizaciones', views.cotizaciones, name='cotizaciones'),
-    path('ventas', views.ventas, name='ventas'),
-    path('contratoscv', views.contratoscv, name='contratoscv'),
-    path('postventa', views.postventa, name='postventa'),
+    path('', include('apps.crmventas.urls')),
     #Administracion
     path('', include('apps.finanzas.urls')),
     path('departamentos', views.departamentos, name='departamentos'),
