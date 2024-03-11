@@ -55,12 +55,9 @@ INSTALLED_APPS = [
     
     "home",
     "apps.rh.empleado",
-<<<<<<< HEAD
-=======
     "apps.crmventas",
     "apps.produccion",
     "apps.finanzas",
->>>>>>> 7d22c8a54d55567c056bd2597ef27f00a542a7aa
     "apps.administracion",
 ]
 
