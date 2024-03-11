@@ -1,0 +1,42 @@
+{% extends 'layouts/rh/subcard-content.html' %}
+{% load static %}
+
+
+
+{% block card-body %}
+    <div class="row">
+        <div class="col">
+            <form>
+                <fieldset disabled>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                          <label for="txtNombre">Nombre</label>
+                          <input type="text" class="form-control" id="txtNombre" placeholder="Nombre">
+                          
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <label for="txtApPaterno">Apellido paterno</label>
+                          <input type="text" class="form-control" id="txtApPaterno" placeholder="Apellido paterno">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="txtApMaterno">Apellido materno</label>
+                            <input type="text" class="form-control" id="txtApMaterno" placeholder="Apellido materno">
+                          </div>
+                        <div class="col-md-4 mb-3">
+                          <label for="txtRut">Rut</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="txtRut" placeholder="Rut" aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtDv" placeholder="DV" aria-describedby="inputGroupappend">
+                          </div>
+                        </div>
+                      </div>
+                      asdasdas
+                </fieldset>
+              </form>
+        </div>
+    </div>
+    
+{% endblock card-body %}

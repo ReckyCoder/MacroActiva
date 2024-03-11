@@ -12816,6 +12816,17 @@ textarea.form-control-lg {
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+.slide-in-left {
+  animation: slide-in-left 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both; }
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-1000px);
+    opacity: 0; }
+  100% {
+    transform: translateX(0);
+    opacity: 1; } }
+
 .btn-close:focus {
   box-shadow: none; }
 
@@ -15250,6 +15261,12 @@ hr.horizontal {
 .navbar-vertical .navbar-nav .nav-item .nav-link .icon i {
   color: #fff; }
 
+aside#sidenav-main {
+  z-index: 300; }
+
+aside#sidenav-sub {
+  z-index: 1; }
+
 .nav.nav-pills {
   background: #f9fafb;
   border-radius: 0.75rem;
@@ -17387,7 +17404,7 @@ pre[class*="language-"] {
   /* there must be 'right' for ps__thumb-y */
   right: 2px;
   /* please don't change 'position' */
-  position: fixed; }
+  position: absolute; }
 
 .ps__rail-x:hover > .ps__thumb-x,
 .ps__rail-x:focus > .ps__thumb-x,
@@ -18043,5 +18060,11 @@ button.swiper-pagination-bullet {
 .swiper-button-prev:after {
   font-size: 1rem;
   color: #0f172a; }
+
+aside#sidenav-main {
+  z-index: 300; }
+
+aside#sidenav-sub {
+  z-index: 1; }
 
 /*# sourceMappingURL=corporate-ui-dashboard.css.map */

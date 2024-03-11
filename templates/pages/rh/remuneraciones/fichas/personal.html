@@ -1,0 +1,132 @@
+{% extends 'layouts/rh/subcard-content.html' %}
+{% load static %}
+
+
+
+{% block card-body %}
+<form>
+    <fieldset disabled>
+        <div class="row">
+            <div class="col">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtNombre">Nombre</label>
+                        <input type="text" class="form-control" id="txtNombre" placeholder="Nombre">
+
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtApPaterno">Apellido paterno</label>
+                        <input type="text" class="form-control" id="txtApPaterno" placeholder="Apellido paterno">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtApMaterno">Apellido materno</label>
+                        <input type="text" class="form-control" id="txtApMaterno" placeholder="Apellido materno">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtRut">Rut</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtRut" placeholder="Rut"
+                                aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtDv" placeholder="DV"
+                                aria-describedby="inputGroupappend">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtFechaNacimiento">Fecha nacimiento</label>
+                        <input type="date" class="form-control" id="txtFechaNacimiento" placeholder="Fecha nacimiento">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtDireccion">Direccion</label>
+                        <input type="text" class="form-control" id="txtDireccion" placeholder="Direccion">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtComuna">Comuna</label>
+                        <input type="text" class="form-control" id="txtComuna" placeholder="Comuna">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtCuidad">Cuidad</label>
+                        <input type="text" class="form-control" id="txtCuidad" placeholder="Ciudad">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtNacionalidad">Nacionalidad</label>
+                        <input type="text" class="form-control" id="txtNacionalidad" placeholder="Nacionalidad">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtGenero">Genero</label>
+                        <input type="text" class="form-control" id="txtGenero" placeholder="Genero">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtEmail">Email</label>
+                        <input type="text" class="form-control" id="txtEmail" placeholder="Email">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtCelular">Celular</label>
+                        <input type="text" class="form-control" id="txtCelular" placeholder="Celular">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtEstadoCivil">Estado civil</label>
+                        <input type="text" class="form-control" id="txtEstadoCivil" placeholder="Estado civil">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtEstudios">Estudios</label>
+                        <input type="text" class="form-control" id="txtEstudios" placeholder="Estudios">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="col">
+        <div class="row">
+            <div class="col-8">
+
+            </div>
+            <div class="col">
+                <div class="btn-group btn-group-sm text-center d-flex align-items-end" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Editar</button>
+                    <button type="button" class="btn btn-sm btn-success btn-icon align-items-center mb-0">Generar ficha</button>
+                    <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Aceptar</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</form>
+
+<style>
+    #txtRut {
+        width: max-content;
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+
+        
+        $.ajax({
+            url: 'PersonalView/',
+            method: 'GET',
+            data: {element_id: 'R02FichaPersonalView'},
+            success: function(data) {
+                // Set the value to the input field
+                $("#txtNombre").val(data.MetaData.user.personal.nombre);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+
+    });
+</script>
+
+{% endblock card-body %}

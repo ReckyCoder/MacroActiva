@@ -8,18 +8,18 @@
 >
   <div class="container-fluid py-1 px-2">
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
+      <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-2 me-5">
         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="{% url 'dashboard' %}">{{mainModuleName|replace_value:"_"}}</a></li>
         {%  for modulo in modulos %}
           {% if modulo.childModuleName %}
             {% if modulo.parentModuleName %}
-            <li class="breadcrumb-item text-sm text-dark" aria-current="page"><a href="{{deafultUrl}}">{{ modulo.parentModuleName|replace_value:"_" }}</a></li>
+            <li class="breadcrumb-item text-sm text-dark" aria-current="page"><a class="opacity-5"  href="{{deafultUrl}}">{{ modulo.parentModuleName|replace_value:"_" }}</a></li>
             {% endif %}
           {% else %}
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="">{{ modulo.parentModuleName|replace_value:"_" }}</a></li>
           {% endif %}
         {% if modulo.childModuleName %}
-        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{ modulo.childModuleName|replace_value:"_" }}</li>
+        <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="{{deafultChildUrl}}" id="childModule">{{ modulo.childModuleName|replace_value:"_" }}</a></li>
         {% endif %}
         {% endfor %}
       </ol>

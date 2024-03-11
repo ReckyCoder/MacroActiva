@@ -1,0 +1,449 @@
+{% extends 'layouts/rh/card-content.html' %}
+{% load static %}
+
+{% block opt-tittle1 %}
+<p id="fechaActual">Fecha actual: </p>
+{% endblock opt-tittle1 %}
+
+{% block opt-tittle2 %}
+<p id="idFichaEmpleadoId">Ficha: </p>
+{% endblock opt-tittle2 %}
+
+{% block opt-tittle3 %}
+<p id="nombreEmpleado">Nombre empleado: </p>
+{% endblock opt-tittle3 %}
+
+{% block card-body %}
+<div class="container-fluid" id="main-content">
+
+    <div class="row">
+        <div class="col">
+            <form action="" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Buscar por ficha" aria-label="Buscar por ficha"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-md btn-dark btn-icon align-items-center mb-0" type="button">
+                            <svg preserveAspectRatio="none" height="25px" width="25px" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#fff"
+                                    d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <form action="" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Buscar por rut" aria-label="Buscar por rut'"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-md btn-dark btn-icon align-items-center mb-0" type="button">
+                            <svg preserveAspectRatio="none" height="25px" width="25px" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#fff"
+                                    d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <form action="" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Buscar por cargo" aria-label="Buscar por cargo"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-md btn-dark btn-icon align-items-center mb-0" type="button">
+                            <svg preserveAspectRatio="none" height="25px" width="25px" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#fff"
+                                    d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card-body px-0 py-0 mb-3" id="tablaEmpleado">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center justify-content-center mb-0">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Nombre
+                                </th>
+                                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2">ID
+                                    Ficha</th>
+                                <th class="text-center  text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                                    Cargo</th>
+                                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                                    Departamento</th>
+                                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2">
+                                        <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                            <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm"
+                                                alt="avatar">
+                                        </div>
+                                        <div class="my-auto">
+                                            <h6 class="mb-0 text-sm">Daniela Contreras</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">DRH0054</p>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-sm font-weight-normal">Reclutador</span>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <div>
+                                        <div class="ms-2 text-center">
+                                            <p class="text-dark text-sm mb-0">Recursos humanos</p>
+                                            <p class="text-secondary text-sm mb-0">D003</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <div class="btn-group btn-group-sm text-center" role="group"
+                                        aria-label="Basic example">
+                                        <button type="button"
+                                            class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Seleccionar</button>
+                                        <button type="button"
+                                            class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Liquidacion</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="container-fluid" id="listButtonsEmpleado">
+                <div class="row">
+                    <div class="col text-center px-0">
+                        <div class="btn-group text-center" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0"
+                                id="R02FichaPersonalView">Personal</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02FichaLaboralView">Laboral</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02FichaPagoView">Pago</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02FichaPrevisionView">Prevision</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02FichaCompetenciasView">Competencias</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02FichaCargasView">Cargas</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02FichaDocumentosView">Documentos</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02FichaHorarioView">Horario</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col px-0">
+            <div class="container-fluid px-0">
+                <div class="card shadow-xs border align-items-center blur bg-gray-500 py-3" id="contentloadersub">
+                    <div class="subcontainer-loader pt-5" style="display: none;">
+                        <div class="subbox1"></div>
+                        <div class="subbox2"></div>
+                        <div class="subbox3"></div>
+                    </div>
+                    <div class="container-fluid mx-0 px-0" id="subcontentload">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <style>
+        .btn-group>.btn:not(:last-child):not(.dropdown-toggle),
+        .btn-group>.btn.dropdown-toggle-split:first-child,
+        .btn-group>.btn-group:not(:last-child)>.btn {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .btn-group>.btn:nth-child(n + 3),
+        .btn-group> :not(.btn-check)+.btn,
+        .btn-group>.btn-group:not(:first-child)>.btn {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        #contentloadersub {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            height: 550px !important;
+        }
+
+        #listButtonsEmpleado {
+            padding: 0;
+        }
+
+        #tablaEmpleado {
+            border: 1px solid #fff;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .subcontainer-loader {
+            width: 112px;
+            height: 112px;
+            margin-bottom: 15px;
+        }
+
+        .subbox1,
+        .subbox2,
+        .subbox3 {
+            border: 16px solid #18212f;
+            box-sizing: border-box;
+            position: absolute;
+            display: block;
+        }
+
+        .subbox1 {
+            width: 112px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 0px;
+            animation: anime1 4s 0s forwards ease-in-out infinite;
+        }
+
+        .subbox2 {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 0px;
+            animation: anime2 4s 0s forwards ease-in-out infinite;
+        }
+
+        .subbox3 {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 64px;
+            animation: anime3 4s 0s forwards ease-in-out infinite;
+        }
+
+        @keyframes anime1 {
+            0% {
+                width: 112px;
+                height: 48px;
+                margin-top: 64px;
+                margin-left: 0px;
+            }
+
+            12.5%,
+            25%,
+            37.5%,
+            50%,
+            62.5%,
+            75%,
+            87.5%,
+            100% {
+                width: 48px;
+                height: 48px;
+                margin-top: 64px;
+                margin-left: 0px;
+            }
+
+            75% {
+                width: 48px;
+                height: 112px;
+                margin-top: 0px;
+                margin-left: 0px;
+            }
+        }
+
+        @keyframes anime2 {
+
+            0%,
+            12.5%,
+            25%,
+            37.5%,
+            50% {
+                width: 48px;
+                height: 48px;
+                margin-top: 0px;
+                margin-left: 0px;
+            }
+
+            62.5% {
+                width: 48px;
+                height: 48px;
+                margin-top: 0px;
+                margin-left: 64px;
+            }
+
+            75%,
+            87.5%,
+            100% {
+                width: 48px;
+                height: 48px;
+                margin-top: 0px;
+                margin-left: 64px;
+            }
+        }
+
+        @keyframes anime3 {
+
+            0%,
+            12.5% {
+                width: 48px;
+                height: 48px;
+                margin-top: 0px;
+                margin-left: 64px;
+            }
+
+            25% {
+                width: 48px;
+                height: 112px;
+                margin-top: 0px;
+                margin-left: 64px;
+            }
+
+            37.5%,
+            50%,
+            62.5%,
+            75%,
+            87.5%,
+            100% {
+                width: 48px;
+                height: 48px;
+                margin-top: 64px;
+                margin-left: 64px;
+            }
+
+            75% {
+                width: 48px;
+                height: 48px;
+                margin-top: 64px;
+                margin-left: 0px;
+            }
+        }
+    </style>
+
+    <script>
+        $(document).ready(() => {
+
+            function handleButtonClick(buttonID) {
+
+                buttonURL = IdParser(buttonID)
+
+                $('.subcontainer-loader').show();
+                $('#subcontentload').hide();
+
+
+                $.ajax({
+                    url: buttonURL,
+                    method: "GET",
+                    data: { element_id: buttonID },
+                    success: function (data) {
+                        // Extraer las datas
+                        var MetaData = data.MetaData.meta;
+
+                        $('#subcontentload').html(data.HTMLData);
+                        $('#childModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[1].childModuleName))
+
+                        setTimeout(function () {
+                            $('.subcontainer-loader').hide();
+                            $('#subcontentload').show();
+
+                        }, 1000);
+
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+
+            function IdParser(buttonID) {
+                if (buttonID === "R02FichaPersonalView") {
+                    return "PersonalView/"
+                } else if (buttonID === "R02FichaLaboralView") {
+                    return "LaboralView/"
+                } else if (buttonID === "R02FichaPagoView") {
+                    return "PagoView/"
+                } else if (buttonID === "R02FichaPrevisionView") {
+                    return "PrevisionView/"
+                } else if (buttonID === "R02FichaCompetenciasView") {
+                    return "CompetenciasView/"
+                } else if (buttonID === "R02FichaCargasView") {
+                    return "CargasView/"
+                } else if (buttonID === "R02FichaDocumentosView") {
+                    return "DocumentosView/"
+                } else if (buttonID === "R02FichaLaboralView") {
+                    return "HorarioView/"
+                }
+            }
+
+            $("#R02FichaPersonalView").click(function () {
+                handleButtonClick("R02FichaPersonalView");
+            });
+
+            $("#R02FichaLaboralView").click(function () {
+                handleButtonClick("R02FichaLaboralView");
+            });
+
+            $("#R02FichaPagoView").click(function () {
+                handleButtonClick("R02FichaPagoView");
+            });
+
+            $("#R02FichaPrevisionView").click(function () {
+                handleButtonClick("R02FichaPrevisionView");
+            });
+
+            $("#R02FichaCompetenciasView").click(function () {
+                handleButtonClick("R02FichaCompetenciasView");
+            });
+
+            $("#R02FichaCargasView").click(function () {
+                handleButtonClick("R02FichaCargasView");
+            });
+
+            $("#R02FichaDocumentosView").click(function () {
+                handleButtonClick("R02FichaDocumentosView");
+            });
+
+            $("#R02FichaLaboralView").click(function () {
+                handleButtonClick("R02FichaLaboralView");
+            });
+
+
+
+        });
+    </script>
+    {% endblock card-body %}

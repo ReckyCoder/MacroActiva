@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "home",
-    "apps.rh.empleado"
+    "apps.rh.empleado",
+    "apps.rh.remuneraciones"
 ]
 
 MIDDLEWARE = [

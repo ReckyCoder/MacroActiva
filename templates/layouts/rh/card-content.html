@@ -1,0 +1,76 @@
+<div class="card-header-content p-sm-2 p-md-3 ">
+    <div class="row">
+        <div class="col-8 text-start" >
+            <div class="row">
+                <div class="opt-tittle1">
+                    {% block opt-tittle1 %}{% endblock opt-tittle1 %}   
+                </div>
+            </div>
+            <div class="row">
+                <div class="opt-tittle2">
+                    {% block opt-tittle2 %}{% endblock opt-tittle2 %}   
+                </div>
+            </div>
+        </div>
+        <div class="col-4 text-end">
+            <div class="row">
+                <div class="col-8 opt-tittle3">{% block opt-tittle3 %}{% endblock opt-tittle3 %}</div>
+                <div class="col text-center ps-0">
+                    <a href="javascript:;" class="nav-link text-body p-0">
+                    <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar"></a>
+                </div>
+            </div>
+        </div>
+    </div>                       
+</div>
+<div class="container-fluid px-0">
+    <div class="card-body-content py-3 m-0">
+
+        {% block card-body %}{% endblock card-body %}
+    </div>
+</div>
+
+<style>
+
+    .card-header-content{
+        z-index: 1;
+    }
+
+    .card-body-content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #d8d8d8;
+        padding: 0;
+        margin: 0;
+        z-index: 13;
+    }
+
+    .opt-tittle1 , .opt-tittle2 {
+        margin: 0 0 2px 0;
+    }
+
+    .opt-tittle3{
+        padding: 4px 0 0 5px;
+    }
+
+    .opt-tittle3 p{
+        font-size: small;
+    }
+
+    .opt-tittle3 div .nav-link{
+        width: 0px;
+    } 
+
+    .opt-tittle1 p, .opt-tittle2 p{
+        font-size: smaller;
+        margin: 0;
+    }
+
+</style>
+
+
+
+
+
+
