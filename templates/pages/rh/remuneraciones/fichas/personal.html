@@ -120,6 +120,20 @@
             success: function(data) {
                 // Set the value to the input field
                 $("#txtNombre").val(data.MetaData.user.personal.nombre);
+                $("#txtApPaterno").val(data.MetaData.user.personal.appaterno);
+                $("#txtApMaterno").val(data.MetaData.user.personal.apmaterno);
+                $("#txtRut").val(data.MetaData.user.personal.rut);
+                $("#txtDv").val(data.MetaData.user.personal.dv);
+                $("#txtFechaNacimiento").val(data.MetaData.user.personal.fecnacimiento);
+                $("#txtDireccion").val(data.MetaData.user.personal.direccion);
+                $("#txtComuna").val(data.MetaData.user.personal.comuna);
+                $("#txtCuidad").val(data.MetaData.user.personal.cuidad);
+                $("#txtNacionalidad").val(data.MetaData.user.personal.nacionalidad);
+                $("#txtGenero").val(data.MetaData.user.personal.genero);
+                $("#txtEmail").val(data.MetaData.user.personal.email);
+                $("#txtCelular").val(data.MetaData.user.personal.celular);
+                $("#txtEstadoCivil").val(data.MetaData.user.personal.estado_civil);
+                $("#txtEstudios").val(data.MetaData.user.personal.estudios);
             },
             error: function(xhr, status, error) {
                 console.error(error);
