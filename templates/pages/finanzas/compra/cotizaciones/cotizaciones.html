@@ -9,7 +9,7 @@
 
     {% endblock header %}
     <div class="container">
-      <a class="btn bg-dark rounded" href="{% url 'app_finanzas:venta' %}">
+      <a class="btn bg-dark rounded" href="{% url 'app_finanzas:compra' %}">
           <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path fill="#fff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path>
           </svg>
@@ -37,7 +37,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Buscar Cliente ...">
+                        <input type="text" class="form-control" placeholder="Buscar Centro de Costos o Proyecto ...">
                         </div>
                     </div>
                     <div class="col-12 col-md-4 order-1 mb-3 mb-md-0 order-md-3">
@@ -46,26 +46,26 @@
                             Opciones
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                                <li>
-                                    <a class="dropdown-item fs-6" href="{% url 'app_finanzas:crearCotizacionesVenta' %}">
+                            <li>
+                                <a class="dropdown-item fs-6" href="{% url 'app_finanzas:crearCotizacionesCompra' %}">
                                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                        <path fill="#fff" d="M312 24V34.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8V232c0 13.3-10.7 24-24 24s-24-10.7-24-24V220.6c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2V24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5H192 32c-17.7 0-32-14.3-32-32V416c0-17.7 14.3-32 32-32H68.8l44.9-36c22.7-18.2 50.9-28 80-28H272h16 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H288 272c-8.8 0-16 7.2-16 16s7.2 16 16 16H392.6l119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384l0 0-.9 0c.3 0 .6 0 .9 0z"/>
+                                        <path fill="#fff" d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384v38.6C310.1 219.5 256 287.4 256 368c0 59.1 29.1 111.3 73.7 143.3c-3.2 .5-6.4 .7-9.7 .7H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zm48 96a144 144 0 1 1 0 288 144 144 0 1 1 0-288zm16 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v48H368c-8.8 0-16 7.2-16 16s7.2 16 16 16h48v48c0 8.8 7.2 16 16 16s16-7.2 16-16V384h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H448V304z"/>
                                     </svg>
                                     <span class="ms-2">
                                         Crear Cotización
                                     </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item fs-6" href="{% url 'app_finanzas:ordenesDeVenta' %}">
-                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                        <path fill="#fff" d="M312 24V34.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8V232c0 13.3-10.7 24-24 24s-24-10.7-24-24V220.6c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2V24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5H192 32c-17.7 0-32-14.3-32-32V416c0-17.7 14.3-32 32-32H68.8l44.9-36c22.7-18.2 50.9-28 80-28H272h16 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H288 272c-8.8 0-16 7.2-16 16s7.2 16 16 16H392.6l119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384l0 0-.9 0c.3 0 .6 0 .9 0z"/>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item fs-6" href="{% url 'app_finanzas:ordenesDeCompra' %}">
+                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#fff" d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
                                     </svg>
                                     <span class="ms-2">
                                         Ver Ordenes
                                     </span>
-                                    </a>
-                                </li>
+                                </a>
+                            </li>
                             </ul>
                         </div>
                     </div>
@@ -77,7 +77,8 @@
                     <thead class="bg-gray-100">
                       <tr class="text-center">
                         <th class="text-secondary text-xs font-weight-bold">Departamento</th>
-                        <th class="text-secondary text-xs font-weight-bold ps-2">Cliente</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Centro de Costos / Proyecto</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Proovedor</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Descripción</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Fecha de Inicio</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Fecha Limite</th>
@@ -95,10 +96,13 @@
                           <span class="text-sm font-weight-normal">Departamento 1</span>
                         </td>
                         <td>
+                            <span class="text-sm font-weight-normal">Centro de Costos ...</span>
+                        </td>
+                        <td>
                           <span class="text-sm font-weight-normal">Nombre ...</span>
                         </td>
                         <td>
-                            <span class="text-sm font-weight-normal">Nombre Venta</span>
+                            <span class="text-sm font-weight-normal">Nombre Compra</span>
                         </td>
                         <td>
                             <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
@@ -107,19 +111,19 @@
                             <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
                         </td>
                         <td>
-                            <p class="m-0 font-weight-bold">$<span class="text-sm font-weight-normal text-success">00.000.000</span></p>
+                            <p class="m-0 font-weight-bold">$-<span class="text-sm font-weight-normal text-danger">00.000.000</span></p>
                         </td>
                         <td>
                             <span class="text-sm font-weight-normal">IVA</span>
                         </td>
                         <td>
-                            <p class="m-0 font-weight-bold">$<span class="text-sm text-success">00.000.000</span></p>
+                            <p class="m-0 font-weight-bold">$-<span class="text-sm text-danger">00.000.000</span></p>
                         </td>
                         <td>
                             <span class="text-sm font-weight-bold">123456</span>
                         </td>
                         <td class="text-center align-middle">
-                          <a href="{% url 'app_finanzas:editarCotizacionesVenta' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Cotización">
+                          <a href="{% url 'app_finanzas:editarCotizacionesCompra' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Cotización">
                             <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" fill="#64748B"/>
                             </svg>
@@ -147,10 +151,13 @@
                           <span class="text-sm font-weight-normal">Departamento 1</span>
                         </td>
                         <td>
+                            <span class="text-sm font-weight-normal">Proyecto ...</span>
+                        </td>
+                        <td>
                           <span class="text-sm font-weight-normal">Nombre ...</span>
                         </td>
                         <td>
-                            <span class="text-sm font-weight-normal">Nombre Venta</span>
+                            <span class="text-sm font-weight-normal">Nombre Compra</span>
                         </td>
                         <td>
                             <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
@@ -159,19 +166,19 @@
                             <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
                         </td>
                         <td>
-                            <p class="m-0 font-weight-bold">$<span class="text-sm font-weight-normal text-success">00.000.000</span></p>
+                            <p class="m-0 font-weight-bold">$-<span class="text-sm font-weight-normal text-danger">00.000.000</span></p>
                         </td>
                         <td>
                             <span class="text-sm font-weight-normal">IVA</span>
                         </td>
                         <td>
-                            <p class="m-0 font-weight-bold">$<span class="text-sm text-success">00.000.000</span></p>
+                            <p class="m-0 font-weight-bold">$-<span class="text-sm text-danger">00.000.000</span></p>
                         </td>
                         <td>
                             <span class="text-sm font-weight-bold">123456</span>
                         </td>
                         <td class="text-center align-middle">
-                          <a href="{% url 'app_finanzas:editarCotizacionesVenta' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Cotización">
+                          <a href="{% url 'app_finanzas:editarCotizacionesCompra' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Cotización">
                             <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" fill="#64748B"/>
                             </svg>
@@ -211,7 +218,7 @@
           </div>
           <div class="modal-body">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-md-6">
                     <div class="bg-dark rounded">
                         <p class="ps-3 py-1 text-light font-weight-bold">Cotización:</p>
                     </div>
@@ -228,53 +235,51 @@
                         <input disabled id="formInput" class="form-control" type="date">
                     </div>
                 </div>
+                <div class="col-12 col-md-6">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Comprador:</p>
+                    </div>
+                    <div class="h-auto">
+                        <div class="mb-3">
+                            <label for="formInput" class="form-label" for="">Departamento:</label>
+                            <input disabled id="formInput" class="form-control" type="text" placeholder="Departamento ...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formInput" class="form-label" for="">Presupuesto:</label>
+                            <input disabled id="formInput" class="form-control" type="text" placeholder="Presupuesto ...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formInput" class="form-label" for="">Centro de Costos o Proyecto:</label>
+                            <input disabled id="formInput" class="form-control" type="text" placeholder="Centro de Costos o Proyecto ...">
+                        </div>
+                    </div>
+                </div>
                 <div class="col-12">
                     <div class="bg-dark rounded">
                         <p class="ps-3 py-1 text-light font-weight-bold">Descripción:</p>
                     </div>
                     <div class="mb-3">
                         <label for="formInput" class="form-label" for="">Descripción:</label>
-                        <input disabled id="formInput" class="form-control" type="text" placeholder="Nombre de la Venta ...">
+                        <input disabled id="formInput" class="form-control" type="text" placeholder="Nombre de cotización ...">
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="bg-dark rounded">
-                        <p class="ps-3 py-1 text-light font-weight-bold">Vendedor:</p>
-                    </div>
-                    <div class="h-auto">
-                        <div class="mb-3">
-                            <label for="formInput" class="form-label" for="">Departamento:</label>
-                            <input disabled id="formInput" class="form-control" type="text" list="lista-vendedor" placeholder="Departamento ...">
-                            <datalist class="d-none" id="lista-vendedor">
-                                <option value="departamento 1"></option>
-                                <option value="departamento 2"></option>
-                                <option value="departamento 3"></option>
-                            </datalist>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="bg-dark rounded">
-                        <p class="ps-3 py-1 text-light font-weight-bold">Cliente:</p>
+                        <p class="ps-3 py-1 text-light font-weight-bold">Proveedor:</p>
                     </div>
                     <div class="mb-3">
-                        <label for="formInput" class="form-label" for="">Cliente:</label>
-                        <input disabled id="formInput" class="form-control" type="text" list="lista-cliente" placeholder="Cliente ...">
-                        <datalist class="d-none" id="lista-cliente">
-                            <option value="Juan"></option>
-                            <option value="Pedro"></option>
-                            <option value="Oscar"></option>
-                        </datalist>
+                        <label for="formInput" class="form-label" for="">Proveedor:</label>
+                        <input disabled id="formInput" class="form-control" type="text" placeholder="Proveedor ...">
                     </div>
                     <div>
-                        <p class="font-weight-bold mb-3">Razón Social: <span class="font-weight-normal">Esperando Cliente ...</span></p>
-                        <p class="font-weight-bold mb-3">Giro Comercial: <span class="font-weight-normal">Esperando Cliente ...</span></p>
-                        <p class="font-weight-bold mb-3">Rut Empresa: <span class="font-weight-normal">Esperando Cliente ...</span></p>
-                        <p class="font-weight-bold mb-3">Rut: <span class="font-weight-normal">Esperando Cliente ...</span></p>
-                        <p class="font-weight-bold mb-3">Ciudad: <span class="font-weight-normal">Esperando Cliente ...</span></p>
-                        <p class="font-weight-bold mb-3">Direción: <span class="font-weight-normal">Esperando Cliente ...</span></p>
-                        <p class="font-weight-bold mb-3">Teléfono: <span class="font-weight-normal">Esperando Cliente ...</span></p>
-                        <p class="font-weight-bold mb-3">Correo: <span class="font-weight-normal">Esperando Cliente ...</span></p>
+                        <p class="font-weight-bold mb-3">Razón Social: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Giro Comercial: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Rut Empresa: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Rut: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Ciudad: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Direción: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Teléfono: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Correo: <span class="font-weight-normal">lorem Impsum ...</span></p>
                     </div>
                 </div>
             </div>
@@ -285,7 +290,7 @@
                     </div>
                     <div class="card-body px-0 pb-0">
                         <div class="table-responsive p-0">
-                          <table class="table table-hover table-bordered align-items-center justify-content-center mb-0">
+                          <table class="table table-hover table-bordered align-items-center justify-content-center mb-0 w-auto">
                             <thead class="bg-gray-100">
                               <tr>
                                 <th class="text-secondary text-xs font-weight-bold">Código</th>
@@ -297,7 +302,7 @@
                               </tr>
                             </thead>
                                 <tbody class="items">
-                                    <tr class="text-center">
+                                    <tr>
                                         <td class="ps-1 text-center">
                                             <span class="text-sm font-weight-normal">123 ...</span>
                                         </td>
@@ -305,7 +310,7 @@
                                             <span class="text-sm font-weight-normal descripcion">Item 1 ...</span>
                                         </td>
                                         <td class="ps-1 text-center">
-                                            <span class="text-sm font-weight-normal cantidad">1</span>
+                                            <span class="text-sm font-weight-normal cantidad">2 ...</span>
                                         </td>
                                         <td class="ps-1 text-center">
                                             <span class="text-sm font-weight-normal neto">00.000.000</span>
@@ -353,11 +358,11 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Se elimina el registro de la cotización actual, en caso de no estar seguro cierre esta ventana.
+                Se eliminará el registro de la cotización actual, en caso de no estar seguro cierre esta ventana.
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:cotizacionesVenta' %}">Eliminar</a>
+              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:compra' %}">Eliminar</a>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ from django.views.generic import ListView, TemplateView, CreateView
 #ListView
 class Departamentos(TemplateView):
     # model = MODEL_NAME
-    template_name = "finanzas/departamentos/departamentos.html"
+    template_name = "pages/finanzas/departamentos/departamentos.html"
 
     # def get_queryset(self):
     #     queryset = super(model, self).get_queryset()
@@ -20,16 +20,16 @@ class Departamentos(TemplateView):
 
 #ListView
 class CentroDeCostos(TemplateView):
-    template_name = "finanzas/centro-de-costos/centroDeCostos.html"
+    template_name = "pages/finanzas/centro-de-costos/centroDeCostos.html"
 
 
 #CreateView
 class CrearCentroDeCostos(TemplateView):
-    template_name = "finanzas/centro-de-costos/crearCentroDeCostos.html"
+    template_name = "pages/finanzas/centro-de-costos/crearCentroDeCostos.html"
 
 #UpdateView
 class EditarCentroDeCostos(TemplateView):
-    template_name = "finanzas/centro-de-costos/editarCentroDeCostos.html"
+    template_name = "pages/finanzas/centro-de-costos/editarCentroDeCostos.html"
 
 
 
@@ -40,16 +40,16 @@ class EditarCentroDeCostos(TemplateView):
 
 #ListView
 class Proyectos(TemplateView):
-    template_name = "finanzas/proyectos/proyectos.html"
+    template_name = "pages/finanzas/proyectos/proyectos.html"
 
 
 #CreateView
 class CrearProyectos(TemplateView):
-    template_name = "finanzas/proyectos/crearProyectos.html"
+    template_name = "pages/finanzas/proyectos/crearProyectos.html"
 
 #UpdateView
 class EditarProyectos(TemplateView):
-    template_name = "finanzas/proyectos/editarProyectos.html"
+    template_name = "pages/finanzas/proyectos/editarProyectos.html"
 
 
 
@@ -59,16 +59,16 @@ class EditarProyectos(TemplateView):
     
 #ListView
 class PresupuestosCDC(TemplateView):
-    template_name = "finanzas/presupuestos/centro-de-costos/presupuestos.html"
+    template_name = "pages/finanzas/presupuestos/centro-de-costos/presupuestos.html"
 
 
 #CreateView
 class CrearPresupuestosCDC(TemplateView):
-    template_name = "finanzas/presupuestos/centro-de-costos/crearPresupuestos.html"
+    template_name = "pages/finanzas/presupuestos/centro-de-costos/crearPresupuestos.html"
 
 #UpdateView
 class EditarPresupuestosCDC(TemplateView):
-    template_name = "finanzas/presupuestos/centro-de-costos/editarPresupuestos.html"
+    template_name = "pages/finanzas/presupuestos/centro-de-costos/editarPresupuestos.html"
 
 #------------------------------------------------------------------------------------------
 
@@ -76,16 +76,16 @@ class EditarPresupuestosCDC(TemplateView):
     
 #ListView
 class PresupuestosP(TemplateView):
-    template_name = "finanzas/presupuestos/proyectos/presupuestos.html"
+    template_name = "pages/finanzas/presupuestos/proyectos/presupuestos.html"
 
 
 #CreateView
 class CrearPresupuestosP(TemplateView):
-    template_name = "finanzas/presupuestos/proyectos/crearPresupuestos.html"
+    template_name = "pages/finanzas/presupuestos/proyectos/crearPresupuestos.html"
 
 #UpdateView
 class EditarPresupuestosP(TemplateView):
-    template_name = "finanzas/presupuestos/proyectos/editarPresupuestos.html"
+    template_name = "pages/finanzas/presupuestos/proyectos/editarPresupuestos.html"
 
 
 
@@ -96,16 +96,16 @@ class EditarPresupuestosP(TemplateView):
     
 #ListView
 class Compra(TemplateView):
-    template_name = "finanzas/compra/compra.html"
+    template_name = "pages/finanzas/compra/compra.html"
 
 
 #CreateView
 class CrearCompra(TemplateView):
-    template_name = "finanzas/compra/crearCompra.html"
+    template_name = "pages/finanzas/compra/crearCompra.html"
 
 #UpdateView
 class EditarCompra(TemplateView):
-    template_name = "finanzas/compra/editarCompra.html"
+    template_name = "pages/finanzas/compra/editarCompra.html"
 
 #------------------------------------------------------------------------------------------
     
@@ -115,16 +115,16 @@ class EditarCompra(TemplateView):
 
 #ListView
 class CotizacionesCompra(TemplateView):
-    template_name = "finanzas/compra/cotizaciones/cotizaciones.html"
+    template_name = "pages/finanzas/compra/cotizaciones/cotizaciones.html"
 
 
 #CreateView
 class CrearCotizacionesCompra(TemplateView):
-    template_name = "finanzas/compra/cotizaciones/crearCotizaciones.html"
+    template_name = "pages/finanzas/compra/cotizaciones/crearCotizaciones.html"
 
 #UpdateView
 class EditarCotizacionesCompra(TemplateView):
-    template_name = "finanzas/compra/cotizaciones/editarCotizaciones.html"
+    template_name = "pages/finanzas/compra/cotizaciones/editarCotizaciones.html"
     
 
 #------------------------------------------------------------------------------------------
@@ -134,16 +134,16 @@ class EditarCotizacionesCompra(TemplateView):
     
 #ListView
 class OrdenesDeCompra(TemplateView):
-    template_name = "finanzas/compra/OrdenesDeCompra/ordenesDeCompra.html"
+    template_name = "pages/finanzas/compra/OrdenesDeCompra/ordenesDeCompra.html"
 
 
 #CreateView
 class CrearOrdenesDeCompra(TemplateView):
-    template_name = "finanzas/compra/OrdenesDeCompra/crearOrdenesDeCompra.html"
+    template_name = "pages/finanzas/compra/OrdenesDeCompra/crearOrdenesDeCompra.html"
 
 #UpdateView
 class EditarOrdenesDeCompra(TemplateView):
-    template_name = "finanzas/compra/OrdenesDeCompra/editarOrdenesDeCompra.html"
+    template_name = "pages/finanzas/compra/OrdenesDeCompra/editarOrdenesDeCompra.html"
 
 #------------------------------------------------------------------------------------------
     
@@ -152,15 +152,15 @@ class EditarOrdenesDeCompra(TemplateView):
 
 #ListView
 class FacturasCompra(TemplateView):
-    template_name = "finanzas/compra/facturas/facturas.html"
+    template_name = "pages/finanzas/compra/facturas/facturas.html"
 
 #CreateView
 class CrearFacturasCompra(TemplateView):
-    template_name = "finanzas/compra/facturas/crearFactura.html"
+    template_name = "pages/finanzas/compra/facturas/crearFactura.html"
 
 #UpdateView
 class EditarFacturasCompra(TemplateView):
-    template_name = "finanzas/compra/facturas/editarFactura.html"
+    template_name = "pages/finanzas/compra/facturas/editarFactura.html"
 
 
 #------------------------------------------------------------------------------------------
@@ -170,15 +170,15 @@ class EditarFacturasCompra(TemplateView):
     
 #ListView
 class Venta(TemplateView):
-    template_name = "finanzas/venta/venta.html"
+    template_name = "pages/finanzas/venta/venta.html"
 
 #CreateView
 class CrearVenta(TemplateView):
-    template_name = "finanzas/venta/crearVenta.html"
+    template_name = "pages/finanzas/venta/crearVenta.html"
 
 #UpdateView
 class EditarVenta(TemplateView):
-    template_name = "finanzas/venta/editarVenta.html"
+    template_name = "pages/finanzas/venta/editarVenta.html"
 
 #------------------------------------------------------------------------------------------
 
@@ -187,16 +187,16 @@ class EditarVenta(TemplateView):
 
 #ListView
 class CotizacionesVenta(TemplateView):
-    template_name = "finanzas/venta/cotizaciones/cotizaciones.html"
+    template_name = "pages/finanzas/venta/cotizaciones/cotizaciones.html"
 
 
 #CreateView
 class CrearCotizacionesVenta(TemplateView):
-    template_name = "finanzas/venta/cotizaciones/crearCotizaciones.html"
+    template_name = "pages/finanzas/venta/cotizaciones/crearCotizaciones.html"
 
 #UpdateView
 class EditarCotizacionesVenta(TemplateView):
-    template_name = "finanzas/venta/cotizaciones/editarCotizaciones.html"
+    template_name = "pages/finanzas/venta/cotizaciones/editarCotizaciones.html"
 
 
 #------------------------------------------------------------------------------------------
@@ -205,16 +205,16 @@ class EditarCotizacionesVenta(TemplateView):
     
 #ListView
 class OrdenesDeVenta(TemplateView):
-    template_name = "finanzas/venta/OrdenesDeVenta/ordenesDeVenta.html"
+    template_name = "pages/finanzas/venta/OrdenesDeVenta/ordenesDeVenta.html"
 
 
 #CreateView
 class CrearOrdenesDeVenta(TemplateView):
-    template_name = "finanzas/venta/OrdenesDeVenta/crearOrdenesDeVenta.html"
+    template_name = "pages/finanzas/venta/OrdenesDeVenta/crearOrdenesDeVenta.html"
 
 #UpdateView
 class EditarOrdenesDeVenta(TemplateView):
-    template_name = "finanzas/venta/OrdenesDeVenta/editarOrdenesDeVenta.html"
+    template_name = "pages/finanzas/venta/OrdenesDeVenta/editarOrdenesDeVenta.html"
 
 #------------------------------------------------------------------------------------------
     
@@ -223,15 +223,15 @@ class EditarOrdenesDeVenta(TemplateView):
 
 #ListView
 class FacturasVenta(TemplateView):
-    template_name = "finanzas/venta/facturas/facturas.html"
+    template_name = "pages/finanzas/venta/facturas/facturas.html"
 
 #CreateView
 class CrearFacturasVenta(TemplateView):
-    template_name = "finanzas/venta/facturas/crearFactura.html"
+    template_name = "pages/finanzas/venta/facturas/crearFactura.html"
 
 #UpdateView
 class EditarFacturasVenta(TemplateView):
-    template_name = "finanzas/venta/facturas/editarFactura.html"
+    template_name = "pages/finanzas/venta/facturas/editarFactura.html"
 
 
 #------------------------------------------------------------------------------------------
@@ -239,45 +239,45 @@ class EditarFacturasVenta(TemplateView):
 #---------------------------- Vista de Proveedores con CRUD ------------------------------
     
 class Proveedor(TemplateView):
-    template_name = "finanzas/proveedores/proveedores.html"
+    template_name = "pages/finanzas/proveedores/proveedores.html"
 
 #CreateView
 class CrearProveedor(TemplateView):
-    template_name = "finanzas/proveedores/crearProveedores.html"
+    template_name = "pages/finanzas/proveedores/crearProveedores.html"
 
 #UpdateView
 class EditarProveedor(TemplateView):
-    template_name = "finanzas/proveedores/editarProveedores.html"
+    template_name = "pages/finanzas/proveedores/editarProveedores.html"
 
 #------------------------------------------------------------------------------------------
     
 #---------------------------- Vista de Impuestos con CRUD ------------------------------
     
 class Impuestos(TemplateView):
-    template_name = "finanzas/impuestos/impuestos.html"
+    template_name = "pages/finanzas/impuestos/impuestos.html"
 
 #CreateView
 class CrearImpuestos(TemplateView):
-    template_name = "finanzas/impuestos/crearImpuestos.html"
+    template_name = "pages/finanzas/impuestos/crearImpuestos.html"
 
 #UpdateView
 class EditarImpuestos(TemplateView):
-    template_name = "finanzas/impuestos/editarImpuestos.html"
+    template_name = "pages/finanzas/impuestos/editarImpuestos.html"
 
 #------------------------------------------------------------------------------------------
     
 #---------------------------- Vista de Flujo de Caja con CRUD ------------------------------
     
 class FlujoDeCaja(TemplateView):
-    template_name = "finanzas/flujo-de-caja/flujoDeCaja.html"
+    template_name = "pages/finanzas/flujo-de-caja/flujoDeCaja.html"
 
 #CreateView
 class CrearFlujoDeCaja(TemplateView):
-    template_name = "finanzas/flujo-de-caja/crearFlujoDeCaja.html"
+    template_name = "pages/finanzas/flujo-de-caja/crearFlujoDeCaja.html"
 
 #UpdateView
 class EditarFlujoDeCaja(TemplateView):
-    template_name = "finanzas/flujo-de-caja/editarFlujoDeCaja.html"
+    template_name = "pages/finanzas/flujo-de-caja/editarFlujoDeCaja.html"
 
 
 #---------------------------- Vista de Contabilidad ------------------------------
@@ -285,4 +285,4 @@ class EditarFlujoDeCaja(TemplateView):
 
 #ListView
 class Contabilidad(TemplateView):
-    template_name = "finanzas/contabilidad/contabilidad.html"
+    template_name = "pages/finanzas/contabilidad/contabilidad.html"
