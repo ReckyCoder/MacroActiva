@@ -1,5 +1,43 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block content %}
-<div class="container-fluid py-4 px-5">
-  {% include 'includes/footer.html' %}
-</div>
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+
+{% block content %}
+<div class="container-fluid mt-4">
+<style>
+  .clamp-2-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+  }
+
+  .col {
+    display: inline-block;
+    vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
+  }
+  .active a {
+    color: rgb(1, 1, 39); /* Color activo para el título seleccionado */
+    text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
+  .inactive a {
+      color: gray; /* Color inactivo para el título no seleccionado */
+      text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
+</style>
+  
+  <div class="row align-items-end">
+    <div id="productos-col" class="col-auto text-left">
+      <h1 class="title active"><a href="{% url 'app_administracion:proveedores' %}" class="title-link">Proveedores</a></h1>
+    </div>
+    <div class="col-auto text-left">
+      <h1>/</h1>
+    </div>
+    <div id="ordenes-col" class="col-auto text-left">
+      <h1 class="title inactive"><a href="{% url 'app_administracion:licitaciones' %}">Licitaciones</a></h1>
+    </div>
+  </div>
+  <hr/>
+
+
 {% endblock content %}

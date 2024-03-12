@@ -74,6 +74,15 @@ def proveedores(request):
     
     return render(request, 'pages/Administración/proveedores.html', context=context)
 
+def licitaciones(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Administración"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+    
+    return render(request, 'pages/Administración/licitaciones.html', context=context)
+
 def proyectos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
     modulo = "Administración"
