@@ -4,39 +4,169 @@
 
 
 {% block card-body %}
+<form method="post">
+  <div class="row">
+    <div class="col">
+      <fieldset disabled>
+        <div class="form-row px-4">
+          <div class="col-md-12 mb-3">
+            <label for="txtRut">Cargo</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="txtIdCargo" placeholder="ID"
+                aria-describedby="inputGroupPrepend">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">-</span>
+              </div>
+              <input type="text" class="form-control" id="txtCargo" placeholder="Cargo"
+                aria-describedby="inputGroupappend">
+            </div>
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtRut">Area negocio</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="txtIdArea" placeholder="ID"
+                aria-describedby="inputGroupPrepend">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">-</span>
+              </div>
+              <input type="text" class="form-control" id="txtArea" placeholder="Area negocio"
+                aria-describedby="inputGroupappend">
+            </div>
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtRut">Centro costos</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="txtIdCentro" placeholder="ID"
+                aria-describedby="inputGroupPrepend">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">-</span>
+              </div>
+              <input type="text" class="form-control" id="txtCentro" placeholder="Centro costos"
+                aria-describedby="inputGroupappend">
+            </div>
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtEstado">Estado</label>
+            <select class="form-select" placeholder="Estado">
+              <option name="vigente" id="txtEstado" selected>Vigente</option>
+              <option name="inactivo" id="txtEstado">Inactivo</option>
+              <option name="desvinculado" id="txtEstado">Desvinculado</option>
+            </select>
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtEstado">Certificado de rentas</label>
+            <select class="form-select" placeholder="Estado">
+              <option name="sueldos" id="txtCertificado" selected>Sueldos</option>
+              <option name="honorarios" id="txtCertificado">Honorarios</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="col">
+      <fieldset disabled>
+        <div class="form-row px-4">
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaIngreso">Fecha de ingreso</label>
+            <input type="date" class="form-control" id="txtFechaIngreso" placeholder="Fecha de ingreso">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaPrimerContrato">Fecha primer contrato</label>
+            <input type="date" class="form-control" id="txtFechaPrimerContrato" placeholder="Fecha primer contrato">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaContratoVigente">Fecha contrato vigente</label>
+            <input type="date" class="form-control" id="txtFechaContratoVigente" placeholder="Fecha contrato vigente">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaTerminoContrato">Fecha termino contrato</label>
+            <input type="date" class="form-control" id="txtFechaTerminoContrato" placeholder="Fecha termino contrato">
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="col">
+      <fieldset disabled>
+        <div class="form-row px-4">
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaCalculoVacaciones">Fecha calculo vacaciones</label>
+            <input type="date" class="form-control" id="txtFechaCalculoVacaciones"
+              placeholder="Fecha calculo de vaciones">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaAniosOtroEmpleador">Años con otro empleador</label>
+            <input type="text" class="form-control" id="txtFechaAniosOtroEmpleador" placeholder="0">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaContratoVacacionesProgresivas">Fecha contrato vaciones progresivas</label>
+            <input type="date" class="form-control" id="txtFechaContratoVacacionesProgresivas"
+              placeholder="Fecha contrato vaciones progresivas">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtDiasVacaciones">Dias de vaciones</label>
+            <input type="text" class="form-control" id="txtDiasVacaciones" placeholder="0">
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div class="col">
     <div class="row">
-        <div class="col">
-            <form>
-                <fieldset disabled>
-                    <div class="form-row">
-                        <div class="col-md-4 mb-3">
-                          <label for="txtNombre">Nombre</label>
-                          <input type="text" class="form-control" id="txtNombre" placeholder="Nombre">
-                          
-                        </div>
-                        <div class="col-md-4 mb-3">
-                          <label for="txtApPaterno">Apellido paterno</label>
-                          <input type="text" class="form-control" id="txtApPaterno" placeholder="Apellido paterno">
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="txtApMaterno">Apellido materno</label>
-                            <input type="text" class="form-control" id="txtApMaterno" placeholder="Apellido materno">
-                          </div>
-                        <div class="col-md-4 mb-3">
-                          <label for="txtRut">Rut</label>
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="txtRut" placeholder="Rut" aria-describedby="inputGroupPrepend">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon2">-</span>
-                            </div>
-                            <input type="text" class="form-control" id="txtDv" placeholder="DV" aria-describedby="inputGroupappend">
-                          </div>
-                        </div>
-                      </div>
-                      asdasdas
-                </fieldset>
-              </form>
+        <div class="col-8">
+
+        </div>
+        <div class="col pe-5">
+            <div class="btn-group btn-group-sm text-center d-flex align-items-end" role="group"
+                aria-label="Basic example">
+                <button type="button" class="btn btn-sm btn-success btn-icon  align-items-center mb-0">Editar</button>
+                <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Aceptar</button>
+            </div>
         </div>
     </div>
-    
+
+</div>
+</form>
+
+<style>
+  #txtCargo,
+  #txtArea,
+  #txtCentro {
+    width: max-content;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+
+
+    $.ajax({
+      url: 'LaboralView/',
+      method: 'GET',
+      data: { element_id: 'R02FichaLaboralView' },
+      success: function (data) {
+        // Set the value to the input field
+        $("#txtNombre").val(data.MetaData.user.personal.nombre);
+        $("#txtApPaterno").val(data.MetaData.user.personal.appaterno);
+        $("#txtApMaterno").val(data.MetaData.user.personal.apmaterno);
+        $("#txtRut").val(data.MetaData.user.personal.rut);
+        $("#txtDv").val(data.MetaData.user.personal.dv);
+        $("#txtFechaNacimiento").val(data.MetaData.user.personal.fecnacimiento);
+        $("#txtDireccion").val(data.MetaData.user.personal.direccion);
+        $("#txtComuna").val(data.MetaData.user.personal.comuna);
+        $("#txtCuidad").val(data.MetaData.user.personal.cuidad);
+        $("#txtNacionalidad").val(data.MetaData.user.personal.nacionalidad);
+        $("#txtGenero").val(data.MetaData.user.personal.genero);
+        $("#txtEmail").val(data.MetaData.user.personal.email);
+        $("#txtCelular").val(data.MetaData.user.personal.celular);
+        $("#txtEstadoCivil").val(data.MetaData.user.personal.estado_civil);
+        $("#txtEstudios").val(data.MetaData.user.personal.estudios);
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+      }
+    });
+
+  });
+</script>
+
 {% endblock card-body %}

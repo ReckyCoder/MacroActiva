@@ -103,6 +103,36 @@ def fichasEmpleados(request):
                     }
 
                     return JsonResponse(content)
+                
+                elif tipoSolicitud == 'FichaPago':
+
+                    context.update(user_context)
+                    
+                    
+                    rendered = render_to_string(
+                        'pages/rh/remuneraciones/fichas/pago.html')
+
+                    content = {
+                        'HTMLData': rendered,
+                        'MetaData': context
+                    }
+
+                    return JsonResponse(content)
+                
+                elif tipoSolicitud == 'FichaPrevision':
+
+                    context.update(user_context)
+                    
+                    
+                    rendered = render_to_string(
+                        'pages/rh/remuneraciones/fichas/prevision.html')
+
+                    content = {
+                        'HTMLData': rendered,
+                        'MetaData': context
+                    }
+
+                    return JsonResponse(content)
     else:
         
         return JsonResponse(content)

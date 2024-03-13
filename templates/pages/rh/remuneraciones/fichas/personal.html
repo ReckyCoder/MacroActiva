@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="txtFechaNacimiento">Fecha nacimiento</label>
-                        <input type="date" class="form-control" id="txtFechaNacimiento" placeholder="Fecha nacimiento">
+                        <input type="date" class="form-control" id="txtFechaNacimiento" value="" placeholder="Fecha nacimiento">
                     </div>
                 </div>
             </div>
@@ -91,15 +91,17 @@
             <div class="col-8">
 
             </div>
-            <div class="col">
-                <div class="btn-group btn-group-sm text-center d-flex align-items-end" role="group" aria-label="Basic example">
+            <div class="col pe-5">
+                <div class="btn-group btn-group-sm text-center d-flex align-items-end" role="group"
+                    aria-label="Basic example">
                     <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Editar</button>
-                    <button type="button" class="btn btn-sm btn-success btn-icon align-items-center mb-0">Generar ficha</button>
+                    <button type="button" class="btn btn-sm btn-success btn-icon align-items-center mb-0">Generar
+                        ficha</button>
                     <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Aceptar</button>
                 </div>
             </div>
         </div>
-        
+
     </div>
 </form>
 
@@ -110,21 +112,23 @@
 </style>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-        
+
         $.ajax({
             url: 'PersonalView/',
             method: 'GET',
-            data: {element_id: 'R02FichaPersonalView'},
-            success: function(data) {
-                // Set the value to the input field
+            data: { element_id: 'R02FichaPersonalView' },
+            success: function (data) {
+
                 $("#txtNombre").val(data.MetaData.user.personal.nombre);
                 $("#txtApPaterno").val(data.MetaData.user.personal.appaterno);
                 $("#txtApMaterno").val(data.MetaData.user.personal.apmaterno);
                 $("#txtRut").val(data.MetaData.user.personal.rut);
                 $("#txtDv").val(data.MetaData.user.personal.dv);
-                $("#txtFechaNacimiento").val(data.MetaData.user.personal.fecnacimiento);
+
+                $('#txtFechaNacimiento').val(data.MetaData.user.personal.fecnacimiento);;
+
                 $("#txtDireccion").val(data.MetaData.user.personal.direccion);
                 $("#txtComuna").val(data.MetaData.user.personal.comuna);
                 $("#txtCuidad").val(data.MetaData.user.personal.cuidad);
@@ -135,7 +139,7 @@
                 $("#txtEstadoCivil").val(data.MetaData.user.personal.estado_civil);
                 $("#txtEstudios").val(data.MetaData.user.personal.estudios);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error(error);
             }
         });

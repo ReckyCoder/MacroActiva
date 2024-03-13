@@ -19,7 +19,7 @@
                     <div class="col px-0">
                         <div id="radiobuttons">
                             <div id="first">
-                                <div class="btn-group " role="group" aria-label="Basic radio toggle button group">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <input type="radio" class="btn-check" name="btnradio" id="R01btnrFichasEmpleados"
                                         autocomplete="off" checked>
                                     <label class="btn btn-dark px-3 mb-0" for="R01btnrFichasEmpleados">Fichas empleados</label>
@@ -88,11 +88,13 @@
 {% block extrascripts %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <style>
 
 
-    div#radiobuttons>div#second>.btn-group ~ .btn:first-child{
+    #second .btn-group > .btn-check+.btn:first-child {
         border-top-left-radius: 0;
     }
 

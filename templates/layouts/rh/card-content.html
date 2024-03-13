@@ -14,7 +14,7 @@
         </div>
         <div class="col-4 text-end">
             <div class="row">
-                <div class="col-8 opt-tittle3">{% block opt-tittle3 %}{% endblock opt-tittle3 %}</div>
+                <div class="col-10 opt-tittle3 text-start p-0">{% block opt-tittle3 %}{% endblock opt-tittle3 %}</div>
                 <div class="col text-center ps-0">
                     <a href="javascript:;" class="nav-link text-body p-0">
                     <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar"></a>
@@ -52,6 +52,8 @@
 
     .opt-tittle3{
         padding: 4px 0 0 5px;
+        display: flex;
+        justify-content: center;
     }
 
     .opt-tittle3 p{
@@ -65,6 +67,12 @@
     .opt-tittle1 p, .opt-tittle2 p{
         font-size: smaller;
         margin: 0;
+    }
+
+    p{
+        margin: 3px 0 0 0;
+        padding-top: 6px;
+        justify-content: center;
     }
 
 </style>

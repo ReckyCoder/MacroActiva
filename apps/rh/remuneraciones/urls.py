@@ -7,6 +7,8 @@ urlpatterns = [
     path('menu/fichaEmpleados/', views.fichasEmpleados, name='rhFichaEmpleados'),
     path('menu/PersonalView/', views.fichasEmpleados, name='rhFichaPersonalView'),
     path('menu/LaboralView/', views.fichasEmpleados, name='rhFichaLaboralView'),
+    path('menu/PagoView/', views.fichasEmpleados, name='rhFichaPagoView'),
+    path('menu/PrevisionView/', views.fichasEmpleados, name='rhFichaPrevisionView'),
     path('menu/modeloCalculo/', views.modeloCalculo, name='rhModeloCalculo'),
 ]
 

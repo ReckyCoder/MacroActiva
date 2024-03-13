@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block opt-tittle1 %}
-<p id="fechaActual">Fecha actual: </p>
+<p id="fechaActual">Fecha actual: 07/03/2024</p>
 {% endblock opt-tittle1 %}
 
 {% block opt-tittle2 %}
-<p id="idFichaEmpleadoId">Ficha: </p>
+<p id="idFichaEmpleadoId">Ficha: DRH0054</p>
 {% endblock opt-tittle2 %}
 
 {% block opt-tittle3 %}
-<p id="nombreEmpleado">Nombre empleado: </p>
+<p id="nombreEmpleado">Nombre empleado: Daniela Contreras</p>
 {% endblock opt-tittle3 %}
 
 {% block card-body %}
@@ -169,12 +169,17 @@
         <div class="col px-0">
             <div class="container-fluid px-0">
                 <div class="card shadow-xs border align-items-center blur bg-gray-500 py-3" id="contentloadersub">
+                    <div id="no-content">
+                        <div class="m-5 p-1">
+                            <p>Aun no seleccionado una ficha a visualizar.</p>
+                        </div>
+                    </div>
                     <div class="subcontainer-loader pt-5" style="display: none;">
                         <div class="subbox1"></div>
                         <div class="subbox2"></div>
                         <div class="subbox3"></div>
                     </div>
-                    <div class="container-fluid mx-0 px-0" id="subcontentload">
+                    <div class="container-fluid mx-0 px-0" id="subcontentload" style="display: none;">
 
                     </div>
                 </div>
@@ -182,8 +187,6 @@
             </div>
         </div>
     </div>
-
-
 
     <style>
         .btn-group>.btn:not(:last-child):not(.dropdown-toggle),
@@ -205,7 +208,28 @@
         #contentloadersub {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
-            height: 550px !important;
+            position: relative;
+            height: 500px;
+        }
+
+        #subcontentload{
+            height: 100%;
+        }
+
+        #no-content{
+            margin-top: 175px;
+            border: 1px dashed rgba(33, 44, 63, 0.4);
+            border-radius: 5px;
+        }
+
+        #no-content>.m-5.p-1{
+            display: flex;
+            justify-content: center;
+            opacity: 0.6;
+        }
+
+        #no-content>.m-5.p-1>p{
+            margin: 0;
         }
 
         #listButtonsEmpleado {
@@ -362,6 +386,7 @@
                 buttonURL = IdParser(buttonID)
 
                 $('.subcontainer-loader').show();
+                $('#no-content').hide();
                 $('#subcontentload').hide();
 
 
@@ -379,8 +404,9 @@
                         setTimeout(function () {
                             $('.subcontainer-loader').hide();
                             $('#subcontentload').show();
+                            
 
-                        }, 1000);
+                        }, 1500);
 
 
                     },
