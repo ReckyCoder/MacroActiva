@@ -22,7 +22,7 @@
         <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="{{deafultChildUrl}}" id="childModule">{{ modulo.childModuleName|replace_value:"_" }}</a></li>
         {% endif %}
         {% endfor %}
-      <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
+      {% comment %} <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
         <li class="breadcrumb-item text-sm">
           <a class="opacity-5 text-dark" href="javascript:;"
             >{{ modulo|default:"Home" }}</a
@@ -34,7 +34,7 @@
         >
           {{ nombre_vista|capfirst }}
         </li>
-      </ol>
+      </ol> {% endcomment %}
 
     </nav>
     <div
