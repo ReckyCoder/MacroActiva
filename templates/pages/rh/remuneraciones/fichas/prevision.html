@@ -6,23 +6,115 @@
 {% block card-body %}
 
 <form method="post">
-    <div class="row">
-        <div class="col">
-            <fieldset disabled>
+    <fieldset disabled>
+        <div class="row">
+            <div class="col">
                 <div class="form-row px-4">
                     <div class="col-md-12 mb-3">
-                        <label for="txtEstado">Tipo pago</label>
-                        <select class="form-select" placeholder="Estado">
-                            <option name="efectivo" id="txtTipoPago">Efectivo</option>
-                            <option name="cheque" id="txtTipoPago">Cheque</option>
-                            <option name="valevista" id="txtTipoPago">Vale vista</option>
-                            <option name="deposito" id="txtTipoPago" selected>Deposito</option>
-                        </select>
+                        <label for="txtAFP">AFP</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtIdAFP" placeholder="ID"
+                                aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtAFP" placeholder="AFP"
+                                aria-describedby="inputGroupappend">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtPorcFondPension">% Cotizacion Fond. Pensión</label>
+                        <input type="text" class="form-control" id="txtPorcFondPension" placeholder="0">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-3 pt-3">
+                                <div class="form-check align-items-center">
+                                    <label for="chkUtilizaFondPensionAdicional" class="form-check-label">Utiliza
+                                        adicional</label>
+                                    <input type="checkbox" class="form-check-input" id="chkUtilizaFondPensionAdicional"
+                                        checked>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="txtPorcFondPensionAdicional">Procentaje adicional</label>
+                                <input type="text" class="form-control" id="txtPorcFondPensionAdicional"
+                                    placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtPorcAdicional" class="mb-3">Porcentaje adicional</label>
+                        <div class="form-check form-switch d-flex align-items-start gap-5 px-0">
+                            <label class="form-check-label px-1" for="chkAdicionalPesos">Pesos</label>
+                            <input class="form-check-input px-1" type="checkbox" role="switch" id="chkAdicionalPesos"
+                                checked>
+                            <label class="form-check-label px-1" for="chkAdicionalUF">UF</label>
+                            <input class="form-check-input px-1" type="checkbox" role="switch" id="chkAdicionalUF">
+                            <label class="form-check-label px-1" for="chkAdicionalPorc">Porcentaje</label>
+                            <input class="form-check-input px-1" type="checkbox" role="switch" id="chkAdicionalPorc">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtMontoFondPensionAdicional">Monto</label>
+                        <input type="text" class="form-control" id="txtMontoFondPensionAdicional">
                     </div>
                 </div>
-            </fieldset>
+            </div>
+            <div class="col">
+                <div class="form-row px-4">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtISAPRE">ISAPRE</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtIdISAPRE" placeholder="ID"
+                                aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtISAPRE" placeholder="ISAPRE"
+                                aria-describedby="inputGroupappend">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtPorcISAPRE">% Cotizacion ISAPRE</label>
+                        <input type="text" class="form-control" id="txtPorcISAPRE">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-3 pt-3">
+                                <div class="form-check align-items-center">
+                                    <label for="chkUtilizaLey18566" class="form-check-label">Utiliza Ley N°
+                                        18566</label>
+                                    <input type="checkbox" class="form-check-input" id="chkUtilizaLey18566" checked>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="txtPorcFondPensionAdicional">Porcentaje adicional Ley</label>
+                                <input type="text" class="form-control" id="txtPorcFondPensionAdicional"
+                                    placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtMontoCotizarLey">Monto a cotizar Ley Nº 18566</label>
+                        <input type="text" class="form-control" id="txtMontoCotizarLey">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtCaja">Caja de compensacion</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtIdCaja" placeholder="ID"
+                                aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtCaja" placeholder="Caja de compensacion"
+                                aria-describedby="inputGroupappend">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </fieldset>
     <div class="col">
         <div class="row">
             <div class="col-8">
@@ -39,6 +131,57 @@
         </div>
 
     </div>
+
 </form>
+
+<style>
+    #txtAFP,
+    #txtISAPRE,
+    #txtCaja {
+        width: max-content;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+
+        $.ajax({
+            url: 'PrevisionView/',
+            method: 'GET',
+            data: { element_id: 'R02FichaPrevisionView' },
+            success: function (data) {
+
+                $("#txtIdAFP").val(data.MetaData.user.prevision.afp.id_afp);
+                $("#txtAFP").val(data.MetaData.user.prevision.afp.nombre);
+                $("#txtPorcFondPension").val(data.MetaData.user.prevision.afp.porc_cotizacion);
+                if (data.MetaData.user.prevision.afp.cotizacion_adicional) {
+                    $("#chkUtilizaFondPensionAdicional").prop('checked', true);
+                    $('#txtPorcFondPensionAdicional').val(data.MetaData.user.prevision.afp.cotizacion_adicional.porc_cotizacion_adicional)
+                } else {
+                    $("#chkUtilizaFondPensionAdicional").prop('checked', false);
+                }
+                $("#txtArea").val(data.MetaData.user.laboral.area_negocio);
+                $("#txtIdCentro").val(data.MetaData.user.laboral.id_centro_costo);
+                $("#txtCentro").val(data.MetaData.user.laboral.centro_costo);
+
+                $('#txtFechaIngreso').val(data.MetaData.user.laboral.fec_ingreso);
+                $('#txtFechaPrimerContrato').val(data.MetaData.user.laboral.fec_primer_contrato);
+                $('#txtFechaContratoVigente').val(data.MetaData.user.laboral.fec_contrato_vigente);
+                $('#txtFechaTerminoContrato').val(data.MetaData.user.laboral.fec_termino_contrato);
+                $('#txtFechaCalculoVacaciones').val(data.MetaData.user.laboral.fec_inicio_vacaciones);
+                $('#txtFechaContratoVacacionesProgresivas').val(data.MetaData.user.laboral.fec_cert_vaciones_progresivas);
+
+                $('#txtFechaAniosOtroEmpleador').val(data.MetaData.user.laboral.anios_otro_empleador);
+                $('#txtDiasVacaciones').val(data.MetaData.user.laboral.n_dias_vacaciones);
+
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+
+    });
+</script>
 
 {% endblock card-body %}

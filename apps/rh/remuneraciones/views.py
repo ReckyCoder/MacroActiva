@@ -133,6 +133,21 @@ def fichasEmpleados(request):
                     }
 
                     return JsonResponse(content)
+                
+                elif tipoSolicitud == 'FichaCompetencias':
+
+                    context.update(user_context)
+                    
+                    
+                    rendered = render_to_string(
+                        'pages/rh/remuneraciones/fichas/competencias.html')
+
+                    content = {
+                        'HTMLData': rendered,
+                        'MetaData': context
+                    }
+
+                    return JsonResponse(content)
     else:
         
         return JsonResponse(content)
@@ -176,26 +191,26 @@ user_context = {
             'nacionalidad': 'Chilena',
         },
         'laboral': {
-            'cargo': 'reclutador',
-            'id_cargo': '0004',
-            'area_negocio': 'casa_matriz',
+            'cargo': 'Reclutador',
+            'id_cargo': '004',
+            'area_negocio': 'Casa matriz',
             'id_area_negocio': '004',
-            'centro_costo': 'administracion',
-            'id_centro_costo': '0654',
-            'fec_ingreso': '01/01/2020',
-            'fec_primer_contrato': '01/01/2020',
-            'fec_contrato_vigente': '01/03/2024',
+            'centro_costo': 'Administracion',
+            'id_centro_costo': '654',
+            'fec_ingreso': '01-01-2020',
+            'fec_primer_contrato': '01-01-2020',
+            'fec_contrato_vigente': '01-03-2024',
             'fec_termino_contrato': '',
-            'estado': 'vigente',
+            'estado': 'Vigente',
             'tipo_mano_obra': '',
             'id_tipo_mano_obra': '',
             'rol_privado': 'No',
-            'fec_inicio_vacaciones': '01/12/2024'
-            'anios_otro_empleador' '0',
-            'fec_cert_vaciones_progresivas': '01/01/2020',
+            'fec_inicio_vacaciones': '01-12-2024',
+            'anios_otro_empleador' :'0',
+            'fec_cert_vaciones_progresivas': '01-01-2020',
             'n_dias_vacaciones': '15',
-            'tipo_certificado_rentas': 'sueldos',
-            'id_tipo_certificado_rentas': '65871',
+            'tipo_certificado_rentas': 'Sueldos',
+            'id_tipo_certificado_rentas': '671',
         },
         'pago': {
             'tipo_pago': 'deposito',
@@ -210,7 +225,7 @@ user_context = {
         },
         'prevision': {
             'afp': {
-                'nombre': 'ModeloAFP',
+                'nombre': 'AFP Modelo',
                 'id_afp': '46542',
                 'porc_cotizacion': '10',
                 'cotizacion_adicional': {
@@ -235,7 +250,7 @@ user_context = {
             },
             'APVC': {},
         },
-        'atributos': {
+        'competencias': {
             'nombre': ['puntualidad', 'trabajador_mes'],
         },
         'cargas': {
