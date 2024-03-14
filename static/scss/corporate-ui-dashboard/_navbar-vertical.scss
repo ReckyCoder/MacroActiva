@@ -794,19 +794,11 @@
 }
 
 
-// ╔Contenido agregado
-// ╠══Submenus
+//
 
-.navbar-vertical {
-  .navbar-nav {
-    .nav-item {
-      .nav-link {
-        .navbar-nav.collapse{
-          #sub-item {
-            background-color: red;
-          }
-        } 
-      }
-    }
-  }
+aside#sidenav-main{
+  z-index: 300;
+}
+aside#sidenav-sub{
+  z-index: 1;
 }

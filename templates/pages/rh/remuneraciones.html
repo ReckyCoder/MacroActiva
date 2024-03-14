@@ -1,0 +1,352 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid my-2">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-xs border h-100 w-100 d-md-flex align-items-center position-sticky blur">
+                <div class="row">
+                    <div class="col">
+                        <div class="card-header text-center pt-3 pb-2">
+                            <h6 class="font-weight-semibold text-lg mb-0"></h6>
+                            <p class="text-sm text-center">Menú de remuneraciones</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid row pb-0 px-0">
+                    <div class="col px-0">
+                        <div id="radiobuttons">
+                            <div id="first">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrFichasEmpleados"
+                                        autocomplete="off" checked>
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrFichasEmpleados">Fichas empleados</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrModeloCalculo"
+                                        autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrModeloCalculo">Modelo de calculo</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrValorMes" autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrValorMes">Valor del mes</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrCalculoRemuneraciones"
+                                        autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrCalculoRemuneraciones">Calculo
+                                        remuneraciones</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrPagos" autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrPagos">Pagos</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrContabilizacion"
+                                        autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrContabilizacion">Contabilización</label>
+                                </div>
+                            </div>
+                            <div id="second">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrRentasAccesorias"
+                                        autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrRentasAccesorias">Rentas accesorias</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrCertificadosVentas"
+                                        autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrCertificadosVentas">Certificados de
+                                        ventas</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrConsultas" autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrConsultas">Consultas</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrInformes" autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrInformes">Informes</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrAPVC" autocomplete="off">
+                                    <label class="btn btn-dark px-3 mb-0" for="R01btnrAPVC">APVC</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="container">
+            <div class="row my-2 h-50">
+                <div class="col-12">
+                    <div class="card shadow-xs border h-100 w-100 d-md-flex align-items-center blur bg-gray-500 pt-3"
+                        id="contentloadermain">
+                        <div class="container-loader" style="display: none;">
+                            <div class="box1"></div>
+                            <div class="box2"></div>
+                            <div class="box3"></div>
+                        </div>
+                        <div class="container-fluid mx-0 px-0" id="maincontentload">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block extrascripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="{% static 'js/plugins/bootstrap-datepicker.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+
+
+<style>
+
+
+    #second .btn-group > .btn-check+.btn:first-child {
+        border-top-left-radius: 0;
+    }
+
+    .btn-group {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    
+
+    .btn-check:checked+.btn{
+        border: 1px solid #18212f;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    #contentloadermain {
+        background: #333;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .container-loader {
+        width: 112px;
+        height: 112px;
+        margin-bottom: 15px;
+    }
+
+    .box1,
+    .box2,
+    .box3 {
+        border: 16px solid #18212f;
+        box-sizing: border-box;
+        position: absolute;
+        display: block;
+    }
+
+    .box1 {
+        width: 112px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 0px;
+        animation: anime1 4s 0s forwards ease-in-out infinite;
+    }
+
+    .box2 {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 0px;
+        animation: anime2 4s 0s forwards ease-in-out infinite;
+    }
+
+    .box3 {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 64px;
+        animation: anime3 4s 0s forwards ease-in-out infinite;
+    }
+
+    @keyframes anime1 {
+        0% {
+            width: 112px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 0px;
+        }
+
+        12.5%,
+        25%,
+        37.5%,
+        50%,
+        62.5%,
+        75%,
+        87.5%,
+        100% {
+            width: 48px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 0px;
+        }
+
+        75% {
+            width: 48px;
+            height: 112px;
+            margin-top: 0px;
+            margin-left: 0px;
+        }
+    }
+
+    @keyframes anime2 {
+
+        0%,
+        12.5%,
+        25%,
+        37.5%,
+        50% {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 0px;
+        }
+
+        62.5% {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 64px;
+        }
+
+        75%,
+        87.5%,
+        100% {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 64px;
+        }
+    }
+
+    @keyframes anime3 {
+
+        0%,
+        12.5% {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 64px;
+        }
+
+        25% {
+            width: 48px;
+            height: 112px;
+            margin-top: 0px;
+            margin-left: 64px;
+        }
+
+        37.5%,
+        50%,
+        62.5%,
+        75%,
+        87.5%,
+        100% {
+            width: 48px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 64px;
+        }
+
+        75% {
+            width: 48px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 0px;
+        }
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+            $('input[type="radio"]').change(function () {
+                if ($(this).is(":checked")) {
+                    // Show loading spinner
+                    $('.container-loader').show();
+                    $('#maincontentload').hide();
+
+
+                    var radioID = $(this).attr('id');
+                    var radioURL = ''
+
+                    if (radioID === "R01btnrFichasEmpleados") {
+                        radioURL = 'fichaEmpleados/'
+                    } else if (radioID === 'R01btnrModeloCalculo') {
+                        radioURL = 'modeloCalculo/'
+                    } else if (radioID === 'R01btnrValorMes') {
+                        radioURL = 'valorMes/'
+                    } else if (radioID === 'R01btnrCalculoRemuneraciones') {
+                        radioURL = 'calculoRemuneraciones/'
+                    } else if (radioID === 'R01btnrPagos') {
+                        radioURL = 'pagos/'
+                    } else if (radioID === 'R01btnrRentasAccesorias') {
+                        radioURL = 'rentasAccesorias/'
+                    } else if (radioID === 'R01btnrCertificadosVentas') {
+                        radioURL = 'certificadosVentas/'
+                    } else if (radioID === 'R01btnrConsultas') {
+                        radioURL = 'consultas/'
+                    } else if (radioID === 'R01btnrInformes') {
+                        radioURL = 'informes/'
+                    } else if (radioID === 'R01btnrAPVC') {
+                        radioURL = 'APVC/'
+                    } else {
+                        radioURL = ''
+                    }
+
+                    // Checkbox is checked, load content
+                    $.ajax({
+                        url: radioURL,
+                        type: 'GET',
+                        data: { element_id: radioID },
+                        success: function (data) {
+
+                            // Extraer las datas
+                            var MetaData = data.MetaData;
+
+                            $('#maincontentload').html(data.HTMLData);
+                            $('#childModule').text(capitalizeAndRemoveUnderscore(data.MetaData.modulos[1].childModuleName))
+                            // Hide loading spinner after 2 seconds (adjust time as needed)
+                            setTimeout(function () {
+                                $('.container-loader').hide();
+                                $('#maincontentload').show();
+
+                            }, 2300);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                            // Hide loading spinner on error
+                            $('.container-loader').hide();
+                        }
+                    });
+                } else {
+                    // Checkbox is unchecked, clear content
+                    $('#maincontentload').html('');
+                }
+            }).change();
+
+    });
+
+    function capitalizeAndRemoveUnderscore(str) {
+        return str.split('_')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    }
+
+
+    function IdParser(RadioId) {
+
+    }
+
+</script>
+
+{% endblock extrascripts %}
