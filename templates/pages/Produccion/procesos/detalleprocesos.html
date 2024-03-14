@@ -1,0 +1,843 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<div class="container-fluid py-4 px-5">
+  <div class="row">
+    <div class="col-12">
+      <h3>Procesos</h3>
+      <hr>
+      <br>
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header border-bottom pb-0">
+          <div class="d-sm-flex align-items-center mb-3">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Procesos</h6>
+              <p class="text-sm mb-sm-0">Listado de Procesos</p>
+
+            </div>
+
+          </div>
+          <div class="row">
+            <hr>
+          <div class="card m-2" style="width: 15rem;">
+            <img class="card-img-top img-fluid" src="static/img/png-clipart-calculator-calculator.png" alt="Calculadora">
+            <div class="card-body">
+              <h5 class="card-title">Calculadora</h5>
+              <p class="card-text text-xs">Una calculadora es un dispositivo electrónico o mecánico utilizado para realizar operaciones matemáticas básicas.</p>
+            </div>
+        </div>
+        <div class="col-lg-10 col-md-6 mb-md-0 mb-4">
+          <div class="row">
+            <div class="col-lg-8 mb-4">
+              <div class="card shadow-xs border">
+                <div class="card-header pb-0">
+                  <div class="d-sm-flex align-items-center mb-3">
+                    <div>
+                      <h6 class="font-weight-semibold text-lg mb-0">Grafico de procesos</h6>
+                      <p class="text-sm mb-sm-0 mb-2">Tiempos a estipulados para cada etapa del proceso</p>
+                    </div>
+                    <div class="ms-auto d-flex">
+                      <!-- Aquí se agregarán los botones para cambiar el rango de tiempo -->
+                    </div>
+                  </div>
+                  <div class="d-sm-flex align-items-center">
+                    <h3 class="mb-0 font-weight-semibold">1</h3>
+                  </div>
+                </div>
+                <div class="card-body py-5">
+                  <div class="chart mt-n6">
+                    <canvas id="chart-line" class="chart-canvas" height="240"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
+              <div class="card shadow-xs border h-100">
+                <div class="card-header pb-0">
+                  <h6 class="font-weight-semibold text-lg mb-0">Balances over time</h6>
+                  <p class="text-sm">Here you have details about the balance.</p>
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-white px-3 mb-0" for="btnradio1">12 months</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                    <label class="btn btn-white px-3 mb-0" for="btnradio2">30 days</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-white px-3 mb-0" for="btnradio3">7 days</label>
+                  </div>
+                </div>
+                <div class="card-body py-3">
+                  <div class="chart mb-2">
+                    <canvas id="chart-bars" class="chart-canvas" height="240"></canvas>
+                  </div>
+                  <button class="btn btn-white mb-0 ms-auto">View report</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+        <div class="m-3">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                Plastico
+                <span class="badge badge-primary badge-pill">500g</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                Pantalla LCD
+                <span class="badge badge-primary badge-pill">1</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                Placas de Cobre
+                <span class="badge badge-primary badge-pill">1</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Baterias
+                    <span class="badge badge-primary badge-pill">2</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                Sensor
+                <span class="badge badge-primary badge-pill">1</span>
+                </li>
+            </ul>
+            
+        </div>
+        <div class="m-3">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                
+            </div>
+            
+            <div class="col">
+                
+                <label class="m-4 ">Etapa 1</label>
+                <label class="m-4 ">Etapa 2</label>
+                <label class="m-4 ">Etapa 3</label>
+                <label class="m-4 ">Etapa 4</label>
+                <label class="m-4 ">Etapa 5</label>
+                <label class="m-4 ">Etapa 6</label>
+                <label class="m-4 ">Etapa 7</label>
+                <label class="m-4 ">Etapa 8</label>
+                <label class="m-4 ">Etapa 9</label>
+                <label class="m-4 ">Etapa 10</label>
+                <label class="m-4 ">Etapa 11</label>
+                <span class="badge badge-bg border border-success text-success bg-success"><label class="m-4 ">Etapa 12</label></span>
+                <label class="m-4 ">Etapa 13</label>
+                <label class="m-4 ">Etapa 14</label>
+                
+            </div>
+    </div>
+    
+    
+  </div>
+  <div class="card border shadow-xs mb-4">
+    <div class="card-header border-bottom pb-0">
+      <div class="d-sm-flex align-items-center mb-3">
+        <div>
+          <h6 class="font-weight-semibold text-lg mb-0">Sub Procesos</h6>
+          <p class="text-sm mb-sm-0">Listado de Sub Procesos</p>
+        </div>
+        <div class="ms-auto d-flex">
+          <div class="input-group input-group-sm ms-auto me-2">
+            <span class="input-group-text text-body">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+              </svg>
+            </span>
+            <input type="text" class="form-control form-control-sm" placeholder="Buscar">
+          </div>
+          <a type="button"  data-bs-toggle="modal" data-bs-target="#modalAgregarSubPro"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+            <span class="btn-inner--icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 16 16">
+                <title>Agregar Sub Proceso</title>
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+              </svg>
+            </span>
+            <span class="btn-inner--text">Agregar Sub Procesos</span>
+        </a>
+          
+        </div>
+      </div>
+    </div>
+    <div class="card-body px-0 py-0">
+      <div class="table-responsive p-0">
+        <table class="table align-items-center justify-content-center mb-0">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="text-secondary text-xs font-weight-semibold opacity-7">ID Proceso</th>
+              <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nombre Proceso</th>
+              <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Descripción Proceso</th>
+              <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Diagramas</th>
+              <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Parámetro de Operación</th>
+              <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Instruciones de Operación</th>
+              <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Documentación</th>
+              <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="d-flex px-2">
+                  <div class="my-auto">
+                    <span class="mb-0 text-sm">F-02</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="my-auto">
+                  <h6 class="mb-0 text-sm">Tornillos</h6>
+                </div>
+              </td>
+              <td class="align-middle">
+                <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                  Ver Descripción
+                </button>
+              </td>
+              <td class="align-middle">
+                <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                  Ver Diagrama
+                </button>
+              </td>
+              <td>
+                <span class="text-sm font-weight-normal">Produccion</span>
+              </td>
+              <td class="align-middle">
+                <div class="d-flex px-2">
+                  <span class="text-sm font-weight-normal">Construccion</span>
+                </div>
+              </td>
+              <td>
+                <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                  Ver 
+                </button>
+              </td>
+              <td class="align-middle">
+                <div class="d-flex px-4">
+                <a href="{% url 'app_produccion:EditarProceso'%}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Sub Proceso">
+                  <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                  </svg>
+                </a>
+                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Sub Proceso">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                  </svg>
+                </a>
+              </div>
+              </td>
+            </tr>
+            <tr>
+                <td>
+                  <div class="d-flex px-2">
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">F-02</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="my-auto">
+                    <h6 class="mb-0 text-sm">Tornillos</h6>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Descripción
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Diagrama
+                  </button>
+                </td>
+                <td>
+                  <span class="text-sm font-weight-normal">Produccion</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-2">
+                    <span class="text-sm font-weight-normal">Construccion</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    Ver 
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="{% url 'app_produccion:EditarProceso'%}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Sub Proceso">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Sub Proceso">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex px-2">
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">F-02</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="my-auto">
+                    <h6 class="mb-0 text-sm">Tornillos</h6>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Descripción
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Diagrama
+                  </button>
+                </td>
+                <td>
+                  <span class="text-sm font-weight-normal">Produccion</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-2">
+                    <span class="text-sm font-weight-normal">Construccion</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    Ver 
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="{% url 'app_produccion:EditarProceso'%}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Sub Proceso">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Sub Proceso">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex px-2">
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">F-02</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="my-auto">
+                    <h6 class="mb-0 text-sm">Tornillos</h6>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Descripción
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Diagrama
+                  </button>
+                </td>
+                <td>
+                  <span class="text-sm font-weight-normal">Produccion</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-2">
+                    <span class="text-sm font-weight-normal">Construccion</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    Ver 
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="{% url 'app_produccion:EditarProceso'%}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Sub Proceso">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Sub Proceso">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex px-2">
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">F-02</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="my-auto">
+                    <h6 class="mb-0 text-sm">Tornillos</h6>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Descripción
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Diagrama
+                  </button>
+                </td>
+                <td>
+                  <span class="text-sm font-weight-normal">Produccion</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-2">
+                    <span class="text-sm font-weight-normal">Construccion</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    Ver 
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="{% url 'app_produccion:EditarProceso'%}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Sub Proceso">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Sub Proceso">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex px-2">
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">F-02</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="my-auto">
+                    <h6 class="mb-0 text-sm">Tornillos</h6>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Descripción
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Interfaz de Usuario (UI): Define cómo interactuará el usuario con la calculadora, incluyendo botones, pantalla de visualización, entrada de texto, etc.">
+                    Ver Diagrama
+                  </button>
+                </td>
+                <td>
+                  <span class="text-sm font-weight-normal">Produccion</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-2">
+                    <span class="text-sm font-weight-normal">Construccion</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    Ver 
+                  </button>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="{% url 'app_produccion:EditarProceso'%}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Sub Proceso">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Sub Proceso">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="border-top py-3 px-3 d-flex align-items-center">
+        <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Anterior</button>
+        <nav aria-label="..." class="ms-auto">
+          <ul class="pagination pagination-light mb-0">
+            <li class="page-item active" aria-current="page">
+              <span class="page-link font-weight-bold">1</span>
+            </li>
+            <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">2</a></li>
+            <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">3</a></li>
+            <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">...</a></li>
+            <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">8</a></li>
+            <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">9</a></li>
+            <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">10</a></li>
+          </ul>
+        </nav>
+        <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Siguiente</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalAgregarSubPro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalListLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLiveLabel">Agregar un Sub Proceso</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="mb-3">
+                    <label>Nombre Proceso:</label>
+                    <input class="form-control">
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="mb-3">
+                  <label>Categoria Proceso:</label>
+                  <Select class="form-control">
+                    <option>Categoria 1</option>
+                    <option>Categoria 2</option>
+                    <option>Categoria 3</option>
+                    <option>Categoria 4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label>Descripción Proceso:</label>
+                <textarea class="form-control"></textarea>
+              </div>
+              <div class="mb-3">
+                <label>Subir Diagrama:</label>
+                <input type="file" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label>Documentación:</label>
+                <input type="file" class="form-control">
+              </div>
+                </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Agregar Sub Proceso</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+  </div>
+  {% include 'includes/footer.html' %}
+</div>
+{% endblock content %}
+{% block extrascripts %}
+
+<script src="{% static 'assets/js/plugins/chartjs.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/swiper-bundle.min.js' %}" type="text/javascript"></script>
+<script>
+  if (document.getElementsByClassName("mySwiper")) {
+    var swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+      initialSlide: 1,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  }
+
+  var ctx = document.getElementById("chart-bars").getContext("2d");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      datasets: [
+        {
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderSkipped: false,
+          backgroundColor: "#2ca8ff",
+          data: [450, 200, 100, 220, 500, 100, 400, 230, 500, 200],
+          maxBarThickness: 6,
+        },
+        {
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderSkipped: false,
+          backgroundColor: "#7c3aed",
+          data: [200, 300, 200, 420, 400, 200, 300, 430, 400, 300],
+          maxBarThickness: 6,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          backgroundColor: "#fff",
+          titleColor: "#1e293b",
+          bodyColor: "#1e293b",
+          borderColor: "#e9ecef",
+          borderWidth: 1,
+          usePointStyle: true,
+        },
+      },
+      interaction: {
+        intersect: false,
+        mode: "index",
+      },
+      scales: {
+        y: {
+          stacked: true,
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [4, 4],
+          },
+          ticks: {
+            beginAtZero: true,
+            padding: 10,
+            font: {
+              size: 12,
+              family: "Noto Sans",
+              style: "normal",
+              lineHeight: 2,
+            },
+            color: "#64748B",
+          },
+        },
+        x: {
+          stacked: true,
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+          },
+          ticks: {
+            font: {
+              size: 12,
+              family: "Noto Sans",
+              style: "normal",
+              lineHeight: 2,
+            },
+            color: "#64748B",
+          },
+        },
+      },
+    },
+  });
+
+  var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+  var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+  gradientStroke1.addColorStop(1, "rgba(45,168,255,0.2)");
+  gradientStroke1.addColorStop(0.2, "rgba(45,168,255,0.0)");
+  gradientStroke1.addColorStop(0, "rgba(45,168,255,0)"); //blue colors
+
+  var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+  gradientStroke2.addColorStop(1, "rgba(119,77,211,0.4)");
+  gradientStroke2.addColorStop(0.7, "rgba(119,77,211,0.1)");
+  gradientStroke2.addColorStop(0, "rgba(119,77,211,0)"); //purple colors
+
+  new Chart(ctx2, {
+    plugins: [
+      {
+        beforeInit(chart) {
+          const originalFit = chart.legend.fit;
+          chart.legend.fit = function fit() {
+            originalFit.bind(chart.legend)();
+            this.height += 40;
+          };
+        },
+      },
+    ],
+    type: "line",
+    data: {
+      labels: [
+        "Aug 18",
+        "Aug 19",
+        "Aug 20",
+        "Aug 21",
+        "Aug 22",
+        "Aug 23",
+        "Aug 24",
+        "Aug 25",
+        "Aug 26",
+        "Aug 27",
+        "Aug 28",
+        "Aug 29",
+        "Aug 30",
+        "Aug 31",
+        "Sept 01",
+        "Sept 02",
+        "Sept 03",
+        "Aug 22",
+        "Sept 04",
+        "Sept 05",
+        "Sept 06",
+        "Sept 07",
+        "Sept 08",
+        "Sept 09",
+      ],
+      datasets: [
+        {
+          label: "Volume",
+          tension: 0,
+          borderWidth: 2,
+          pointRadius: 3,
+          borderColor: "#2ca8ff",
+          pointBorderColor: "#2ca8ff",
+          pointBackgroundColor: "#2ca8ff",
+          backgroundColor: gradientStroke1,
+          fill: true,
+          data: [
+            2828, 1291, 3360, 3223, 1630, 980, 2059, 3092, 1831, 1842, 1902,
+            1478, 1123, 2444, 2636, 2593, 2885, 1764, 898, 1356, 2573, 3382,
+            2858, 4228,
+          ],
+          maxBarThickness: 6,
+        },
+        {
+          label: "Trade",
+          tension: 0,
+          borderWidth: 2,
+          pointRadius: 3,
+          borderColor: "#832bf9",
+          pointBorderColor: "#832bf9",
+          pointBackgroundColor: "#832bf9",
+          backgroundColor: gradientStroke2,
+          fill: true,
+          data: [
+            2797, 2182, 1069, 2098, 3309, 3881, 2059, 3239, 6215, 2185, 2115,
+            5430, 4648, 2444, 2161, 3018, 1153, 1068, 2192, 1152, 2129, 1396,
+            2067, 1215, 712, 2462, 1669, 2360, 2787, 861,
+          ],
+          maxBarThickness: 6,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: "top",
+          align: "end",
+          labels: {
+            boxWidth: 6,
+            boxHeight: 6,
+            padding: 20,
+            pointStyle: "circle",
+            borderRadius: 50,
+            usePointStyle: true,
+            font: {
+              weight: 400,
+            },
+          },
+        },
+        tooltip: {
+          backgroundColor: "#fff",
+          titleColor: "#1e293b",
+          bodyColor: "#1e293b",
+          borderColor: "#e9ecef",
+          borderWidth: 1,
+          pointRadius: 2,
+          usePointStyle: true,
+          boxWidth: 8,
+        },
+      },
+      interaction: {
+        intersect: false,
+        mode: "index",
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [4, 4],
+          },
+          ticks: {
+            callback: function (value, index, ticks) {
+              return parseInt(value).toLocaleString() + " EUR";
+            },
+            display: true,
+            padding: 10,
+            color: "#b2b9bf",
+            font: {
+              size: 12,
+              family: "Noto Sans",
+              style: "normal",
+              lineHeight: 2,
+            },
+            color: "#64748B",
+          },
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            borderDash: [4, 4],
+          },
+          ticks: {
+            display: true,
+            color: "#b2b9bf",
+            padding: 20,
+            font: {
+              size: 12,
+              family: "Noto Sans",
+              style: "normal",
+              lineHeight: 2,
+            },
+            color: "#64748B",
+          },
+        },
+      },
+    },
+  });
+</script>
+
+{% endblock extrascripts %}
