@@ -4,5 +4,80 @@
 
 
 {% block card-body %}
-    
+<div class="card-body px-0 py-0 mb-3" id="comtable">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center justify-content-center mb-0" id="tablaCompetencias">
+            <thead class="bg-dark rounded-table">
+                <tr>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Nombre
+                    </th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2">Descripcion</th>
+                    <th class="text-center  text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                        Valor</th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                        Fecha vencimiento</th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Estado
+                    </th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    #comtable>.table-responsive {
+        border-top-left-radius: 3px !important;
+        border-top-right-radius: 3px !important;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+
+        $.ajax({
+            url: 'CompetenciasView/',
+            type: 'GET',
+            data: { element_id: 'R02FichaCompetenciasView' },
+            success: function (data) {
+
+                var competencias = data.MetaData.user.competencias;
+
+                for (var llave in competencias) {
+                    if (competencias.hasOwnProperty(llave)) {
+                        competencia = competencias[llave];
+
+                        var nombre = competencia.Nombre;
+                        var descripcion = competencia.Descripcion;
+                        var valor = competencia.Valor;
+                        var fechaVencimiento = competencia['Fecha vencimiento'];
+                        var estado = competencia.Estado;
+
+                        var nuevaFila = $('<tr>')
+
+                        nuevaFila.append('<td>' + nombre + '</td>');
+                        nuevaFila.append('<td>' + descripcion + '</td>');
+                        nuevaFila.append('<td>' + valor + '</td>');
+                        nuevaFila.append('<td>' + fechaVencimiento + '</td>');
+                        nuevaFila.append('<td>' + estado + '</td>');
+                        nuevaFila.append('<td class="align-middle text-center"> <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example"><button type="button"class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver</button></td>')
+
+                        $('#tablaCompetencias tbody').append(nuevaFila);
+
+                    }
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('AJAX Error: ' + textStatus, errorThrown);
+            }
+        });
+
+    });
+</script>
 {% endblock card-body %}
