@@ -239,7 +239,7 @@ user_context = {
                 'id_isapre': '16521',
                 'porc_cotizacion': '11',
                 'ley_18566': {
-                    'porc_contizacion': '3.54',
+                    'porc_cotizacion': '3.54',
                     'tipo_monto_cotizacion': 'pesos',
                     'monto_contizacion': '8462',
                 }

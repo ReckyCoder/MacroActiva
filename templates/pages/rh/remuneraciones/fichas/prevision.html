@@ -89,8 +89,8 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <label for="txtPorcFondPensionAdicional">Porcentaje adicional Ley</label>
-                                <input type="text" class="form-control" id="txtPorcFondPensionAdicional"
+                                <label for="txtPorcFondPensionAdicionalLey">Porcentaje adicional Ley</label>
+                                <input type="text" class="form-control" id="txtPorcFondPensionAdicionalLey"
                                     placeholder="0">
                             </div>
                         </div>
@@ -158,22 +158,39 @@
                 if (data.MetaData.user.prevision.afp.cotizacion_adicional) {
                     $("#chkUtilizaFondPensionAdicional").prop('checked', true);
                     $('#txtPorcFondPensionAdicional').val(data.MetaData.user.prevision.afp.cotizacion_adicional.porc_cotizacion_adicional)
+                    if (data.MetaData.user.prevision.afp.cotizacion_adicional.tipo_monto_cotizacion_adicional === 'pesos'){
+                        $('#chkAdicionalPesos').prop('checked', true)
+                        $('#chkAdicionalUF').prop('checked', false)
+                        $('#chkAdicionalPorc').prop('checked', false)
+                    }else if (data.MetaData.user.prevision.afp.cotizacion_adicional.tipo_monto_cotizacion_adicional === 'uf') {
+                        $('#chkAdicionalPesos').prop('checked', false)
+                        $('#chkAdicionalUF').prop('checked', true)
+                        $('#chkAdicionalPorc').prop('checked', false)
+                    }else if (data.MetaData.user.prevision.afp.cotizacion_adicional.tipo_monto_cotizacion_adicional === 'porcentaje'){
+                        $('#chkAdicionalPesos').prop('checked', false)
+                        $('#chkAdicionalUF').prop('checked', false)
+                        $('#chkAdicionalPorc').prop('checked', true)
+                    }
+                     $('#txtMontoFondPensionAdicional').val(data.MetaData.user.prevision.afp.cotizacion_adicional.monto_cotizacion_adicional)
                 } else {
                     $("#chkUtilizaFondPensionAdicional").prop('checked', false);
                 }
-                $("#txtArea").val(data.MetaData.user.laboral.area_negocio);
-                $("#txtIdCentro").val(data.MetaData.user.laboral.id_centro_costo);
-                $("#txtCentro").val(data.MetaData.user.laboral.centro_costo);
+                $("#txtIdISAPRE").val(data.MetaData.user.prevision.isapre.id_isapre);
+                $("#txtISAPRE").val(data.MetaData.user.prevision.isapre.nombre);
+                $("#txtPorcISAPRE").val(data.MetaData.user.prevision.isapre.porc_cotizacion);
 
-                $('#txtFechaIngreso').val(data.MetaData.user.laboral.fec_ingreso);
-                $('#txtFechaPrimerContrato').val(data.MetaData.user.laboral.fec_primer_contrato);
-                $('#txtFechaContratoVigente').val(data.MetaData.user.laboral.fec_contrato_vigente);
-                $('#txtFechaTerminoContrato').val(data.MetaData.user.laboral.fec_termino_contrato);
-                $('#txtFechaCalculoVacaciones').val(data.MetaData.user.laboral.fec_inicio_vacaciones);
-                $('#txtFechaContratoVacacionesProgresivas').val(data.MetaData.user.laboral.fec_cert_vaciones_progresivas);
+                if(data.MetaData.user.prevision.isapre.ley_18566){
+                    $('#chkUtilizaLey18566').prop('checked', true);
+                    $("#txtPorcFondPensionAdicionalLey").val(data.MetaData.user.prevision.isapre.ley_18566.porc_cotizacion);
+                    $("#txtMontoCotizarLey").val(data.MetaData.user.prevision.isapre.ley_18566.monto_contizacion);
+                }else{
+                    $('#chkUtilizaLey18566').prop('checked', false);
+                    $("#txtPorcFondPensionAdicionalLey").val('');
+                    $("#txtMontoCotizarLey").val('');
+                }
 
-                $('#txtFechaAniosOtroEmpleador').val(data.MetaData.user.laboral.anios_otro_empleador);
-                $('#txtDiasVacaciones').val(data.MetaData.user.laboral.n_dias_vacaciones);
+                $('#txtIdCaja').val(data.MetaData.user.prevision.caja_compensacion.id_caja_compensacion);
+                $('#txtCaja').val(data.MetaData.user.prevision.caja_compensacion.nombre);
 
             },
             error: function (xhr, status, error) {
