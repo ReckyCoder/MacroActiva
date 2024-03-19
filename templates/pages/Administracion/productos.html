@@ -107,7 +107,7 @@
           </div>
           <button type="button" class="btn btn-dark">Buscar</button>
           <ul class="list-group">
-            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+            <li id="producto1" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
               <div class="row align-items-center">
                 <div class="col-auto">
                   #123456
@@ -117,7 +117,7 @@
                 </div>
               </div>
             </li>
-            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+            <li id="producto2" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
               <div class="row align-items-center">
                 <div class="col-auto">
                   #123456
@@ -127,7 +127,7 @@
                 </div>
               </div>
             </li>
-            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+            <li id="producto3" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
               <div class="row align-items-center">
                 <div class="col-auto">
                   #123456
@@ -137,7 +137,7 @@
                 </div>
               </div>
             </li>
-            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+            <li id="producto4"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
               <div class="row align-items-center">
                 <div class="col-auto">
                   #123456
@@ -147,7 +147,7 @@
                 </div>
               </div>
             </li>
-            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+            <li id="producto5"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
               <div class="row align-items-center">
                 <div class="col-auto">
                   #123456
@@ -157,7 +157,7 @@
                 </div>
               </div>
             </li>
-            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+            <li id="producto6" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
               <div class="row align-items-center">
                 <div class="col-auto">
                   #123456
@@ -190,15 +190,15 @@
 
               <div class="mb-3">
                 <label for="nombreDepartamento" class="form-label">Código Identificador</label>
-                <input type="text" class="form-control" id="nombreDepartamento">
+                <input type="text" class="form-control" id="#">
               </div>
               <div class="mb-3">
                 <label for="nombreDepartamento" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombreDepartamento">
+                <input type="text" class="form-control" id="nombreProducto" name="nombreProducto">
               </div>
               <div class="mb-3">
-                <label for="areaDepartamento" class="form-label">Categoría</label>
-                <select id="areaDepartamento" class="form-select">
+                <label for="categoriaProducto" class="form-label">Categoría</label>
+                <select id="categoriaProducto" class="form-select">
                   <option value="Select">Seleccionar</option>
                   <option id="Doe" value="Doe">Mobiliario</option>
                   <option id="Doe" value="Doe">Equipamiento para camping</option>
@@ -210,8 +210,8 @@
               </div>
 
               <div class="mb-3">
-                <label for="areaDepartamento" class="form-label">Estado para Producción</label>
-                <select id="areaDepartamento" class="form-select">
+                <label for="estadoProducto" class="form-label">Estado para Producción</label>
+                <select id="estadoProducto" class="form-select">
                   <option value="Select">Seleccionar</option>
                   <option id="Doe" value="Doe">Disponible</option>
                   <option id="Doe" value="Doe">No Disponible</option>
@@ -778,6 +778,24 @@
       }
     });
   });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtener todos los elementos de la lista de productos
+    var productos = document.querySelectorAll("#modalPrincipal .list-group-item");
+
+    // Iterar sobre cada elemento de la lista
+    productos.forEach(function (producto) {
+      // Agregar un event listener para el evento de clic
+      producto.addEventListener("click", function () {
+        // Obtener el nombre del producto haciendo referencia a su elemento hijo
+        var nombreProducto = this.querySelector(".col-auto:nth-child(2)").innerText.trim();
+
+        // Actualizar el campo de nombre del producto en el modal secundario
+        document.getElementById("nombreProducto").value = nombreProducto;
+      });
+    });
+  });
+
 </script>
 
 {% endblock extrascripts %}

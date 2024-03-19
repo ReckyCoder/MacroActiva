@@ -37,7 +37,159 @@
       <h3 class="title inactive"><a href="{% url 'app_administracion:licitaciones' %}">Licitaciones</a></h3>
     </div>
   </div>
-  <hr/>
+  <hr>
+  <div class="row">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#">Agregar</button>
+      <button type="button" class="btn btn-dark btn-md me-1">Editar</button>
+      <button type="button" class="btn btn-dark btn-md">Eliminar</button>
+    </div>
+  </div>
+  <div class="card border shadow-xs mb-4">
+    <div class="card-header border-bottom pb-0">
+      <div class="d-sm-flex align-items-center mb-3">
+        <div class="col-md-3">
+          <h4>Listado de Proveedores</h4>
+        </div>
+        <div class="ms-auto d-flex">
+            <div class="input-group input-group-sm ms-auto me-2">
+              <input type="text" class="form-control" placeholder="Buscar...">
+            </div>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">Buscar</button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">Filtrar</button>
+        </div>
+        
+      </div>
+    </div>
+    <!-- Modal Información-->
+    <div class="modal fade" id="proveedorModal" tabindex="-1" aria-labelledby="proveedorModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-dark">
+            <h5 class="modal-title text-white" id="proveedorModalLabel">Información del Proveedor</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h4>Contacto</h4>
+            <p><strong>Teléfono:</strong> 123-456-789</p>
+            <p><strong>Correo:</strong> info@proveedorejemplo.com</p>
+            <p><strong>Código Postal:</strong> 12345</p>
+            <h4>Adicional</h4>
+            <p><strong>Términos de Pago:</strong> 30 días netos</p>
+            <p><strong>Plazo de Entrega:</strong> 2 semanas</p>
+            <p><strong>Última Actualización:</strong> 2024-03-19</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="card-body px-0 py-0">
+      <div class="table-responsive p-0">
+        <table class="table align-items-center justify-content-center mb-0">
+          <thead  style="background-color: #0f172a;">
+            <tr style="color: white;">
+              <th>Nombre</th>
+              <th>Contacto Principal</th>
+              <th>Dirección</th>
+              <th>Ciudad</th>
+              <th>Provincia</th>
+              <th>País</th>
+              <th>Producto Principal</th>
+              <th>Web</th>
+              <th>Info</th>
+            </tr>
+          </thead>
+        <tbody style="vertical-align: middle;">
+            <tr>
+              <td>Metalurgia Industrial S.A.</td>
+              <td>Juan Pérez</td>
+              <td>Calle Principal 123</td>
+              <td>La Serena</td>
+              <td>Coquimbo</td>
+              <td>Chile</td>
+              <td>Piezas de metal</td>
+              <td>www.metalurgiaindustrial.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Textiles del Sur S.R.L.</td>
+              <td>Maria García</td>
+              <td>Avenida Central 456</td>
+              <td>Valdivia</td>
+              <td>Valdivia</td>
+              <td>Chile</td>
+              <td>Telas</td>
+              <td>www.textilesdelsur.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Electrónica Avanzada Ltda.</td>
+              <td>Carlos López</td>
+              <td>Plaza Mayor 789</td>
+              <td>Santiago</td>
+              <td>Santiago</td>
+              <td>Chile</td>
+              <td>Componentes electrónicos</td>
+              <td>www.electronicaavanzada.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Materiales EcoAmigables Inc.</td>
+              <td>Laura Martínez</td>
+              <td>Paseo de las Flores 101</td>
+              <td>Concepción</td>
+              <td>Biobío</td>
+              <td>Chile</td>
+              <td>Plásticos</td>
+              <td>www.materialesecoamigables.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Químicos Innovadores S.A.</td>
+              <td>Ricardo Sánchez</td>
+              <td>Rúa da Praza 987</td>
+              <td>Antofagasta</td>
+              <td>Antofagasta</td>
+              <td>Chile</td>
+              <td>Productos químicos</td>
+              <td>www.quimicosinnovadores.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     </div>
+    </div>
+  </div>
 
+</div>
 {% endblock content %}
