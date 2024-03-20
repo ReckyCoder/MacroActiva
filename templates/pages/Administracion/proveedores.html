@@ -748,7 +748,18 @@
     </div>
   </div>
 
+  <nav aria-label="Page navigation example">
+    <ul class="pagination d-flex justify-content-center flex-wrap ">
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Anterior</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-dark text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Siguiente</a></li>
+    </ul>
+  </nav>
+
 </div>
+{% include 'includes/footer.html' %}
 {% endblock content %}
 {% block extrascripts %}
 <script>
