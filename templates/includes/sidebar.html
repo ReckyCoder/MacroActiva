@@ -667,9 +667,9 @@
               <!-- Si es usuario con privilegios inicio sesion podra ver-->
             <!-- Para recursos humanos el cliente debe ser del departamento correspondiente para visualizar-->
             {% if request.user.is_superuser %} <!-- Aqui iria la condicionante -->
-            <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuadmini" data-bs-toggle="collapse" aria-expanded="false">
+            <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuadmini" data-bs-toggle="collapse" aria-expanded="false" aria-controls="submenuadmini">
             {% else %}
-            <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuadmini" data-bs-toggle="collapse" aria-expanded="false">
+            <a class="nav-link {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuadmini" data-bs-toggle="collapse" aria-expanded="false" aria-controls="submenuadmini">
             {% endif %}
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                 <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
@@ -783,7 +783,7 @@
             </ul>
           </div>
       </li>
-
+    </ul>
     <hr class="my-0">
 
     <!--Menu de funciones de empresa. ej. dirigirse a otro modulo-->
@@ -824,3 +824,35 @@
 
   </div>
 </aside> 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Verificar si los submenús estaban abiertos previamente
+      var submenus = document.querySelectorAll('.collapse');
+      submenus.forEach(function(submenu) {
+          var submenuOpen = localStorage.getItem(submenu.id + '_open');
+          if (submenuOpen === 'true') {
+              // Simular clic en el enlace del submenu con un retraso
+              setTimeout(function() {
+                    var link = document.querySelector('a[href="#' + submenu.id + '"]');
+                    if (link) {
+                        link.click();
+                    }
+                }, 100); // ms de retraso
+            }
+      });
+
+      // Manejar el evento de colapso mostrado para guardar el estado
+      submenus.forEach(function(submenu) {
+          submenu.addEventListener('shown.bs.collapse', function () {
+              localStorage.setItem(submenu.id + '_open', 'true');
+          });
+      });
+
+      // Manejar el evento de colapso ocultado para guardar el estado
+      submenus.forEach(function(submenu) {
+          submenu.addEventListener('hidden.bs.collapse', function () {
+              localStorage.setItem(submenu.id + '_open', 'false');
+          });
+      });
+  });
+</script>
