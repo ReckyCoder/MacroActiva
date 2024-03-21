@@ -35,11 +35,16 @@
 <script>
     $(document).ready(function () {
 
+        $('#subChildModule').hide();
+
         $.ajax({
             url: 'CargasView/',
             type: 'GET',
             data: { element_id: 'R02FichaCargasView' },
             success: function (data) {
+
+                $('#subChildModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[2].subChildModuleName))
+                $('#subChildModule').show();
 
                 var cargas = data.MetaData.user.cargas;
 
@@ -74,6 +79,12 @@
                 console.error('AJAX Error: ' + textStatus, errorThrown);
             }
         });
+
+        function capitalizeAndRemoveUnderscore(str) {
+            return str.split('_')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        }
 
     });
 </script>

@@ -7,6 +7,42 @@
 <form>
     <fieldset disabled>
         <div class="row">
+            <span class="text-size-xs mb-3">1.- Seleccione un usuario registrado para definirlo como empleado</span>
+            <div class="col">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="optUserRut">Seleccione usuario</label>
+                        <select class="form-select" aria-label="" id="optUserRut">
+                            <option selected></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                            <option value="3"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtUserRut">Buscar usuario por RUT</label>
+                        <input type="search" class="form-control" id="txtUserRut"
+                            placeholder="Sin puntos ni guiones. EJ: 123456789">
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto d-md-flex align-items-center">
+                <div class="form-row pt-4 mt-1">
+                    <div class="col-md-12 mb-3">
+                        <div class="btn-group btn-group-sm text-center" role="group">
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="btnAsignar">Asignar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <span class="text-size-xs mb-3">2.- Datos del usuario</span>
             <div class="col">
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
@@ -86,86 +122,49 @@
                 </div>
             </div>
         </div>
-    </fieldset>
-    <div class="col">
         <div class="row">
-            <div class="col-8">
-
-            </div>
+            <span class="text-size-xs mb-3">3.- Asignar datos laborales</span>
             <div class="col">
-                <div class="btn-group btn-group-sm text-center d-flex align-items-end" role="group"
-                    aria-label="Basic example">
-                    <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Editar</button>
-                    <button type="button" class="btn btn-sm btn-success btn-icon align-items-center mb-0">Generar
-                        ficha</button>
-                    <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Aceptar</button>
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="optUserRut">Asignar Sucursal</label>
+                        <select class="form-select" aria-label="" id="optUserRut">
+                            <option selected></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                            <option value="3"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="optUserRut">Asignar Departamento</label>
+                        <select class="form-select" aria-label="" id="optUserRut">
+                            <option selected></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                            <option value="3"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="optUserRut">Asignar Cargo</label>
+                        <select class="form-select" aria-label="" id="optUserRut">
+                            <option selected></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                            <option value="3"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="optUserRut">Asignar Jefatura</label>
+                        <select class="form-select" aria-label="" id="optUserRut">
+                            <option selected></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                            <option value="3"></option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
+    </fieldset>
 </form>
-
-<style>
-    #txtRut {
-        width: max-content;
-    }
-
-</style>
-
-<script>
-    $(document).ready(function () {
-
-        $('#subChildModule').hide();
-
-        $('.datepicker').datepicker({
-            format: 'dd-mm-yyyy',
-            autoclose: true,
-            todayHighlight: true,
-            orientation: 'bottom',
-        });
-
-        $.ajax({
-            url: 'PersonalView/',
-            method: 'GET',
-            data: { element_id: 'R02FichaPersonalView' },
-            success: function (data) {
-
-                $('#subChildModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[2].subChildModuleName))
-                $('#subChildModule').show();
-
-                $("#txtNombre").val(data.MetaData.user.personal.nombre);
-                $("#txtApPaterno").val(data.MetaData.user.personal.appaterno);
-                $("#txtApMaterno").val(data.MetaData.user.personal.apmaterno);
-                $("#txtRut").val(data.MetaData.user.personal.rut);
-                $("#txtDv").val(data.MetaData.user.personal.dv);
-
-                $('#txtFechaNacimiento').val(data.MetaData.user.personal.fecnacimiento);
-                $('#txtFechaNacimiento').datepicker('update');
-
-                $("#txtDireccion").val(data.MetaData.user.personal.direccion);
-                $("#txtComuna").val(data.MetaData.user.personal.comuna);
-                $("#txtCuidad").val(data.MetaData.user.personal.cuidad);
-                $("#txtNacionalidad").val(data.MetaData.user.personal.nacionalidad);
-                $("#txtGenero").val(data.MetaData.user.personal.genero);
-                $("#txtEmail").val(data.MetaData.user.personal.email);
-                $("#txtCelular").val(data.MetaData.user.personal.celular);
-                $("#txtEstadoCivil").val(data.MetaData.user.personal.estado_civil);
-                $("#txtEstudios").val(data.MetaData.user.personal.estudios);
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
-                $('#subChildModule').hide();
-            }
-        });
-
-        function capitalizeAndRemoveUnderscore(str) {
-            return str.split('_')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                .join(' ');
-        }
-
-    });
-</script>
-
 {% endblock card-body %}

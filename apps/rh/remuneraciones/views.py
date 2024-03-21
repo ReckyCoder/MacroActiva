@@ -71,13 +71,14 @@ def fichasEmpleados(request):
                         ],
                         'defaultUrl': 'menuremuneraciones',
                         'defaultChildUrl': 'rhFichaEmpleados',
-                        'defaultSubChildUrl': 'rhFichaPersonalView'
+                        'defaultSubChildUrl': ''
                     },
                 }
 
                 if tipoSolicitud == 'FichaPersonal':
 
                     context.update(user_context)
+                    context['meta'].update({'defaultSubChildUrl': 'rhFichaPersonalView'})
 
                     rendered = render_to_string(
                         'pages/rh/remuneraciones/fichas/personal.html')

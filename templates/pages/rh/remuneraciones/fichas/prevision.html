@@ -145,12 +145,16 @@
 <script>
     $(document).ready(function () {
 
+        $('#subChildModule').hide();
 
         $.ajax({
             url: 'PrevisionView/',
             method: 'GET',
             data: { element_id: 'R02FichaPrevisionView' },
             success: function (data) {
+
+                $('#subChildModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[2].subChildModuleName))
+                $('#subChildModule').show();
 
                 $("#txtIdAFP").val(data.MetaData.user.prevision.afp.id_afp);
                 $("#txtAFP").val(data.MetaData.user.prevision.afp.nombre);
@@ -197,6 +201,12 @@
                 console.error(error);
             }
         });
+
+        function capitalizeAndRemoveUnderscore(str) {
+            return str.split('_')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        }
 
     });
 </script>

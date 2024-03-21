@@ -41,4 +41,30 @@
     </div>
 </form>
 
+<script>
+    $(document).ready(function () {
+
+        $('#subChildModule').hide();
+
+        $.ajax({
+            url: 'PagoView/',
+            method: 'GET',
+            data: {element_id : 'R02FichaPagoView'},
+            success: function (data){
+                $('#subChildModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[2].subChildModuleName))
+                $('#subChildModule').show();
+            },
+            error: function (xhr, status, error){
+                console.error(error)
+            }
+        });
+
+        function capitalizeAndRemoveUnderscore(str) {
+            return str.split('_')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        }
+    });
+</script>
+
 {% endblock card-body %}
