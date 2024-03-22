@@ -74,6 +74,8 @@ urlpatterns = [
 
         #----------------------------- Contabilidad --------------------------------------
     path('cuentasContables/', views.CuentasContables.as_view(), name='cuentasContables'),
+    path('crearCuentasContables/', views.CrearCuentasContables.as_view(), name='crearCuentasContables'),
+    path('editarCuentasContables/', views.EditarCuentasContables.as_view(), name='editarCuentasContables'),
 
 
 ]

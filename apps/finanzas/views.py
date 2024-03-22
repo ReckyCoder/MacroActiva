@@ -286,3 +286,11 @@ class EditarFlujoDeCaja(TemplateView):
 #ListView
 class CuentasContables(TemplateView):
     template_name = "pages/finanzas/contabilidad/cuentasContables/cuentasContables.html"
+
+#CreateView
+class CrearCuentasContables(TemplateView):
+    template_name = "pages/finanzas/contabilidad/cuentasContables/crearCuentasContables.html"
+
+#UpdateView
+class EditarCuentasContables(TemplateView):
+    template_name = "pages/finanzas/contabilidad/cuentasContables/editarCuentasContables.html"
