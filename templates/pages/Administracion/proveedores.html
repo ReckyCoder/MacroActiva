@@ -323,7 +323,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-dark">
-          <h5 class="modal-title text-white" id="modalSecundarioLabel">Editar Producto</h5>
+          <h5 class="modal-title text-white" id="modalSecundarioLabel">Editar Proveedor</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -882,10 +882,6 @@
     return fila.querySelector('td:nth-child(2)').textContent.trim();
   }
 
-  // Obtener todos los elementos de la lista y el botón de eliminar
-  var listaProveedores = document.querySelectorAll('#modalEliminar .list-group-item');
-  var botonEliminar = document.getElementById('.boton-eliminar');
-
   // Función de manejo de clic para la lista de proveedores
   function clicListaProveedor(event) {
     var nombreProveedor = obtenerNombreProveedor(this);
@@ -906,12 +902,18 @@
     eliminarProveedor(nombreProveedor);
   }
 
-  // Obtener todos los botones de eliminar
+  // Obtener todos los elementos de la lista y el botón de eliminar
+  var listaProveedores = document.querySelectorAll('#modalEliminar .list-group-item');
   var botonesEliminar = document.querySelectorAll('.boton-eliminar');
+
+  // Agregar eventos de clic a cada elemento de la lista de proveedores
+  listaProveedores.forEach(function(proveedor) {
+    proveedor.addEventListener('click', clicListaProveedor);
+  });
 
   // Agregar eventos de clic a cada botón de eliminar
   botonesEliminar.forEach(function(boton) {
-      boton.addEventListener('click', clicBotonEliminar);
+    boton.addEventListener('click', clicBotonEliminar);
   });
 
   document.addEventListener("DOMContentLoaded", function () {
