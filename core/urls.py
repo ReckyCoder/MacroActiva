@@ -22,4 +22,6 @@ urlpatterns = [
     path("", include('admin_corporate.urls')),
     path("rh/empleados/", include("apps.rh.empleado.urls")),
     path("rh/remuneraciones/", include("apps.rh.remuneraciones.urls")),
+    path("rh/contrataciones/", include("apps.rh.contrataciones.urls")),
+    path("rh/postulaciones/", include("apps.rh.postulaciones.urls")),
 ]

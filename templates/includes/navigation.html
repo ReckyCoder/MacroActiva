@@ -10,15 +10,15 @@
             {%  for modulo in modulos %}
               {% if modulo.childModuleName %}
                 {% if modulo.parentModuleName %}
-                <li class="breadcrumb-item text-sm text-dark" aria-current="page"><a class="opacity-5"  href="{{deafultUrl}}">{{ modulo.parentModuleName|replace_value:"_" }}</a></li>
+                <li class="breadcrumb-item text-sm text-dark" aria-current="page"><a class="opacity-5"  href="{% url defaultUrl %}">{{ modulo.parentModuleName|replace_value:"_" }}</a></li>
                 {% endif %}
               {% else %}
-                <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="">{{ modulo.parentModuleName|replace_value:"_" }}</a></li>
+                <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="{% url defaultUrl %}">{{ modulo.parentModuleName|replace_value:"_" }}</a></li>
               {% endif %}
               {% if modulo.childModuleName %}
-              <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="{{deafultChildUrl}}" id="childModule">{{ modulo.childModuleName|replace_value:"_" }}</a></li>
-                {% if not modulo.subChildModuleName %}
-                  <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="{{deafultSubChildUrl}}" id="subChildModule" style="display: none;">{{ modulo.subChildModuleName|replace_value:"_"}}</a></li>
+              <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="{% url defaultChildUrl %}" id="childModule">{{ modulo.childModuleName|replace_value:"_" }}</a></li>
+                {% if  modulo.subChildModuleName %}
+                  <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a href="{% url defaultSubChildUrl %}" id="subChildModule" style="display: none;">{{ modulo.subChildModuleName|replace_value:"_"}}</a></li>
                 {% endif %}
               {% endif %}
             {% endfor %}

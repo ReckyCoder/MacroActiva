@@ -48,7 +48,6 @@
                     <div class="col-md-12 mb-3">
                         <label for="txtNombre">Nombre</label>
                         <input type="text" class="form-control" id="txtNombre" placeholder="Nombre">
-
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="txtApPaterno">Apellido paterno</label>
@@ -154,7 +153,30 @@
                         </select>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="optUserRut">Asignar Jefatura</label>
+                        <div class="row d-md-flex gap-1">
+                            <div class="col-3 pt-4 text-end">
+                                <div class="form-check align-items-center">
+                                    <label for="chkUtilizaLey18566" class="form-check-label">Rol privado</label>
+                                    <input type="checkbox" class="form-check-input" id="chkUtilizaLey18566" checked>
+                                </div>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="optUserRut">Asignar Rol</label>
+                                <select class="form-select" aria-label="" id="optUserRut">
+                                    <option selected></option>
+                                    <option value="1"></option>
+                                    <option value="2"></option>
+                                    <option value="3"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="optUserRut">Asignar Actividades</label>
                         <select class="form-select" aria-label="" id="optUserRut">
                             <option selected></option>
                             <option value="1"></option>
@@ -162,6 +184,203 @@
                             <option value="3"></option>
                         </select>
                     </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="optUserRut">Asignar a Jefaturas</label>
+                        <select class="form-select" aria-label="" id="optUserRut">
+                            <option selected></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                            <option value="3"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="optUserRut">Asignar a Centro de costo</label>
+                        <select class="form-select" aria-label="" id="optUserRut">
+                            <option selected></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                            <option value="3"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <span class="text-size-xs mb-3">4.- Asignar datos previsionales</span>
+            <div class="col">
+                <div class="form-row px-4">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtAFP">AFP</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtIdAFP" placeholder="ID"
+                                aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtAFP" placeholder="AFP"
+                                aria-describedby="inputGroupappend">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtPorcFondPension">% Cotizacion Fond. Pensión</label>
+                        <input type="text" class="form-control" id="txtPorcFondPension" placeholder="0">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-3 pt-3">
+                                <div class="form-check align-items-center">
+                                    <label for="chkUtilizaFondPensionAdicional" class="form-check-label">Utiliza
+                                        adicional</label>
+                                    <input type="checkbox" class="form-check-input" id="chkUtilizaFondPensionAdicional"
+                                        checked>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="txtPorcFondPensionAdicional">Procentaje adicional</label>
+                                <input type="text" class="form-control" id="txtPorcFondPensionAdicional"
+                                    placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtPorcAdicional" class="mb-3">Porcentaje adicional</label>
+                        <div class="form-check form-switch d-flex align-items-start gap-5 px-0">
+                            <label class="form-check-label px-1" for="chkAdicionalPesos">Pesos</label>
+                            <input class="form-check-input px-1" type="checkbox" role="switch" id="chkAdicionalPesos"
+                                checked>
+                            <label class="form-check-label px-1" for="chkAdicionalUF">UF</label>
+                            <input class="form-check-input px-1" type="checkbox" role="switch" id="chkAdicionalUF">
+                            <label class="form-check-label px-1" for="chkAdicionalPorc">Porcentaje</label>
+                            <input class="form-check-input px-1" type="checkbox" role="switch" id="chkAdicionalPorc">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtMontoFondPensionAdicional">Monto</label>
+                        <input type="text" class="form-control" id="txtMontoFondPensionAdicional">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-row px-4">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtISAPRE">ISAPRE</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtIdISAPRE" placeholder="ID"
+                                aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtISAPRE" placeholder="ISAPRE"
+                                aria-describedby="inputGroupappend">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtPorcISAPRE">% Cotizacion ISAPRE</label>
+                        <input type="text" class="form-control" id="txtPorcISAPRE">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="row">
+                            <div class="col-3 pt-3">
+                                <div class="form-check align-items-center">
+                                    <label for="chkUtilizaLey18566" class="form-check-label">Utiliza Ley N°
+                                        18566</label>
+                                    <input type="checkbox" class="form-check-input" id="chkUtilizaLey18566" checked>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="txtPorcFondPensionAdicionalLey">Porcentaje adicional Ley</label>
+                                <input type="text" class="form-control" id="txtPorcFondPensionAdicionalLey"
+                                    placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtMontoCotizarLey">Monto a cotizar Ley Nº 18566</label>
+                        <input type="text" class="form-control" id="txtMontoCotizarLey">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtCaja">Caja de compensacion</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtIdCaja" placeholder="ID"
+                                aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtCaja" placeholder="Caja de compensacion"
+                                aria-describedby="inputGroupappend">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <span class="text-size-xs mb-3">5.- Asignar horario</span>
+            <div class="col">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="optUserRut">Asignar a Jornada</label>
+                        <select class="form-select" aria-label="" id="optUserRut">
+                            <option selected></option>
+                            <option value="1"></option>
+                            <option value="2"></option>
+                            <option value="3"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtRut">Reloj</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtRut" placeholder="Reloj"
+                                aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtDv" placeholder="ID Reloj"
+                                aria-describedby="inputGroupappend">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtFechaNacimiento">Lugar de ingreso</label>
+                        <input type="text" class="form-control datepicker" id="txtFechaNacimiento" value=""
+                            placeholder="Lugar de ingreso">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtDireccion">Hora de ingreso</label>
+                        <input type="text" class="form-control" id="txtDireccion" placeholder="Hora de ingreso">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtComuna">Horas de colación</label>
+                        <input type="text" class="form-control" id="txtComuna" placeholder="Horas de colación">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtCuidad">Hora salida</label>
+                        <input type="text" class="form-control" id="txtCuidad" placeholder="Hora salida">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <span class="text-size-xs mb-3">6.- Subir archivos</span>
+            <div class="mb-3">
+                <label for="formFileDisabled" class="form-label">Subir archivos</label>
+                <input class="form-control" type="file" id="formFileDisabled" disabled>
+            </div>
+        </div>
+        <div class="row text-end">
+            <span class="text-size-xs mb-3 pe-3" style="font-size: small;">**Una vez agregado el empleado pasará a
+                revisión para su posterior activación**</span>
+        </div>
+        <div class="row">
+            <div class="col-8">
+
+            </div>
+            <div class="col pe-5">
+                <div class="btn-group btn-group-sm text-center d-flex align-items-end" role="group"
+                    aria-label="Basic example">
+                    <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Aceptar</button>
                 </div>
             </div>
         </div>
