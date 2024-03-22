@@ -73,7 +73,7 @@ urlpatterns = [
     path('editarFlujoDeCaja/', views.EditarFlujoDeCaja.as_view(), name='editarFlujoDeCaja'),
 
         #----------------------------- Contabilidad --------------------------------------
-    path('contabilidad/', views.Contabilidad.as_view(), name='contabilidad'),
+    path('cuentasContables/', views.CuentasContables.as_view(), name='cuentasContables'),
 
 
 ]

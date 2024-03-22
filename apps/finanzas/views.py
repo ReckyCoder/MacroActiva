@@ -284,5 +284,5 @@ class EditarFlujoDeCaja(TemplateView):
     
 
 #ListView
-class Contabilidad(TemplateView):
-    template_name = "pages/finanzas/contabilidad/contabilidad.html"
+class CuentasContables(TemplateView):
+    template_name = "pages/finanzas/contabilidad/cuentasContables/cuentasContables.html"

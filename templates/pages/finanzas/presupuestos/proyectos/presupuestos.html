@@ -4,7 +4,7 @@
 {% block content %}
     {% block header %}
     <header>
-        <h1 class="text-center mt-5">Presupuestos de Proyectos</h1>
+        <h3 class="text-center mt-5">Presupuestos de Proyectos</h3>
     </header>
 
     {% endblock header %}
@@ -50,13 +50,13 @@
                   <table class="table align-items-center justify-content-center mb-0">
                     <thead class="bg-gray-100">
                       <tr>
-                        <th class="text-secondary text-xs font-weight-bold">Departamento</th>
+                        <th class="text-secondary text-xs font-weight-bold">Código</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Departamento</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Proyecto</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Nombre Presupuesto</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Fecha de Inicio</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Fecha Limite</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Total Presupuestado</th>
-                        <th class="text-secondary text-xs font-weight-bold ps-2">Código del Proyecto</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Acciones</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Ver Detalle</th>
                       </tr>
@@ -64,6 +64,9 @@
                     <tbody>
                       <tr>
                         <td class="ps-4">
+                            <span class="text-sm font-weight-normal">123456</span>
+                        </td>
+                        <td>
                           <span class="text-sm font-weight-normal">Departamento 1</span>
                         </td>
                         <td >
@@ -80,9 +83,6 @@
                         </td>
                         <td >
                             <span class="text-sm font-weight-normal">$00.000.000</span>
-                        </td>
-                        <td >
-                            <span class="text-sm font-weight-normal">123456</span>
                         </td>
                         <td class="align-middle">
                           <a href="{% url 'app_finanzas:editarPresupuestosP' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Presupuesto">
@@ -110,6 +110,9 @@
                       </tr>
                       <tr>
                         <td class="ps-4">
+                            <span class="text-sm font-weight-normal">123456</span>
+                        </td>
+                        <td>
                           <span class="text-sm font-weight-normal">Departamento 1</span>
                         </td>
                         <td >
@@ -126,9 +129,6 @@
                         </td>
                         <td >
                             <span class="text-sm font-weight-normal">$00.000.000</span>
-                        </td>
-                        <td >
-                            <span class="text-sm font-weight-normal">123456</span>
                         </td>
                         <td class="align-middle">
                           <a href="{% url 'app_finanzas:editarPresupuestosP' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Presupuesto">
