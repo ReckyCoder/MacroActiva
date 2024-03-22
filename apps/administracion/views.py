@@ -9,7 +9,7 @@ def departamentos(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/departamentos.html', context=context)
+    return render(request, 'pages/Administracion/departamentos.html', context=context)
 
 def vistadepartamento(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
@@ -18,7 +18,7 @@ def vistadepartamento(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/Vista-Departamento.html', context=context)
+    return render(request, 'pages/Administracion/Vista-Departamento.html', context=context)
 
 def productos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
@@ -27,7 +27,7 @@ def productos(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/productos.html', context=context)
+    return render(request, 'pages/Administracion/productos.html', context=context)
 
 def gestionproductos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
@@ -36,7 +36,7 @@ def gestionproductos(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/gestionproductos.html', context=context)
+    return render(request, 'pages/Administracion/gestionproductos.html', context=context)
 
 def contratos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
@@ -45,7 +45,7 @@ def contratos(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/contratos.html', context=context)
+    return render(request, 'pages/Administracion/contratos.html', context=context)
 
 def contrato(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
@@ -54,7 +54,7 @@ def contrato(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/contrato.html', context=context)
+    return render(request, 'pages/Administracion/contrato.html', context=context)
 
 def certificaciones(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
@@ -63,7 +63,7 @@ def certificaciones(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/certificaciones.html', context=context)
+    return render(request, 'pages/Administracion/certificaciones.html', context=context)
 
 def proveedores(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
@@ -72,7 +72,16 @@ def proveedores(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/proveedores.html', context=context)
+    return render(request, 'pages/Administracion/proveedores.html', context=context)
+
+def licitaciones(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Administración"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+    
+    return render(request, 'pages/Administracion/licitaciones.html', context=context)
 
 def proyectos(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
@@ -81,7 +90,7 @@ def proyectos(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/proyectos.html', context=context)
+    return render(request, 'pages/Administracion/proyectos.html', context=context)
 
 def kpi(request):
     #AGREGAR EN CADA VIEW PARA NAVIGATION
@@ -90,4 +99,4 @@ def kpi(request):
     context = {'modulo': modulo, 'nombre_vista': nombre_vista}
 
     
-    return render(request, 'pages/Administración/kpi.html', context=context)
+    return render(request, 'pages/Administracion/kpi.html', context=context)
