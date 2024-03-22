@@ -1,0 +1,267 @@
+{% extends 'layouts/base.html' %} 
+
+{% load static %} 
+{% block content %}
+<div class="container-fluid mt-4">
+
+<style>
+    .col {
+        display: inline-block;
+        vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
+    }
+    .active a {
+        color: #0f172a; /* Color activo para el título seleccionado */
+        text-decoration: none; /* Eliminar el subrayado de los enlaces */
+    }
+    .inactive a {
+        color: gray; /* Color inactivo para el título no seleccionado */
+        text-decoration: none; /* Eliminar el subrayado de los enlaces */
+    }
+    .placeholder {
+        height: 10px; /* Altura mínima */
+        margin-bottom: 5px; /* Espacio mínimo */
+        background-color: transparent; /* Sin color de fondo */
+        border: none; /* Sin borde */
+    }
+    .pendiente-background {
+        background-color: #dcdf53;
+    }
+    .produccion-background {
+        background-color: #65aabb;
+    }
+    .preparado-background {
+        background-color: #77b877;
+    }
+    .finalizado-background {
+        background-color: #858585;
+    }
+</style>
+
+    <div class="row align-items-end mb-4">
+        <div id="productos-col" class="col-auto text-left">
+        <h3 class="title inactive"><a href="{% url 'app_administracion:productos' %}" class="title-link">Productos</a></h3>
+        </div>
+        <div class="col-auto text-left">
+          <h3>/</h3>
+        </div>
+        <div id="ordenes-col" class="col-auto text-left">
+          <h3 class="title active"><a href="{% url 'app_administracion:gestionproductos' %}">Gestión de Productos</a></h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card border shadow-xs mb-3">
+                <div class="card-header border-bottom pb-0">
+                    <div class="d-sm-flex align-items-center mb-3">
+                      <div class="col-md-auto">
+                        <h5 class="card-title">Registro Cambios de Estado</h5>
+                      </div>
+                      <div class="col-md-auto ms-md-auto">
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                                <span class="btn-inner--icon">
+                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                                    </svg>
+                                </span>
+                                <span class="btn-inner--text">Imprimir</span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+                                <span class="btn-inner--icon">
+                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                                    </svg>
+                                </span>
+                                <span class="btn-inner--text">Exportar</span>
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                </div>    
+                <div class="card-body">
+                    <ul class="list-group list-group-flush" style="max-height: 100px; overflow-y: auto;">
+                        <li class="list-group-item">DEF789 - Nueva Orden &rarr; Pendiente (Actualizado el 2024-03-11)</li>
+                        <li class="list-group-item">PQR123 - Producción &rarr; Preparado (Actualizado el 2024-03-11)</li>
+                        <li class="list-group-item">GHI321 - Pendiente &rarr; Producción (Actualizado el 2024-03-10)</li>
+                        <li class="list-group-item">MNO987 - Pendiente &rarr; Producción (Actualizado el 2024-03-8)</li>
+                        <li class="list-group-item">ABC123 - Nueva Orden &rarr; Pendiente (Actualizado el 2024-03-7)</li>
+                        <li class="list-group-item">XYZ456 - Nueva Orden &rarr; Pendiente (Actualizado el 2024-03-5)</li>   
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container">
+            <div class="row">
+            <div class="col">
+                <div class="card border shadow-xs pendiente-background">
+                    <div class="container bg-dark rounded">
+                        <h3 class="text-white">Pendientes</h3>
+                    </div>
+                    <div id="pendientes" class="sortable-list">
+                        <div class="placeholder"></div>
+                        <div class="card border shadow-xs mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">Solicitud de Producto - <span class="text-danger">ABC123</span></h5>
+                                <p class="card-text">Cliente: ABC Enterprises</p>
+                                <p class="card-text">Productos: Mesas, Sillas, Lámparas</p>
+                                <p class="card-text">Fecha de Entrega: 2024-03-20</p>
+                                <p class="card-text text-danger">Prioridad: Alta</p>
+                            </div>
+                        </div>
+                        <div class="card border shadow-xs mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">Solicitud de Producto - <span class="text-warning">XYZ456</span></h5>
+                                <p class="card-text">Cliente: XYZ Company</p>
+                                <p class="card-text">Productos: Escritorios, Archivadores, Impresoras</p>
+                                <p class="card-text">Fecha de Entrega: 2024-03-25</p>
+                                <p class="card-text text-warning">Prioridad: Media</p>
+                            </div>
+                        </div>
+                        <div class="card border shadow-xs mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">Solicitud de Producto - <span class="text-success">DEF789</span></h5>
+                                <p class="card-text">Cliente: GoodCo Ltd.</p>
+                                <p class="card-text">Productos: Teclados, Ratones, Monitores</p>
+                                <p class="card-text">Fecha de Entrega: 2024-03-30</p>
+                                <p class="card-text text-success">Prioridad: Baja</p>
+                            </div>
+                        </div>
+                    <!-- Tarjetas pendientes -->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border shadow-xs produccion-background">
+                    <div class="container bg-dark rounded">
+                        <h3 class="text-white">Producción</h3>
+                    </div>
+                    <div id="produccion" class="sortable-list">
+                        <div class="placeholder"></div>
+                        <div class="card border shadow-xs mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">Solicitud de Producto - <span class="text-danger">GHI321</span></h5>
+                                <p class="card-text">Cliente: Tech Solutions Inc.</p>
+                                <p class="card-text">Productos: Monitor 4K</p>
+                                <p class="card-text">Fecha de Entrega: 2024-03-22</p>
+                                <p class="card-text text-danger">Prioridad: Alta</p>
+                            </div>
+                        </div>
+                        <div class="card border shadow-xs mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">Solicitud de Producto - <span class="text-warning">JKL654</span></h5>
+                                <p class="card-text">Cliente: Future Gadgets Co.</p>
+                                <p class="card-text">Productos: Auriculares inalámbricos, Teclado retroiluminado</p>
+                                <p class="card-text">Fecha de Entrega: 2024-03-28</p>
+                                <p class="card-text text-warning">Prioridad: Media</p>
+                            </div>
+                        </div>
+                        <div class="card border shadow-xs mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">Solicitud de Producto - <span class="text-success">MNO987</span></h5>
+                                <p class="card-text">Cliente: Smart Innovations Ltd.</p>
+                                <p class="card-text">Productos: Impresora láser monocromática</p>
+                                <p class="card-text">Fecha de Entrega: 2024-03-31</p>
+                                <p class="card-text text-success">Prioridad: Baja</p>
+                            </div>
+                        </div>
+                    <!-- Tarjetas en producción -->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border shadow-xs preparado-background">
+                    <div class="container bg-dark rounded">
+                        <h3 class="text-white">Preparado</h3>
+                    </div>
+                    <div id="preparado" class="sortable-list">
+                        <div class="placeholder"></div>
+                        <div class="card border shadow-xs mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">Solicitud de Producto - <span class="text-danger">PQR123</span></h5>
+                                <p class="card-text">Cliente: CyberTech Solutions</p>
+                                <p class="card-text">Productos: Cámara de seguridad</p>
+                                <p class="card-text">Fecha de Entrega: 2024-03-19</p>
+                                <p class="card-text text-danger">Prioridad: Alta</p>
+                            </div>
+                        </div>
+                    <!-- Tarjetas preparadas -->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border shadow-xs finalizado-background">
+                    <div class="container bg-dark rounded">
+                        <h3 class="text-white">Finalizado</h3>
+                    </div>
+                    <div id="finalizado" class="sortable-list">
+                        <div class="placeholder"></div>
+                        <div class="card border shadow-xs mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">Solicitud de Producto - <span class="text-success">STU456</span></h5>
+                                <p class="card-text">Cliente: Home Basics Inc.</p>
+                                <p class="card-text">Productos: Plancha de vapor, Batidora de mano, Tostadora</p>
+                                <p class="card-text">Fecha de Entrega: 2024-04-05</p>
+                                <p class="card-text text-success">Prioridad: Baja</p>
+                            </div>
+                        </div>
+                    <!-- Tarjetas finalizadas -->
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'includes/footer.html' %}
+{% endblock content %}
+{% block extrascripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+
+<script>
+    var pendientesSortable = new Sortable(document.getElementById('pendientes'), {
+      group: {
+        name: 'shared',
+        pull: true, // Permite arrastrar elementos fuera de esta lista
+        put: true   // Permite soltar elementos de otras listas en esta lista
+      },
+      animation: 150,
+      emptyInsertThreshold: 5 // Permitir insertar elementos en una lista vacía con sensibilidad baja
+    });
+  
+    var produccionSortable = new Sortable(document.getElementById('produccion'), {
+      group: {
+        name: 'shared',
+        pull: true, // Permite arrastrar elementos fuera de esta lista
+        put: true   // Permite soltar elementos de otras listas en esta lista
+      },
+      animation: 150,
+      emptyInsertThreshold: 5 // Permitir insertar elementos en una lista vacía con sensibilidad baja
+    });
+  
+    var preparadoSortable = new Sortable(document.getElementById('preparado'), {
+      group: {
+        name: 'shared',
+        pull: true, // Permite arrastrar elementos fuera de esta lista
+        put: true   // Permite soltar elementos de otras listas en esta lista
+      },
+      animation: 150,
+      emptyInsertThreshold: 5 // Permitir insertar elementos en una lista vacía con sensibilidad baja
+    });
+  
+    var finalizadoSortable = new Sortable(document.getElementById('finalizado'), {
+      group: {
+        name: 'shared',
+        pull: true, // Permite arrastrar elementos fuera de esta lista
+        put: true   // Permite soltar elementos de otras listas en esta lista
+      },
+      animation: 150,
+      emptyInsertThreshold: 5 // Permitir insertar elementos en una lista vacía con sensibilidad baja
+    });
+</script>
+
+{% endblock extrascripts %}
