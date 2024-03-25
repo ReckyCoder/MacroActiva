@@ -14,4 +14,6 @@ urlpatterns = [
     path('ventas', views.ventas, name='ventas'),
     path('contratoscv', views.contratoscv, name='contratoscv'),
     path('postventa', views.postventa, name='postventa'),
+    path('reembolso', views.reembolso, name='reembolso'),
+    path('soporte', views.soporte, name='soporte'),
 ]

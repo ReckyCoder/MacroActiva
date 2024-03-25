@@ -62,3 +62,4 @@ document.addEventListener('DOMContentLoaded', function() {
         detalleCampania.classList.toggle('oculto');
     });
 });
+
