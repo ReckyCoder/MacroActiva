@@ -1,0 +1,170 @@
+{% extends 'layouts/rh/subcard-content.html' %}
+{% load static %}
+
+
+
+{% block card-body %}
+<form method="post">
+  <div class="row">
+    <div class="col">
+      <fieldset disabled>
+        <div class="form-row px-4">
+          <div class="col-md-12 mb-3">
+            <label for="txtRut">Cargo</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="txtIdCargo" placeholder="ID"
+                aria-describedby="inputGroupPrepend">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">-</span>
+              </div>
+              <input type="text" class="form-control" id="txtCargo" placeholder="Cargo"
+                aria-describedby="inputGroupappend">
+            </div>
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtRut">Area negocio</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="txtIdArea" placeholder="ID"
+                aria-describedby="inputGroupPrepend">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">-</span>
+              </div>
+              <input type="text" class="form-control" id="txtArea" placeholder="Area negocio"
+                aria-describedby="inputGroupappend">
+            </div>
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtRut">Centro costos</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="txtIdCentro" placeholder="ID"
+                aria-describedby="inputGroupPrepend">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">-</span>
+              </div>
+              <input type="text" class="form-control" id="txtCentro" placeholder="Centro costos"
+                aria-describedby="inputGroupappend">
+            </div>
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtEstado">Estado</label>
+            <select class="form-select" placeholder="Estado">
+              <option name="vigente" id="txtEstado" selected>Vigente</option>
+              <option name="inactivo" id="txtEstado">Inactivo</option>
+              <option name="desvinculado" id="txtEstado">Desvinculado</option>
+            </select>
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtEstado">Certificado de rentas</label>
+            <select class="form-select" placeholder="Estado">
+              <option name="sueldos" id="txtCertificado" selected>Sueldos</option>
+              <option name="honorarios" id="txtCertificado">Honorarios</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="col">
+      <fieldset disabled>
+        <div class="form-row px-4">
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaIngreso">Fecha de ingreso</label>
+            <input type="text" class="form-control datepicker" id="txtFechaIngreso" placeholder="Fecha de ingreso">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaPrimerContrato">Fecha primer contrato</label>
+            <input type="text" class="form-control datepicker" id="txtFechaPrimerContrato" placeholder="Fecha primer contrato">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaContratoVigente">Fecha contrato vigente</label>
+            <input type="text" class="form-control datepicker" id="txtFechaContratoVigente" placeholder="Fecha contrato vigente">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaTerminoContrato">Fecha termino contrato</label>
+            <input type="text" class="form-control datepicker" id="txtFechaTerminoContrato" placeholder="Fecha termino contrato">
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="col">
+      <fieldset disabled>
+        <div class="form-row px-4">
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaCalculoVacaciones">Fecha calculo vacaciones</label>
+            <input type="text" class="form-control datepicker" id="txtFechaCalculoVacaciones"
+              placeholder="Fecha calculo de vaciones">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaAniosOtroEmpleador">Años con otro empleador</label>
+            <input type="text" class="form-control" id="txtFechaAniosOtroEmpleador" placeholder="0">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtFechaContratoVacacionesProgresivas">Fecha contrato vaciones progresivas</label>
+            <input type="text" class="form-control datepicker" id="txtFechaContratoVacacionesProgresivas"
+              placeholder="Fecha contrato vaciones progresivas">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="txtDiasVacaciones">Dias de vaciones</label>
+            <input type="text" class="form-control" id="txtDiasVacaciones" placeholder="0">
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="row">
+      <div class="col-8">
+
+      </div>
+      <div class="col pe-5">
+        <div class="btn-group btn-group-sm text-center d-flex align-items-end" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-sm btn-success btn-icon  align-items-center mb-0">Editar</button>
+          <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<style>
+  #txtCargo,
+  #txtArea,
+  #txtCentro {
+    width: max-content;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+
+
+$.ajax({
+  url: 'LaboralView/',
+  method: 'GET',
+  data: { element_id: 'R02FichaLaboralView' },
+  success: function (data) {
+
+    $("#txtIdCargo").val(data.MetaData.user.laboral.id_cargo);
+    $("#txtCargo").val(data.MetaData.user.laboral.cargo);
+    $("#txtIdArea").val(data.MetaData.user.laboral.id_area_negocio);
+    $("#txtArea").val(data.MetaData.user.laboral.area_negocio);
+    $("#txtIdCentro").val(data.MetaData.user.laboral.id_centro_costo);
+    $("#txtCentro").val(data.MetaData.user.laboral.centro_costo);
+
+    $('#txtFechaIngreso').val(data.MetaData.user.laboral.fec_ingreso);
+    $('#txtFechaPrimerContrato').val(data.MetaData.user.laboral.fec_primer_contrato);
+    $('#txtFechaContratoVigente').val(data.MetaData.user.laboral.fec_contrato_vigente);
+    $('#txtFechaTerminoContrato').val(data.MetaData.user.laboral.fec_termino_contrato);
+    $('#txtFechaCalculoVacaciones').val(data.MetaData.user.laboral.fec_inicio_vacaciones);
+    $('#txtFechaContratoVacacionesProgresivas').val(data.MetaData.user.laboral.fec_cert_vaciones_progresivas);
+    
+    $('#txtFechaAniosOtroEmpleador').val(data.MetaData.user.laboral.anios_otro_empleador);
+    $('#txtDiasVacaciones').val(data.MetaData.user.laboral.n_dias_vacaciones);
+
+  },
+  error: function (xhr, status, error) {
+    console.error(error);
+  }
+});
+
+});
+</script>
+
+{% endblock card-body %}

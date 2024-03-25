@@ -1,0 +1,44 @@
+{% extends 'layouts/rh/subcard-content.html' %}
+{% load static %}
+
+
+
+{% block card-body %}
+
+<form method="post">
+    <div class="row">
+        <div class="col">
+            <fieldset disabled>
+                <div class="form-row px-4">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtEstado">Tipo pago</label>
+                        <select class="form-select" placeholder="Estado">
+                            <option name="efectivo" id="txtTipoPago">Efectivo</option>
+                            <option name="cheque" id="txtTipoPago">Cheque</option>
+                            <option name="valevista" id="txtTipoPago">Vale vista</option>
+                            <option name="deposito" id="txtTipoPago" selected>Deposito</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col-8">
+
+            </div>
+            <div class="col pe-5">
+                <div class="btn-group btn-group-sm text-center d-flex align-items-end" role="group"
+                    aria-label="Basic example">
+                    <button type="button"
+                        class="btn btn-sm btn-success btn-icon  align-items-center mb-0">Editar</button>
+                    <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Aceptar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+{% endblock card-body %}
