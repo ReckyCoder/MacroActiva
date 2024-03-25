@@ -7,14 +7,15 @@
 {% endblock opt-tittle %}
 
 {% block opt-info %}
-<p class="mx-5 px-2 text-center">Aquí podrás administrar todo lo relevante a las contrataciones de tus empleados. Te entega
+<p class="mx-5 px-2 text-center">Aquí podrás administrar todo lo relevante a las contrataciones de tus empleados. Te
+    entega
     herramientas para analizar estadísticamente el actual estado de todas tus contrataciones en los diversos
     departamentos disponibles, además entrega funcionalidades para procesar el personal entrante de una forma fácil y
     organizada.</p>
 {% endblock opt-info %}
 
 {% block card-option1-1 %}
-<div class="col-lg-3 col-md-6 col-sm-12 mb-md-0 mb-4">
+<div class="col-lg-3 col-md-4 col-sm-12 mb-md-0 mb-4">
     <div class="card shadow-xs border h-100">
         <div class="card-header pb-0">
             <h6 class="font-weight-semibold text-lg mb-0">Contratos activos</h6>
@@ -40,11 +41,14 @@
 {% endblock card-option1-1 %}
 
 {% block card-option1-2 %}
-<div class="col-lg-4 col-md-6 col-sm-12 mb-md-0 mb-4">
+<div class="col-lg-4 col-md-8 col-sm-12 mb-md-0 mb-4">
     <div class="card shadow-xs border h-100">
         <div class="card-header pb-0">
             <h6 class="font-weight-semibold text-lg mb-0">Candidatos seleccionados</h6>
-            <p class="text-sm text-start">Aquí se muestran los últimos candidatos seleccionados para contratar. Al procesarlos se generará la documentación necesaria a firmar, esta quedará como <b>"contrato pendiente"</b>, el cual será encontrado desde la cuenta del candidato en cuestión para su posterior firma.</p>
+            <p class="text-sm text-start">Aquí se muestran los últimos candidatos seleccionados para contratar. Al
+                procesarlos se generará la documentación necesaria a firmar, esta quedará como <b>"contrato
+                    pendiente"</b>, el cual será encontrado desde la cuenta del candidato en cuestión para su posterior
+                firma.</p>
         </div>
         <div class="card-body py-3">
             <div class="table-responsive p-0">
@@ -187,7 +191,7 @@
 {% endblock card-option1-2 %}
 
 {% block card-option1-3 %}
-<div class="col-lg-5 mb-md-0 mb-4">
+<div class="col-lg-5 col-md-12 col-sm-12 mb-md-0 mb-4">
     <div class="card shadow-xs border h-100">
         <div class="card-header pb-0">
             <h6 class="font-weight-semibold text-lg mb-0">Próximos contratos a renovar</h6>
@@ -204,17 +208,22 @@
                             <th
                                 class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
                                 Cargo</th>
-                                <th
+                            <th
                                 class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
                                 Departamento</th>
-                                <th
+                            <th
                                 class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
                                 Fecha expiración</th>
-                                <th
+                            <th
                                 class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
-                                Centro de evaluación 
-                                <a class="mx-1 mt-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top"  data-bs-title="Para renovar satisfactoriamente el contrato del trabajador, previamente debe ser aceptado por el centro de evaluaciones">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="15px" width="15px"><path fill="#fff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM169.8 165.3c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>
+                                Centro de evaluación
+                                <a class="mx-1 mt-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-title="Para renovar satisfactoriamente el contrato del trabajador, previamente debe ser aceptado por el centro de evaluaciones">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="15px"
+                                        width="15px">
+                                        <path fill="#fff"
+                                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM169.8 165.3c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                                    </svg>
                                 </a>
                             </th>
                             <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">
@@ -278,8 +287,8 @@
                             </td>
                             <td class="align-middle text-center">
                                 <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
-                                    <button type="button"
-                                        class="btn btn-sm btn-dark btn-icon  align-items-center mb-0" disabled>Renovar</button>
+                                    <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0"
+                                        disabled>Renovar</button>
                                 </div>
                             </td>
                         </tr>
@@ -461,11 +470,17 @@
                     </table>
                     <nav aria-label="Page navigation example ">
                         <ul class="pagination mt-3 d-flex justify-content-center flex-wrap ">
-                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
-                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
-                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
-                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
-                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
+                            <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3"
+                                    href="#">Previous</a></li>
+                            <li class="page-item mx-1 my-2 my-sm-0"><a
+                                    class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold"
+                                    href="#">1</a></li>
+                            <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold"
+                                    href="#">2</a></li>
+                            <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold"
+                                    href="#">3</a></li>
+                            <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3"
+                                    href="#">Next</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -540,6 +555,7 @@
     {% endblock modals %}
 
     {% block extrascripts %}
+
 
 
     <style>
@@ -666,14 +682,22 @@
         }
     </style>
 
-    <script src="{% static 'assets/js/plugins/chartjs.min.js' %}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
     <script>
 
         var ctx = document.getElementById("chart-bars").getContext("2d");
 
+        function formato(value, context) {
+            const valores = context.chart.data.datasets[0].data;
+            function totalSum(total, valor) {
+                return total + valor
+            }
+            const valorTotal = valores.reduce(totalSum, 0);
+            const valorPorcentaje = (value / valorTotal * 100).toFixed(1);
+            const mostrar = [`${value}`, `${valorPorcentaje}%`]
+            return mostrar;
+        }
 
         new Chart(ctx, {
             type: "doughnut",
@@ -686,7 +710,20 @@
                     hoverOffset: 4
                 },
                 ],
-            }
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        enabled: false
+                    },
+                    datalabels: {
+                        align: 'center',
+                        color: '#fff',
+                        formatter: formato,
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
         });
 
 

@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="row px-1 mb-3">
 
     <div class="col-12 px-1 my-3">
@@ -39,4 +41,6 @@
 
 {% block modals %}{% endblock modals %}
 
-{% block extrascripts %}{% endblock extrascripts %}
+<script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+{% block extrascripts %}
+{% endblock extrascripts %}
