@@ -25,4 +25,7 @@ urlpatterns = [
     path("rh/contrataciones/", include("apps.rh.contrataciones.urls")),
     path("rh/postulaciones/", include("apps.rh.postulaciones.urls")),
     path("rh/desvinculaciones/", include("apps.rh.desvinculaciones.urls")),
+    path("rh/capacitaciones/", include("apps.rh.capacitaciones.urls")),
+    path("rh/evaluaciones/", include("apps.rh.evaluaciones.urls")),
+    path("rh/horario/", include("apps.rh.horario.urls")),
 ]

@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="card-header text-center pt-3 pb-2">
-                            <h3 class="font-weight-semibold text-lg mb-0">Menú de desvinculaciones</h3>
+                            <h3 class="font-weight-semibold text-lg mb-0">Menú de capacitaciones</h3>
                             <p class="text-sm text-center">
                         </div>
                     </div>
@@ -26,15 +26,15 @@
                         <div id="radiobuttons">
                             <div id="first">
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrGestionarDesvinculaciones"
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrGestionarCapacitaciones"
                                         autocomplete="off" checked>
                                     <label class="btn btn-dark-menu px-3 mb-0"
-                                        for="R01btnrGestionarDesvinculaciones">Gestor de
-                                        desvinculaciones</label>
+                                        for="R01btnrGestionarCapacitaciones">Gestor de
+                                        capacitaciones</label>
                                     <input type="radio" class="btn-check" name="btnradio" id="R01btnrContratoIndefinido"
                                         autocomplete="off">
                                     <label class="btn btn-dark-menu px-3 mb-0"
-                                        for="R01btnrContratoIndefinido">Coordinar Cita</label>
+                                        for="R01btnrContratoIndefinido">Crear perfiles de trabajo</label>
                                     <input type="radio" class="btn-check" name="btnradio" id="R01btnrContratoDefinido"
                                         autocomplete="off">
                                     <label class="btn btn-dark-menu px-3 mb-0"
@@ -85,8 +85,6 @@
 {% block extrascripts %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
 <script src="{% static 'js/plugins/bootstrap-datepicker.js' %}"></script>
 
@@ -365,8 +363,8 @@
 
 
     function IdParser(str) {
-        if (str === "R01btnrGestionarDesvinculaciones") {
-            return 'gestionarDesvinculaciones/'
+        if (str === "R01btnrGestionarCapacitaciones") {
+            return 'gestionarCapacitaciones/'
         } else if (str === 'R01btnrContratoIndefinido') {
             return 'contratoIndefinido/'
         } else if (str === 'R01btnrContratoDefinido') {

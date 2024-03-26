@@ -1,26 +1,29 @@
-from django.shortcuts import render
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.template.loader import render_to_string
 
+
+# Create your views here.
 def index(request):
 
     context = {
         'mainModuleName': 'recursos_humanos',
         'modulos': [
-            {'parentModuleName': 'desvinculaciones'},
-            {'childModuleName': ''}  # default
+            {'parentModuleName': 'horario'},
+            {'childModuleName': 'gestor_horario'}  # default
         ],
-        'defaultUrl': 'menudesvinculaciones',
-        'defaultChildUrl': 'rhGestionarPostulaciones',
+        'defaultUrl': 'menuhorario',
+        'defaultChildUrl': 'rhGestionarHorario',
     }
 
     # Add context data here
     # context['test'] = 'OK'
 
     # Page from the theme
-    return render(request, 'pages/rh/desvinculaciones.html', context=context)
+    return render(request, 'pages/rh/horario.html', context=context)
 
-def gestionarDesvinculaciones(request):
+
+def gestionarHorario(request):
     
     if request.method == 'GET':
 
@@ -39,12 +42,12 @@ def gestionarDesvinculaciones(request):
                     'meta': {
                         'mainModuleName': 'recursos_humanos',
                         'modulos': [
-                            {'parentModuleName': 'postulaciones'},
-                            {'childModuleName': 'gestor_postulaciones'},  # default
+                            {'parentModuleName': 'horario'},
+                            {'childModuleName': 'gestor_horario'},  # default
                             {'subChildModuleName': tipoSolicitudContext},
                         ],
-                        'defaultUrl': 'menupostulaciones',
-                        'defaultChildUrl': 'rhGestionarPostulaciones',
+                        'defaultUrl': 'menuhorario',
+                        'defaultChildUrl': 'rhGestionarHorario',
                         'defaultSubChildUrl': ''
                     }
                 }
@@ -97,15 +100,15 @@ def gestionarDesvinculaciones(request):
             context = {
                 'mainModuleName': 'recursos_humanos',
                 'modulos': [
-                    {'parentModuleName': 'desvinculaciones'},
-                    {'childModuleName': 'gestionar_postulaciones'}
+                    {'parentModuleName': 'horario'},
+                    {'childModuleName': 'gestionar_horario'}
                 ],
-                'defaultUrl': 'menudesvinculaciones',
-                'defaultChildUrl': 'rhGestionarDesvinculaciones'
+                'defaultUrl': 'menuhorario',
+                'defaultChildUrl': 'rhGestionarHorario'
             }
 
             rendered = render_to_string(
-                'pages/rh/desvinculaciones/gestionar-desvinculaciones.html')
+                'pages/rh/horario/gestionar-horario.html')
 
             content = {'HTMLData': rendered,
                        'MetaData': context
@@ -117,11 +120,11 @@ def gestionarDesvinculaciones(request):
         context = {
             'mainModuleName': 'recursos_humanos',
             'modulos': [
-                {'parentModuleName': 'desvinculaciones'},
-                {'childModuleName': 'gestionar_desvinculaciones'}
+                {'parentModuleName': 'horario'},
+                {'childModuleName': 'gestionar_horario'}
             ],
-            'defaultUrl': 'menudesvinculaciones',
-            'defaultChildUrl': 'rhGestionarDesvinculaciones'
+            'defaultUrl': 'menuhorario',
+            'defaultChildUrl': 'rhGestionarHorario'
         }
 
         content = {'HTMLData': '',
@@ -134,16 +137,16 @@ def gestionarDesvinculaciones(request):
         'meta': {
             'mainModuleName': 'recursos_humanos',
             'modulos': [
-                {'parentModuleName': 'desvinculaciones'},
-                {'childModuleName': 'gestionar_desvinculaciones'},
+                {'parentModuleName': 'horario'},
+                {'childModuleName': 'gestionar_horario'},
             ],
-            'defaultUrl': 'menudesvinculaciones',
-            'defaultChildUrl': 'rhGestionarDesvinculaciones',
+            'defaultUrl': 'menuhorario',
+            'defaultChildUrl': 'rhGestionarHorario',
         }
     }
 
     rendered = render_to_string(
-        'pages/rh/postulaciones/gestionar-desvinculaciones.html')
+        'pages/rh/horario/gestionar-horario.html')
 
     content = {
         'HTMLData': rendered,

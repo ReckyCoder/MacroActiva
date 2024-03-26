@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="card-header text-center pt-3 pb-2">
-                            <h3 class="font-weight-semibold text-lg mb-0">Menú de desvinculaciones</h3>
+                            <h3 class="font-weight-semibold text-lg mb-0">Menú de evaluaciones</h3>
                             <p class="text-sm text-center">
                         </div>
                     </div>
@@ -26,22 +26,23 @@
                         <div id="radiobuttons">
                             <div id="first">
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrGestionarDesvinculaciones"
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrGestionarEvaluaciones"
                                         autocomplete="off" checked>
                                     <label class="btn btn-dark-menu px-3 mb-0"
-                                        for="R01btnrGestionarDesvinculaciones">Gestor de
-                                        desvinculaciones</label>
+                                        for="R01btnrGestionarEvaluaciones">Gestor de
+                                        evaluaciones</label>
                                     <input type="radio" class="btn-check" name="btnradio" id="R01btnrContratoIndefinido"
                                         autocomplete="off">
                                     <label class="btn btn-dark-menu px-3 mb-0"
-                                        for="R01btnrContratoIndefinido">Coordinar Cita</label>
+                                        for="R01btnrContratoIndefinido">Contratación
+                                        plazo indefinido</label>
                                     <input type="radio" class="btn-check" name="btnradio" id="R01btnrContratoDefinido"
                                         autocomplete="off">
                                     <label class="btn btn-dark-menu px-3 mb-0"
-                                        for="R01btnrContratoDefinido">Crear anuncios</label>
+                                        for="R01btnrContratoDefinido">Contratación plazo definido</label>
                                     <input type="radio" class="btn-check" name="btnradio" id="R01btnrAnexos"
                                         autocomplete="off">
-                                    <label class="btn btn-dark-menu px-3 mb-0" for="R01btnrAnexos">Crear campañas</label>
+                                    <label class="btn btn-dark-menu px-3 mb-0" for="R01btnrAnexos">Anexos</label>
                                 </div>
                             </div>
                             <div id="second">
@@ -49,15 +50,15 @@
                                     <input type="radio" class="btn-check" name="btnradio" id="R01btnrContratosPorFirmar"
                                         autocomplete="off">
                                     <label class="btn btn-dark-menu px-3 mb-0 as"
-                                        for="R01btnrContratosPorFirmar">Calificar postulaciones</label>
+                                        for="R01btnrContratosPorFirmar">Contratos por firmar</label>
                                     <input type="radio" class="btn-check" name="btnradio"
                                         id="R01btnrContratosPendientes" autocomplete="off">
                                     <label class="btn btn-dark-menu px-3 mb-0"
-                                        for="R01btnrSoliciR01btnrContratosPendientestudes">Asignar grupo de reclutamiento</label>
+                                        for="R01btnrSoliciR01btnrContratosPendientestudes">Contratos pendientes</label>
                                     <input type="radio" class="btn-check" name="btnradio" id="R01btnrHerramientas"
                                         autocomplete="off">
                                     <label class="btn btn-dark-menu px-3 mb-0"
-                                        for="R01btnrHerramientas">Candidatos</label>
+                                        for="R01btnrHerramientas">Herramientas</label>
                                 </div>
                             </div>
                         </div>
@@ -365,8 +366,8 @@
 
 
     function IdParser(str) {
-        if (str === "R01btnrGestionarDesvinculaciones") {
-            return 'gestionarDesvinculaciones/'
+        if (str === "R01btnrGestionarEvaluaciones") {
+            return 'gestionarEvaluaciones/'
         } else if (str === 'R01btnrContratoIndefinido') {
             return 'contratoIndefinido/'
         } else if (str === 'R01btnrContratoDefinido') {

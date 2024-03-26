@@ -1,26 +1,29 @@
-from django.shortcuts import render
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.template.loader import render_to_string
 
+
+# Create your views here.
 def index(request):
 
     context = {
         'mainModuleName': 'recursos_humanos',
         'modulos': [
-            {'parentModuleName': 'desvinculaciones'},
-            {'childModuleName': ''}  # default
+            {'parentModuleName': 'evaluaciones'},
+            {'childModuleName': 'gestor_evaluaciones'}  # default
         ],
-        'defaultUrl': 'menudesvinculaciones',
-        'defaultChildUrl': 'rhGestionarPostulaciones',
+        'defaultUrl': 'menuevaluaciones',
+        'defaultChildUrl': 'rhGestionarEvaluaciones',
     }
 
     # Add context data here
     # context['test'] = 'OK'
 
     # Page from the theme
-    return render(request, 'pages/rh/desvinculaciones.html', context=context)
+    return render(request, 'pages/rh/evaluaciones.html', context=context)
 
-def gestionarDesvinculaciones(request):
+
+def gestionarEvaluaciones(request):
     
     if request.method == 'GET':
 
@@ -39,12 +42,12 @@ def gestionarDesvinculaciones(request):
                     'meta': {
                         'mainModuleName': 'recursos_humanos',
                         'modulos': [
-                            {'parentModuleName': 'postulaciones'},
-                            {'childModuleName': 'gestor_postulaciones'},  # default
+                            {'parentModuleName': 'evaluaciones'},
+                            {'childModuleName': 'gestor_evaluaciones'},  # default
                             {'subChildModuleName': tipoSolicitudContext},
                         ],
-                        'defaultUrl': 'menupostulaciones',
-                        'defaultChildUrl': 'rhGestionarPostulaciones',
+                        'defaultUrl': 'menuevaluaciones',
+                        'defaultChildUrl': 'rhGestionarEvaluaciones',
                         'defaultSubChildUrl': ''
                     }
                 }
@@ -97,15 +100,15 @@ def gestionarDesvinculaciones(request):
             context = {
                 'mainModuleName': 'recursos_humanos',
                 'modulos': [
-                    {'parentModuleName': 'desvinculaciones'},
-                    {'childModuleName': 'gestionar_postulaciones'}
+                    {'parentModuleName': 'evaluaciones'},
+                    {'childModuleName': 'gestionar_evaluaciones'}
                 ],
-                'defaultUrl': 'menudesvinculaciones',
-                'defaultChildUrl': 'rhGestionarDesvinculaciones'
+                'defaultUrl': 'menuevaluaciones',
+                'defaultChildUrl': 'rhGestionarEvaluaciones'
             }
 
             rendered = render_to_string(
-                'pages/rh/desvinculaciones/gestionar-desvinculaciones.html')
+                'pages/rh/evaluaciones/gestionar-evaluaciones.html')
 
             content = {'HTMLData': rendered,
                        'MetaData': context
@@ -117,11 +120,11 @@ def gestionarDesvinculaciones(request):
         context = {
             'mainModuleName': 'recursos_humanos',
             'modulos': [
-                {'parentModuleName': 'desvinculaciones'},
-                {'childModuleName': 'gestionar_desvinculaciones'}
+                {'parentModuleName': 'evaluaciones'},
+                {'childModuleName': 'gestionar_evaluaciones'}
             ],
-            'defaultUrl': 'menudesvinculaciones',
-            'defaultChildUrl': 'rhGestionarDesvinculaciones'
+            'defaultUrl': 'menuevaluaciones',
+            'defaultChildUrl': 'rhGestionarEvaluaciones'
         }
 
         content = {'HTMLData': '',
@@ -134,16 +137,16 @@ def gestionarDesvinculaciones(request):
         'meta': {
             'mainModuleName': 'recursos_humanos',
             'modulos': [
-                {'parentModuleName': 'desvinculaciones'},
-                {'childModuleName': 'gestionar_desvinculaciones'},
+                {'parentModuleName': 'evaluaciones'},
+                {'childModuleName': 'gestionar_evaluaciones'},
             ],
-            'defaultUrl': 'menudesvinculaciones',
-            'defaultChildUrl': 'rhGestionarDesvinculaciones',
+            'defaultUrl': 'menuevaluaciones',
+            'defaultChildUrl': 'rhGestionarEvaluaciones',
         }
     }
 
     rendered = render_to_string(
-        'pages/rh/postulaciones/gestionar-desvinculaciones.html')
+        'pages/rh/evaluaciones/gestionar-evaluaciones.html')
 
     content = {
         'HTMLData': rendered,
