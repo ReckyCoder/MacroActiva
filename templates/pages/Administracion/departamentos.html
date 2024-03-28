@@ -4,6 +4,18 @@
 {% block content %}
 <div class="container-fluid mt-4">
   <style>
+    .clamp-2-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+    }
+
+    .col {
+      display: inline-block;
+      vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
+    }
     .card-title {
         font-size: clamp(1rem, calc(1.25rem + 0.6vw), 1.5rem);
     }
@@ -24,10 +36,10 @@
   </div>
   <hr>
   <div class="row">
-    <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
-      <button type="button" class="btn btn-dark btn-md me-1">Editar</button>
-      <button type="button" class="btn btn-dark btn-md">Eliminar</button>
+    <div class="col text-end justify-content-end">
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Editar</button>
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
     </div>
   <div class="row">
 
@@ -47,12 +59,199 @@
               <div style="height: 20px;"></div>
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label for="nombreDepartamento" class="form-label">NOMBRE</label>
-                  <input type="text" class="form-control" id="nombreDepartamento" value="John">
+                  <label for="" class="form-label">NOMBRE</label>
+                  <input type="text" class="form-control">
                 </div>
                 <div class="mb-3">
                   <label for="gerenteDepartamento" class="form-label">GERENTE</label>
-                  <input type="text" class="form-control" id="gerenteDepartamento" value="John">
+                  <input type="text" class="form-control" id="gerenteDepartamento">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="areaDepartamento" class="form-label">AREA</label>
+                  <select id="areaDepartamento" class="form-select">
+                    <option value="Select">Seleccionar</option>
+                    <option id="Doe" value="Doe">Doe</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="idDepartamento" class="form-label">ID</label>
+                  <input type="text" class="form-control" id="idDepartamento">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label for="descripcionDepartamento" class="form-label">DESCRIPCIÓN</label>
+                  <textarea class="form-control" id="descripcionDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="funcionesDepartamento" class="form-label">FUNCIONES</label>
+                  <textarea class="form-control" id="funcionesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="responsabilidadesDepartamento" class="form-label">RESPONSABILIDADES</label>
+                  <textarea class="form-control" id="responsabilidadesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="mb-3">
+                <label for="iconoDepartamento" class="form-label">Icono</label>
+                <div class="d-flex align-items-center">
+                  <img id="iconoDepartamentoPreview" src="" alt="Generic PNG" style="height: 32px; width: auto;">
+                  <input type="file" id="iconoDepartamentoInput" style="display: none;">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <button type="button" class="btn btn-dark ms-2">Subir archivo</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal principal con lista de Departamentos -->
+  <div class="modal fade" id="modalPrincipal" tabindex="-1" aria-labelledby="modalPrincipalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalPrincipalLabel">Editar Departamento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal principal -->
+          <div class="label">Departamentos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li id="departamento1" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Ventas
+                </div>
+              </div>
+            </li>
+            <li id="departamento2" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Finanzas
+                </div>
+              </div>
+            </li>
+            <li id="departamento3" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Producción
+                </div>
+              </div>
+            </li>
+            <li id="departamento4"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  RR.HH
+                </div>
+              </div>
+            </li>
+            <li id="departamento5"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Compras
+                </div>
+              </div>
+            </li>
+            <li id="departamento6" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Seguridad
+                </div>
+              </div>
+            </li>
+            <li id="departamento7" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Marketing
+                </div>
+              </div>
+            </li>
+            <li id="departamento8" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Lógistica
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal secundario para la edición de Departamentos -->
+  <div class="modal fade" id="modalSecundario" tabindex="-1" aria-labelledby="modalSecundarioLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalSecundarioLabel">Editar Departamento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal secundario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Departamento</div>
+              <div style="height: 20px;"></div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="nombreDepartamento" class="form-label">NOMBRE</label>
+                  <input type="text" class="form-control" id="nombreDepartamento" name="nombreDepartamento">
+                </div>
+                <div class="mb-3">
+                  <label for="gerenteDepartamento" class="form-label">GERENTE</label>
+                  <input type="text" class="form-control" id="gerenteDepartamento">
                 </div>
               </div>
               <div class="col-md-6">
@@ -109,8 +308,110 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Eliminación de lista de departamentos -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalEliminarLabel">Eliminar Departamento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal Eliminar -->
+          <div class="label">Departamentos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Ventas">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Ventas
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Finanzas">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Finanzas
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Producción">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Producción
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="RR.HH">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  RR.HH
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Compras">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Compras
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Seguridad">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Seguridad
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Marketing">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Marketing
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Lógistica">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Lógistica
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -657,6 +958,48 @@
       },
     },
   });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtener todos los elementos de la lista de departamentos
+    var departamentos = document.querySelectorAll("#modalPrincipal .list-group-item");
+
+    // Iterar sobre cada elemento de la lista
+    departamentos.forEach(function (departamento) {
+      // Agregar un event listener para el evento de clic
+      departamento.addEventListener("click", function () {
+        // Obtener el nombre del producto haciendo referencia a su elemento hijo
+        var nombreDepartamento = this.querySelector(".col-auto:nth-child(2)").innerText.trim();
+
+        // Imprimir el nombre del departamento en la consola
+        console.log("Nombre del departamento:", nombreDepartamento);
+
+        // Actualizar el campo de nombre del departamento en el modal secundario
+        document.getElementById("nombreDepartamento").value = nombreDepartamento;
+      });
+    });
+  });
+
+  // Obtener todos los elementos de la lista
+  var listaDepartamentos = document.querySelectorAll('#modalEliminar .list-group-item');
+
+  // Iterar sobre cada elemento de la lista y agregar un evento de clic
+  listaDepartamentos.forEach(function(departamento) {
+    departamento.addEventListener('click', function() {
+      // Obtener el ID y el nombre del producto seleccionado
+      var id = departamento.getAttribute('data-id');
+      var nombre = departamento.getAttribute('data-nombre');
+
+      // Mostrar un cuadro de diálogo de confirmación
+      var confirmacion = confirm("¿Estás seguro de que deseas eliminar el Departamento " + nombre + "?");
+
+      // Si el usuario confirma la eliminación
+      if (confirmacion) {
+        // Aquí puedes agregar la lógica para eliminar el producto
+        alert("El Departamento " + nombre + " ha sido eliminado.");
+      }
+    });
+  });
+
 </script>
 
 {% endblock extrascripts %}

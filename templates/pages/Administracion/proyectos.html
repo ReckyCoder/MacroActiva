@@ -33,6 +33,68 @@
   </div>
   <hr>
 
+  <!-- Modal Agregar Proveedor -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Generar Nuevo Proyecto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- formulario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Proyecto</div>
+              <div style="height: 20px;"></div>
+              <div class="mb-3">
+                <label for="codigoProveedor" class="form-label">Código</label>
+                <input type="text" class="form-control" id="codigoProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="nombreProyecto" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreProyecto">
+              </div>
+              <div class="mb-3">
+                <label for="departamentoProyecto" class="form-label">Departamento</label>
+                <select id="departamentoProyecto" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Ventas</option>
+                  <option>Finanzas</option>
+                  <option>Producción</option>
+                  <option>RR.HH</option>
+                  <option>Compras</option>
+                  <option>Seguridad</option>
+                  <option>Marketing</option>
+                  <option>Lógistica</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="presupuestoProyecto" class="form-label">Presupuesto</label>
+                <input type="text" class="form-control" value="$00.000.000" readonly>
+              </div>
+              <div class="mb-3">
+                <label for="totalGastoProyecto" class="form-label">Total Gasto</label>
+                <input type="text" class="form-control" >
+              </div>
+              <div class="mb-3">
+                <label for="fechaIniProyecto" class="form-label">Fecha Inicio</label>
+                <input type="text" class="form-control" id="fechaIniProyecto">
+              </div>
+              <div class="mb-3">
+                <label for="fechaTerProyecto" class="form-label">Fecha Término</label>
+                <input type="text" class="form-control" id="fechaTerProyecto">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Modal principal con lista de Proyecto -->
   <div class="modal fade" id="modalPrincipal" tabindex="-1" aria-labelledby="modalPrincipalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -243,8 +305,9 @@
   </div>
   <div class="row">
     <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Editar</button>
-      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
+        <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Generar Proyecto</button>
+        <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Editar</button>
+        <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
     </div>
   </div>
   <div class="card border shadow-xs mb-4">
