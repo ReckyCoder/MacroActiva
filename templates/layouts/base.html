@@ -24,6 +24,8 @@
   {% include 'includes/head.html' %}
   {% block extrahead %}{% endblock extrahead %}
   {% block extrastyle %}{% endblock extrastyle %}
+  <link rel="stylesheet" href="../../static/css/index.css">
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -44,7 +46,21 @@
 
 
   {% include 'includes/scripts.html' %}
-  {% block extrascripts %}{% endblock extrascripts %}
+  {% block extrascripts %}
+  {% endblock extrascripts %}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.link');
+    const url = window.location.pathname;
+
+    links.forEach((link) => {
+      const href = link.getAttribute('href');
+      if (href === url) {
+        link.classList.add('activo');
+      }
+    });
+  });
+  </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

@@ -4,13 +4,32 @@
 {% block content %}
     {% block header %}
     <header>
+<<<<<<< HEAD
         <h1 class="text-center my-5">Proyectos</h1>
+=======
+        <h3 class="text-center my-5">Proyectos</h3>
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
     </header>
 
     {% endblock header %}
 
 
     <div class="container">
+<<<<<<< HEAD
+=======
+      <div class="col my-3 me-auto d-flex justify-content-end">
+        <a class="mx-1" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ver Gráfico">
+          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path fill="#1e293b" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm64 192c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm64-64c0-17.7 14.3-32 32-32s32 14.3 32 32V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V160zM320 288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32z"></path>
+          </svg>
+        </a>
+        <a class="mx-1" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir Gráfico">
+          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="#1e293b" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"></path>
+          </svg>
+        </a>
+      </div>
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
         <div class="col">
             <div class="card shadow-xs border">
               <div class="card-header border-bottom pb-0">
@@ -33,6 +52,7 @@
                         <input type="text" class="form-control" placeholder="Buscar Centro de Costos ...">
                       </div>
                     </div>
+<<<<<<< HEAD
                     <div class="col-12 col-md-4 order-1 mb-3 mb-md-0 order-md-3">
                         <div class="dropdown text-end">
                           <button class="btn btn-secondary my-auto fs-6 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,6 +91,10 @@
                             </li>
                           </ul>
                         </div>
+=======
+                    <div class="col-12 col-md-4 order-1 mb-3 mb-md-0 order-md-3 text-end">
+                      <a class="btn btn-secondary my-auto" href="{% url 'app_finanzas:crearProyectos' %}">Añadir Proyecto</a>
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                     </div>
                 </div>
               </div>
@@ -79,13 +103,21 @@
                   <table class="table align-items-center justify-content-center mb-0">
                     <thead class="bg-gray-100">
                       <tr>
+<<<<<<< HEAD
                         <th class="text-secondary text-xs font-weight-bold">Departamento</th>
+=======
+                        <th class="text-secondary text-xs font-weight-bold">Código</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Departamento</th>
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         <th class="text-secondary text-xs font-weight-bold ps-2">Proyecto</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Nombre Presupuesto</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Total Presupuesto</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Nombre Gasto</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Total Gasto</th>
+<<<<<<< HEAD
                         <th class="text-secondary text-xs font-weight-bold ps-2">Código del Proyecto</th>
+=======
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         <th class="text-secondary text-xs font-weight-bold ps-2">Acciones</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Ver Detalle</th>
                       </tr>
@@ -93,6 +125,12 @@
                     <tbody>
                       <tr>
                         <td class="ps-4">
+<<<<<<< HEAD
+=======
+                            <span class="text-sm font-weight-normal">123456</span>
+                        </td>
+                        <td>
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                           <span class="text-sm font-weight-normal">Departamento 1</span>
                         </td>
                         <td >
@@ -110,9 +148,12 @@
                         <td >
                             <span class="text-sm font-weight-normal">$00.000.000</span>
                         </td>
+<<<<<<< HEAD
                         <td >
                             <span class="text-sm font-weight-normal">123456</span>
                         </td>
+=======
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         <td class="align-middle">
                           <a href="{% url 'app_finanzas:editarProyectos' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Proyecto">
                             <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -128,15 +169,30 @@
                           </span>
                         </td>
                         <td class="align-middle">
+<<<<<<< HEAD
                             <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Lista de Costos">
+=======
+                          <span data-bs-toggle="modal" data-bs-target="#modalList">
+                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Detalle del Presupuesto">
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                                 <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                     <path d="M0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224z" fill="#64748B"/>
                                 </svg>
                             </a>
+<<<<<<< HEAD
+=======
+                          </span>
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         </td>
                       </tr>
                       <tr>
                         <td class="ps-4">
+<<<<<<< HEAD
+=======
+                            <span class="text-sm font-weight-normal">123456</span>
+                        </td>
+                        <td>
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                           <span class="text-sm font-weight-normal">Departamento 1</span>
                         </td>
                         <td >
@@ -154,9 +210,12 @@
                         <td >
                             <span class="text-sm font-weight-normal">$00.000.000</span>
                         </td>
+<<<<<<< HEAD
                         <td >
                             <span class="text-sm font-weight-normal">123456</span>
                         </td>
+=======
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         <td class="align-middle">
                           <a href="{% url 'app_finanzas:editarProyectos' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Proyecto">
                             <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -172,11 +231,20 @@
                           </span>
                         </td>
                         <td class="align-middle">
+<<<<<<< HEAD
                             <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Lista de Costos">
+=======
+                          <span data-bs-toggle="modal" data-bs-target="#modalList">
+                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Detalle del Presupuesto">
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                                 <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                     <path d="M0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224z" fill="#64748B"/>
                                 </svg>
                             </a>
+<<<<<<< HEAD
+=======
+                          </span>
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         </td>
                       </tr>
                     </tbody>
@@ -187,6 +255,138 @@
           </div>
     </div>
 
+<<<<<<< HEAD
+=======
+    <div class="modal fade" id="modalList" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalListLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalListLabel">Datos y Lista del Presupuesto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container bg-dark rounded">
+              <p class="py-1 text-light font-weight-bold">Datos Presupuesto:</p>
+          </div>
+          <div class="mb-3">
+              <label for="formInput" class="form-label" for="">Departamento:</label>
+              <input disabled id="formInput" class="form-control" type="text" list="lista" placeholder="Departamento ...">
+              <datalist class="d-none" id="lista">
+                  <option value="1"></option>
+                  <option value="2"></option>
+                  <option value="3"></option>
+              </datalist>
+          </div>
+          <div class="mb-3">
+              <label for="formInput" class="form-label" for="">Centro de Costos:</label>
+              <input disabled id="formInput" class="form-control" type="text" list="lista-CDC" placeholder="Centro de Costos ...">
+              <datalist class="d-none" id="lista-CDC">
+                  <option value="1"></option>
+                  <option value="2"></option>
+                  <option value="3"></option>
+              </datalist>
+          </div>
+          <div class="mb-3">
+              <label for="formInput" class="form-label" for="">Nombre Presupuesto:</label>
+              <input disabled id="formInput" class="form-control" type="text" placeholder="Nombre ...">
+          </div>
+          <div class="mb-3">
+              <label for="formInput" class="form-label" for="">Código Presupuesto:</label>
+              <input disabled id="formInput" class="form-control" type="text" placeholder="123 ...">
+          </div>
+          <div class="container bg-dark rounded">
+              <p class="py-1 text-light font-weight-bold">Detalle del Presupuesto:</p>
+          </div>
+          <div class="card-body px-0 pb-0">
+              <div class="table-responsive p-0">
+                <table class="table table-hover table-bordered align-items-center justify-content-center mb-0">
+                  <thead class="bg-gray-100">
+                      <tr>
+                        <th class="text-secondary text-xs font-weight-bold">Código</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Descripción</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Cantidad</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Neto</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Impuesto</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Total</th>
+                      </tr>
+                    </thead>
+                  <tbody class="items">
+                      <tr>
+                          <td class="ps-1 text-center">
+                              <span class="text-sm font-weight-normal">123 ...</span>
+                          </td>
+                          <td class="ps-1 text-center">
+                              <span class="text-sm font-weight-normal descripcion" >Item 1 ...</span>
+                          </td>
+                          <td class="ps-1 text-center">
+                              <span class="text-sm font-weight-normal cantidad">2</span>
+                          </td>
+                          <td class="ps-1 text-center">
+                              <span class="text-sm font-weight-normal neto">$00.000.000</span>
+                          </td>
+                          <td class="ps-1 text-center">
+                              <span class="text-sm font-weight-normal">0.19</span>
+                          </td>
+                          <td class="ps-1 text-center">
+                              <span class="text-sm font-weight-normal total">$00.000.000</span>
+                          </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+          <hr class="dotted">
+          <div class="d-flex flex-column align-items-end">
+              <p class="mt-3">Total sin Impuesto: $<span class="total-sin-impuesto">00.000.000</span></p>
+              <p class="mb-1">Con Impuesto: $<span class="total-impuesto">00.000.000</span></p>
+              <hr class="w-50 dotted">
+              <p class="font-weight-bold">Total: $<span id="totalOrden">00.000.000</span></p>
+          </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center flex-wrap">
+            <div>
+              <a class="btn btn-secondary my-auto" href="#">
+                Imprimir
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#fff" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                </svg>
+              </a>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle my-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#fff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                </svg>
+                Exportar Como
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li>
+                  <a class="dropdown-item font-weight-bold" href="#">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <path fill="#fff" d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                    PDF
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item font-weight-bold" href="#">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                      <path fill="#fff" d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM155.7 250.2L192 302.1l36.3-51.9c7.6-10.9 22.6-13.5 33.4-5.9s13.5 22.6 5.9 33.4L221.3 344l46.4 66.2c7.6 10.9 5 25.8-5.9 33.4s-25.8 5-33.4-5.9L192 385.8l-36.3 51.9c-7.6 10.9-22.6 13.5-33.4 5.9s-13.5-22.6-5.9-33.4L162.7 344l-46.4-66.2c-7.6-10.9-5-25.8 5.9-33.4s25.8-5 33.4 5.9z"/>
+                    </svg>
+                    Excel
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn btn-secondary my-auto" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+>>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
