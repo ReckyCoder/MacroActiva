@@ -1013,17 +1013,22 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       // Verificar si los submenús estaban abiertos previamente
+      const url = window.location.pathname;
+      const links = document.querySelectorAll('.link');
+
       var submenus = document.querySelectorAll('.collapse');
+
       submenus.forEach(function(submenu) {
           var submenuOpen = localStorage.getItem(submenu.id + '_open');
           if (submenuOpen === 'true') {
               // Simular clic en el enlace del submenu con un retraso
               setTimeout(function() {
                     var link = document.querySelector('a[href="#' + submenu.id + '"]');
+                    
                     if (link) {
                         link.click();
                     }
-                }, 100); // ms de retraso
+                }, 200); // ms de retraso
             }
       });
 

@@ -24,7 +24,7 @@
   {% include 'includes/head.html' %}
   {% block extrahead %}{% endblock extrahead %}
   {% block extrastyle %}{% endblock extrastyle %}
-  <link rel="stylesheet" href="../../static/css/departamentos.css">
+  <link rel="stylesheet" href="../../static/css/index.css">
 
 </head>
 
@@ -57,19 +57,6 @@
       const href = link.getAttribute('href');
       if (href === url) {
         link.classList.add('activo');
-        const parentCollapse = link.closest('.collapse');
-        if (parentCollapse) {
-          const parentMenu = parentCollapse.previousElementSibling;
-          parentMenu.setAttribute('aria-expanded', 'true');
-          parentCollapse.classList.add('show');
-
-          if(parentCollapse.parentElement.parentElement.classList.contains('collapse')){
-            const parentMenu2 = parentCollapse.parentElement.parentElement.previousElementSibling;
-            parentMenu2.setAttribute('aria-expanded', 'true');
-            parentCollapse.parentElement.parentElement.classList.add('show');
-          }
-
-        }
       }
     });
   });
