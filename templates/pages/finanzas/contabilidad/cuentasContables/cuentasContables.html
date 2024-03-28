@@ -10,6 +10,18 @@
     {% endblock header %}
 
     <div class="container">
+      <div class="col my-3 me-auto d-flex justify-content-end">
+        <a class="mx-1" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ver Gráfico">
+          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path fill="#1e293b" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm64 192c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm64-64c0-17.7 14.3-32 32-32s32 14.3 32 32V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V160zM320 288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32z"></path>
+          </svg>
+        </a>
+        <a class="mx-1" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir Gráfico">
+          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="#1e293b" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"></path>
+          </svg>
+        </a>
+      </div>
         <div class="col">
             <div class="card shadow-xs border">
               <div class="card-header border-bottom pb-0">
@@ -44,11 +56,12 @@
                   <table class="table align-items-center justify-content-center mb-0">
                     <thead class="bg-gray-100">
                       <tr class="text-center">
-                        <th class="text-secondary text-xs font-weight-bold">Departamento / Proyecto</th>
+                        <th class="text-secondary text-xs font-weight-bold">Código</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Departamento / Proyecto</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Nombre de Cuenta</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Tipo de Cuenta</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Saldo</th>
-                        <th class="text-secondary text-xs font-weight-bold ps-2">Añadir Saldo</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Asiento Contable</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Acciones</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Detalle</th>
                       </tr>
@@ -56,6 +69,9 @@
                     <tbody>
                       <tr class="text-center">
                         <td class="ps-4">
+                          <span class="text-sm font-weight-normal">123456</span>
+                        </td>
+                        <td>
                           <span class="text-sm font-weight-normal">Departamento 1</span>
                         </td>
                         <td>
@@ -102,6 +118,9 @@
                       </tr>
                       <tr class="text-center">
                         <td class="ps-4">
+                          <span class="text-sm font-weight-normal">123456</span>
+                        </td>
+                        <td>
                           <span class="text-sm font-weight-normal">Proyecto 1</span>
                         </td>
                         <td>
@@ -177,17 +196,24 @@
       <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-          <h1 class="modal-title fs-5" id="modalAgregarSaldoLabel">Añade saldo a la cuenta</h1>
+          <h1 class="modal-title fs-5" id="modalAgregarSaldoLabel">Añade Asiento Contable</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
               <div class="bg-dark rounded p-2 mb-3">
-                <div>
+                <div class="mb-3">
                   <p class="text-light">Saldo Anterior: $ <span class="text-success">00.000.000</span></p>
                 </div>
-                <div>
-                  <label for="formInput" class="form-label text-light" for="cuenta">Añadir saldo:</label>
+                <div class="mb-3">
+                  <label for="formInput" class="form-label text-light" for="cuenta">Añadir Asiento Contable:</label>
                   <input id="cuenta" class="form-control" type="number" placeholder="00.000.000">
+                </div>
+                <div class="mb-3">
+                  <label class="text-light" for="">Tipo de Asiento Contable:</label>
+                  <select class="form-select" name="" id="">
+                    <option value="debe">Debe</option>
+                    <option value="haber">Haber</option>
+                  </select>
                 </div>
               </div>
               <div class="d-flex justify-content-end">
@@ -196,7 +222,7 @@
           </div>
           <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <a href="{% url 'app_finanzas:departamentos' %}" type="button" class="btn btn-primary">Actualizar</a>
+          <a href="{% url 'app_finanzas:cuentasContables' %}" type="button" class="btn btn-primary">Confirmar</a>
           </div>
       </div>
       </div>
