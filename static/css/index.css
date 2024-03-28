@@ -1,0 +1,17 @@
+.enlace{
+    transform: translateY(0);
+    transition: transform .3s ease;
+    background-color: #0f172a;
+    border-radius: .625rem;
+}
+
+.enlace:hover{
+    transform: translateY(-5px);
+    transition: transform .3s ease;
+    background-color: #122451;
+
+}
+
+.activo{
+    background-color: #122451;
+}

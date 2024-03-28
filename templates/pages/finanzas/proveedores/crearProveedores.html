@@ -4,7 +4,7 @@
 {% block content %}
     {% block header %}
     <header>
-        <h1 class="text-center my-5">Crear Proveedores</h1>
+        <h3 class="text-center my-5">Registrar Proveedores</h3>
     </header>
 
     {% endblock header %}
@@ -102,7 +102,7 @@
                     </div>
                     <hr class="dotted">
                     <div class="d-flex justify-content-center mt-5 flex-wrap">
-                        <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#modalCrearProveedor">Crear Proveedor</button>
+                        <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#modalCrearProveedor">Registrar Proveedor</button>
                         <a type="button" class="btn btn-secondary mx-1" href="{% url 'app_finanzas:proveedor' %}">Cancelar</a>
                     </div>
                 </form>
@@ -122,7 +122,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:proveedor' %}">Crear Proveedor</a>
+              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:proveedor' %}">Registrar Proveedor</a>
             </div>
           </div>
         </div>
