@@ -1,5 +1,1283 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
 <div class="container-fluid py-4 px-5">
+  <div class="row">
+    <div class="col-12 ">
+      <h3>Logística</h3>
+              <hr>
+      <ul class="nav nav-pills nav-fill d-flex">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" aria-current="page" href="#">Logística de Entrada</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" href="#">Logística de Proceso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false" href="#">Logística de Salida</a>
+        </li>
+
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="card border shadow-xs mb-4">
+            <div class="card-header border-bottom pb-0">
+              <h3>Logística de Entrada</h3>
+              <hr>
+              <div class="d-sm-flex align-items-center mb-3">
+                <div>
+                  <h6 class="font-weight-semibold text-lg mb-0">Ordenes de compra.</h6>
+                  <p class="text-sm mb-sm-0">Listado de Ordenes de compra mensuales.</p>
+                </div>
+                <div class="ms-auto d-flex flex-md-row flex-column">
+                  <div class="input-group input-group-sm ms-auto me-2">
+                    <span class="input-group-text text-body">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                      </svg>
+                    </span>
+                    <input type="text" class="form-control form-control-sm" placeholder="Buscar">
+                  </div>
+                  <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    <span class="btn-inner--icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                      </svg>
+                    </span>
+                    <span class="btn-inner--text">Exportar</span>
+                  </a>
+                  <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    <span class="btn-inner--icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                        <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                      </svg>
+                    </span>
+                    <span class="btn-inner--text">Imprimir</span>
+                  </a>
+                </div>
+              </div>
+            <div class="card-body px-0 py-0">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center  table-bordered table-hover justify-content-center mb-0">
+                  <thead class="bg-gray-100">
+                    <tr>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7">ID Orden </th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Producto/Servicio Solicitado</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Cantidad</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Precio Unitario</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Total</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Detalles</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Guías de despacho</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">OC con Entrega/Retiro</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">OC-02052</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Cajas de Tornillos</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">369 Unidades</span>
+                          </div>  
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">$200</span>
+                        </div>  
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">$73.800</span>
+                        </div>  
+                      </td>
+                      <td>
+                        <span class="text-sm font-weight-normal">Detalles</span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="d-flex justify-content-center px-4">
+                        <a type="button" class="btn btn-sm  btn-icon  align-items-center mb-0 me-2">
+                          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                              <path fill="#000000" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                            </svg>
+                          </div>
+                        </a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalAddGP" type="button" class="btn btn-sm  btn-icon  align-items-center mb-0 me-2">
+                          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                              <path fill="#000000" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                            </svg>
+                          </div>
+                        </a>
+                      </div>
+                      </td>
+                      <td class="align-middle">
+                        <div class="d-flex justify-content-center px-4">
+                        <span class="badge badge-sm border border-danger text-danger bg-danger">Retiro</span>
+                        </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <span class="badge badge-sm border border-success text-success bg-success">Aprobada</span>
+                      </div>
+                  </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">OC-23156</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Calculadoras</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">1.400 Unidades</span>
+                          </div>  
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">$500</span>
+                        </div>  
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">$700.000</span>
+                        </div>  
+                      </td>
+                      <td>
+                        <span class="text-sm font-weight-normal">Detalles</span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="d-flex justify-content-center px-4">
+                        <a type="button" class="btn btn-sm  btn-icon  align-items-center mb-0 me-2">
+                          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                              <path fill="#000000" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                            </svg>
+                          </div>
+                        </a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalAddGP" type="button" class="btn btn-sm  btn-icon  align-items-center mb-0 me-2">
+                          <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                              <path fill="#000000" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                            </svg>
+                          </div>
+                        </a>
+                      </div>
+                      </td>
+                      <td class="align-middle">
+                        <div class="d-flex justify-content-center px-4">
+                        <span class="badge badge-sm border border-danger text-danger bg-danger">Retiro</span>
+                        </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <span class="badge badge-sm border border-success text-success bg-success">Aprobada</span>
+                      </div>
+                  </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="border-top py-3 px-3 d-flex align-items-center">
+                <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Anterior</button>
+                <nav aria-label="..." class="ms-auto">
+                  <ul class="pagination pagination-light mb-0">
+                    <li class="page-item active" aria-current="page">
+                      <span class="page-link font-weight-bold">1</span>
+                    </li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">2</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">3</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">...</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">8</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">9</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">10</a></li>
+                  </ul>
+                </nav>
+                <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Siguiente</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card border shadow-xs mb-4">
+          <div class="card-header border-bottom pb-0">
+            <div class="d-sm-flex align-items-center mb-3">
+              <div>
+                <h6 class="font-weight-semibold text-lg mb-0">Recepción de guías de despacho</h6>
+                <p class="text-sm mb-sm-0">Listado de guías de despacho entrantes.</p>
+              </div>
+              <div class="ms-auto d-flex flex-md-row flex-column">
+                <div class="input-group input-group-sm ms-auto me-2">
+                  <span class="input-group-text text-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                    </svg>
+                  </span>
+                  <input type="text" class="form-control form-control-sm" placeholder="Buscar">
+                </div>
+                <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                  <span class="btn-inner--icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                      <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                  </span>
+                  <span class="btn-inner--text">Exportar</span>
+                </a>
+                <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                  <span class="btn-inner--icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                      <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                  </span>
+                  <span class="btn-inner--text">Imprimir</span>
+                </a>
+              </div>
+            </div>
+          <div class="card-body px-0 py-0">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center  table-bordered table-hover justify-content-center mb-0">
+                <thead class="bg-gray-100">
+                  <tr>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7">N°Guía</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">N°Orden Asignadas</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Proveedor</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Detalle general</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Tipo de articulo</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Documentación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">5125</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">OC-02052 - OC-3152</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="my-auto">
+                        <h6 class="mb-0 text-sm">Fransisco Muñoz</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
+  
+                      1 Pantalla LCD /
+                      
+                      1 Placas de cobre /
+                      
+                      2 Baterias /
+                      
+                      1 Sensor">
+                      <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                      </a>
+                    </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center">
+                      Componentes
+                      </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex justify-content-center px-4">
+                  <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="">
+                  <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
+                  </a>
+                </div>
+                </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">3214</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">OC-3214</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="my-auto">
+                        <h6 class="mb-0 text-sm">Bernardo Vera</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
+  
+                      1 Pantalla LCD /
+                      
+                      1 Placas de cobre /
+                      
+                      2 Baterias /
+                      
+                      1 Sensor">
+                      <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                      </a>
+                    </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center">
+                        Materias Primas
+                      </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex justify-content-center px-4">
+                  <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="">
+                  <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
+                  </a>
+                </div>
+                </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="border-top py-3 px-3 d-flex align-items-center">
+              <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Anterior</button>
+              <nav aria-label="..." class="ms-auto">
+                <ul class="pagination pagination-light mb-0">
+                  <li class="page-item active" aria-current="page">
+                    <span class="page-link font-weight-bold">1</span>
+                  </li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">2</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">3</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">...</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">8</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">9</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">10</a></li>
+                </ul>
+              </nav>
+              <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div class="card border shadow-xs mb-4">
+            <div class="card-header border-bottom pb-0">
+              <h3>Logística de Proceso</h3>
+              <hr>
+              <div class="d-sm-flex align-items-center mb-3">
+                <div>
+                  <h6 class="font-weight-semibold text-lg mb-0">Ordenes de producción.</h6>
+                  <p class="text-sm mb-sm-0">Listado de Ordenes de producción mensuales.</p>
+                </div>
+                <div class="ms-auto d-flex flex-md-row flex-column">
+                  <div class="input-group input-group-sm ms-auto me-2">
+                    <span class="input-group-text text-body">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                      </svg>
+                    </span>
+                    <input type="text" class="form-control form-control-sm" placeholder="Buscar">
+                  </div>
+                  <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    <span class="btn-inner--icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                      </svg>
+                    </span>
+                    <span class="btn-inner--text">Exportar</span>
+                  </a>
+                  <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    <span class="btn-inner--icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                        <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                      </svg>
+                    </span>
+                    <span class="btn-inner--text">Imprimir</span>
+                  </a>
+                </div>
+              </div>
+            <div class="card-body px-0 py-0">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center  table-bordered table-hover justify-content-center mb-0">
+                  <thead class="bg-gray-100">
+                    <tr>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7">ID Orden </th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Producto a Fabricar</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Cantidad a Producir</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha inicio/final</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Estado</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Prioridad</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Recursos Asignados</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Lista de materiales</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">OC-02052</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Cajas de Tornillos</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">6.500 Unidades</span>
+                          </div>  
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">21/03/2024 - 11/05/2025</span>
+                        </div>  
+                      </td>
+                      <td class="align-middle">
+                        <div class="d-flex justify-content-center px-4">
+                        <span class="badge badge-sm border border-warning text-warning bg-warning">Producción</span>
+                        </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <span class="badge badge-sm border border-success text-success bg-success">Alta</span>
+                      </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
+
+                    1 Pantalla LCD /
+                    
+                    1 Placas de cobre /
+                    
+                    2 Baterias /
+                    
+                    1 Sensor">
+                    <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                      <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                    </a>
+                  </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
+
+                    1 Pantalla LCD /
+                    
+                    1 Placas de cobre /
+                    
+                    2 Baterias /
+                    
+                    1 Sensor">
+                    <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                      <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                    </a>
+                  </div>
+                  </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">OC-3152</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Calculadoras</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">1.400 Unidades</span>
+                          </div>  
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">15/03/2024 - 13/07/2024</span>
+                        </div>  
+                      </td>
+                      <td class="align-middle">
+                        <div class="d-flex justify-content-center px-4">
+                        <span class="badge badge-sm border border-success text-success bg-success">Realizada</span>
+                        </div>
+                    </td>
+                      <td class="align-middle">
+                        <div class="d-flex justify-content-center px-4">
+                        <span class="badge badge-sm border border-warning text-warning bg-warning">Media</span>
+                        </div>
+                    </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
+
+                    1 Pantalla LCD /
+                    
+                    1 Placas de cobre /
+                    
+                    2 Baterias /
+                    
+                    1 Sensor">
+                    <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                      <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                    </a>
+                  </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
+
+                    1 Pantalla LCD /
+                    
+                    1 Placas de cobre /
+                    
+                    2 Baterias /
+                    
+                    1 Sensor">
+                    <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                      <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                    </a>
+                  </div>
+                  </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="border-top py-3 px-3 d-flex align-items-center">
+                <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Anterior</button>
+                <nav aria-label="..." class="ms-auto">
+                  <ul class="pagination pagination-light mb-0">
+                    <li class="page-item active" aria-current="page">
+                      <span class="page-link font-weight-bold">1</span>
+                    </li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">2</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">3</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">...</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">8</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">9</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">10</a></li>
+                  </ul>
+                </nav>
+                <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Siguiente</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card border shadow-xs mb-4">
+          <div class="card-header border-bottom pb-0">
+            <div class="d-sm-flex align-items-center mb-3">
+              <div>
+                <h6 class="font-weight-semibold text-lg mb-0">Verificacion</h6>
+                <p class="text-sm mb-sm-0">Verificación de materias primas para órdenes de producción.</p>
+              </div>
+              <div class="ms-auto d-flex flex-md-row flex-column">
+                <div class="input-group input-group-sm ms-auto me-2">
+                  <span class="input-group-text text-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                    </svg>
+                  </span>
+                  <input type="text" class="form-control form-control-sm" placeholder="Buscar">
+                </div>
+                <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                  <span class="btn-inner--icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                      <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                  </span>
+                  <span class="btn-inner--text">Exportar</span>
+                </a>
+                <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                  <span class="btn-inner--icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                      <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                  </span>
+                  <span class="btn-inner--text">Imprimir</span>
+                </a>
+              </div>
+            </div>
+          <div class="card-body px-0 py-0">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center  table-bordered table-hover justify-content-center mb-0">
+                <thead class="bg-gray-100">
+                  <tr>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7">Nombre Producto</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Stock necesario</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Stock en bodega</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Solicitud por falta de materias primas</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Stock disponible para producción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="my-auto">
+                        <h6 class="mb-0 text-sm">Mineral de Hierro</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">50.000 toneladas metricas</span>
+                        </div>  
+                    </td>
+                    <td>
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">221.000 toneladas metricas</span>
+                      </div>  
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Solicitar">
+                      <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                      </a>
+                    </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="my-auto">
+                        <h6 class="mb-0 text-sm">Petróleo Crudo</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">30.000 barriles</span>
+                        </div>  
+                    </td>
+                    <td>
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">20.000 barriles</span>
+                      </div>  
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Solicitar">
+                      <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                      </a>
+                    </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="my-auto">
+                        <h6 class="mb-0 text-sm">Cobre</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">20.000 toneladas metricas</span>
+                        </div>  
+                    </td>
+                    <td>
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">66.000 toneladas metricas</span>
+                      </div>  
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="Solicitar">
+                      <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                      </a>
+                    </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="border-top py-3 px-3 d-flex align-items-center">
+              <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Anterior</button>
+              <nav aria-label="..." class="ms-auto">
+                <ul class="pagination pagination-light mb-0">
+                  <li class="page-item active" aria-current="page">
+                    <span class="page-link font-weight-bold">1</span>
+                  </li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">2</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">3</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">...</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">8</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">9</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">10</a></li>
+                </ul>
+              </nav>
+              <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+        <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+          <div class="card border shadow-xs mb-4">
+            <div class="card-header border-bottom pb-0">
+              <h3>Logística de Salida</h3>
+              <hr>
+              <div class="d-sm-flex align-items-center mb-3">
+                <div>
+                  <h6 class="font-weight-semibold text-lg mb-0">Ordenes de producción.</h6>
+                  <p class="text-sm mb-sm-0">Listado de Ordenes de producción terminadas.</p>
+                </div>
+                <div class="ms-auto d-flex flex-md-row flex-column">
+                  <div class="input-group input-group-sm ms-auto me-2">
+                    <span class="input-group-text text-body">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                      </svg>
+                    </span>
+                    <input type="text" class="form-control form-control-sm" placeholder="Buscar">
+                  </div>
+                  <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    <span class="btn-inner--icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                      </svg>
+                    </span>
+                    <span class="btn-inner--text">Exportar</span>
+                  </a>
+                  <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                    <span class="btn-inner--icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                        <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                      </svg>
+                    </span>
+                    <span class="btn-inner--text">Imprimir</span>
+                  </a>
+                </div>
+              </div>
+            <div class="card-body px-0 py-0">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center  table-bordered table-hover justify-content-center mb-0">
+                  <thead class="bg-gray-100">
+                    <tr>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7"></th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7">ID Orden </th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Producto a Fabricar</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Cantidad a Producir</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha inicio/final</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Estado</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Prioridad</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                          <label class="form-check-label" for="flexCheckDefault">
+                             Seleccionar
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex px-2">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">OC-3152</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Calculadoras</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">1.400 Unidades</span>
+                          </div>  
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">15/03/2024 - 13/07/2024</span>
+                        </div>  
+                      </td>
+                      <td class="align-middle">
+                        <div class="d-flex justify-content-center">
+                      <span class="badge badge-sm border border-success text-success bg-success">Listo</span>
+                        </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center">
+                  <span class="badge badge-sm border border-danger text-danger bg-danger">Baja</span>
+                    </div>
+              </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="segundobtn">
+                          <label class="form-check-label" for="segundobtn">
+                             Seleccionar
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex px-2">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">OC-02052</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <h6 class="mb-0 text-sm">Cajas de Tornillos</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle">
+                          <div class="my-auto">
+                            <span class="mb-0 text-sm">369 Unidades</span>
+                          </div>  
+                      </td>
+                      <td>
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">21/03/2024 - 11/05/2025</span>
+                        </div>  
+                      </td>
+                      <td class="align-middle">
+                        <div class="d-flex justify-content-center px-4">
+                        <span class="badge badge-sm border border-warning text-warning bg-warning">Producción</span>
+                        </div>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center">
+                    <span class="badge badge-sm border border-success text-success bg-success">Alta</span>
+                      </div>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="border-top py-3 px-3 d-flex align-items-center">
+                <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Anterior</button>
+                <nav aria-label="..." class="ms-auto">
+                  <ul class="pagination pagination-light mb-0">
+                    <li class="page-item active" aria-current="page">
+                      <span class="page-link font-weight-bold">1</span>
+                    </li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">2</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">3</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">...</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">8</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">9</a></li>
+                    <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">10</a></li>
+                  </ul>
+                </nav>
+                <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Siguiente</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card border shadow-xs mb-4">
+          <div class="card-header border-bottom pb-0">
+            <div class="d-sm-flex align-items-center mb-3">
+              <div>
+                <h6 class="font-weight-semibold text-lg mb-0">Listas de direcciónes</h6>
+                <p class="text-sm mb-sm-0">Listado de direcciónes de  Entrega/Retiro.</p>
+              </div>
+              <div class="ms-auto d-flex flex-md-row flex-column">
+                <div class="input-group input-group-sm ms-auto me-2">
+                  <span class="input-group-text text-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                    </svg>
+                  </span>
+                  <input type="text" class="form-control form-control-sm" placeholder="Buscar">
+                </div>
+                <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                  <span class="btn-inner--icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                      <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                  </span>
+                  <span class="btn-inner--text">Exportar</span>
+                </a>
+                <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                  <span class="btn-inner--icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                      <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                  </span>
+                  <span class="btn-inner--text">Imprimir</span>
+                </a>
+              </div>
+            </div>
+          <div class="card-body px-0 py-0">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center  table-bordered table-hover justify-content-center mb-0">
+                <thead class="bg-gray-100">
+                  <tr>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7">ID Orden </th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Dirección</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha de entrega</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Comentario/Información del Cliente</th>
+                    <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Maps</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">OC-02052</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="my-auto">
+                        <h6 class="mb-0 text-sm">Av.Pajaritos 1530</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">11/05/2025</span>
+                        </div>  
+                    </td>
+                    <td>
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">Entregar a Juanito Pérez Álvarez.   Entrada por el pasaje 2 , entregar en la puerta con reja blanca.</span>
+                      </div>  
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="">
+                      <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
+                      </a>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">OC-3052</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="my-auto">
+                        <h6 class="mb-0 text-sm">Santiago, Av.San Martin  1542</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                        <div class="my-auto">
+                          <span class="mb-0 text-sm">21/09/2024</span>
+                        </div>  
+                    </td>
+                    <td>
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">Entregar a Bernardo Vera.   Piso 12.</span>
+                      </div>  
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="">
+                      <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
+                      </a>
+                    </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="border-top py-3 px-3 d-flex align-items-center">
+              <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Anterior</button>
+              <nav aria-label="..." class="ms-auto">
+                <ul class="pagination pagination-light mb-0">
+                  <li class="page-item active" aria-current="page">
+                    <span class="page-link font-weight-bold">1</span>
+                  </li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">2</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">3</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">...</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">8</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">9</a></li>
+                  <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">10</a></li>
+                </ul>
+              </nav>
+              <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header border-bottom pb-0">
+          <div class="d-sm-flex align-items-center mb-3">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Guías de despachos</h6>
+              <p class="text-sm mb-sm-0">Listado de guías de despacho de salida.</p>
+            </div>
+            <div class="ms-auto d-flex flex-md-row flex-column">
+              <div class="input-group input-group-sm ms-auto me-2">
+                <span class="input-group-text text-body">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                  </svg>
+                </span>
+                <input type="text" class="form-control form-control-sm" placeholder="Buscar">
+              </div>
+              <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                    <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Exportar</span>
+              </a>
+              <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                    <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Imprimir</span>
+              </a>
+            </div>
+          </div>
+        <div class="card-body px-0 py-0">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center  table-bordered table-hover justify-content-center mb-0">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">N°Guía </th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Cliente</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Detalle general</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Estado</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Documentación</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="d-flex px-2">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">5125</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-sm">Fransisco Muñoz</h6>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="">
+                    <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                      <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                    </a>
+                  </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <span class="badge badge-sm border border-warning text-warning bg-warning">Producción</span>
+                    </div>
+                </td>
+              <td class="align-middle">
+                <div class="d-flex justify-content-center px-4">
+                <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="">
+                <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
+                </a>
+              </div>
+              </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex px-2">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">3214</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-sm">Bernardo Vera</h6>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="">
+                    <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                      <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                    </a>
+                  </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center">
+                  <span class="badge badge-sm border border-success text-success bg-success">Aprobada</span>
+                    </div>
+              </td>
+              <td class="align-middle">
+                <div class="d-flex justify-content-center px-4">
+                <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="">
+                <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
+                </a>
+              </div>
+              </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="border-top py-3 px-3 d-flex align-items-center">
+            <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Anterior</button>
+            <nav aria-label="..." class="ms-auto">
+              <ul class="pagination pagination-light mb-0">
+                <li class="page-item active" aria-current="page">
+                  <span class="page-link font-weight-bold">1</span>
+                </li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">2</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">3</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">...</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">8</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">9</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">10</a></li>
+              </ul>
+            </nav>
+            <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Siguiente</button>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+      
+      
+   
+      <div class="modal fade" id="modalAddGP" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalListLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLiveLabel">Subir guía de despacho</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <div class="mb-3">
+                        <label>N° Guía despacho:</label>
+                        <input class="form-control">
+                    </div>
+                      <div class="mb-3">
+                        <label>Proveedor/Cliente</label>
+                        <input class="form-control">
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label>Cantidad de Items:</label>
+                      <input type=number class="form-control">
+                    </div>    
+                    <div class="mb-3">
+                      <label>Fecha:</label>
+                      <input type=date class="form-control">
+                    </div>   
+                  </div>
+                  
+                  <div class="col-12 col-md-6">
+                    
+                    <div class="mb-3">
+                      <label>Estado:</label>
+                      <Select class="form-control">
+                        <option>Aceptada</option>
+                        <option>Rechazada</option>
+                        <option>Devolución</option>
+                      </select>
+                    </div>
+                    
+                 
+                    <div class="mb-3">
+                      <label>Ubicación</label>
+                      <Select class="form-control">
+                        <option>Zona-A</option>
+                        <option>Zona-B</option>
+                        <option>Zona-C</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label>Cantidad Recibida/Aceptada:</label>
+                      <input type=number class="form-control">
+                    </div>    
+                  </div>
+                  </div>
+                  <div class="mb-3">
+                    <label>Subir Guía Despacho:</label>
+                    <input type="file" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label>Descripción:</label>
+                    <textarea class="form-control"></textarea>
+                  </div>
+                    </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Actualizar Guía</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+      </div>
+    </div>
   {% include 'includes/footer.html' %}
 </div>
 {% endblock content %}
+<script>
+  var firstTabEl = document.querySelector('#myTab li:last-child a')
+  var firstTab = new bootstrap.Tab(firstTabEl)
+
+  firstTab.show()
+</script>

@@ -1,13 +1,13 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
 <div class="container-fluid py-4 px-5">
-  <h1>Formula: Tornillos</h1>
+  <h3>Fórmula: Tornillos</h3>
   <hr>
     <div class="card w-lg-70 mx-lg-auto">
         <div class="card-body">
             <form action="">
                 <div class="row">
                   <div class="bg-dark rounded">
-                    <h3 class="ps-3 py-1 text-light font-weight-bold text-center">Editar Formula</h3>
+                    <h3 class="ps-3 py-1 text-light font-weight-bold text-center">Editar Fórmula</h3>
                 </div>
                       <div class="col-12 col-md-6">
                           <div class="mb-3">
@@ -16,14 +16,14 @@
                         </div>
                         
                         <div class="mb-3">
-                          <label>Nombre Formula:</label>
+                          <label>Nombre de fórmula:</label>
                           <input class="form-control" value="Creacion de Tornillos">
                         </div>
                         
                         <div class="mb-3">
                           <label>Departamento:</label>
                           <Select class="form-control">
-                            <option>Produción</option>
+                            <option>Producción</option>
                             <option>Departamento 1</option>
                             <option>Departamento 2</option>
                             <option>Departamento 3</option>
@@ -53,6 +53,14 @@
                             <option>Centro Costo 4</option>
                           </select>
                         </div>
+                        <div class="mb-3">
+                          <label>Estado:</label>
+                          <Select class="form-control">
+                            <option>Listo</option>
+                            <option>Pendiente</option>
+                            <option>Detenido</option>
+                          </select>
+                        </div>
 
                       </div>
                       <div class="mb-3">
@@ -61,7 +69,7 @@
                       </div>
                 <hr class="dotted">
                 <div class="d-flex justify-content-center mt-5">
-                    <button type="button" class="btn bg-primary text-light font-weight-bold m-1">Editar Formula</button>
+                    <button type="button" class="btn bg-primary text-light font-weight-bold m-1">Editar fórmula</button>
                     <a class="btn bg-secondary text-light font-weight-bold m-1" href="{% url 'app_produccion:ingenieria' %}">Cancelar</a>
                 </div>
             </form>
