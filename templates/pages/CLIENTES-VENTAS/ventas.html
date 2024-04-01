@@ -3,5 +3,667 @@
 
 
 {% block content %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="../../../static/css/crmventas/crm.css">
+{% endblock extrastyle %}
+<div class="container-fluid py-4 px-5">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="d-md-flex align-items-center mb-3 mx-2">
+            <div class="mb-md-0 mb-3">
+            <h3 class="font-weight-bold mb-0">Ventas</h3>
+            <p class="mb-0">por cliente</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- modal-total -->
+    <div class="modal fade" id="detalletotal" tabindex="-1" aria-labelledby="detalletotal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+                <a href="#detalleventa" data-bs-toggle="modal" data-bs-dismiss="modal">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="#000" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                    </svg>
+                </a>
+              <h1 class="modal-title fs-5" id="detalletotal" ></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body justify-content-center align-items-center d-flex flex-column">
+                <div class="container bg-dark rounded text-center mb-3">
+                    <p class="py-1 text-light font-weight-bold">Total</p>
+                </div>  
+                <div>
+                    <div class="h6">Valor neto: $810.000</div>
+                    <div class="h6">Iva 19%: $153.900</div>
+                    <div class="h6">Total: $963.900</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- modal detalle -->
+    <div class="modal fade" id="detalleventa" tabindex="-1" aria-labelledby="detalleventa" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="detalleventa">Detalle venta</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <button class="btn btn-white  ms-auto mt-2 " data-bs-toggle="modal" data-bs-target="#detalletotal">Total</button>
+            <div class="modal-body justify-content-center align-items-center d-flex">
+                <div class="detalle-venta justify-content-center align-items-center d-flex flex-column">
+                    <div class="h6">ID: 000001</div>
+                    <div class="h6">Categoria: Muebles</div>
+                    <div class="h6">Producto o Servicio: Puertas</div>
+                    <div class="h6">Fecha de cotizacion: 01/02/2024</div>
+                    <div class="h6">Valido hasta: 28/02/2024</div>
+                    <div class="h6">Cantidad: 4</div>
+                    <div class="h6">Precio unitario:$100.000</div>
+                    <div class="h6">Descuento 10%</div>
+                    <div class="h6">Total:$360.000</div>
+                    <hr class="linea-separadora"> 
+                    <div class="h6">ID: 000002</div>
+                    <div class="h6">Categoria: Muebles</div>
+                    <div class="h6">Producto o Servicio: Sillas</div>
+                    <div class="h6">Fecha de cotizacion: 01/02/2024</div>
+                    <div class="h6">Valido hasta: 28/02/2024</div>
+                    <div class="h6">Cantidad: 10</div>
+                    <div class="h6">Precio unitario:$50000</div>
+                    <div class="h6">Descuento 10%</div>
+                    <div class="h6">Total:$450.000</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <hr class="my-0">
+    <!-- items -->
+    <div class="input-group w-sm-25 ms-auto mt-2">
+        <span class="input-group-text text-body">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+        </svg>
+        </span>
+        <input type="text" class="form-control" placeholder="Buscar">
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                <div class="card-header bg-dark d-flex align-items-center">
+                    <div class="dropdown ">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Estado
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a id="inciada1" class="dropdown-item" href="#" onclick="actualizarEstado('Iniciada', '<svg height=&quot;21&quot; width=&quot;21&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 384 512&quot;><path fill=&quot;#53f00a&quot; d=&quot;M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z&quot;/></svg>')">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#53f00a" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z"/>
+                                    </svg>
+                                    Iniciada
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="actualizarEstado('En proceso', '<svg height=&quot;21&quot; width=&quot;21&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 512 512&quot;><path fill=&quot;#eef207&quot; d=&quot;M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z&quot;/></svg>')">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="#eef207" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
+                                    </svg>
+                                    En proceso
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="actualizarEstado('Concluido', '<svg height=&quot;21&quot; width=&quot;21&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 384 512&quot;><path fill=&quot;#f50505&quot; d=&quot;M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM96 75V64H288V75c0 25.5-10.1 49.9-28.1 67.9L192 210.7l-67.9-67.9C106.1 124.9 96 100.4 96 75z&quot;/></svg>')">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#f50505" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM96 75V64H288V75c0 25.5-10.1 49.9-28.1 67.9L192 210.7l-67.9-67.9C106.1 124.9 96 100.4 96 75z"/>
+                                    </svg>
+                                    Concluido
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <!-- Contenedor para el ícono del estado seleccionado -->
+                        <div id="icono-seleccionado" class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center"></div>
+                    </div>
+                </div>
+                <div class="card-body text-start p-3 w-100">
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                                </svg>
+                            </div>
+                            <p class="h4 text-secondary mb-1 ms-3">juan Perez</p>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <input id="fechacotizacion" class="form-control d-inline" type="date">  
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-12">
+                        <div class="w-100">
+                            <p class="mb-2 font-weight-bold text-md h4">Orden: <input id="numeroOrden" class=" border-0 bg-transparent" type="text" value="000000" onclick="editarNumeroOrden()"></p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-sm-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="font-weight-semibold text-lg mb-0">Valor:$8.500.000</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#detalleventa">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
+                                </svg>                      
+                            </div>
+                            </a>
+                            <span class="ms-sm-1">Detalle de la venta</span>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <button type="button bn20 mt-2" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 ">
+                                <span class="btn-inner--icon">
+                                <svg width="16px" heigth="16px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 512 512"  stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                                    <path fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/>
+                                </svg>
+                                </span>
+                                <span class="btn-inner--text">enviar</span>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
 
+            <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                <div class="card-header bg-dark d-flex align-items-center">
+                    <div class="dropdown ">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Estado
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#53f00a" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z"/>
+                                    </svg>
+                                    Iniciada
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="#eef207" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
+                                    </svg>
+                                    En proceso
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#f50505" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM96 75V64H288V75c0 25.5-10.1 49.9-28.1 67.9L192 210.7l-67.9-67.9C106.1 124.9 96 100.4 96 75z"/>
+                                    </svg>
+                                    Concluido
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <!-- Contenedor para el ícono del estado seleccionado -->
+                        <div id="icono-seleccionado" class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center"></div>
+                    </div>
+                </div>
+                <div class="card-body text-start p-3 w-100">
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                                </svg>
+                            </div>
+                            <p class="h4 text-secondary mb-1 ms-3">juan Perez</p>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <input id="fechacotizacion" class="form-control d-inline" type="date">  
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-12">
+                        <div class="w-100">
+                            <p class="mb-2 font-weight-bold text-md h4">Orden: <input id="numeroOrden2" class=" border-0 bg-transparent" type="text" value="000000" onclick="editarNumeroOrden2()"></p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-sm-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="font-weight-semibold text-lg mb-0">Valor:$8.500.000</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#detalleventa">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
+                                </svg>                      
+                            </div>
+                            </a>
+                            <span class="ms-sm-1">Detalle de la venta</span>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <button type="button bn20 mt-2" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 ">
+                                <span class="btn-inner--icon">
+                                <svg width="16px" heigth="16px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 512 512"  stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                                    <path fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/>
+                                </svg>
+                                </span>
+                                <span class="btn-inner--text">enviar</span>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                <div class="card-header bg-dark d-flex align-items-center">
+                    <div class="dropdown ">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Estado
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#53f00a" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z"/>
+                                    </svg>
+                                    Iniciada
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="#eef207" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
+                                    </svg>
+                                    En proceso
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#f50505" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM96 75V64H288V75c0 25.5-10.1 49.9-28.1 67.9L192 210.7l-67.9-67.9C106.1 124.9 96 100.4 96 75z"/>
+                                    </svg>
+                                    Concluido
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <!-- Contenedor para el ícono del estado seleccionado -->
+                        <div id="icono-seleccionado" class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center"></div>
+                    </div>
+                </div>
+                <div class="card-body text-start p-3 w-100">
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                                </svg>
+                            </div>
+                            <p class="h4 text-secondary mb-1 ms-3">juan Perez</p>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <input id="fechacotizacion" class="form-control d-inline" type="date">  
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-12">
+                        <div class="w-100">
+                            <p class="mb-2 font-weight-bold text-md h4">Orden: <input id="numeroOrden2" class=" border-0 bg-transparent" type="text" value="000000" onclick="editarNumeroOrden2()"></p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-sm-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="font-weight-semibold text-lg mb-0">Valor:$8.500.000</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#detalleventa">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
+                                </svg>                      
+                            </div>
+                            </a>
+                            <span class="ms-sm-1">Detalle de la venta</span>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <button type="button bn20 mt-2" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 ">
+                                <span class="btn-inner--icon">
+                                <svg width="16px" heigth="16px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 512 512"  stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                                    <path fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/>
+                                </svg>
+                                </span>
+                                <span class="btn-inner--text">enviar</span>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                <div class="card-header bg-dark d-flex align-items-center">
+                    <div class="dropdown ">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Estado
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#53f00a" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z"/>
+                                    </svg>
+                                    Iniciada
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="#eef207" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
+                                    </svg>
+                                    En proceso
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#f50505" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM96 75V64H288V75c0 25.5-10.1 49.9-28.1 67.9L192 210.7l-67.9-67.9C106.1 124.9 96 100.4 96 75z"/>
+                                    </svg>
+                                    Concluido
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <!-- Contenedor para el ícono del estado seleccionado -->
+                        <div id="icono-seleccionado" class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center"></div>
+                    </div>
+                </div>
+                <div class="card-body text-start p-3 w-100">
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                                </svg>
+                            </div>
+                            <p class="h4 text-secondary mb-1 ms-3">juan Perez</p>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <input id="fechacotizacion" class="form-control d-inline" type="date">  
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-12">
+                        <div class="w-100">
+                            <p class="mb-2 font-weight-bold text-md h4">Orden: <input id="numeroOrden2" class=" border-0 bg-transparent" type="text" value="000000" onclick="editarNumeroOrden2()"></p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-sm-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="font-weight-semibold text-lg mb-0">Valor:$8.500.000</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#detalleventa">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
+                                </svg>                      
+                            </div>
+                            </a>
+                            <span class="ms-sm-1">Detalle de la venta</span>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <button type="button bn20 mt-2" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 ">
+                                <span class="btn-inner--icon">
+                                <svg width="16px" heigth="16px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 512 512"  stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                                    <path fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/>
+                                </svg>
+                                </span>
+                                <span class="btn-inner--text">enviar</span>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                <div class="card-header bg-dark d-flex align-items-center">
+                    <div class="dropdown ">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Estado
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#53f00a" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z"/>
+                                    </svg>
+                                    Iniciada
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="#eef207" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
+                                    </svg>
+                                    En proceso
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#f50505" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM96 75V64H288V75c0 25.5-10.1 49.9-28.1 67.9L192 210.7l-67.9-67.9C106.1 124.9 96 100.4 96 75z"/>
+                                    </svg>
+                                    Concluido
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <!-- Contenedor para el ícono del estado seleccionado -->
+                        <div id="icono-seleccionado" class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center"></div>
+                    </div>
+                </div>
+                <div class="card-body text-start p-3 w-100">
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                                </svg>
+                            </div>
+                            <p class="h4 text-secondary mb-1 ms-3">juan Perez</p>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <input id="fechacotizacion" class="form-control d-inline" type="date">  
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-12">
+                        <div class="w-100">
+                            <p class="mb-2 font-weight-bold text-md h4">Orden: <input id="numeroOrden2" class=" border-0 bg-transparent" type="text" value="000000" onclick="editarNumeroOrden2()"></p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-sm-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="font-weight-semibold text-lg mb-0">Valor:$8.500.000</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#detalleventa">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
+                                </svg>                      
+                            </div>
+                            </a>
+                            <span class="ms-sm-1">Detalle de la venta</span>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <button type="button bn20 mt-2" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 ">
+                                <span class="btn-inner--icon">
+                                <svg width="16px" heigth="16px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 512 512"  stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                                    <path fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/>
+                                </svg>
+                                </span>
+                                <span class="btn-inner--text">enviar</span>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+                <div class="card border shadow-xs mb-4">
+                <div class="card-header bg-dark d-flex align-items-center">
+                    <div class="dropdown ">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Estado
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#53f00a" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z"/>
+                                    </svg>
+                                    Iniciada
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" >
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="#eef207" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/>
+                                    </svg>
+                                    En proceso
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path fill="#f50505" d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM96 75V64H288V75c0 25.5-10.1 49.9-28.1 67.9L192 210.7l-67.9-67.9C106.1 124.9 96 100.4 96 75z"/>
+                                    </svg>
+                                    Concluido
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <!-- Contenedor para el ícono del estado seleccionado -->
+                        <div id="icono-seleccionado" class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center"></div>
+                    </div>
+                </div>
+                <div class="card-body text-start p-3 w-100">
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                                </svg>
+                            </div>
+                            <p class="h4 text-secondary mb-1 ms-3">juan Perez</p>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <input id="fechacotizacion" class="form-control d-inline" type="date">  
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-12">
+                        <div class="w-100">
+                            <p class="mb-2 font-weight-bold text-md h4">Orden: <input id="numeroOrden2" class=" border-0 bg-transparent" type="text" value="000000" onclick="editarNumeroOrden2()"></p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-sm-flex align-items-center mb-3">
+                            <div>
+                                <h6 class="font-weight-semibold text-lg mb-0">Valor:$8.500.000</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#detalleventa">
+                            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                                <svg width="16" height="16"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
+                                </svg>                      
+                            </div>
+                            </a>
+                            <span class="ms-sm-1">Detalle de la venta</span>
+                        </div>
+                        <div class="ms-auto d-flex">
+                            <button type="button bn20 mt-2" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 ">
+                                <span class="btn-inner--icon">
+                                <svg width="16px" heigth="16px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 512 512"  stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                                    <path fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/>
+                                </svg>
+                                </span>
+                                <span class="btn-inner--text">enviar</span>
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>    
+        
+    </div>
+</div>
 {% endblock content %}
+{% block extrascripts %}
+    <script src="../../../static/js/crmventas/ventas.js"></script>
+{% endblock extrascripts %}
