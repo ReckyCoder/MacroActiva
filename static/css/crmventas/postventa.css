@@ -1,0 +1,53 @@
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 20px;
+    background: linear-gradient(to bottom, #fff, #f2f2f2);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .step-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #007bff;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  .step-description {
+    margin-top: 10px;
+  }
+  .step.active .step-icon {
+    background-color: #28a745;
+  }
+  .line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, #007bff, #28a745);
+    margin: 0 10px;
+    position: relative;
+  }
+  @media (max-width: 768px) {
+    .timeline {
+      flex-direction: column;
+    }
+    .line {
+      height: auto;
+      width: 2px;
+      margin: 10px auto;
+    }
+  }
+
+/* estado */

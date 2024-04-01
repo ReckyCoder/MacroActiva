@@ -1,0 +1,249 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+    {% block header %}
+    <header>
+        <h3 class="text-center my-5">Crear Flujo de Caja</h3>
+    </header>
+
+    {% endblock header %}
+
+    <div class="container my-5">
+        <a class="btn bg-dark rounded" href="{% url 'app_finanzas:flujoDeCaja' %}">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="#fff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+            </svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="col">
+            <div class="card shadow-xs border">
+              <form action="">
+                <div class="card-header border-bottom pb-0">
+                  <div class="pb-3 row">
+                    <div class="col-12">
+                        <label class="form-label" for="annio">Año: </label>
+                        <select class="form-control" name="" id="annio">
+                            <option default value="0">Selecciona</option>
+                            <option value="Año 2021">2021</option>
+                            <option value="Año 2022">2022</option>
+                            <option value="Año 2023">2023</option>
+                            <option value="Año 2024">2024</option>
+                            <option value="Año 2025">2025</option>
+                        </select>
+                  </div>
+                  </div>
+                </div>
+                <div class="card-body px-0 py-0">
+                  <div class="table-responsive p-0">
+                    <table class="table table-hover table-bordered  align-items-center justify-content-center mb-0">
+                      <thead class="bg-gray-100 text-center">
+                        <tr>
+                          <th class="text-secondary text-sm font-weight-bold">Detalle de Ingresos</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 1</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 2</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 3</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 4</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 5</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 6</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 7</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 8</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 9</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 10</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 11</th>
+                          <th class="text-secondary text-sm font-weight-bold ps-2">Mes 12</th>
+                        </tr>
+                      </thead>
+                      <tbody class="text-center">
+                        <tr>
+                          <td class="ps-4">
+                            <span class="text-sm font-weight-normal">Ingresos por Mes</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                          <td class="text-secondary text-sm font-weight-bold">Total de Ingresos</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                          <td class="text-secondary text-sm font-weight-bold">Detalle de Egresos</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                        </tr>
+                        <tr>
+                          <td class="ps-4">
+                            <span class="text-sm font-weight-normal">Egresos por Mes</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                            <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                          <td>
+                              <span class="text-sm font-weight-normal">$00.000.000</span>
+                          </td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                          <td class="text-secondary text-sm font-weight-bold">Total de Egresos</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                          <td class="text-secondary text-sm font-weight-bold">Saldo Neto</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                        </tr>
+                        <tr class="bg-gray-100">
+                          <td class="text-secondary text-sm font-weight-bold">Saldo Neto Acumulado</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                          <td class="text-secondary text-sm font-weight-bold ps-2">$00.000.000</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                    <div class="d-flex justify-content-center flex-wrap mt-3">
+                        <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#modalCrearFlujoDeCaja">Crear</button>
+                        <a class="btn btn-secondary mx-1" href="{% url 'app_finanzas:flujoDeCaja' %}">Cancelar</a>
+                    </div>
+                </div>
+              </form>
+            </div>
+          </div>
+    </div>
+
+    <div class="modal fade" id="modalCrearFlujoDeCaja" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalCrearFlujoDeCajaLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalCrearFlujoDeCajaLabel">Por Seguridad</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Se creará un nuevo registro del año como un flujo de caja, en caso de no estar seguro cierre esta ventana.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:flujoDeCaja' %}">Confirmar</a>
+          </div>
+        </div>
+      </div>
+  </div>
+
+{% endblock content %}
+    

@@ -73,7 +73,9 @@ urlpatterns = [
     path('editarFlujoDeCaja/', views.EditarFlujoDeCaja.as_view(), name='editarFlujoDeCaja'),
 
         #----------------------------- Contabilidad --------------------------------------
-    path('contabilidad/', views.Contabilidad.as_view(), name='contabilidad'),
+    path('cuentasContables/', views.CuentasContables.as_view(), name='cuentasContables'),
+    path('crearCuentasContables/', views.CrearCuentasContables.as_view(), name='crearCuentasContables'),
+    path('editarCuentasContables/', views.EditarCuentasContables.as_view(), name='editarCuentasContables'),
 
 
 ]

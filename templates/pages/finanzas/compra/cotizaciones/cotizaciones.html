@@ -1,0 +1,393 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+    {% block header %}
+    <header>
+        <h3 class="text-center my-5">Cotizaciones</h3>
+    </header>
+
+    {% endblock header %}
+
+
+    <div class="container">
+      <div class="col my-3 me-auto d-flex justify-content-end">
+        <a class="mx-1" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Ver Gráfico">
+          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path fill="#1e293b" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm64 192c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm64-64c0-17.7 14.3-32 32-32s32 14.3 32 32V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V160zM320 288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32z"></path>
+          </svg>
+        </a>
+        <a class="mx-1" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir Gráfico">
+          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="#1e293b" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"></path>
+          </svg>
+        </a>
+      </div>
+        <div class="col">
+            <div class="card shadow-xs border">
+              <div class="card-header border-bottom pb-0">
+                <div class="pb-3 row">
+                    <div class="col-12 col-md-4 order-2">
+                        <select class="form-select" aria-label="Default select example">
+                          <option selected>Departamento</option>
+                          <option value="1">Departamento X</option>
+                          <option value="2">Departamento X</option>
+                          <option value="3">Departamento X</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-4 my-3 my-md-0 order-3">
+                        <div class="input-group">
+                        <span class="input-group-text text-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                            </svg>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Buscar Centro de Costos o Proyecto ...">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 order-1 mb-3 mb-md-0 order-md-3 text-end">
+                        <a href="{% url 'app_finanzas:crearCotizacionesCompra' %}" class="btn btn-secondary my-auto">Crear Cotización</a>
+                    </div>
+                </div>
+              </div>
+              <div class="card-body px-0 py-0">
+                <div class="table-responsive p-0">
+                  <table class="table table-hover align-items-center justify-content-center mb-0">
+                    <thead class="bg-gray-100">
+                      <tr class="text-center">
+                        <th class="text-secondary text-xs font-weight-bold">Departamento</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Centro de Costos / Proyecto</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Proovedor</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Descripción</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Fecha de Inicio</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Fecha Limite</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Neto Cotizado</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Impuesto</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Total Cotizado</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">N°Cotización</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Acciones</th>
+                        <th class="text-secondary text-xs font-weight-bold ps-2">Detalle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="text-center">
+                        <td class="ps-4">
+                          <span class="text-sm font-weight-normal">Departamento 1</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">Centro de Costos ...</span>
+                        </td>
+                        <td>
+                          <span class="text-sm font-weight-normal">Nombre ...</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">Nombre Compra</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
+                        </td>
+                        <td>
+                            <p class="m-0 font-weight-bold">$-<span class="text-sm font-weight-normal text-danger">00.000.000</span></p>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">IVA</span>
+                        </td>
+                        <td>
+                            <p class="m-0 font-weight-bold">$-<span class="text-sm text-danger">00.000.000</span></p>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-bold">123456</span>
+                        </td>
+                        <td class="text-center align-middle">
+                          <a href="{% url 'app_finanzas:editarCotizacionesCompra' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Cotización">
+                            <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" fill="#64748B"/>
+                            </svg>
+                          </a>
+                          <span data-bs-toggle="modal" data-bs-target="#modalEliminarCotización">
+                              <a type="button" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Cotización">
+                                <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" fill="#64748B"/>
+                                </svg>
+                              </a>
+                          </span>
+                        </td>
+                        <td class="text-center align-middle">
+                            <span data-bs-toggle="modal" data-bs-target="#modalDetalleCotización">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Detalle de Cotización">
+                                  <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                      <path d="M0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224z" fill="#64748B"/>
+                                  </svg>
+                              </a>
+                            </span>
+                        </td>
+                      </tr>
+                      <tr class="text-center">
+                        <td class="ps-4">
+                          <span class="text-sm font-weight-normal">Departamento 1</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">Proyecto ...</span>
+                        </td>
+                        <td>
+                          <span class="text-sm font-weight-normal">Nombre ...</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">Nombre Compra</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
+                        </td>
+                        <td>
+                            <p class="m-0 font-weight-bold">$-<span class="text-sm font-weight-normal text-danger">00.000.000</span></p>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-normal">IVA</span>
+                        </td>
+                        <td>
+                            <p class="m-0 font-weight-bold">$-<span class="text-sm text-danger">00.000.000</span></p>
+                        </td>
+                        <td>
+                            <span class="text-sm font-weight-bold">123456</span>
+                        </td>
+                        <td class="text-center align-middle">
+                          <a href="{% url 'app_finanzas:editarCotizacionesCompra' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Cotización">
+                            <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" fill="#64748B"/>
+                            </svg>
+                          </a>
+                          <span data-bs-toggle="modal" data-bs-target="#modalEliminarCotización">
+                              <a type="button" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Cotización">
+                                <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" fill="#64748B"/>
+                                </svg>
+                              </a>
+                          </span>
+                        </td>
+                        <td class="text-center align-middle">
+                            <span data-bs-toggle="modal" data-bs-target="#modalDetalleCotización">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Detalle de Cotización">
+                                  <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                      <path d="M0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM128 288a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm32-128a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM128 384a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm96-248c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c13.3 0 24-10.7 24-24s-10.7-24-24-24H224z" fill="#64748B"/>
+                                  </svg>
+                              </a>
+                            </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <div class="modal fade" id="modalDetalleCotización" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDetalleCotizaciónLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalDetalleCotizaciónLabel">Datos y detalle de cotización</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Cotización:</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">N° Cotización:</label>
+                        <input disabled id="formInput" class="form-control" type="text" placeholder="123 ...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Fecha de Inicio de la Cotización:</label>
+                        <input disabled id="formInput" class="form-control" type="date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Fecha Limite de la Cotización:</label>
+                        <input disabled id="formInput" class="form-control" type="date">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Comprador:</p>
+                    </div>
+                    <div class="h-auto">
+                        <div class="mb-3">
+                            <label for="formInput" class="form-label" for="">Departamento:</label>
+                            <input disabled id="formInput" class="form-control" type="text" placeholder="Departamento ...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formInput" class="form-label" for="">Presupuesto:</label>
+                            <input disabled id="formInput" class="form-control" type="text" placeholder="Presupuesto ...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formInput" class="form-label" for="">Centro de Costos o Proyecto:</label>
+                            <input disabled id="formInput" class="form-control" type="text" placeholder="Centro de Costos o Proyecto ...">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Descripción:</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Descripción:</label>
+                        <input disabled id="formInput" class="form-control" type="text" placeholder="Nombre de cotización ...">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Proveedor:</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Proveedor:</label>
+                        <input disabled id="formInput" class="form-control" type="text" placeholder="Proveedor ...">
+                    </div>
+                    <div>
+                        <p class="font-weight-bold mb-3">Razón Social: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Giro Comercial: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Rut Empresa: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Rut: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Ciudad: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Direción: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Teléfono: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                        <p class="font-weight-bold mb-3">Correo: <span class="font-weight-normal">lorem Impsum ...</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Cotización detallada:</p>
+                    </div>
+                    <div class="card-body px-0 pb-0">
+                        <div class="table-responsive p-0">
+                          <table class="table table-hover table-bordered align-items-center justify-content-center mb-0 w-auto">
+                            <thead class="bg-gray-100">
+                              <tr>
+                                <th class="text-secondary text-xs font-weight-bold">Código</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Descripción</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Cantidad</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Neto</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Impuesto</th>
+                                <th class="text-secondary text-xs font-weight-bold ps-2">Total</th>
+                              </tr>
+                            </thead>
+                                <tbody class="items">
+                                    <tr>
+                                        <td class="ps-1 text-center">
+                                            <span class="text-sm font-weight-normal">123 ...</span>
+                                        </td>
+                                        <td class="ps-1 text-center">
+                                            <span class="text-sm font-weight-normal descripcion">Item 1 ...</span>
+                                        </td>
+                                        <td class="ps-1 text-center">
+                                            <span class="text-sm font-weight-normal cantidad">2 ...</span>
+                                        </td>
+                                        <td class="ps-1 text-center">
+                                            <span class="text-sm font-weight-normal neto">00.000.000</span>
+                                        </td>
+                                        <td class="ps-1 text-center">
+                                            <span class="text-sm font-weight-normal">0.19</span>
+                                        </td>
+                                        <td class="ps-1 text-center">
+                                            <span class="text-sm font-weight-normal total">00.000.000</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="dotted">
+            <div class="row">
+                <div class="col-12 d-flex flex-column align-items-end">
+                    <p class="mt-3">Total sin Impuesto: <span class="total-sin-impuesto">$00.000.000</span></p>
+                    <p class="mb-1">Con Impuesto: <span class="total-impuesto">$00.000.000</span></p>
+                    <hr class="w-50 dotted">
+                    <p class="font-weight-bold">Total: <span id="totalOrden">$00.000.000</span></p>
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center flex-wrap">
+                <div>
+                  <a class="btn btn-secondary my-auto" href="#">
+                    Imprimir
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <path fill="#fff" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle my-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <path fill="#fff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                    Exportar Como
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li>
+                      <a class="dropdown-item font-weight-bold" href="#">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                          <path fill="#fff" d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                        </svg>
+                        PDF
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item font-weight-bold" href="#">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                          <path fill="#fff" d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM155.7 250.2L192 302.1l36.3-51.9c7.6-10.9 22.6-13.5 33.4-5.9s13.5 22.6 5.9 33.4L221.3 344l46.4 66.2c7.6 10.9 5 25.8-5.9 33.4s-25.8 5-33.4-5.9L192 385.8l-36.3 51.9c-7.6 10.9-22.6 13.5-33.4 5.9s-13.5-22.6-5.9-33.4L162.7 344l-46.4-66.2c-7.6-10.9-5-25.8 5.9-33.4s25.8-5 33.4 5.9z"/>
+                        </svg>
+                        Excel
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-secondary my-auto" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEliminarCotización" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEliminarCotizaciónLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalEliminarCotizaciónLabel">Antes de Eliminar</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Se eliminará el registro de la cotización actual, en caso de no estar seguro cierre esta ventana.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:compra' %}">Eliminar</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination d-flex justify-content-center flex-wrap ">
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+              <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+{% endblock content %}
+    

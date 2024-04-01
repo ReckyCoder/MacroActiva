@@ -14,6 +14,7 @@ urlpatterns = [
     path('contrato', views.contrato, name='contrato'),
     path('certificaciones', views.certificaciones, name='certificaciones'),
     path('proveedores', views.proveedores, name='proveedores'),
+    path('licitaciones', views.licitaciones, name='licitaciones'),
     path('proyectos', views.proyectos, name='proyectos'),
     path('kpi', views.kpi, name='kpi')
 

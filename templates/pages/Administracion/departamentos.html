@@ -1,0 +1,1005 @@
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+
+{% block content %}
+<div class="container-fluid mt-4">
+  <style>
+    .clamp-2-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+    }
+
+    .col {
+      display: inline-block;
+      vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
+    }
+    .card-title {
+        font-size: clamp(1rem, calc(1.25rem + 0.6vw), 1.5rem);
+    }
+    .card-body {
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 767.98px) {
+        .card-title {
+            font-size: clamp(1rem, 5vw, 2rem);
+        }
+    }
+  </style>
+  <div class="row align-items-end">
+    <div class="col text-left">
+      <h3>Departamentos</h3>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col text-end justify-content-end">
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Editar</button>
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
+    </div>
+  <div class="row">
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Agregar Nuevo Departamento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- formulario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Departamento</div>
+              <div style="height: 20px;"></div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="" class="form-label">NOMBRE</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="gerenteDepartamento" class="form-label">GERENTE</label>
+                  <input type="text" class="form-control" id="gerenteDepartamento">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="areaDepartamento" class="form-label">AREA</label>
+                  <select id="areaDepartamento" class="form-select">
+                    <option value="Select">Seleccionar</option>
+                    <option id="Doe" value="Doe">Doe</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="idDepartamento" class="form-label">ID</label>
+                  <input type="text" class="form-control" id="idDepartamento">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label for="descripcionDepartamento" class="form-label">DESCRIPCIÓN</label>
+                  <textarea class="form-control" id="descripcionDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="funcionesDepartamento" class="form-label">FUNCIONES</label>
+                  <textarea class="form-control" id="funcionesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="responsabilidadesDepartamento" class="form-label">RESPONSABILIDADES</label>
+                  <textarea class="form-control" id="responsabilidadesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="mb-3">
+                <label for="iconoDepartamento" class="form-label">Icono</label>
+                <div class="d-flex align-items-center">
+                  <img id="iconoDepartamentoPreview" src="" alt="Generic PNG" style="height: 32px; width: auto;">
+                  <input type="file" id="iconoDepartamentoInput" style="display: none;">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <button type="button" class="btn btn-dark ms-2">Subir archivo</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal principal con lista de Departamentos -->
+  <div class="modal fade" id="modalPrincipal" tabindex="-1" aria-labelledby="modalPrincipalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalPrincipalLabel">Editar Departamento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal principal -->
+          <div class="label">Departamentos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li id="departamento1" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Ventas
+                </div>
+              </div>
+            </li>
+            <li id="departamento2" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Finanzas
+                </div>
+              </div>
+            </li>
+            <li id="departamento3" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Producción
+                </div>
+              </div>
+            </li>
+            <li id="departamento4"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  RR.HH
+                </div>
+              </div>
+            </li>
+            <li id="departamento5"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Compras
+                </div>
+              </div>
+            </li>
+            <li id="departamento6" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Seguridad
+                </div>
+              </div>
+            </li>
+            <li id="departamento7" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Marketing
+                </div>
+              </div>
+            </li>
+            <li id="departamento8" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Lógistica
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal secundario para la edición de Departamentos -->
+  <div class="modal fade" id="modalSecundario" tabindex="-1" aria-labelledby="modalSecundarioLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalSecundarioLabel">Editar Departamento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal secundario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Departamento</div>
+              <div style="height: 20px;"></div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="nombreDepartamento" class="form-label">NOMBRE</label>
+                  <input type="text" class="form-control" id="nombreDepartamento" name="nombreDepartamento">
+                </div>
+                <div class="mb-3">
+                  <label for="gerenteDepartamento" class="form-label">GERENTE</label>
+                  <input type="text" class="form-control" id="gerenteDepartamento">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="areaDepartamento" class="form-label">AREA</label>
+                  <select id="areaDepartamento" class="form-select">
+                    <option value="Select">Seleccionar</option>
+                    <option id="Doe" value="Doe">Doe</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="idDepartamento" class="form-label">ID</label>
+                  <input type="text" class="form-control" id="idDepartamento" value="Doe">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label for="descripcionDepartamento" class="form-label">DESCRIPCIÓN</label>
+                  <textarea class="form-control" id="descripcionDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="funcionesDepartamento" class="form-label">FUNCIONES</label>
+                  <textarea class="form-control" id="funcionesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="responsabilidadesDepartamento" class="form-label">RESPONSABILIDADES</label>
+                  <textarea class="form-control" id="responsabilidadesDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="mb-3">
+                <label for="iconoDepartamento" class="form-label">Icono</label>
+                <div class="d-flex align-items-center">
+                  <img id="iconoDepartamentoPreview" src="" alt="Generic PNG" style="height: 32px; width: auto;">
+                  <input type="file" id="iconoDepartamentoInput" style="display: none;">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3">
+                <button type="button" class="btn btn-dark ms-2">Subir archivo</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Eliminación de lista de departamentos -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalEliminarLabel">Eliminar Departamento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal Eliminar -->
+          <div class="label">Departamentos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Ventas">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Ventas
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Finanzas">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Finanzas
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Producción">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Producción
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="RR.HH">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  RR.HH
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Compras">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Compras
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Seguridad">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Seguridad
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Marketing">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Marketing
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Lógistica">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Lógistica
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-6 mb-3">
+      <a href="{% url 'app_administracion:departamento' %}" class="card-link">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
+            <div class="fs-5 w-100">
+              <h5 class="card-title">Ventas</h5>
+              <div class="fs-6 text-nowrap">Nr. Trabajadores: 10</div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <a href="URL_DE_LA_NUEVA_VISTA" class="card-link">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
+          <div class="fs-5 w-100">
+              <h5 class="card-title">Finanzas</h5>
+              <div class="fs-6 text-nowrap">Nr. Trabajadores: 10</div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <a href="URL_DE_LA_NUEVA_VISTA" class="card-link">
+      <div class="card border shadow-xs mb-4">
+          <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
+              <div class="fs-5 w-100">
+            <h5 class="card-title">Producción</h5>
+            <div class="fs-6 text-nowrap">Nr. Trabajadores: 10</div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <a href="URL_DE_LA_NUEVA_VISTA" class="card-link">
+      <div class="card border shadow-xs mb-4">
+          <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
+              <div class="fs-5 w-100">
+            <h5 class="card-title">RR.HH</h5>
+            <div class="fs-6 text-nowrap">Nr. Trabajadores: 10</div>
+          </div>         
+        </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <a href="URL_DE_LA_NUEVA_VISTA" class="card-link">
+      <div class="card border shadow-xs mb-4">
+          <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
+              <div class="fs-5 w-100">
+            <h5 class="card-title">Compras</h5>
+            <div class="fs-6 text-nowrap">Nr. Trabajadores: 10</div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <a href="URL_DE_LA_NUEVA_VISTA" class="card-link">
+      <div class="card border shadow-xs mb-4">
+          <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
+              <div class="fs-5 w-100">
+            <h5 class="card-title">Seguridad</h5>
+            <div class="fs-6 text-nowrap">Nr. Trabajadores: 10</div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <a href="URL_DE_LA_NUEVA_VISTA" class="card-link">
+      <div class="card border shadow-xs mb-4">
+          <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
+              <div class="fs-5 w-100">
+            <h5 class="card-title">Marketing</h5>
+            <div class="fs-6 text-nowrap">Nr. Trabajadores: 10</div>
+          </div>         
+        </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-md-3 col-sm-6 mb-3">
+      <a href="URL_DE_LA_NUEVA_VISTA" class="card-link">
+      <div class="card border shadow-xs mb-4">
+          <div class="card-body text-start p-3 d-flex flex-wrap justify-content-between align-items-center text-start text-nowrap">
+              <div class="fs-5 w-100">
+                  <h5 class="card-title custom-title">Lógistica</h5>
+              </div>
+              <div class="fs-6 text-nowrap">Nr. Trabajadores: 10</div>
+          </div>
+      </div>
+      </a>
+    </div>
+    <!-- Agrega otras columnas para otros departamentos -->
+  </div>
+  <div class="row my-4">
+    <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
+      <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+          <h6 class="font-weight-semibold text-lg mb-0">Saldo Deparamentos en el tiempo</h6>
+          <p class="text-sm">Detalles de balance.</p>
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Basic radio toggle button group"
+          >
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradio"
+              id="btnradio1"
+              autocomplete="off"
+              checked
+            />
+            <label class="btn btn-white px-3 mb-0" for="btnradio1"
+              >12 Meses</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradio"
+              id="btnradio2"
+              autocomplete="off"
+            />
+            <label class="btn btn-white px-3 mb-0" for="btnradio2"
+              >30 días</label
+            >
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradio"
+              id="btnradio3"
+              autocomplete="off"
+            />
+            <label class="btn btn-white px-3 mb-0" for="btnradio3"
+              >7 días</label
+            >
+          </div>
+        </div>
+        <div class="card-body py-3">
+          <div class="chart mb-2">
+            <canvas id="chart-bars" class="chart-canvas" height="240"></canvas>
+          </div>
+          <div class="ms-auto d-flex">
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+              <span class="btn-inner--icon">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                  </svg>
+              </span>
+              <span class="btn-inner--text">Imprimir</span>
+            </button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+              <span class="btn-inner--icon">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                  </svg>
+              </span>
+              <span class="btn-inner--text">Exportar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
+      <div class="card shadow-xs border">
+        <div class="card-header pb-0">
+          <div class="d-sm-flex align-items-center mb-3">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Saldo General Deparamentos</h6>
+              <p class="text-sm mb-sm-0 mb-2">Detalles de balance.</p>
+            </div>
+            <div class="ms-auto d-flex">
+              <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                    </svg>
+                </span>
+                <span class="btn-inner--text">Imprimir</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+                <span class="btn-inner--icon">
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                    </svg>
+                </span>
+                <span class="btn-inner--text">Exportar</span>
+              </button>
+            </div>
+          </div>
+          <div class="d-sm-flex align-items-center">
+            <h3 class="mb-0 font-weight-semibold">$87,982.80</h3>
+            <span class="badge badge-sm border border-success text-success bg-success border-radius-sm ms-sm-3 px-2">
+              <svg width="9" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.46967 4.46967C0.176777 4.76256 0.176777 5.23744 0.46967 5.53033C0.762563 5.82322 1.23744 5.82322 1.53033 5.53033L0.46967 4.46967ZM5.53033 1.53033C5.82322 1.23744 5.82322 0.762563 5.53033 0.46967C5.23744 0.176777 4.76256 0.176777 4.46967 0.46967L5.53033 1.53033ZM5.53033 0.46967C5.23744 0.176777 4.76256 0.176777 4.46967 0.46967C4.17678 0.762563 4.17678 1.23744 4.46967 1.53033L5.53033 0.46967ZM8.46967 5.53033C8.76256 5.82322 9.23744 5.82322 9.53033 5.53033C9.82322 5.23744 9.82322 4.76256 9.53033 4.46967L8.46967 5.53033ZM1.53033 5.53033L5.53033 1.53033L4.46967 0.46967L0.46967 4.46967L1.53033 5.53033ZM4.46967 1.53033L8.46967 5.53033L9.53033 4.46967L5.53033 0.46967L4.46967 1.53033Z" fill="#67C23A"></path>
+              </svg>
+              10.5%
+            </span>
+          </div>
+        </div>
+        <div class="card-body py-5">
+          <div class="chart mt-n6">
+            <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <h2>Registro de Modificaciones</h2>
+      <div class="card shadow-xs border">
+        <div class="card-body px-0 py-0">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center justify-content-center mb-0">
+              <thead style="background-color: #0f172a;">
+              <tr class="text-center" style="color: white;">
+                <th>Código</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Detalles</th>
+              </tr>
+            </thead>
+            <tbody class="text-center" style="vertical-align: middle;">
+              <!-- Agrega filas de tabla para cada registro de modificación -->
+              <tr>
+                <td>1587687</td>
+                <td>19 May, 2021: 10:10 AM</td>
+                <td>Usuario Admin011</td>
+                <td>Agregado registro XXXX</td>
+              </tr>
+              <tr>
+                <td>1587687</td>
+                <td>19 May, 2021: 10:10 AM</td>
+                <td>Usuario Admin011</td>
+                <td>Agregado registro XXXX</td>
+              </tr>
+              <tr>
+                <td>1587687</td>
+                <td>19 May, 2021: 10:10 AM</td>
+                <td>Usuario Admin011</td>
+                <td>Agregado registro XXXX</td>
+              </tr>
+              <!-- Otras filas de tabla -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'includes/footer.html' %}
+{% endblock content %} 
+{% block extrascripts %}
+
+<script src="{% static 'assets/js/plugins/chartjs.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/swiper-bundle.min.js' %}" type="text/javascript"></script>
+<script>
+  if (document.getElementsByClassName("mySwiper")) {
+    var swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+      initialSlide: 1,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  }
+
+  var ctx = document.getElementById("chart-bars").getContext("2d");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      datasets: [
+        {
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderSkipped: false,
+          backgroundColor: "#2ca8ff",
+          data: [450, 200, 100, 220, 500, 100, 400, 230, 500, 200],
+          maxBarThickness: 6,
+        },
+        {
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderSkipped: false,
+          backgroundColor: "#7c3aed",
+          data: [200, 300, 200, 420, 400, 200, 300, 430, 400, 300],
+          maxBarThickness: 6,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          backgroundColor: "#fff",
+          titleColor: "#1e293b",
+          bodyColor: "#1e293b",
+          borderColor: "#e9ecef",
+          borderWidth: 1,
+          usePointStyle: true,
+        },
+      },
+      interaction: {
+        intersect: false,
+        mode: "index",
+      },
+      scales: {
+        y: {
+          stacked: true,
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [4, 4],
+          },
+          ticks: {
+            beginAtZero: true,
+            padding: 10,
+            font: {
+              size: 12,
+              family: "Noto Sans",
+              style: "normal",
+              lineHeight: 2,
+            },
+            color: "#64748B",
+          },
+        },
+        x: {
+          stacked: true,
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+          },
+          ticks: {
+            font: {
+              size: 12,
+              family: "Noto Sans",
+              style: "normal",
+              lineHeight: 2,
+            },
+            color: "#64748B",
+          },
+        },
+      },
+    },
+  });
+
+  var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+  var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+  gradientStroke1.addColorStop(1, "rgba(45,168,255,0.2)");
+  gradientStroke1.addColorStop(0.2, "rgba(45,168,255,0.0)");
+  gradientStroke1.addColorStop(0, "rgba(45,168,255,0)"); //blue colors
+
+  var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+  gradientStroke2.addColorStop(1, "rgba(119,77,211,0.4)");
+  gradientStroke2.addColorStop(0.7, "rgba(119,77,211,0.1)");
+  gradientStroke2.addColorStop(0, "rgba(119,77,211,0)"); //purple colors
+
+  new Chart(ctx2, {
+    plugins: [
+      {
+        beforeInit(chart) {
+          const originalFit = chart.legend.fit;
+          chart.legend.fit = function fit() {
+            originalFit.bind(chart.legend)();
+            this.height += 40;
+          };
+        },
+      },
+    ],
+    type: "line",
+    data: {
+      labels: [
+        "Aug 18",
+        "Aug 19",
+        "Aug 20",
+        "Aug 21",
+        "Aug 22",
+        "Aug 23",
+        "Aug 24",
+        "Aug 25",
+        "Aug 26",
+        "Aug 27",
+        "Aug 28",
+        "Aug 29",
+        "Aug 30",
+        "Aug 31",
+        "Sept 01",
+        "Sept 02",
+        "Sept 03",
+        "Aug 22",
+        "Sept 04",
+        "Sept 05",
+        "Sept 06",
+        "Sept 07",
+        "Sept 08",
+        "Sept 09",
+      ],
+      datasets: [
+        {
+          label: "Volume",
+          tension: 0,
+          borderWidth: 2,
+          pointRadius: 3,
+          borderColor: "#2ca8ff",
+          pointBorderColor: "#2ca8ff",
+          pointBackgroundColor: "#2ca8ff",
+          backgroundColor: gradientStroke1,
+          fill: true,
+          data: [
+            2828, 1291, 3360, 3223, 1630, 980, 2059, 3092, 1831, 1842, 1902,
+            1478, 1123, 2444, 2636, 2593, 2885, 1764, 898, 1356, 2573, 3382,
+            2858, 4228,
+          ],
+          maxBarThickness: 6,
+        },
+        {
+          label: "Trade",
+          tension: 0,
+          borderWidth: 2,
+          pointRadius: 3,
+          borderColor: "#832bf9",
+          pointBorderColor: "#832bf9",
+          pointBackgroundColor: "#832bf9",
+          backgroundColor: gradientStroke2,
+          fill: true,
+          data: [
+            2797, 2182, 1069, 2098, 3309, 3881, 2059, 3239, 6215, 2185, 2115,
+            5430, 4648, 2444, 2161, 3018, 1153, 1068, 2192, 1152, 2129, 1396,
+            2067, 1215, 712, 2462, 1669, 2360, 2787, 861,
+          ],
+          maxBarThickness: 6,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: "top",
+          align: "end",
+          labels: {
+            boxWidth: 6,
+            boxHeight: 6,
+            padding: 20,
+            pointStyle: "circle",
+            borderRadius: 50,
+            usePointStyle: true,
+            font: {
+              weight: 400,
+            },
+          },
+        },
+        tooltip: {
+          backgroundColor: "#fff",
+          titleColor: "#1e293b",
+          bodyColor: "#1e293b",
+          borderColor: "#e9ecef",
+          borderWidth: 1,
+          pointRadius: 2,
+          usePointStyle: true,
+          boxWidth: 8,
+        },
+      },
+      interaction: {
+        intersect: false,
+        mode: "index",
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [4, 4],
+          },
+          ticks: {
+            callback: function (value, index, ticks) {
+              return parseInt(value).toLocaleString() + " EUR";
+            },
+            display: true,
+            padding: 10,
+            color: "#b2b9bf",
+            font: {
+              size: 12,
+              family: "Noto Sans",
+              style: "normal",
+              lineHeight: 2,
+            },
+            color: "#64748B",
+          },
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            borderDash: [4, 4],
+          },
+          ticks: {
+            display: true,
+            color: "#b2b9bf",
+            padding: 20,
+            font: {
+              size: 12,
+              family: "Noto Sans",
+              style: "normal",
+              lineHeight: 2,
+            },
+            color: "#64748B",
+          },
+        },
+      },
+    },
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtener todos los elementos de la lista de departamentos
+    var departamentos = document.querySelectorAll("#modalPrincipal .list-group-item");
+
+    // Iterar sobre cada elemento de la lista
+    departamentos.forEach(function (departamento) {
+      // Agregar un event listener para el evento de clic
+      departamento.addEventListener("click", function () {
+        // Obtener el nombre del producto haciendo referencia a su elemento hijo
+        var nombreDepartamento = this.querySelector(".col-auto:nth-child(2)").innerText.trim();
+
+        // Imprimir el nombre del departamento en la consola
+        console.log("Nombre del departamento:", nombreDepartamento);
+
+        // Actualizar el campo de nombre del departamento en el modal secundario
+        document.getElementById("nombreDepartamento").value = nombreDepartamento;
+      });
+    });
+  });
+
+  // Obtener todos los elementos de la lista
+  var listaDepartamentos = document.querySelectorAll('#modalEliminar .list-group-item');
+
+  // Iterar sobre cada elemento de la lista y agregar un evento de clic
+  listaDepartamentos.forEach(function(departamento) {
+    departamento.addEventListener('click', function() {
+      // Obtener el ID y el nombre del producto seleccionado
+      var id = departamento.getAttribute('data-id');
+      var nombre = departamento.getAttribute('data-nombre');
+
+      // Mostrar un cuadro de diálogo de confirmación
+      var confirmacion = confirm("¿Estás seguro de que deseas eliminar el Departamento " + nombre + "?");
+
+      // Si el usuario confirma la eliminación
+      if (confirmacion) {
+        // Aquí puedes agregar la lógica para eliminar el producto
+        alert("El Departamento " + nombre + " ha sido eliminado.");
+      }
+    });
+  });
+
+</script>
+
+{% endblock extrascripts %}

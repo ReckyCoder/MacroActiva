@@ -1,0 +1,80 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+    {% block header %}
+    <header>
+        <h3 class="text-center my-5">Actualizar Impuesto</h3>
+    </header>
+
+    {% endblock header %}
+
+    <div class="container my-5">
+        <a class="btn bg-dark rounded" href="{% url 'app_finanzas:impuestos' %}">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="#fff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+            </svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="card w-lg-50 mx-lg-auto">
+            <div class="card-body">
+                <form action="">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="bg-dark rounded">
+                                <p class="ps-3 py-1 text-light font-weight-bold">Datos del Impuesto:</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="impuesto" class="form-label">Nombre del Impuesto:</label>
+                                <input id="impuesto" class="form-control" type="text" placeholder="Nombre ...">
+                            </div>
+                            <div class="mb-3">
+                                <label  class="form-label" for="tipoImpuesto">Tipo de Impuesto:</label>
+                                <select class="form-select" name="" id="tipoImpuesto">
+                                    <option default>Seleccione el tipo</option>
+                                    <option value="1">Compra</option>
+                                    <option value="2">Venta</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="valor" class="form-label">Valor del Impuesto:</label>
+                                <input id="valor" class="form-control" type="text" placeholder="0.19 ...">
+                            </div>
+                            <div class="mb-3">
+                                <label for="codigo" class="form-label">Código:</label>
+                                <input id="codigo" class="form-control" type="text" placeholder="123 ...">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="dotted">
+                    <div class="d-flex justify-content-center mt-5 flex-wrap">
+                        <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#modalActualizarImpuesto">Actualizar Impuesto</button>
+                        <a type="button" class="btn btn-secondary mx-1" href="{% url 'app_finanzas:impuestos' %}">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+          </div>
+    </div>
+
+    <div class="modal fade" id="modalActualizarImpuesto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalActualizarImpuestoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalActualizarImpuestoLabel">Por Seguridad</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Los datos ingresados actualizaran el impuesto actual, en caso de no estar seguro cierre esta ventana.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <a type="button" class="btn btn-primary" href="{% url 'app_finanzas:impuestos' %}">Actualizar Impuesto</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock content %}
+    

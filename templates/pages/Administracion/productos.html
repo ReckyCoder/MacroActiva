@@ -1,0 +1,800 @@
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+
+{% block content %}
+<div class="container-fluid mt-4">
+<style>
+  .clamp-2-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+  }
+
+  .col {
+    display: inline-block;
+    vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
+  }
+  .active a {
+    color: rgb(1, 1, 39); /* Color activo para el título seleccionado */
+    text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
+  .inactive a {
+      color: gray; /* Color inactivo para el título no seleccionado */
+      text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
+</style>
+  <!-- Modal Agregar Producto -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Agregar Nuevo Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- formulario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Producto</div>
+              <div style="height: 20px;"></div>
+
+              <div class="mb-3">
+                <label for="nombreDepartamento" class="form-label">Código Identificador</label>
+                <input type="text" class="form-control" id="nombreDepartamento">
+              </div>
+              <div class="mb-3">
+                <label for="nombreDepartamento" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreDepartamento">
+              </div>
+              <div class="mb-3">
+                <label for="areaDepartamento" class="form-label">Categoría</label>
+                <select id="areaDepartamento" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option id="Doe" value="Doe">Mobiliario</option>
+                  <option id="Doe" value="Doe">Equipamiento para camping</option>
+                  <option id="Doe" value="Doe">Electrodoméstico</option>
+                  <option id="Doe" value="Doe">Bienestar Personal</option>
+                  <option id="Doe" value="Doe">Equipamiento deportivo</option>
+                  <option id="Doe" value="Doe">Accesorios de natación</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="areaDepartamento" class="form-label">Estado para Producción</label>
+                <select id="areaDepartamento" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option id="Doe" value="Doe">Disponible</option>
+                  <option id="Doe" value="Doe">No Disponible</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label for="descripcionDepartamento" class="form-label">DESCRIPCIÓN</label>
+                  <textarea class="form-control" id="descripcionDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal principal con lista de productos -->
+  <div class="modal fade" id="modalPrincipal" tabindex="-1" aria-labelledby="modalPrincipalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalPrincipalLabel">Editar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal principal -->
+          <div class="label">Productos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li id="producto1" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  ComfortSeat Deluxe
+                </div>
+              </div>
+            </li>
+            <li id="producto2" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  TrailBlaze 3000
+                </div>
+              </div>
+            </li>
+            <li id="producto3" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  FreshBrew Pro
+                </div>
+              </div>
+            </li>
+            <li id="producto4"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  ZenVibe Essential
+                </div>
+              </div>
+            </li>
+            <li id="producto5"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  SwiftClimb 500
+                </div>
+              </div>
+            </li>
+            <li id="producto6" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  AquaFit Pro
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal secundario para la edición de productos -->
+  <div class="modal fade" id="modalSecundario" tabindex="-1" aria-labelledby="modalSecundarioLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalSecundarioLabel">Editar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal secundario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Producto</div>
+              <div style="height: 20px;"></div>
+
+              <div class="mb-3">
+                <label for="nombreDepartamento" class="form-label">Código Identificador</label>
+                <input type="text" class="form-control" id="#">
+              </div>
+              <div class="mb-3">
+                <label for="nombreDepartamento" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreProducto" name="nombreProducto">
+              </div>
+              <div class="mb-3">
+                <label for="categoriaProducto" class="form-label">Categoría</label>
+                <select id="categoriaProducto" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option id="Doe" value="Doe">Mobiliario</option>
+                  <option id="Doe" value="Doe">Equipamiento para camping</option>
+                  <option id="Doe" value="Doe">Electrodoméstico</option>
+                  <option id="Doe" value="Doe">Bienestar Personal</option>
+                  <option id="Doe" value="Doe">Equipamiento deportivo</option>
+                  <option id="Doe" value="Doe">Accesorios de natación</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="estadoProducto" class="form-label">Estado para Producción</label>
+                <select id="estadoProducto" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option id="Doe" value="Doe">Disponible</option>
+                  <option id="Doe" value="Doe">No Disponible</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label for="descripcionDepartamento" class="form-label">DESCRIPCIÓN</label>
+                  <textarea class="form-control" id="descripcionDepartamento" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Eliminación de lista de productos -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalEliminarLabel">Eliminar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal Eliminar -->
+          <div class="label">Productos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="ComfortSeat Deluxe">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  ComfortSeat Deluxe
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="TrailBlaze 3000">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  TrailBlaze 3000
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="FreshBrew Pro">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  FreshBrew Pro
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="ZenVibe Essential">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  ZenVibe Essential
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="SwiftClimb 500">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  SwiftClimb 500
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="AquaFit Pro">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  AquaFit Pro
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row align-items-end">
+    <div id="productos-col" class="col-auto text-left">
+      <h3 class="title active"><a href="{% url 'app_administracion:productos' %}" class="title-link">Productos</a></h3>
+    </div>
+    <div class="col-auto text-left">
+      <h3>/</h3>
+    </div>
+    <div id="ordenes-col" class="col-auto text-left">
+      <h3 class="title inactive"><a href="{% url 'app_administracion:gestionproductos' %}">Gestión de Productos</a></h3>
+    </div>
+  </div>
+  <hr/>
+  <div class="row">
+    <div class="col-md-3">
+      <input type="text" class="form-control" placeholder="Buscar...">
+    </div>
+    <div class="col-md-3 text-start">
+        <button type="button" class="btn btn-dark">Buscar</button>
+        <button type="button" class="btn btn-dark">Filtrar</button>
+    </div>
+    <div class="col-md-6 text-end justify-content-end">
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Editar</button>
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+        <div class="card border shadow-xs mb-4">
+          <div class="card-header bg-dark d-flex align-items-center">
+              <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Acciones
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path fill="#fff" d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"/>
+                          </svg>
+                          Producir
+                      </a>
+                  </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                          <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path fill="#fff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                          </svg>
+                          Información
+                      </a>
+                  </li>
+                  </ul>
+              </div>
+              <div class="ms-3 d-inline-block">
+                <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Stock reserva: 
+                  <span class="text-white fw-normal fw-sm-bold fs-6 fs-sm-5">15</span></p>
+              </div>
+              
+              <div class="ms-auto d-inline-block">
+                  <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Disponible</p>
+              </div>
+
+          </div>
+          <div class="card-body text-start p-3 w-100">
+              <div class="d-flex align-items-center mb-3">
+                  <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                  <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                      <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z"></path>
+                      <path fill-rule="evenodd" d="M248 48V256h48V58.7c23.9 13.8 40 39.7 40 69.3V256h48V128C384 57.3 326.7 0 256 0H192C121.3 0 64 57.3 64 128V256h48V128c0-29.6 16.1-55.5 40-69.3V256h48V48h48zM48 288c-12.1 0-23.2 6.8-28.6 17.7l-16 32c-5 9.9-4.4 21.7 1.4 31.1S20.9 384 32 384l0 96c0 17.7 14.3 32 32 32s32-14.3 32-32V384H352v96c0 17.7 14.3 32 32 32s32-14.3 32-32V384c11.1 0 21.4-5.7 27.2-15.2s6.4-21.2 1.4-31.1l-16-32C423.2 294.8 412.1 288 400 288H48z" clip-rule="evenodd"></path>
+                  </svg>
+                  </div>
+                  <p class="h3 text-secondary mb-1 ms-3">ComfortSeat Deluxe</p>
+              </div>
+              <div class="row">
+              <div class="col-12">
+                  <div class="w-100">
+                  <p class="mb-2 font-weight-bold text-md h4">Categoria:<span class="h4 text-secondary mb-1 ms-3">Mobiliario</span></p>
+                  </div>
+              </div>
+              <div class="col-12">
+                  <div class="w-100">
+                  <p class="mb-2 font-weight-bold text-sm h4 clamp-2-lines">
+                    La ComfortSeat Deluxe es la silla perfecta para tu espacio de trabajo o estudio. 
+                    Con un diseño ergonómico y acolchado de alta calidad, ofrece comodidad y soporte durante largas horas de uso. 
+                    Su estructura resistente y ajustable permite personalizarla según tus preferencias, 
+                    mientras que su estilo elegante la convierte en una adición ideal para cualquier ambiente. Experimenta el máximo confort con la ComfortSeat Deluxe.
+                  </p>
+                  </div>
+              </div>
+              </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header bg-danger d-flex align-items-center">
+            <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Acciones
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li style="text-decoration: line-through;">
+                    <a class="dropdown-item" href="#">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#fff" d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"/>
+                        </svg>
+                        Producir
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#fff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                        </svg>
+                        Información
+                    </a>
+                </li>
+                </ul>
+            </div>
+            <div class="ms-3 d-inline-block">
+              <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Stock reserva: 
+                <span class="text-white fw-normal fw-sm-bold fs-6 fs-sm-5">0</span></p>
+            </div>
+            
+            <div class="ms-auto d-inline-block">
+                <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">No Disponible</p>
+            </div>
+
+        </div>
+        <div class="card-body text-start p-3 w-100">
+            <div class="d-flex align-items-center mb-3">
+                <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor">
+                    <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z"></path>
+                    <path fill-rule="evenodd" d="M377 52c11-13.8 8.8-33.9-5-45s-33.9-8.8-45 5L288 60.8 249 12c-11-13.8-31.2-16-45-5s-16 31.2-5 45l48 60L12.3 405.4C4.3 415.4 0 427.7 0 440.4V464c0 26.5 21.5 48 48 48H288 528c26.5 0 48-21.5 48-48V440.4c0-12.7-4.3-25.1-12.3-35L329 112l48-60zM288 448H168.5L288 291.7 407.5 448H288z" clip-rule="evenodd"></path>
+                </svg>
+                </div>
+                <p class="h3 text-secondary mb-1 ms-3">TrailBlaze 3000</p>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                  <div class="w-100">
+                  <p class="mb-2 font-weight-bold text-md h4">Categoria:<span class="h4 text-secondary mb-1 ms-3">Equipamiento para camping</span></p>
+                  </div>
+              </div>
+              <div class="col-12">
+                  <div class="w-100">
+                  <p class="mb-2 font-weight-bold text-sm h4 clamp-2-lines">
+                    El TrailBlaze 3000 es la tienda de campaña ideal para aventuras al aire libre. 
+                    Con capacidad para hasta cuatro personas, esta tienda resistente al agua y fácil de montar te ofrece protección y comodidad en cualquier entorno natural. 
+                    ¡Prepárate para explorar con estilo y seguridad!
+                  </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header bg-dark d-flex align-items-center">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Acciones
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#fff" d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"/>
+                        </svg>
+                        Producir
+                    </a>
+                </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#fff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                        </svg>
+                        Información
+                    </a>
+                </li>
+                </ul>
+            </div>
+            <div class="ms-3 d-inline-block">
+              <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Stock reserva: 
+                <span class="text-white fw-normal fw-sm-bold fs-6 fs-sm-5">0</span></p>
+            </div>
+            
+            <div class="ms-auto d-inline-block">
+                <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Disponible</p>
+            </div>
+
+        </div>
+        <div class="card-body text-start p-3 w-100">
+            <div class="d-flex align-items-center mb-3">
+                <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor">
+                    <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z"></path>
+                    <path fill-rule="evenodd" d="M224 352L196.8 52.3C194.2 24.2 216.3 0 244.6 0H534.1c21.1 0 36.4 20.1 30.9 40.4L558.5 64H400c-8.8 0-16 7.2-16 16s7.2 16 16 16H549.8l-17.5 64H400c-8.8 0-16 7.2-16 16s7.2 16 16 16H523.6l-17.5 64H400c-8.8 0-16 7.2-16 16s7.2 16 16 16h97.5L480 352H224zm-16 32H496c26.5 0 48 21.5 48 48v32c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V432c0-26.5 21.5-48 48-48zm144 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM147.5 30.7c10.8 6.7 15.3 21 10.6 33.4l-22 57.8c-4.2 10.9-14.5 17.6-25.3 16.4l-33.3-3.6c-13.6 42.2-13.6 88.4 0 130.7l33.3-3.6c10.9-1.2 21.2 5.5 25.3 16.4l22 57.8c4.7 12.4 .2 26.7-10.6 33.4l-44 27.2c-9.7 6-21.9 4.2-29.8-4.3C-24.6 286-24.6 114 73.7 7.8C81.6-.7 93.8-2.5 103.5 3.5l44 27.2z" clip-rule="evenodd"></path>
+                </svg>
+                </div>
+                <p class="h3 text-secondary mb-1 ms-3">FreshBrew Pro</p>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="w-100">
+                <p class="mb-2 font-weight-bold text-md h4">Categoria:<span class="h4 text-secondary mb-1 ms-3">Electrodomésticos</span></p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="w-100">
+                <p class="mb-2 font-weight-bold text-sm h4 clamp-2-lines">
+                  FreshBrew Pro es la cafetera de gama alta que necesitas en tu hogar. 
+                  Con su tecnología de infusión avanzada y diseño elegante, prepara café fresco y delicioso con solo presionar un botón. 
+                  ¡Disfruta de la perfección en cada taza con FreshBrew Pro!
+                </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header bg-danger d-flex align-items-center">
+            <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Acciones
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li style="text-decoration: line-through;">
+                    <a class="dropdown-item" href="#">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#fff" d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"/>
+                        </svg>
+                        Producir
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#fff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                        </svg>
+                        Información
+                    </a>
+                </li>
+                </ul>
+            </div>
+            <div class="ms-3 d-inline-block">
+              <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Stock reserva: 
+                <span class="text-white fw-normal fw-sm-bold fs-6 fs-sm-5">0</span></p>
+            </div>
+            
+            <div class="ms-auto d-inline-block">
+                <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">No Disponible</p>
+            </div>
+
+        </div>
+        <div class="card-body text-start p-3 w-100">
+          <div class="d-flex align-items-center mb-3">
+              <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+              <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor">
+                  <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z"></path>
+                  <path fill-rule="evenodd" d="M183.1 235.3c33.7 20.7 62.9 48.1 85.8 80.5c7 9.9 13.4 20.3 19.1 31c5.7-10.8 12.1-21.1 19.1-31c22.9-32.4 52.1-59.8 85.8-80.5C437.6 207.8 490.1 192 546 192h9.9c11.1 0 20.1 9 20.1 20.1C576 360.1 456.1 480 308.1 480H288 267.9C119.9 480 0 360.1 0 212.1C0 201 9 192 20.1 192H30c55.9 0 108.4 15.8 153.1 43.3zM301.5 37.6c15.7 16.9 61.1 71.8 84.4 164.6c-38 21.6-71.4 50.8-97.9 85.6c-26.5-34.8-59.9-63.9-97.9-85.6c23.2-92.8 68.6-147.7 84.4-164.6C278 33.9 282.9 32 288 32s10 1.9 13.5 5.6z" clip-rule="evenodd"></path>
+              </svg>
+              </div>
+              <p class="h3 text-secondary mb-1 ms-3">ZenVibe Essential</p>
+          </div>
+          <div class="row">
+            <div class="col-12">
+                <div class="w-100">
+                <p class="mb-2 font-weight-bold text-md h4">Categoria:<span class="h4 text-secondary mb-1 ms-3">Bienestar personal</span></p>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="w-100">
+                <p class="mb-2 font-weight-bold text-sm h4 clamp-2-lines">
+                  ZenVibe Essential es tu compañero perfecto para la relajación y el alivio del estrés. 
+                  Con sus funciones de masaje y aromaterapia, este dispositivo compacto te ayuda a encontrar la calma y el equilibrio en medio de la rutina diaria. 
+                  ¡Regálate momentos de paz con ZenVibe Essential!
+                </p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header bg-dark d-flex align-items-center">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Acciones
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="#">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="#fff" d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"/>
+                    </svg>
+                    Producir
+                </a>
+            </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="#fff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                    </svg>
+                    Información
+                </a>
+            </li>
+            </ul>
+          </div>
+          <div class="ms-3 d-inline-block">
+            <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Stock reserva: 
+              <span class="text-white fw-normal fw-sm-bold fs-6 fs-sm-5">60</span></p>
+          </div>
+          
+          <div class="ms-auto d-inline-block">
+              <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Disponible</p>
+          </div>
+
+        </div>
+        <div class="card-body text-start p-3 w-100">
+          <div class="d-flex align-items-center mb-3">
+            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+            <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="currentColor">
+                <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z"></path>
+                <path fill-rule="evenodd" d="M192 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm51.3 182.7L224.2 307l49.7 49.7c9 9 14.1 21.2 14.1 33.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V397.3l-73.9-73.9c-15.8-15.8-22.2-38.6-16.9-60.3l20.4-84c8.3-34.1 42.7-54.9 76.7-46.4c19 4.8 35.6 16.4 46.4 32.7L305.1 208H336V184c0-13.3 10.7-24 24-24s24 10.7 24 24v55.8c0 .1 0 .2 0 .2s0 .2 0 .2V488c0 13.3-10.7 24-24 24s-24-10.7-24-24V272H296.6c-16 0-31-8-39.9-21.4l-13.3-20zM81.1 471.9L117.3 334c3 4.2 6.4 8.2 10.1 11.9l41.9 41.9L142.9 488.1c-4.5 17.1-22 27.3-39.1 22.8s-27.3-22-22.8-39.1zm55.5-346L101.4 266.5c-3 12.1-14.9 19.9-27.2 17.9l-47.9-8c-14-2.3-22.9-16.3-19.2-30L31.9 155c9.5-34.8 41.1-59 77.2-59h4.2c15.6 0 27.1 14.7 23.3 29.8z" clip-rule="evenodd"></path>
+            </svg>
+            </div>
+            <p class="h3 text-secondary mb-1 ms-3">SwiftClimb 500</p>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="w-100">
+              <p class="mb-2 font-weight-bold text-md h4">Categoria:<span class="h4 text-secondary mb-1 ms-3">Equipamiento deportivo</span></p>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="w-100">
+              <p class="mb-2 font-weight-bold text-sm h4 clamp-2-lines">
+                SwiftClimb 500 es el arnés de escalada de alto rendimiento que impulsa tus aventuras verticales. 
+                Con su diseño ligero y seguro, te brinda la confianza y libertad necesarias para conquistar cualquier ruta de escalada. 
+                ¡Eleva tus habilidades con SwiftClimb 500!
+              </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-4 col-lg-6 col-sm-12 mb-xl-0">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header bg-dark d-flex align-items-center">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Acciones
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a class="dropdown-item" href="#">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="#fff" d="M413.5 237.5c-28.2 4.8-58.2-3.6-80-25.4l-38.1-38.1C280.4 159 272 138.8 272 117.6V105.5L192.3 62c-5.3-2.9-8.6-8.6-8.3-14.7s3.9-11.5 9.5-14l47.2-21C259.1 4.2 279 0 299.2 0h18.1c36.7 0 72 14 98.7 39.1l44.6 42c24.2 22.8 33.2 55.7 26.6 86L503 183l8-8c9.4-9.4 24.6-9.4 33.9 0l24 24c9.4 9.4 9.4 24.6 0 33.9l-88 88c-9.4 9.4-24.6 9.4-33.9 0l-24-24c-9.4-9.4-9.4-24.6 0-33.9l8-8-17.5-17.5zM27.4 377.1L260.9 182.6c3.5 4.9 7.5 9.6 11.8 14l38.1 38.1c6 6 12.4 11.2 19.2 15.7L134.9 484.6c-14.5 17.4-36 27.4-58.6 27.4C34.1 512 0 477.8 0 435.7c0-22.6 10.1-44.1 27.4-58.6z"/>
+                    </svg>
+                    Producir
+                </a>
+            </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="#fff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                    </svg>
+                    Información
+                </a>
+            </li>
+            </ul>
+          </div>
+
+          <div class="ms-3 d-inline-block">
+            <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Stock reserva: 
+              <span class="text-white fw-normal fw-sm-bold fs-6 fs-sm-5">45</span></p>
+          </div>
+          
+          <div class="ms-auto d-inline-block">
+              <p class="h4 text-white mb-1 fw-normal fw-sm-bold fs-6 fs-sm-5">Disponible</p>
+          </div>
+
+        </div>
+        <div class="card-body text-start p-3 w-100">
+          <div class="d-flex align-items-center mb-3">
+            <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+            <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor">
+                <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z"></path>
+                <path fill-rule="evenodd" d="M309.5 178.4L447.9 297.1c-1.6 .9-3.2 2-4.8 3c-18 12.4-40.1 20.3-59.2 20.3c-19.6 0-40.8-7.7-59.2-20.3c-22.1-15.5-51.6-15.5-73.7 0c-17.1 11.8-38 20.3-59.2 20.3c-10.1 0-21.1-2.2-31.9-6.2C163.1 193.2 262.2 96 384 96h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H384c-26.9 0-52.3 6.6-74.5 18.4zM160 160A64 64 0 1 1 32 160a64 64 0 1 1 128 0zM306.5 325.9C329 341.4 356.5 352 384 352c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 405.7 417 416 384 416c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.4 27.3-10.1 39.2-1.7l0 0C136.7 341.2 165.1 352 192 352c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0z" clip-rule="evenodd"></path>
+            </svg>
+            </div>
+            <p class="h3 text-secondary mb-1 ms-3">AquaFit Pro</p>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="w-100">
+              <p class="mb-2 font-weight-bold text-md h4">Categoria:<span class="h4 text-secondary mb-1 ms-3">Accesorios de natación</span></p>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="w-100">
+              <p class="mb-2 font-weight-bold text-sm h4 clamp-2-lines">
+                AquaFit Pro es el conjunto de entrenamiento acuático diseñado para mejorar tu rendimiento en la piscina. 
+                Con su resistencia ajustable y diseño ergonómico, te ayuda a tonificar músculos y mejorar tu técnica de natación. 
+                ¡Sumérgete en un nuevo nivel de fitness con AquaFit Pro!
+              </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination d-flex justify-content-center flex-wrap ">
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Anterior</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-dark text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Siguiente</a></li>
+    </ul>
+  </nav>
+
+</div>
+
+{% include 'includes/footer.html' %}
+{% endblock content %} 
+{% block extrascripts %}
+<script>
+  // Obtener todos los elementos de la lista
+  var listaProductos = document.querySelectorAll('#modalEliminar .list-group-item');
+
+  // Iterar sobre cada elemento de la lista y agregar un evento de clic
+  listaProductos.forEach(function(producto) {
+    producto.addEventListener('click', function() {
+      // Obtener el ID y el nombre del producto seleccionado
+      var id = producto.getAttribute('data-id');
+      var nombre = producto.getAttribute('data-nombre');
+
+      // Mostrar un cuadro de diálogo de confirmación
+      var confirmacion = confirm("¿Estás seguro de que deseas eliminar el producto " + nombre + "?");
+
+      // Si el usuario confirma la eliminación
+      if (confirmacion) {
+        // Aquí puedes agregar la lógica para eliminar el producto
+        alert("El producto " + nombre + " ha sido eliminado.");
+      }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtener todos los elementos de la lista de productos
+    var productos = document.querySelectorAll("#modalPrincipal .list-group-item");
+
+    // Iterar sobre cada elemento de la lista
+    productos.forEach(function (producto) {
+      // Agregar un event listener para el evento de clic
+      producto.addEventListener("click", function () {
+        // Obtener el nombre del producto haciendo referencia a su elemento hijo
+        var nombreProducto = this.querySelector(".col-auto:nth-child(2)").innerText.trim();
+        // Actualizar el campo de nombre del producto en el modal secundario
+        document.getElementById("nombreProducto").value = nombreProducto;
+      });
+    });
+  });
+
+</script>
+
+{% endblock extrascripts %}

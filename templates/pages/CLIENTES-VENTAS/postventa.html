@@ -1,0 +1,164 @@
+{% extends 'layouts/base-clientesventas.html' %}
+{% load static %}
+
+
+{% block content %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="../../../static/css/crmventas/postventa.css">
+{% endblock extrastyle %}
+<div class="container-fluid py-4 px-5">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="d-md-flex align-items-center mb-3 mx-2">
+            <div class="mb-md-0 mb-3">
+            <h3 class="font-weight-bold mb-0">Post venta</h3>
+            <!-- <p class="mb-0">por cliente</p> -->
+            </div>
+        </div>
+        </div>
+    </div>
+    <hr class="my-0">
+    <div class="container mt-3">
+        <div class="d-flex justify-content-center">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'app_crmventas:postventa'%}">Seguimiento de venta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'app_crmventas:soporte'%}">Soporte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'app_crmventas:reembolso'%}">Reembolso</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row my-4 contenido-seccion" id="tabla-seguimiento">
+        <div class="tabla-seguimiento1 col-lg-12 col-md-12" style="display: block;">
+            <!-- Contenido de la tabla de seguimiento -->
+            <div class="card shadow-xs border">
+                <div class="card-header border-bottom pb-0">
+                    <div class="d-sm-flex align-items-center mb-3">
+                    <div>
+                        <h6 class="font-weight-semibold text-lg mb-0">Seguimiento</h6>
+                        <p class="text-sm mb-sm-0 mb-2">Lista</p>
+                    </div>
+                    <div class="ms-auto d-flex">
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+                        <span class="btn-inner--icon">
+                            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                        </span>
+                        <span class="btn-inner--text">Exportar</span>
+                        </button>
+                    </div>
+                    </div>
+                    <div class="pb-3 d-sm-flex align-items-center">
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes" autocomplete="off" checked>
+                        <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes">Todos</label>
+                        <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes2" autocomplete="off">
+                        <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes2">Hace 6 meses</label>
+                        <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes3" autocomplete="off">
+                        <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes3">Hace 1 mes</label>
+                    </div>
+                    <div class="input-group w-sm-25 ms-auto">
+                        <span class="input-group-text text-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                        </svg>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Buscar">
+                    </div>
+                    </div>
+                </div>
+                <div class="card-body px-0 py-0">
+                    <div class="table-responsive p-0">
+                    <table class="table align-items-center justify-content-center mb-0">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="text-secondary text-xs font-weight-semibold opacity-7">Numero de envio</th>
+                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Rut</th>
+                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nombre/Razon Social</th>
+                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Valor</th>
+                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha envio</th>
+                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha entrega</th>
+                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Direccion</th>
+                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Estado</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2">
+                                        <div class="my-auto">
+                                            <h6 class="mb-0 text-sm">000001</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-sm font-weight-normal mb-0">17.503.923-2</p>
+                                </td>
+                                <td>
+                                    <p class="text-sm font-weight-normal mb-0">Juan Perez</p>
+                                </td>
+                                <td>
+                                    <p class="text-sm font-weight-normal mb-0">$8.500.000</p>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="d-flex">
+                                            <input id="fechacontrato" class="form-control d-inline" type="date">  
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="d-flex">
+                                            <input id="fechacontrato" class="form-control d-inline" type="date">  
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-sm font-weight-normal mb-0">Gabino Ugalde Catalan 2213</p>
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-dark dropdown-toggle" type="button" id="estadoDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Estado
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="estadoDropdown">
+                                            <li>
+                                                <a id="iniciada1" class="dropdown-item" href="#" onclick="cambiarEstado('Enviado')">Enviado</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#" onclick="cambiarEstado('En proceso')">En proceso</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#" onclick="cambiarEstado('entregado')">entregado</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>     
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example ">
+                        <ul class="pagination mt-3 d-flex justify-content-center flex-wrap ">
+                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
+                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+                          <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block extrascripts %}
+    <script src="../../../static/js/crmventas/postventa.js"></script>
+{% endblock extrascripts %}

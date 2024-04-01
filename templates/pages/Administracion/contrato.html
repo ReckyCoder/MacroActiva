@@ -1,0 +1,96 @@
+{% extends 'layouts/base.html' %} 
+
+{% load static %} 
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.min.css" rel="stylesheet">
+<style>
+    #gantt {
+      width: 100%;
+      height: 600px;
+    }
+</style>
+
+<div class="container-fluid py-4 px-5">
+
+  <div class="row align-items-end">
+    <div class="col text-left">
+      <h3>Contrato "xxxxxx"</h3>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <h4>Carta Gantt</h4>
+  </div>
+  <div class="row">
+    <div id="gantt"></div>
+  </div>
+
+</div>
+{% include 'includes/footer.html' %}
+{% endblock content %}
+{% block extrascripts %}
+<script src="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Datos de ejemplo para los contratos
+      const datosContratos = [
+        {
+          id: 'contrato-1',
+          name: 'Contrato A',
+          start: '2024-03-01',
+          end: '2024-04-15',
+          progress: 50,
+          dependencies: '',
+          custom_class: 'contrato-a'
+        },
+        {
+          id: 'entrega-1',
+          name: 'Entrega 1',
+          start: '2024-03-10',
+          end: '2024-03-20',
+          progress: 100,
+          dependencies: 'contrato-1',
+          custom_class: 'entrega'
+        },
+        {
+          id: 'entrega-2',
+          name: 'Entrega 2',
+          start: '2024-04-05',
+          end: '2024-04-10',
+          progress: 80,
+          dependencies: 'contrato-1',
+          custom_class: 'entrega'
+        },
+        {
+          id: 'contrato-2',
+          name: 'Contrato B',
+          start: '2024-04-20',
+          end: '2024-06-30',
+          progress: 20,
+          dependencies: '',
+          custom_class: 'contrato-b'
+        },
+        // Puedes agregar más contratos y entregas según sea necesario
+      ];
+  
+      // Configuración de la carta Gantt
+      const ganttConfig = {
+        custom_popup_html: function (task) {
+          // Personalización del contenido emergente
+          return `
+            <div>
+              <p><strong>${task.name}</strong></p>
+              <p>Inicio: ${task._start.format('MMM D, YYYY')}</p>
+              <p>Fin: ${task._end.format('MMM D, YYYY')}</p>
+            </div>
+          `;
+        }
+      };
+  
+      // Creación de la carta Gantt
+      const gantt = new Gantt("#gantt", datosContratos, ganttConfig);
+    });
+</script>
+{% endblock extrascripts %}

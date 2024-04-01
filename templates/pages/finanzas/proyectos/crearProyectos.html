@@ -1,0 +1,77 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+    {% block header %}
+        <header>
+            <h3 class="text-center my-5">Agregar Proyecto</h3>
+        </header>
+
+    {% endblock header %}
+
+    <div class="container my-5 w-lg-50">
+        <a class="btn bg-dark rounded" href="{% url 'app_finanzas:proyectos' %}">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="#fff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+            </svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="card w-lg-50 mx-lg-auto">
+            <div class="card-body">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Departamento:</label>
+                        <input id="formInput" class="form-control" type="text" list="lista" placeholder="Departamento ...">
+                        <datalist class="d-none" id="lista">
+                            <option value="departamento 1"></option>
+                            <option value="departamento 2"></option>
+                            <option value="departamento 3"></option>
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Proyecto:</label>
+                        <input id="formInput" class="form-control" type="text" list="lista-proyecto" placeholder="Nombre ...">
+                        <datalist class="d-none" id="lista-proyecto">
+                            <option value="proyecto 1"></option>
+                            <option value="proyecto 2"></option>
+                            <option value="proyecto 3"></option>
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formInput" class="form-label" for="">Código del Proyecto:</label>
+                        <input id="formInput" class="form-control" type="text" placeholder="123 ...">
+                    </div>
+                    <div class="d-flex justify-content-center flex-wrap">
+                        <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#modalAgregar">Agregar</button>
+                        <a class="btn btn-secondary mx-1" href="{% url 'app_finanzas:proyectos' %}">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+          </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAgregar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalAgregarLabel">Antes de agregar un Proyecto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div>
+                <p>Se añadira un nuevo registro como proyecto, si no esta seguro cierre esta ventana</p>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <a class="btn btn-primary" href="{% url 'app_finanzas:proyectos' %}">Agregar</a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock content %}
+    
