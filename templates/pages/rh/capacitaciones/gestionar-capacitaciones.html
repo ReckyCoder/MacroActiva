@@ -1,0 +1,1517 @@
+{% extends 'layouts/rh/full-content.html'%}
+{% load static %}
+
+
+{% block opt-tittle %}
+<h6>Gestor de capacitaciones</h6>
+{% endblock opt-tittle %}
+
+{% block opt-info %}
+<p class="mx-5 px-2 text-center">El módulo de capacitaciones brinda una plataforma completa para gestionar y participar
+    en programas de formación. Permite organizar sesiones anuales, semestrales y extraprogramáticas, adaptándose a las
+    necesidades de desarrollo profesional de los empleados. Ofrece acceso a un catálogo de cursos, inscripción,
+    seguimiento del progreso y evaluación del impacto en el trabajo. También facilita la gestión administrativa con
+    funciones como asignación de recursos, seguimiento de asistencia y generación de informes para evaluar la
+    efectividad del programa de capacitación.</p>
+{% endblock opt-info %}
+
+{% block card-option1-1 %}
+<div class="col-12 mb-4">
+    <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+            <h6 class="font-weight-semibold text-lg mb-0">Capacitaciones activas</h6>
+            <p class="text-sm">Aquí encontrarás todos las capacitaciones en curso.</p>
+        </div>
+        <div class="card-body py-3">
+            <table class="table table-striped align-items-center justify-content-center mb-0" id="tablaCapacitaciones"
+                data-search="true" data-show-columns="true" data-pagination="true" data-reorderable-columns="true"
+                data-toggle="table" data-show-toggle="true" data-show-export="true" data-click-to-select="true" data-page-list="[10, 25, 50, 100, 200, All]">
+                <thead class="bg-dark">
+                    <tr>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">ID
+                            Capacitación</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Tipo capacitación</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Tipo participación</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Nombre</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Departamento</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Cargo</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Sesión</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            ID Curso</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Profesor</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Modalidad</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Cantidad de empleados</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Asistencia</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP001</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Control de peligros y riesgos en oficinas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Ejecutivo de ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Semestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR10</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-3.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Jorge Manriquez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">300</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">98%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP002</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gestión de riesgos financieros</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista financiero</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR11</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-4.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">José Fuentes</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Virtual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">150</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">85%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP003</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Optimización de procesos de producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Ingeniero de producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Trimestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR12</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-5.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Carlos Pérez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">200</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">90%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP004</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gestión del talento</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especialista en RRHH</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR13</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-6.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Roberto Gómez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Virtual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">180</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">80%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP005</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gestión eficiente de recursos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gerente administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Semestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR14</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person6.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Ana Rodríguez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">250</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">95%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP006</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Técnicas avanzadas de ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gerente de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Trimestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR15</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person8.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Laura González</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">180</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">88%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP007</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Diversidad e inclusión en el lugar de trabajo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especialista en RRHH</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR16</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person7.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">David Sánchez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Virtual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">220</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">92%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP008</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gestión de proyectos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gerente administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Trimestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR17</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person9.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Laura Ramírez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">190</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">87%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP009</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Técnicas avanzadas de cierre de ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gerente de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Trimestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR18</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person11.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Lucía Martínez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Virtual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">200</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">92%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP010</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gestión de inversiones</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista Financiero</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR19</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person10.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Daniel López</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">180</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">90%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP011</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Optimización de procesos de fabricación</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Ingeniero de Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Semestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR20</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person3.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Patricia García</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">210</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">85%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP012</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gestión del talento y desarrollo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especialista en RRHH</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR21</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person4.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Sandra López</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Virtual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">230</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">91%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP013</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Liderazgo efectivo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gerente Administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR22</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person1.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Carlos Rodríguez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">190</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">88%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP014</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Negociación efectiva para ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Representante de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Semestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR23</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person6.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Ana Pérez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Virtual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">220</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">93%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP015</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Análisis de estados financieros</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista de Riesgo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR24</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person2.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Eduardo García</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">190</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">87%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP016</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Control de calidad en la producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Supervisor de Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Trimestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR25</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-5.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Luis Hernández</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">205</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">88%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP017</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gestión del cambio organizacional</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especialista en Desarrollo Organizacional</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR26</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/marie.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Laura Gómez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Virtual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">220</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">90%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP018</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Comunicación efectiva en la gestión</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gerente de Operaciones</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR27</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-4.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Alejandro Ramírez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">200</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">89%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP019</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Desarrollo de habilidades de negociación</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gerente de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Semestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR28</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-1.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">María García</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Virtual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">210</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">92%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP020</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Estrategias de inversión y financiamiento</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista Financiero</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR29</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-5.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Ricardo Martínez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">180</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">86%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP021</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especializada</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Optimización de procesos de manufactura</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Jefe de Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Trimestral</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR30</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-6.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Pedro Sánchez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">195</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">87%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP022</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Evaluación de desempeño y feedback</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especialista en Gestión del Talento</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR31</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Sandra López</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Virtual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">225</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">91%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CAP023</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Tranversal</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Obligatoria</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gestión del tiempo y priorización</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Supervisor Administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Anual</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CUR32</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-3.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Daniel Gutiérrez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Presencial</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">195</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">88%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container-fluid p-0 m-0">
+            <div class="row">
+                <div class="col">
+                    <div class="btn-group btn-dark-menu options p-0 m-0">
+                        <button type="button" class="btn btn-dark mb-0">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock card-option1-1 %}
+
+{% block card-option1-2 %}
+{% endblock card-option1-2 %}
+
+{% block card-option1-3 %}
+{% endblock card-option1-3 %}
+
+{% block card-option2-1 %}
+{% endblock card-option2-1 %}
+
+
+{% block modals %}
+<div class="modal fade" id="modalContratosActivos" tabindex="-1" role="dialog"
+    aria-labelledby="modalContratosActivosLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalContratosActivosLabel">Nuevo informe</h5>
+                <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="slctDepartamento" class="col-form-label">Tipo contrato</label>
+                        <select id="slctDepartamento" class="form-control">
+                            <option value="Casa matriz">Indefinido</option>
+                            <option value="Av. Los perales">Definido</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="periodo" class="col-form-label">Periodo</label>
+                        <input type="date" class="form-control datepicker" id="periodo">
+                    </div>
+                    <div class="form-group">
+                        <label for="slctDepartamento" class="col-form-label">Sucursal</label>
+                        <select id="slctDepartamento" class="form-control">
+                            <option value="Casa matriz">Casa matriz</option>
+                            <option value="Av. Los perales">Av. Los perales</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="slctDepartamento" class="col-form-label">Departamento</label>
+                        <select id="slctDepartamento" class="form-control">
+                            <option value="CRM y ventas">CRM y ventas</option>
+                            <option value="Finanzas">Finanzas</option>
+                            <option value="Produccion">Producción</option>
+                            <option value="RRHH">Recursos humanos</option>
+                            <option value="Administracion">Administración</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="slctDepartamento" class="col-form-label">Cargo</label>
+                        <select id="slctDepartamento" class="form-control">
+                            <option value="CRM y ventas">Auditor contador</option>
+                            <option value="Finanzas">Reclutador</option>
+                            <option value="Produccion">Gerente</option>
+                            <option value="RRHH">Operario</option>
+                            <option value="">...</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Generar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock modals %}
+
+{% include 'includes/scripts.html' %}
+
+{% block extrascripts %}
+
+<style>
+    .row>.col>.btn-group.btn-dark-menu>input+.btn:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>input+.btn:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:first-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 4px;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:last-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 4px;
+    }
+
+    .modal-dialog {
+        margin: 0;
+    }
+
+    .modal-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: #1e293b;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 250ms ease;
+        border: 0;
+    }
+
+    .modal {
+        margin: 10px auto;
+        right: 0;
+        width: 100%;
+        max-width: 40rem;
+        background-color: #1e293b;
+        border-radius: 1.5rem;
+        background: linear-gradient(155deg, #1e293b, #0d1625);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0;
+    }
+
+    .modal-title {
+        margin: 0;
+        color: white;
+    }
+
+    .modal-content {
+        color: white;
+        background-color: transparent;
+    }
+
+    .modal-close {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: transparent;
+        display: block;
+        height: 1.5rem;
+        width: 1.5rem;
+        overflow: hidden;
+        background-image:
+            linear-gradient(to top right,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%),
+            linear-gradient(to top left,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%);
+    }
+
+
+    .modal-footer {
+        border-top: 0 !important;
+    }
+
+    .modal-body .form-group>.col-form-label {
+        color: white;
+    }
+
+    .modal-header,
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .modal-header>.modal-title {
+        color: whitesmoke;
+    }
+
+    .modal-content {
+        height: 100%;
+        border: 0;
+    }
+
+    .modal-container:target {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .table-responsive,
+    .bootstrap-table.bootstrap5 {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .dropdown-menu.dropdown-menu-end.show {
+        overflow: hidden !important;
+    }
+
+    .table-bordered> :not(caption)>*>* {
+        border-width: 0 !important;
+        height: 100%;
+    }
+
+    .bootstrap-table .fixed-table-toolbar .columns .dropdown-menu {
+        max-height: 500px !important;
+    }
+
+    .fixed-table-body {
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+    }
+
+    .bootstrap-table .fixed-table-pagination>.pagination,
+    .bootstrap-table .fixed-table-pagination>.pagination-detail {
+        margin-left: 10px !important;
+    }
+
+    .card .card-body {
+        padding-top: 0;
+    }
+
+    .btn-group.btn-dark-menu.options {
+        width: 100%;
+    }
+
+    .page-item .page-link,
+    .page-item span {
+        color: whitesmoke !important;
+        background-color: #28374e;
+    }
+
+    .page-item.active .page-link,
+    .page-item span {
+        color: whitesmoke !important;
+        background-color: #1e293b;
+    }
+
+    .page-list>.btn-group.dropdown.dropup>button.btn.btn-secondary.dropdown-toggle{
+        padding: 2px 10px !important;
+        margin: 0 10px 3px 0;
+    }
+</style>
+
+<script>
+
+    const TipTrigger = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const toolList = [...TipTrigger].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+    $(function () {
+
+        $('#tablaCapacitaciones').bootstrapTable({
+            exportDataType: $(this).val(),
+            exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
+            exportOptions: {
+                fileName: 'Capacitaciones'
+            }
+        });
+    });
+
+</script>
+
+{% endblock extrascripts %}

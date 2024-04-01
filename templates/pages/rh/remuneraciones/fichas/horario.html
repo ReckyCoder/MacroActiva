@@ -1,0 +1,126 @@
+{% extends 'layouts/rh/subcard-content.html' %}
+{% load static %}
+
+
+
+
+{% block card-body %}
+<form method="post">
+    <fieldset disabled>
+        <div class="row">
+            <div class="col">
+                <div class="form-row px-4">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtReloj">Reloj asociado</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtIdReloj" placeholder="ID"
+                                aria-describedby="inputGroupPrepend">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">-</span>
+                            </div>
+                            <input type="text" class="form-control" id="txtReloj" placeholder="Reloj"
+                                aria-describedby="inputGroupappend">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtUbicacion">Ubicacion</label>
+                        <input type="text" class="form-control" id="txtUbicacion" placeholder="0">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtFecInicio">Fecha inicio</label>
+                        <input type="text" class="form-control datepicker" id="txtFecInicio" placeholder="0">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtFecTermino">Fecha termino</label>
+                        <input type="text" class="form-control datepicker" id="txtFecTermino" placeholder="0">
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-row px-4">
+                    <div class="col-md-12 mb-3">
+                        <label for="txtHorEntrada">Hora ingreso</label>
+                        <input type="text" class="form-control" id="txtHorEntrada" placeholder="0">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtHoraColacion">Hora colacion</label>
+                        <input type="text" class="form-control" id="txtHoraColacion" placeholder="0">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtHoraSalida">Hora salida</label>
+                        <input type="text" class="form-control" id="txtHoraSalida" placeholder="0">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="txtEstado">Estado</label>
+                        <input type="text" class="form-control" id="txtEstado" placeholder="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="col">
+        <div class="row">
+            <div class="col-8">
+
+            </div>
+            <div class="col pe-5">
+                <div class="btn-group btn-group-sm text-center d-flex align-items-end" role="group"
+                    aria-label="Basic example">
+                    <button type="button"
+                        class="btn btn-sm btn-success btn-icon  align-items-center mb-0">Editar</button>
+                    <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Aceptar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<style>
+    #txtReloj{
+        width: max-content;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+
+        $('#subChildModule').hide();
+
+        $.ajax({
+            url: 'HorarioView/',
+            method: 'GET',
+            data: { element_id: 'R02FichaHorarioView' },
+            success: function (data) {
+
+                $('#subChildModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[2].subChildModuleName))
+                $('#subChildModule').show();
+
+                $("#txtIdReloj").val(data.MetaData.user.horario.id_reloj);
+                $("#txtReloj").val(data.MetaData.user.horario.nombre_reloj);
+                $("#txtUbicacion").val(data.MetaData.user.horario.ubicacion);
+                $("#txtFecInicio").val(data.MetaData.user.horario.fec_inicio);
+                $("#txtFecTermino").val(data.MetaData.user.horario.fec_termino);
+                $("#txtHorEntrada").val(data.MetaData.user.horario.hora_entrada);
+                $("#txtHoraColacion").val(data.MetaData.user.horario.hora_colacion);
+                $("#txtHoraSalida").val(data.MetaData.user.horario.hora_salida);
+                $("#txtEstado").val(data.MetaData.user.horario.estado);
+
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+
+        function capitalizeAndRemoveUnderscore(str) {
+            return str.split('_')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        }
+
+    });
+</script>
+{% endblock card-body %}
+    

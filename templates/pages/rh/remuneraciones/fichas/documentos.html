@@ -1,0 +1,74 @@
+{% extends 'layouts/rh/subcard-content.html' %}
+{% load static %}
+
+
+{% block card-body %}
+<div class="card-body px-0 py-0 mb-3" id="comtable">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center justify-content-center mb-0" id="tabladocumentos">
+            <thead class="bg-dark rounded-table">
+                <tr>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Nombre
+                    </th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2">ID</th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#subChildModule').hide();
+
+        $.ajax({
+            url: 'DocumentosView/',
+            type: 'GET',
+            data: { element_id: 'R02FichaDocumentosView' },
+            success: function (data) {
+
+                $('#subChildModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[2].subChildModuleName))
+                $('#subChildModule').show();
+
+                var documentos = data.MetaData.user.documentos;
+
+                for (var llave in documentos) {
+                    if (documentos.hasOwnProperty(llave)) {
+                        documento = documentos[llave];
+
+                        var nombre = documento.nombre;
+                        var id = documento.id;
+
+                        console.log(nombre, id)
+
+                        var nuevaFila = $('<tr>')
+
+                        nuevaFila.append('<td>' + nombre + '</td>');
+                        nuevaFila.append('<td>' + id + '</td>');
+                        nuevaFila.append('<td class="align-middle text-center"> <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example"><button type="button"class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver</button></td>')
+
+                        $('#tabladocumentos tbody').append(nuevaFila);
+
+                    }
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('AJAX Error: ' + textStatus, errorThrown);
+            }
+        });
+
+        function capitalizeAndRemoveUnderscore(str) {
+            return str.split('_')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        }
+
+    });
+</script>
+{% endblock card-body %}

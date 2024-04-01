@@ -1,0 +1,820 @@
+{% extends 'layouts/rh/full-content.html'%}
+{% load static %}
+
+
+{% block opt-tittle %}
+<h6>Gestor de evaluaciones</h6>
+{% endblock opt-tittle %}
+
+{% block opt-info %}
+<p class="mx-5 px-2 text-center">Aquí podrás administrar todo lo relevante a las evaluaciones de tus empleados. Te
+    entega
+    herramientas para analizar estadísticamente el actual estado de todas tus evaluaciones en los diversos
+    departamentos disponibles, además entrega funcionalidades para procesar el personal entrante de una forma fácil y
+    organizada.</p>
+{% endblock opt-info %}
+
+{% block card-option1-1 %}
+<div class="col-12 mb-4">
+    <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+            <div class="row d-flex justify-content-between">
+                <h6 class="col font-weight-semibold text-lg mb-0">Evaluación de trabajadores por departamento</h6>
+            </div>
+            <p class="text-sm">Aquí podrás visualizar los logros generales de los empleados de cada departamento, cargo y tipo de cargo.</p>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid p-0">
+                <table class="table table-striped align-items-center justify-content-center" data-search="true"
+                    data-show-columns="true" data-pagination="true" data-reorderable-columns="true" data-toggle="table"
+                    data-show-toggle="true" data-show-export="true" data-click-to-select="true" id="tablaEvaluaciones">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white"
+                                data-sortable="true">
+                                Departamento
+                            </th>
+                            <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                Nombre
+                            </th>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white"
+                                data-sortable="true">
+                                Cargo
+                            </th>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white"
+                                data-sortable="true">
+                                Tipo cargo
+                            </th>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                ID KPI's
+                                <a class="mx-1 mt-2" data-bs-toggle="tooltip"
+                                    data-bs-title="Los KPI's están conformados por grupos de indicadores de éxito en función del cargo y la naturaleza de este mismo.">
+                                    <svg xmlns="http:ww.w3.org/2000/svg" viewBox="0 0 512 512" height="15px"
+                                        width="15px">
+                                        <path fill="#fff"
+                                            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM169.8 165.3c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                                    </svg>
+                                </a>
+                            </th>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white"
+                                data-sortable="true">
+                                Porcentaje global requerido
+                            </th>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white"
+                                data-sortable="true">
+                                Porcentaje global obtenido
+                            </th>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white"
+                                data-sortable="true">
+                                Estado
+                            </th>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="detalleEvaluaciones">
+                        <tr>
+                            <td class="text-start">
+                                <span class="text-sm font-weight-normal">Finanzas</span>
+                            </td>
+                            <td>
+                                <div class="d-flex px-2">
+                                    <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                        <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar">
+                                    </div>
+                                    <div class="my-auto">
+                                        <h6 class="mb-0 text-sm">Daniela Contreras</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Administrativo</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">70%</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">81%</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal aprobado">Logrado</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                    <button type="button"
+                                        class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                        detalles</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-start">
+                                <span class="text-sm font-weight-normal">CRM y Ventas</span>
+                            </td>
+                            <td>
+                                <div class="d-flex px-2">
+                                    <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                        <img src="/static/assets/img/team-1.jpg" class="avatar avatar-sm" alt="avatar">
+                                    </div>
+                                    <div class="my-auto">
+                                        <h6 class="mb-0 text-sm">Josefina Correa</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Gerente Ventas</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Administrativo II</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV500</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">90%</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">87%</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal reprobado">No logrado</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                    <button type="button"
+                                        class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                        detalles</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock card-option1-1 %}
+
+{% block card-option1-2 %}
+<div class="col-lg-10 col-md-8 col-sm-12 mb-md-0 mb-4">
+    <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+            <h6 class="font-weight-semibold text-lg mb-0">Indicadores de éxito</h6>
+            <p class="text-sm text-start">Aquí se muestran los <b>Indicadores de éxito</b> ó <b>KPI's</b> disponibles y activos para calificar a los empleados. 
+        </div>
+        <div class="card-body py-3">
+            <table class="table table-striped align-items-center justify-content-center mb-0" data-search="true"
+                data-show-columns="true" data-pagination="true" data-reorderable-columns="true" data-toggle="table"
+                data-show-toggle="true" data-show-export="true" data-click-to-select="true" data-page-number="1" data-page-size="10"
+                data-page-list="[10, 25, 50, 100, 200, All]" id="tablaKPIs">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                ID
+                            </th>
+                            <th
+                                class="text-center  text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white" data-sortable="true">
+                                Tipo de cargo</th>
+                            <th
+                                class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                                Cargo</th>
+                            <th
+                                class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                                Indicador</th>
+                                <th
+                                class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white" data-sortable="true">
+                                % Requerido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Tiempo Promedio de Contratación</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">70%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Tasa de Eficacia del proceso de reclutamiento y selección</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">70%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Ratio de costo promedio de búsqueda terciarizada</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">70%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Cantidad de calificados por vacante</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">75%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Tasa de Efectividad de Entrevistas</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">80%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Efectividad de las fuentes de reclutamiento</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">60%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Tasa de contratación total</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">85%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Tasa de cobertura de vacantes anual</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">75%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV456</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Reclutador</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Costo de contratación</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">75%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV500</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo II</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Gerente de ventas</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Tasa de cierre</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">95%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV500</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo II</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Gerente de ventas</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">ROI</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">100%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV500</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo II</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Gerente de ventas</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Customer Lifetime Value (CLV)</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">90%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">KPIEV500</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div>
+                                    <div class="ms-2 text-center">
+                                        <p class="text-dark text-sm mb-0">Administrativo II</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Gerente de ventas</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">Tasa de retención de talento</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">90%</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+{% endblock card-option1-2 %}
+
+
+{% block card-option1-3 %}
+<div class="col-lg-2 col-md-4 col-sm-12 mb-md-0 mb-4">
+    <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+            <h6 class="font-weight-semibold text-lg mb-0">Logro de KPI's</h6>
+            <p class="text-sm">Porcentaje de logro de KPI's por departamento.</p>
+        </div>
+        <div class="card-body py-3">
+            <div class="chart mb-2">
+                <canvas id="chart-bars" class="chart-canvas" height="320"></canvas>
+            </div>
+        </div>
+        <div class="btn-group btn-dark-menu options">
+            <button type="button" class="btn btn-dark mb-0" data-bs-toggle="modal"
+                data-bs-target="#modalContratosActivos" data-bs-contrato="Indefinido"
+                id="btnInforme">Informe</button>
+            <button type="button" class="btn btn-dark mb-0">Exportar</button>
+        </div>
+    </div>
+</div>
+{% endblock card-option1-3 %}
+
+
+
+
+{% block modals %}
+<div class="modal fade" id="modalContratosActivos" tabindex="-1" role="dialog"
+    aria-labelledby="modalContratosActivosLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalContratosActivosLabel">Nuevo informe</h5>
+                <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="slctDepartamento" class="col-form-label">Tipo cargo</label>
+                        <select id="slctDepartamento" class="form-control">
+                            <option value="Casa matriz">Administrativo</option>
+                            <option value="Av. Los perales">Administrativo II</option>
+                            <option value="Av. Los perales">Operativo</option>
+                            <option value="Av. Los perales">Operativo II</option>
+                            <option value="Av. Los perales">Gerencial</option>
+                            <option value="Av. Los perales">Tecnico</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="periodo" class="col-form-label">Periodo</label>
+                        <input type="date" class="form-control datepicker" id="periodo">
+                    </div>
+                    <div class="form-group">
+                        <label for="slctDepartamento" class="col-form-label">Sucursal</label>
+                        <select id="slctDepartamento" class="form-control">
+                            <option value="Casa matriz">Casa matriz</option>
+                            <option value="Av. Los perales">Av. Los perales</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="slctDepartamento" class="col-form-label">Departamento</label>
+                        <select id="slctDepartamento" class="form-control">
+                            <option value="CRM y ventas">CRM y ventas</option>
+                            <option value="Finanzas">Finanzas</option>
+                            <option value="Produccion">Producción</option>
+                            <option value="RRHH">Recursos humanos</option>
+                            <option value="Administracion">Administración</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="slctDepartamento" class="col-form-label">Cargo</label>
+                        <select id="slctDepartamento" class="form-control">
+                            <option value="CRM y ventas">Auditor contador</option>
+                            <option value="Finanzas">Reclutador</option>
+                            <option value="Produccion">Gerente</option>
+                            <option value="RRHH">Operario</option>
+                            <option value="">...</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Generar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock modals %}
+
+{% include 'includes/scripts.html' %}
+
+{% block extrascripts %}
+
+<style>
+    .reprobado {
+        color: red;
+        background-color: rgba(241, 172, 172, 0.25);
+        padding: 6px;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        -o-border-radius: 2px;
+    }
+
+    .aprobado {
+        color: green;
+        background-color: rgba(185, 255, 218, 0.4);
+        padding: 6px;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        -o-border-radius: 2px;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>input+.btn:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>input+.btn:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:first-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 4px;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:last-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 4px;
+    }
+
+    .modal-dialog {
+        margin: 0;
+    }
+
+    .modal-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: #1e293b;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 250ms ease;
+        border: 0;
+    }
+
+    .modal {
+        margin: 10px auto;
+        right: 0;
+        width: 100%;
+        max-width: 40rem;
+        background-color: #1e293b;
+        border-radius: 1.5rem;
+        background: linear-gradient(155deg, #1e293b, #0d1625);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0;
+    }
+
+    .modal-title {
+        margin: 0;
+        color: white;
+    }
+
+    .modal-content {
+        color: white;
+        background-color: transparent;
+    }
+
+    .modal-close {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: transparent;
+        display: block;
+        height: 1.5rem;
+        width: 1.5rem;
+        overflow: hidden;
+        background-image: linear-gradient(to top right,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%),
+            linear-gradient(to top left,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%);
+    }
+
+
+    .modal-footer {
+        border-top: 0 !important;
+    }
+
+    .modal-body .form-group>.col-form-label {
+        color: white;
+    }
+
+    .modal-header,
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .modal-header>.modal-title {
+        color: whitesmoke;
+    }
+
+    .modal-content {
+        height: 100%;
+        border: 0;
+    }
+
+    .modal-container:target {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .table-responsive,
+    .bootstrap-table.bootstrap5 {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .dropdown-menu.dropdown-menu-end.show {
+        overflow: hidden !important;
+    }
+
+    .table-bordered> :not(caption)>*>* {
+        border-width: 0 !important;
+    }
+
+    .fixed-table-body {
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+    }
+
+    .bootstrap-table .fixed-table-pagination>.pagination, .bootstrap-table .fixed-table-pagination>.pagination-detail{
+        margin-left: 10px !important;
+    }
+
+    .card .card-body{
+        padding-top: 0;
+    }
+
+    .btn-group.btn-dark-menu.options{
+        width: 100%;
+    }
+
+    .page-item .page-link, .page-item span{
+        color: whitesmoke !important;
+        background-color: #28374e;
+    }
+
+    .page-item.active .page-link, .page-item span{
+        color: whitesmoke !important;
+        background-color: #1e293b;
+    }
+
+</style>
+
+
+<script>
+
+    // const TipTrigger = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    // const toolList = [...TipTrigger].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    $(function() {
+
+        $('[data-bs-toggle="tooltip"]').each(function() {
+            $(this).tooltip();
+        });
+
+        $('#tablaEvaluaciones, #tablaKPIs').bootstrapTable({
+            exportDataType: $(this).val(),
+            exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
+            exportOptions: {
+                fileName: 'Evaluaciones'
+            }
+        });
+    });
+
+
+    var ctx = document.getElementById("chart-bars").getContext("2d");
+
+    function formato(value, context) {
+        const valores = context.chart.data.datasets[0].data;
+        function totalSum(total, valor) {
+            return total + valor
+        }
+        const valorTotal = valores.reduce(totalSum, 0);
+        const valorPorcentaje = (value / valorTotal * 100).toFixed(1);
+        const mostrar = [`${value}`, `${valorPorcentaje}%`]
+        return mostrar;
+    }
+
+    new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: ["CRM y ventas", "Finanzas", "Producción", "Recursos humanos", "Administración"],
+            datasets: [{
+                label: "Total de KPI's logrados",
+                backgroundColor: ["#2ca8ff", "#7c3aed", "#F49B1A", "#80F41A", "#F41A4D"],
+                data: [65, 15, 10, 56, 43],
+                hoverOffset: 4
+            },
+            ],
+        },
+        options: {
+            plugins: {
+                tooltip: {
+                    enabled: false
+                },
+                datalabels: {
+                    align: 'center',
+                    color: '#fff',
+                    formatter: formato,
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+
+</script>
+
+{% endblock extrascripts %}
