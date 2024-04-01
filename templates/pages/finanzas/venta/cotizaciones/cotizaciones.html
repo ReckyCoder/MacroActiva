@@ -4,22 +4,6 @@
 {% block content %}
     {% block header %}
     <header>
-<<<<<<< HEAD
-        <h1 class="text-center mt-5">Cotizaciones</h1>
-    </header>
-
-    {% endblock header %}
-    <div class="container">
-      <a class="btn bg-dark rounded" href="{% url 'app_finanzas:venta' %}">
-          <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path fill="#fff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path>
-          </svg>
-      </a>
-    </div>
-
-
-    <div class="container">
-=======
         <h3 class="text-center my-5">Cotizaciones</h3>
     </header>
 
@@ -38,7 +22,6 @@
           </svg>
         </a>
       </div>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
         <div class="col">
             <div class="card shadow-xs border">
               <div class="card-header border-bottom pb-0">
@@ -61,39 +44,8 @@
                         <input type="text" class="form-control" placeholder="Buscar Cliente ...">
                         </div>
                     </div>
-<<<<<<< HEAD
-                    <div class="col-12 col-md-4 order-1 mb-3 mb-md-0 order-md-3">
-                        <div class="dropdown text-end">
-                            <button class="btn btn-secondary my-auto fs-6 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Opciones
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-                                <li>
-                                    <a class="dropdown-item fs-6" href="{% url 'app_finanzas:crearCotizacionesVenta' %}">
-                                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                                            <path fill="#fff" d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM80 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm16 96H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm0 32v64H288V256H96zM240 416h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
-                                        </svg>
-                                        <span class="ms-2">
-                                            Crear Cotización
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item fs-6" href="{% url 'app_finanzas:ordenesDeVenta' %}">
-                                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path fill="#fff" d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384v38.6C310.1 219.5 256 287.4 256 368c0 59.1 29.1 111.3 73.7 143.3c-3.2 .5-6.4 .7-9.7 .7H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zm48 96a144 144 0 1 1 0 288 144 144 0 1 1 0-288zm16 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v48H368c-8.8 0-16 7.2-16 16s7.2 16 16 16h48v48c0 8.8 7.2 16 16 16s16-7.2 16-16V384h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H448V304z"/>
-                                        </svg>
-                                        <span class="ms-2">
-                                            Ver Ordenes
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-=======
                     <div class="col-12 col-md-4 order-1 mb-3 mb-md-0 order-md-3 text-end">
                         <a class="btn btn-secondary my-auto" href="{% url 'app_finanzas:crearCotizacionesVenta' %}">Crear Cotización</a>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                     </div>
                 </div>
               </div>
@@ -359,15 +311,6 @@
                 </div>
             </div>
             </div>
-<<<<<<< HEAD
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Descargar como
-                    <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path fill="#fff" d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
-                    </svg>
-                </button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-=======
             <div class="modal-footer d-flex justify-content-center flex-wrap">
               <div>
                 <a class="btn btn-secondary my-auto" href="#">
@@ -406,7 +349,6 @@
               <div>
                 <button type="button" class="btn btn-secondary my-auto" data-bs-dismiss="modal">Cerrar</button>
               </div>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
             </div>
             </div>
         </div>

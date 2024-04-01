@@ -63,3 +63,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// modificar objetivo
+ // Obtener el botón "Guardar"
+ const guardarBtn = document.getElementById('guardar');
+    
+ // Agregar un event listener para guardar el texto en localStorage cuando se haga clic en el botón "Guardar"
+ guardarBtn.addEventListener('click', function() {
+     // Obtener el contenido del párrafo
+     const texto = document.getElementById('texto').textContent;
+     // Guardar el contenido del párrafo en el localStorage
+     localStorage.setItem('textoGuardado', texto);
+     // Cerrar el modal
+     const modal = bootstrap.Modal.getInstance(document.getElementById('objetivo'));
+     modal.hide();
+ });
+
+ // Obtener el elemento del párrafo
+ const textoElemento = document.getElementById('texto');
+
+ // Obtener el texto del localStorage si existe
+ const textoGuardado = localStorage.getItem('textoGuardado');
+
+ // Si hay texto guardado en localStorage, establecerlo como texto del párrafo
+ if (textoGuardado) {
+     textoElemento.textContent = textoGuardado;
+ }

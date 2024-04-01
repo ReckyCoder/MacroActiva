@@ -4,22 +4,6 @@
 {% block content %}
     {% block header %}
     <header>
-<<<<<<< HEAD
-        <h1 class="text-center mt-5">Presupuestos de Centros de Costos</h1>
-    </header>
-
-    {% endblock header %}
-    <div class="container">
-      <a class="btn bg-dark rounded" href="{% url 'app_finanzas:centroDeCostos' %}">
-          <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path fill="#fff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path>
-          </svg>
-      </a>
-    </div>
-
-
-    <div class="container">
-=======
         <h3 class="text-center my-5">Presupuestos de Centros de Costos</h3>
     </header>
 
@@ -38,7 +22,6 @@
           </svg>
         </a>
       </div>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
         <div class="col">
             <div class="card shadow-xs border">
               <div class="card-header border-bottom pb-0">
@@ -71,21 +54,13 @@
                   <table class="table align-items-center justify-content-center mb-0">
                     <thead class="bg-gray-100">
                       <tr>
-<<<<<<< HEAD
-                        <th class="text-secondary text-xs font-weight-bold">Departamento</th>
-=======
                         <th class="text-secondary text-xs font-weight-bold">Código</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Departamento</th>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         <th class="text-secondary text-xs font-weight-bold ps-2">Centro de Costos</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Nombre Presupuesto</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Fecha de Inicio</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Fecha Limite</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Total Presupuestado</th>
-<<<<<<< HEAD
-                        <th class="text-secondary text-xs font-weight-bold ps-2">Código Centro de Costos</th>
-=======
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         <th class="text-secondary text-xs font-weight-bold ps-2">Acciones</th>
                         <th class="text-secondary text-xs font-weight-bold ps-2">Ver Detalle</th>
                       </tr>
@@ -93,12 +68,9 @@
                     <tbody>
                       <tr>
                         <td class="ps-4">
-<<<<<<< HEAD
-=======
                           <span class="text-sm font-weight-normal">123456</span>
                         </td>
                         <td>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                           <span class="text-sm font-weight-normal">Departamento 1</span>
                         </td>
                         <td >
@@ -114,14 +86,7 @@
                             <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
                         </td>
                         <td >
-<<<<<<< HEAD
-                            <span class="text-sm font-weight-normal">$XX.XXX.XXX</span>
-                        </td>
-                        <td >
-                            <span class="text-sm font-weight-normal">123456</span>
-=======
                             <span class="text-sm font-weight-normal">$00.000.000</span>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         </td>
                         <td class="align-middle">
                           <a href="{% url 'app_finanzas:editarPresupuestosCDC' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Presupuesto">
@@ -149,12 +114,9 @@
                       </tr>
                       <tr>
                         <td class="ps-4">
-<<<<<<< HEAD
-=======
                             <span class="text-sm font-weight-normal">123456</span>
                         </td>
                         <td>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                           <span class="text-sm font-weight-normal">Departamento 1</span>
                         </td>
                         <td >
@@ -170,14 +132,7 @@
                             <span class="text-sm font-weight-normal">XX-XX-XXXX</span>
                         </td>
                         <td >
-<<<<<<< HEAD
-                            <span class="text-sm font-weight-normal">$XX.XXX.XXX</span>
-                        </td>
-                        <td >
-                            <span class="text-sm font-weight-normal">123456</span>
-=======
                             <span class="text-sm font-weight-normal">$00.000.000</span>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                         </td>
                         <td class="align-middle">
                           <a href="{% url 'app_finanzas:editarPresupuestosCDC' %}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Presupuesto">
@@ -249,11 +204,7 @@
               <input disabled id="formInput" class="form-control" type="text" placeholder="123 ...">
           </div>
           <div class="container bg-dark rounded">
-<<<<<<< HEAD
-              <p class="py-1 text-light font-weight-bold">Lista del Presupuesto:</p>
-=======
               <p class="py-1 text-light font-weight-bold">Detalle del Presupuesto:</p>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
           </div>
           <div class="card-body px-0 pb-0">
               <div class="table-responsive p-0">
@@ -301,10 +252,6 @@
               <p class="font-weight-bold">Total: $<span id="totalOrden">00.000.000</span></p>
           </div>
           </div>
-<<<<<<< HEAD
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-=======
           <div class="modal-footer d-flex justify-content-center flex-wrap">
             <div>
               <a class="btn btn-secondary my-auto" href="#">
@@ -343,7 +290,6 @@
             <div>
               <button type="button" class="btn btn-secondary my-auto" data-bs-dismiss="modal">Cerrar</button>
             </div>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
           </div>
         </div>
       </div>

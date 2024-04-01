@@ -4,8 +4,6 @@
 {% block content %}
 <div class="container-fluid mt-4">
   <style>
-<<<<<<< HEAD
-=======
     .clamp-2-lines {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -18,7 +16,6 @@
       display: inline-block;
       vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
     }
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
     .card-title {
         font-size: clamp(1rem, calc(1.25rem + 0.6vw), 1.5rem);
     }
@@ -39,17 +36,10 @@
   </div>
   <hr>
   <div class="row">
-<<<<<<< HEAD
-    <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
-      <button type="button" class="btn btn-dark btn-md me-1">Editar</button>
-      <button type="button" class="btn btn-dark btn-md">Eliminar</button>
-=======
     <div class="col text-end justify-content-end">
       <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
       <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Editar</button>
       <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
     </div>
   <div class="row">
 
@@ -69,14 +59,6 @@
               <div style="height: 20px;"></div>
               <div class="col-md-6">
                 <div class="mb-3">
-<<<<<<< HEAD
-                  <label for="nombreDepartamento" class="form-label">NOMBRE</label>
-                  <input type="text" class="form-control" id="nombreDepartamento" value="John">
-                </div>
-                <div class="mb-3">
-                  <label for="gerenteDepartamento" class="form-label">GERENTE</label>
-                  <input type="text" class="form-control" id="gerenteDepartamento" value="John">
-=======
                   <label for="" class="form-label">NOMBRE</label>
                   <input type="text" class="form-control">
                 </div>
@@ -270,7 +252,6 @@
                 <div class="mb-3">
                   <label for="gerenteDepartamento" class="form-label">GERENTE</label>
                   <input type="text" class="form-control" id="gerenteDepartamento">
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
                 </div>
               </div>
               <div class="col-md-6">
@@ -327,10 +308,6 @@
           </form>
         </div>
         <div class="modal-footer">
-<<<<<<< HEAD
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
-=======
           <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Cancelar</button>
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
         </div>
@@ -435,7 +412,6 @@
               </div>
             </li>
           </ul>
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
         </div>
       </div>
     </div>
@@ -982,8 +958,6 @@
       },
     },
   });
-<<<<<<< HEAD
-=======
 
   document.addEventListener("DOMContentLoaded", function () {
     // Obtener todos los elementos de la lista de departamentos
@@ -1026,7 +1000,6 @@
     });
   });
 
->>>>>>> 1f1f0cf41449d4429894daf63900a45f92f7aaa1
 </script>
 
 {% endblock extrascripts %}
