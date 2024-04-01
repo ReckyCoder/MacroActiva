@@ -112,6 +112,137 @@
         </div>
         </div>
     </div>
+
+    <!-- Modal objetivo -->
+    <div class="modal fade" id="objetivo" tabindex="-1" aria-labelledby="objetivo" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="objetivo">Objetivo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="texto" contenteditable="true">Incrementar la seguridad y protección del hogar mediante la venta de puertas resistentes y tecnológicamente avanzadas.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="guardar">Guardar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal kpi -->
+    <div class="modal fade" id="kpi" tabindex="-1" aria-labelledby="kpi" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="kpi">KPI</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container bg-dark rounded text-center">
+                    <p class="py-1 text-light font-weight-bold">KPI</p>
+                </div>
+                <button type="button" class="btn btn-sm btn-white mb-2 float-end" data-bs-toggle="modal" data-bs-target="#agregarkpi">
+                    Agregar
+                </button>
+                <table class="table table-bordered ">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nombre KPI</th>
+                            <th>Valor</th>
+                            <th>Descripción</th>
+                            <th>Periodo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ingresos</td>
+                            <td>$100,000</td>
+                            <td>Total de ingresos generados por la empresa</td>
+                            <td>Mes actual</td>
+                        </tr>
+                        <tr>
+                            <td>Tasa de Conversión</td>
+                            <td>2.5%</td>
+                            <td>Porcentaje de visitantes del sitio web que realizan una compra</td>
+                            <td>Último trimestre</td>
+                        </tr>
+                        <tr>
+                            <td>Costo por Adquisición (CPA)</td>
+                            <td>$20</td>
+                            <td>Costo promedio de adquirir un nuevo cliente a través de una campaña publicitaria</td>
+                            <td>Mes anterior</td>
+                        </tr>
+                        <tr>
+                            <td>Alcance</td>
+                            <td>500,000</td>
+                            <td>Número total de personas alcanzadas por la campaña de marketing en redes sociales</td>
+                            <td>Última semana</td>
+                        </tr>
+                        <tr>
+                            <td>Retención de Clientes</td>
+                            <td>80%</td>
+                            <td>Porcentaje de clientes que han vuelto a comprar en los últimos 6 meses</td>
+                            <td>Último semestre</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="guardar">Guardar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal agregarkpi -->
+    <div class="modal fade" id="agregarkpi" tabindex="-1" aria-labelledby="agregarkpi" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#kpi" data-bs-toggle="modal" data-bs-dismiss="modal">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="#000" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                    </svg>
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="container bg-dark rounded text-center">
+                        <p class="py-1 text-light font-weight-bold">Nuevo KPI</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombrekpi" class="form-label">Nombre KPI:</label>
+                        <input id="nombrekpi" class="form-control" type="text" placeholder="Nombre KPI">
+                    </div>
+                    <div class="mb-3">
+                        <label for="valorkpi" class="form-label">Valor:</label>
+                        <input id="valorkpi" class="form-control" type="text" placeholder="Valor">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcionkpi" class="form-label">Descripción:</label>
+                        <input id="descripcionkpi" class="form-control" type="text" placeholder="Descripción">
+                    </div>
+                    <div class="mb-3">
+                        <label for="periodokpi" class="form-label">Periodo:</label>
+                        <input id="periodokpi" class="form-control" type="text" placeholder="Periodo">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="guardar">Guardar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
     <!-- lista campañas -->
     <div class="row my-4">  
         <div class="tabla-campañas col-lg-8 col-md-6 " id="campañas">
@@ -166,6 +297,7 @@
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha inicio</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha termino</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Presupuesto</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Objetivo /KPI</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">T_Publico</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Detalles</th>
                     </tr>
@@ -202,6 +334,20 @@
                                 <p class="text-sm text-sm mb-0">$15.000.000</p>
                             </div>
                         </td>
+                        <td class="align-middle ">
+                            <div class="ms-2 d-flex">
+                                <div data-bs-toggle="modal" data-bs-target="#objetivo">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M448 256A192 192 0 1 0 64 256a192 192 0 1 0 384 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm0-224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>
+                                    </svg>
+                                </div>
+                                <div class ="ms-2" data-bs-toggle="modal" data-bs-target="#kpi">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </td>
                         <td class="align-middle">
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">General</p>
@@ -229,7 +375,7 @@
                         <p class="text-sm font-weight-normal mb-0">Venta de sillas</p>
                         </td>
                         <td>
-                        <span class="text-sm font-weight-normal ">0001</span>
+                        <span class="text-sm font-weight-normal " data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Region Metropolitana - Melipilla">0001</span>
                         </td>
                         <td class="align-middle">
                         <div class="d-flex">
@@ -247,6 +393,20 @@
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">$5.000.000</p>
                             </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2 d-flex">
+                                <div data-bs-toggle="modal" data-bs-target="#objetivo">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M448 256A192 192 0 1 0 64 256a192 192 0 1 0 384 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm0-224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>
+                                    </svg>
+                                </div>
+                                <div class ="ms-2" data-bs-toggle="modal" data-bs-target="#kpi">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/>
+                                    </svg>
+                                </div>
+                            </div>          
                         </td>
                         <td class="align-middle">
                             <div class="ms-2">
@@ -273,7 +433,7 @@
                         <p class="text-sm font-weight-normal mb-0">Venta de puertas</p>
                         </td>
                         <td>
-                        <span class="text-sm font-weight-normal ">0001</span>
+                        <span class="text-sm font-weight-normal " data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Region Metropolitana - Melipilla">0001</span>
                         </td>
                         <td class="align-middle">
                         <div class="d-flex">
@@ -290,6 +450,20 @@
                         <td class="align-middle">
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">$15.000.000</p>
+                            </div>
+                        </td>
+                        <td class="align-middle ">
+                            <div class="ms-2 d-flex">
+                                <div data-bs-toggle="modal" data-bs-target="#objetivo">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M448 256A192 192 0 1 0 64 256a192 192 0 1 0 384 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm0-224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>
+                                    </svg>
+                                </div>
+                                <div class ="ms-2" data-bs-toggle="modal" data-bs-target="#kpi">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/>
+                                    </svg>
+                                </div>
                             </div>
                         </td>
                         <td class="align-middle">
@@ -317,7 +491,7 @@
                         <p class="text-sm font-weight-normal mb-0">Venta de sillas</p>
                         </td>
                         <td>
-                        <span class="text-sm font-weight-normal ">0001</span>
+                        <span class="text-sm font-weight-normal " data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Region Metropolitana - Melipilla">0001</span>
                         </td>
                         <td class="align-middle">
                         <div class="d-flex">
@@ -334,6 +508,20 @@
                         <td class="align-middle">
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">$5.000.000</p>
+                            </div>
+                        </td>
+                        <td class="align-middle ">
+                            <div class="ms-2 d-flex">
+                                <div data-bs-toggle="modal" data-bs-target="#objetivo">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M448 256A192 192 0 1 0 64 256a192 192 0 1 0 384 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm0-224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>
+                                    </svg>
+                                </div>
+                                <div class ="ms-2" data-bs-toggle="modal" data-bs-target="#kpi">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/>
+                                    </svg>
+                                </div>
                             </div>
                         </td>
                         <td class="align-middle">
@@ -361,7 +549,7 @@
                         <p class="text-sm font-weight-normal mb-0">Venta de puertas</p>
                         </td>
                         <td>
-                        <span class="text-sm font-weight-normal ">0001</span>
+                        <span class="text-sm font-weight-normal " data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Region Metropolitana - Melipilla">0001</span>
                         </td>
                         <td class="align-middle">
                         <div class="d-flex">
@@ -378,6 +566,20 @@
                         <td class="align-middle">
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">$15.000.000</p>
+                            </div>
+                        </td>
+                        <td class="align-middle ">
+                            <div class="ms-2 d-flex">
+                                <div data-bs-toggle="modal" data-bs-target="#objetivo">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M448 256A192 192 0 1 0 64 256a192 192 0 1 0 384 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm0-224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>
+                                    </svg>
+                                </div>
+                                <div class ="ms-2" data-bs-toggle="modal" data-bs-target="#kpi">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/>
+                                    </svg>
+                                </div>
                             </div>
                         </td>
                         <td class="align-middle">
@@ -405,7 +607,7 @@
                         <p class="text-sm font-weight-normal mb-0">Venta de sillas</p>
                         </td>
                         <td>
-                        <span class="text-sm font-weight-normal ">0001</span>
+                        <span class="text-sm font-weight-normal " data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Region Metropolitana - Melipilla">0001</span>
                         </td>
                         <td class="align-middle">
                         <div class="d-flex">
@@ -422,6 +624,20 @@
                         <td class="align-middle">
                             <div class="ms-2">
                                 <p class="text-sm text-sm mb-0">$5.000.000</p>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="ms-2 d-flex">
+                                <div data-bs-toggle="modal" data-bs-target="#objetivo">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M448 256A192 192 0 1 0 64 256a192 192 0 1 0 384 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm0-224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/>
+                                    </svg>
+                                </div>
+                                <div class ="ms-2" data-bs-toggle="modal" data-bs-target="#kpi">
+                                    <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/>
+                                    </svg>
+                                </div>
                             </div>
                         </td>
                         <td class="align-middle">
@@ -462,7 +678,7 @@
                 <div class="container bg-dark rounded text-center ">
                     <p class="py-1 text-light font-weight-bold ">Detalle campaña - Venta puertas</p>
                 </div>
-                <div class="mostrar detalle-campania">
+                 <div class="mostrar"> <!-- detalle-campania -->
                 <div class="mb-3" id="canalesMarketing">
                     <label for="formInput" class="form-label">Canales de marketing</label>
                     <input id="inputcanalesmark" class="form-control" type="text" placeholder="Ingresa un canal de marketing">
@@ -494,7 +710,7 @@
           </div>
         </div>
     </div> 
-
+    
     <!-- lista-clientes -->
     <div class="row my-4">
     <div class="tabla-clientesleads col-lg-8 col-md-6 " id="lista-clientes">
@@ -541,7 +757,7 @@
                     <thead class="bg-gray-100">
                     <tr>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7">Rut</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nombre/Razon Socual</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nombre/Razon Social</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha de nacimiento</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Correo</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Telefono</th>
@@ -796,4 +1012,6 @@
 
 {% block extrascripts %}
     <script src="../../../static/js/crmventas/campaña.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-NN4l/xD+R6ZdIwDSTa21eUwR+XL3x3bDseOICQaB5O4uXZW4a7MAzvE+Dww1RTJ2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-XGyv+nfsHPkheZxoFQnZoHTq1sp9SLT4UmbDuoHxGoYwpw0o8ZBcTPq1EFSUCCSz" crossorigin="anonymous"></script>
 {% endblock extrascripts %}

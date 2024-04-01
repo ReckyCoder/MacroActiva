@@ -6,8 +6,15 @@
 {% block extrastyle %}
     <link rel="stylesheet" href="../../../static/css/crmventas/crm.css">
 {% endblock extrastyle %}
-    <div class="titulo text-center mt-3 ">
-        <h1 >Zonas</h1>
+<div class="container-fluid py-4 px-5">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="d-md-flex align-items-center mb-3 mx-2">
+            <div class="mb-md-0 mb-3">
+            <h3 class="font-weight-bold mb-0">Zonas</h3>
+            </div>
+        </div>
+        </div>
     </div>
     <hr class="my-0">
     <div class="modal fade" id="info-zona" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -420,8 +427,8 @@
             <div class="card-header border-bottom pb-0">
                 <div class="d-sm-flex align-items-center mb-3">
                 <div>
-                    <h6 class="font-weight-semibold text-lg mb-0">Clientes/Leads</h6>
-                    <p class="text-sm mb-sm-0 mb-2">Lista</p>
+                    <h6 class="font-weight-semibold text-lg mb-0">Clientes/Leads  -  Region Metropolitana</h6>
+                    <p class="text-sm mb-sm-0 mb-2">Melipilla</p>
                 </div>
                 <div class="ms-auto d-flex">
                     <button type="button" class="btn btn-sm btn-white mb-0 me-2">
@@ -462,11 +469,11 @@
                     <thead class="bg-gray-100">
                     <tr>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7">Rut</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nombre/Razon Socual</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nombre/Razón Social</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha de nacimiento</th>
                         <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Correo</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Telefono</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Direccion</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Teléfono</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Dirección</th>
                         <th class="text-center text-secondary text-xs font-weight-semibold opacity-7"></th>
                     </tr>
                     </thead>
@@ -747,7 +754,7 @@
       </div>
       {% include 'includes/footer.html' %}
     </div>
-
+</div>
 {% endblock content %}
 
 {% block extrascripts %}

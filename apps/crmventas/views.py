@@ -72,3 +72,21 @@ def postventa(request):
 
   
     return render(request, 'pages/CLIENTES-VENTAS/postventa.html', context=context)
+
+def reembolso(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Clientes Ventas"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+  
+    return render(request, 'pages/CLIENTES-VENTAS/postventa/reembolso.html', context=context)
+
+def soporte(request):
+    #AGREGAR EN CADA VIEW PARA NAVIGATION
+    modulo = "Clientes Ventas"
+    nombre_vista = request.resolver_match.url_name
+    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+
+  
+    return render(request, 'pages/CLIENTES-VENTAS/postventa/soporte.html', context=context)

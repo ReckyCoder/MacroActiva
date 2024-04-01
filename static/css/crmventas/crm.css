@@ -176,6 +176,12 @@
     display: block;
 }
 
+.linea-separadora {
+    width: 100%;
+    height: 2px; /* Grosor de la línea */
+    background-color: #ccc; /* Color de fondo de la línea */
+    margin: 10px 0; /* Espacio alrededor de la línea */
+}
 
 
 

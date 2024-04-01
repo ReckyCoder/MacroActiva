@@ -3,5 +3,534 @@
 
 
 {% block content %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="../../../static/css/crmventas/crm.css">
+{% endblock extrastyle %}
+
+<div class="container-fluid py-4 px-5">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="d-md-flex align-items-center mb-3 mx-2">
+            <div class="mb-md-0 mb-3">
+            <h3 class="font-weight-bold mb-0">Contratos</h3>
+            <p class="mb-0">por cliente</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <hr class="my-0">
+    <!-- modales -->
+    <!-- modal detalle -->
+    <div class="modal fade" id="detalleordenes" tabindex="-1" aria-labelledby="detalleordenes" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="detalleordenes">Ordenes de compra</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body justify-content-center align-items-center">
+                <div class="container bg-dark rounded text-center">
+                    <p class="py-1 text-light font-weight-bold">Ordenes de compras en el contrato</p>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <p>OC0001F18-03-2024</p>
+                    <p>OC0001F18-03-2024</p>
+                    <p>OC0001F18-03-2024</p>
+                    <p>OC0001F18-03-2024</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              
+            </div>
+          </div>
+        </div>
+    </div>
+    <!--          -->
+    
+    <div class="row my-4">
+    <div class="tabla-clientes-cot col-lg-7 col-md-7 " id="lista-clientes">
+        <div class="card shadow-xs border">
+            <div class="card-header border-bottom pb-0">
+                <div class="d-sm-flex align-items-center mb-3">
+                <div>
+                    <h6 class="font-weight-semibold text-lg mb-0">Clientes</h6>
+                    <p class="text-sm mb-sm-0 mb-2">Lista</p>
+                </div>
+                <div class="ms-auto d-flex">
+                    <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+                    <span class="btn-inner--icon">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                    </span>
+                    <span class="btn-inner--text">Exportar</span>
+                    </button>
+                </div>
+                </div>
+                <div class="pb-3 d-sm-flex align-items-center">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes" autocomplete="off" checked>
+                    <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes">Todos</label>
+                    <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes2" autocomplete="off">
+                    <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes2">Hace 6 meses</label>
+                    <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes3" autocomplete="off">
+                    <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes3">Hace 1 mes</label>
+                </div>
+                <div class="input-group w-sm-25 ms-auto">
+                    <span class="input-group-text text-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                    </svg>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Buscar">
+                </div>
+                </div>
+            </div>
+            <div class="card-body px-0 py-0">
+                <div class="table-responsive p-0">
+                <table class="table align-items-center justify-content-center mb-0">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Rut</th>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nombre/Razon Social</th>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Ordenes de compra</th>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Contratos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                            <div class="d-flex px-2">
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">17.503.923-2</h6>
+                                </div>
+                            </div>
+                            </td>
+                            <td>
+                                <p class="text-sm font-weight-normal mb-0">Juan Perez</p>
+                            </td>
+                            <td>
+                                <span class="text-sm font-weight-normal ">4</span>
+                                <svg class="ms-lg-2" width="20"  heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                    <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>
+                                </svg>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                    <p class="text-sm text-sm mb-0">2</p>
+                                    </div>
+                                    <svg class="ms-lg-3" width="16"  heigth="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM80 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm54.2 253.8c-6.1 20.3-24.8 34.2-46 34.2H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h8.2c7.1 0 13.3-4.6 15.3-11.4l14.9-49.5c3.4-11.3 13.8-19.1 25.6-19.1s22.2 7.7 25.6 19.1l11.6 38.6c7.4-6.2 16.8-9.7 26.8-9.7c15.9 0 30.4 9 37.5 23.2l4.4 8.8H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-6.1 0-11.6-3.4-14.3-8.8l-8.8-17.7c-1.7-3.4-5.1-5.5-8.8-5.5s-7.2 2.1-8.8 5.5l-8.8 17.7c-2.9 5.9-9.2 9.4-15.7 8.8s-12.1-5.1-13.9-11.3L144 349l-9.8 32.8z"/>
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <div class="d-flex px-2">
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">17.503.923-2</h6>
+                                </div>
+                            </div>
+                            </td>
+                            <td>
+                                <p class="text-sm font-weight-normal mb-0">Juan Perez</p>
+                            </td>
+                            <td>
+                                <span class="text-sm font-weight-normal ">4</span>
+                                <svg class="ms-lg-2" width="20"  heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                    <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>
+                                </svg>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                    <p class="text-sm text-sm mb-0">2</p>
+                                    </div>
+                                    <svg class="ms-lg-3" width="16"  heigth="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM80 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm54.2 253.8c-6.1 20.3-24.8 34.2-46 34.2H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h8.2c7.1 0 13.3-4.6 15.3-11.4l14.9-49.5c3.4-11.3 13.8-19.1 25.6-19.1s22.2 7.7 25.6 19.1l11.6 38.6c7.4-6.2 16.8-9.7 26.8-9.7c15.9 0 30.4 9 37.5 23.2l4.4 8.8H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-6.1 0-11.6-3.4-14.3-8.8l-8.8-17.7c-1.7-3.4-5.1-5.5-8.8-5.5s-7.2 2.1-8.8 5.5l-8.8 17.7c-2.9 5.9-9.2 9.4-15.7 8.8s-12.1-5.1-13.9-11.3L144 349l-9.8 32.8z"/>
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <div class="d-flex px-2">
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">17.503.923-2</h6>
+                                </div>
+                            </div>
+                            </td>
+                            <td>
+                                <p class="text-sm font-weight-normal mb-0">Juan Perez</p>
+                            </td>
+                            <td>
+                                <span class="text-sm font-weight-normal ">4</span>
+                                <svg class="ms-lg-2" width="20"  heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                    <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>
+                                </svg>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                    <p class="text-sm text-sm mb-0">2</p>
+                                    </div>
+                                    <svg class="ms-lg-3" width="16"  heigth="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM80 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm54.2 253.8c-6.1 20.3-24.8 34.2-46 34.2H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h8.2c7.1 0 13.3-4.6 15.3-11.4l14.9-49.5c3.4-11.3 13.8-19.1 25.6-19.1s22.2 7.7 25.6 19.1l11.6 38.6c7.4-6.2 16.8-9.7 26.8-9.7c15.9 0 30.4 9 37.5 23.2l4.4 8.8H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-6.1 0-11.6-3.4-14.3-8.8l-8.8-17.7c-1.7-3.4-5.1-5.5-8.8-5.5s-7.2 2.1-8.8 5.5l-8.8 17.7c-2.9 5.9-9.2 9.4-15.7 8.8s-12.1-5.1-13.9-11.3L144 349l-9.8 32.8z"/>
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination mt-3 d-flex justify-content-center flex-wrap ">
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+            </div>
+    </div>
+    <!-- ordenes -->
+    <div class="col-lg-5 col-md-5 mb-md-0 mb-4">
+        <div class="card shadow-xs border h-100">
+            <div class="card-header pb-0">
+                <div class="container bg-dark rounded text-center">
+                    <p class="py-1 text-light font-weight-bold">Ordenes de compras</p>
+                </div>
+                <div class="pb-3 d-sm-flex align-items-center">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center">
+                            <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                            </svg>
+                        </div>
+                        <p class="h5 text-secondary mb-1 ms-3">juan Perez</p>
+                    </div>
+
+                    
+                    <div class="input-group w-sm-25 ms-auto">
+                        <span class="input-group-text text-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                        </svg>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Buscar">
+                    </div>
+                </div>
+                
+                <!-- aquí -->
+                <div class="row my-4 justify-content-center">
+                    <div class="col-lg-12 col-md-12 text-center mb-md-0 mb-4">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+                        </svg>
+                    </div>
+                    <div class="ordenes1 col-lg-6 col-md-6 mb-md-0 mb-4">
+                        <div class="card shadow-xs border h-100">
+                            <span onclick="moveToOtherCard(this)">OC0001F18-03-2024</span>
+                            <span onclick="moveToOtherCard(this)">OC0002F19-02-2024</span>
+                            <span onclick="moveToOtherCard(this)">OC0002F19-02-2024</span>
+                            <span onclick="moveToOtherCard(this)">OC0002F19-02-2024</span>
+                        </div>
+                    </div>
+                    <div class="ordenes2 col-lg-6 col-md-6 mb-md-0 mb-4">
+                        <div class="card shadow-xs border h-100">
+                            
+                        </div>
+                    </div>  
+                    <div class="pb-3 d-sm-flex align-items-center">
+                        <div class="d-flex align-items-center mt-4">
+                            <div class="ms-auto d-flex">
+                                <input id="fechacontrato" class="form-control d-inline" type="date">  
+                            </div>
+                        </div>
+                        <div class="button-zona  d-flex align-items-center  mt-3 mt-4 justify-content-end d-flex ms-md-auto pe-md-3">
+                            <button type="button bn20 mt-2" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 ">
+                                <span class="btn-inner--text">Generar Contrato</span>
+                            </button>
+                        </div>    
+                        
+                    </div>
+                                 
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- contratos -->
+    <div class="tabla-clientes-cot col-lg-12 col-md-12 " id="contratos">
+        <div class="card shadow-xs border">
+            <div class="card-header border-bottom pb-0">
+                <div class="d-sm-flex align-items-center mb-3">
+                <div>
+                    <h6 class="font-weight-semibold text-lg mb-0">Contratos - Juan Perez</h6>
+                    <p class="text-sm mb-sm-0 mb-2">Lista</p>
+                </div>
+                <div class="ms-auto d-flex">
+                    <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+                    <span class="btn-inner--icon">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                    </span>
+                    <span class="btn-inner--text">Exportar</span>
+                    </button>
+                </div>
+                </div>
+                <div class="pb-3 d-sm-flex align-items-center">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes" autocomplete="off" checked>
+                    <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes">Todos</label>
+                    <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes2" autocomplete="off">
+                    <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes2">Hace 6 meses</label>
+                    <input type="radio" class="btn-check" name="btnradiotable-clientes" id="btnradiotable-clientes3" autocomplete="off">
+                    <label class="btn btn-white px-3 mb-0" for="btnradiotable-clientes3">Hace 1 mes</label>
+                </div>
+                <div class="input-group w-sm-25 ms-auto">
+                    <span class="input-group-text text-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                    </svg>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Buscar">
+                </div>
+                </div>
+            </div>
+            <div class="card-body px-0 py-0">
+                <div class="table-responsive p-0">
+                <table class="table align-items-center justify-content-center mb-0">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7">Nro_contrato</th>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nombre de contrato</th>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha de contrato</th>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Ordenes de compra</th>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Estado</th>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Seguimiento</th>
+                            <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                            <div class="d-flex px-2">
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">000001</h6>
+                                </div>
+                            </div>
+                            </td>
+                            <td>
+                                <p class="text-sm font-weight-normal mb-0">Venta de puertas</p>
+                            </td>
+                            <td>
+                                <span class="text-sm font-weight-normal ">23/03/2024</span>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#detalleordenes">
+                                        <svg width="20px" height="20px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                            <path fill="#fff"d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
+                                        </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex w-60">
+                                    <select class="form-select" id="estadoContrato" onchange="cambiarEstado()">
+                                        <option value="Activo">Activo</option>
+                                        <option value="En negociación">En negociación</option>
+                                        <option value="Firmado">Firmado</option>
+                                        <option value="Ejecutado">Ejecutado</option>
+                                        <option value="Vencido">Vencido</option>
+                                        <option value="Incumplimiento">Incumplimiento</option>
+                                        <option value="Disputa">Disputa</option>
+                                    </select>
+                                </div>    
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <a href="{% url 'app_crmventas:postventa'%}">
+                                            <button class="btn btn-dark" >
+                                                <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path fill="#fff" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3v50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6V235.5c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <button class="btn btn-link p-0" onclick="generarPDF()">
+                                            <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <div class="d-flex px-2">
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">000001</h6>
+                                </div>
+                            </div>
+                            </td>
+                            <td>
+                                <p class="text-sm font-weight-normal mb-0">Venta de puertas</p>
+                            </td>
+                            <td>
+                                <span class="text-sm font-weight-normal ">23/03/2024</span>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#detalleordenes">
+                                        <svg width="20px" height="20px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                            <path fill="#fff"d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
+                                        </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex w-60">
+                                    <select class="form-select" id="estadoContrato" onchange="cambiarEstado()">
+                                        <option value="Activo">Activo</option>
+                                        <option value="En negociación">En negociación</option>
+                                        <option value="Firmado">Firmado</option>
+                                        <option value="Ejecutado">Ejecutado</option>
+                                        <option value="Vencido">Vencido</option>
+                                        <option value="Incumplimiento">Incumplimiento</option>
+                                        <option value="Disputa">Disputa</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <a href="{% url 'app_crmventas:postventa'%}">
+                                            <button class="btn btn-dark" >
+                                                <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path fill="#fff" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3v50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6V235.5c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <svg width="25" heigth="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <div class="d-flex px-2">
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">000001</h6>
+                                </div>
+                            </div>
+                            </td>
+                            <td>
+                                <p class="text-sm font-weight-normal mb-0">Venta de puertas</p>
+                            </td>
+                            <td>
+                                <span class="text-sm font-weight-normal ">23/03/2024</span>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#detalleordenes">
+                                        <svg width="20px" height="20px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                            <path fill="#fff"d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
+                                        </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex w-60">
+                                    <select class="form-select" id="estadoContrato" onchange="cambiarEstado()">
+                                        <option value="Activo">Activo</option>
+                                        <option value="En negociación">En negociación</option>
+                                        <option value="Firmado">Firmado</option>
+                                        <option value="Ejecutado">Ejecutado</option>
+                                        <option value="Vencido">Vencido</option>
+                                        <option value="Incumplimiento">Incumplimiento</option>
+                                        <option value="Disputa">Disputa</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <a href="{% url 'app_crmventas:postventa'%}">
+                                            <button class="btn btn-dark" >
+                                                <svg width="20" heigth="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                    <path fill="#fff" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm161.5-86.1c-12.2-5.2-26.3 .4-31.5 12.6s.4 26.3 12.6 31.5l11.9 5.1c17.3 7.4 35.2 12.9 53.6 16.3v50.1c0 4.3-.7 8.6-2.1 12.6l-28.7 86.1c-4.2 12.6 2.6 26.2 15.2 30.4s26.2-2.6 30.4-15.2l24.4-73.2c1.3-3.8 4.8-6.4 8.8-6.4s7.6 2.6 8.8 6.4l24.4 73.2c4.2 12.6 17.8 19.4 30.4 15.2s19.4-17.8 15.2-30.4l-28.7-86.1c-1.4-4.1-2.1-8.3-2.1-12.6V235.5c18.4-3.5 36.3-8.9 53.6-16.3l11.9-5.1c12.2-5.2 17.8-19.3 12.6-31.5s-19.3-17.8-31.5-12.6L338.7 175c-26.1 11.2-54.2 17-82.7 17s-56.5-5.8-82.7-17l-11.9-5.1zM256 160a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="d-flex">
+                                    <div class="ms-2">
+                                        <svg width="25" heigth="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination mt-3 d-flex justify-content-center flex-wrap ">
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+            </div>
+    </div>
+
+</div>
+
 
 {% endblock content %}
+
+{% block extrascripts %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../../../static/js/crmventas/contratos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+{% endblock extrascripts %}
