@@ -1,0 +1,941 @@
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+
+{% block content %}
+<div class="container-fluid mt-4">
+<style>
+  .clamp-2-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+  }
+
+  .col {
+    display: inline-block;
+    vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
+  }
+  .active a {
+    color: rgb(1, 1, 39); /* Color activo para el título seleccionado */
+    text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
+  .inactive a {
+      color: gray; /* Color inactivo para el título no seleccionado */
+      text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
+</style>
+
+  <div class="row align-items-end">
+    <div id="proveedores-col" class="col-auto text-left">
+      <h3 class="title active"><a href="{% url 'app_administracion:proveedores' %}" class="title-link">Proveedores</a></h3>
+    </div>
+    <div class="col-auto text-left">
+      <h3>/</h3>
+    </div>
+    <div id="licitaciones-col" class="col-auto text-left">
+      <h3 class="title inactive"><a href="{% url 'app_administracion:licitaciones' %}">Licitaciones</a></h3>
+    </div>
+  </div>
+  <hr>
+  <!-- Modal Agregar Proveedor -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Agregar Nuevo Proveedor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- formulario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Proveedor</div>
+              <div style="height: 20px;"></div>
+
+              <div class="mb-3">
+                <label for="nombreProveedor" class="form-label">Nombre</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="contactoProveedor" class="form-label">Contacto Principal</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="direccionProveedor" class="form-label">Dirección</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="provinciaProveedor" class="form-label">Provincia</label>
+                <select id="provinciaProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Antártica Chilena</option>
+                  <option>Antofagasta</option>
+                  <option>Arauco</option>
+                  <option>Arica</option>
+                  <option>Aysén</option>
+                  <option>Bio-Bío</option>
+                  <option>Cachapoal</option>
+                  <option>Capitán Prat</option>
+                  <option>Cardenal Caro</option>
+                  <option>Cauquenes</option>
+                  <option>Cautín</option>
+                  <option>Chacabuco</option>
+                  <option>Chañaral</option>
+                  <option>Chiloé</option>
+                  <option>Choapa</option>
+                  <option>Colchagua</option>
+                  <option>Concepción</option>
+                  <option>Copiapó</option>
+                  <option>Cordillera</option>
+                  <option>Cyhaique</option>
+                  <option>Curicó</option>
+                  <option>Diguillín</option>
+                  <option>El Loa</option>
+                  <option>Elqui</option>
+                  <option>General Carrera</option>
+                  <option>Huasco</option>
+                  <option>Iquique</option>
+                  <option>Isla de Pascua</option>
+                  <option>Itata</option>
+                  <option>Limarí</option>
+                  <option>Linares</option>
+                  <option>Llanquihue</option>
+                  <option>Los Andes</option>
+                  <option>Magallanes</option>
+                  <option>Maipo</option>
+                  <option>Malleco</option>
+                  <option>Marga Marga</option>
+                  <option>Melipilla</option>
+                  <option>Osorno</option>
+                  <option>Palena</option>
+                  <option>Parinacota</option>
+                  <option>Petorca</option>
+                  <option>Punilla</option>
+                  <option>Quillota</option>
+                  <option>Ranco</option>
+                  <option>San Antonio</option>
+                  <option>San Felipe de Aconcagua</option>
+                  <option>Santiago</option>
+                  <option>Talagante</option>
+                  <option>Talca</option>
+                  <option>Tamagural</option>
+                  <option>Tierra del Fuego</option>
+                  <option>Tocopilla</option>
+                  <option>Última Esperanza</option>
+                  <option>Valdivia</option>
+                  <option>Valparaíso</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="ciudadProveedor" class="form-label">Ciudad</label>
+                <select id="ciudadProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Arica</option>
+                  <option>Alto Hospicio</option>
+                  <option>Iquique</option>
+                  <option>Pozo Almonte</option>
+                  <option>Tocopilla</option>
+                  <option>Antofagasta</option>
+                  <option>Calama</option>
+                  <option>Chuquicamata</option>
+                  <option>Mejillones</option>
+                  <option>Taltal</option>
+                  <option>Copiapó</option>
+                  <option>Vallenar</option>
+                  <option>Huasco</option>
+                  <option>La Serena</option>
+                  <option>Coquimbo</option>
+                  <option>Illapel</option>
+                  <option>Los Vilos</option>
+                  <option>Salamanca</option>
+                  <option>Ovalle</option>
+                  <option>Monte Patria</option>
+                  <option>Punitaqui</option>
+                  <option>Andacollo</option>
+                  <option>La Ligua</option>
+                  <option>Petorca</option>
+                  <option>Cabildo</option>
+                  <option>Zapallar</option>
+                  <option>Quillota</option>
+                  <option>La Calera</option>
+                  <option>Nogales</option>
+                  <option>Hijuelas</option>
+                  <option>San Antonio</option>
+                  <option>Cartagena</option>
+                  <option>El Tabo</option>
+                  <option>Santo Domingo</option>
+                  <option>San Felipe</option>
+                  <option>Los Andes</option>
+                  <option>Calle Larga</option>
+                  <option>San Esteban</option>
+                  <option>Rinconada</option>
+                  <option>Quilpué</option>
+                  <option>Villa Alemana</option>
+                  <option>Limache</option>
+                  <option>Olmué</option>
+                  <option>La Cruz</option>
+                  <option>Quintero</option>
+                  <option>Puchuncaví</option>
+                  <option>Casablanca</option>
+                  <option>Concón</option>
+                  <option>Valparaíso</option>
+                  <option>Viña del Mar</option>
+                  <option>El Quisco</option>
+                  <option>Algarrobo</option>
+                  <option>Llaillay</option>
+                  <option>Panquehue</option>
+                  <option>Catemu</option>
+                  <option>Putaendo</option>
+                  <option>Santa María</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="paisProveedor" class="form-label">País</label>
+                <select id="paisProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Chile</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="productoProveedor" class="form-label">Producto Princiapl</label>
+                <select id="productoProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Piezas de Metal</option>
+                  <option>Telas</option>
+                  <option>Componentes electrónicos</option>
+                  <option>Plásticos</option>
+                  <option>Productos Químicos</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="webProveedor" class="form-label">Web</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="telefonoProveedor" class="form-label">Teléfono</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="correoProveedor" class="form-label">Correo</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="postalProveedor" class="form-label">Código Postal</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="pagoProveedor" class="form-label">Términos de Pago</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="plazoProveedor" class="form-label">Plazo de Entrega (App)</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal principal con lista de Proveedores -->
+  <div class="modal fade" id="modalPrincipal" tabindex="-1" aria-labelledby="modalPrincipalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalPrincipalLabel">Editar Proveedor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal principal -->
+          <div class="label">Proveedores registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li id="proveedor1" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Metalurgia Industrial S.A.
+                </div>
+              </div>
+            </li>
+            <li id="proveedor2" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Textiles del Sur S.R.L.
+                </div>
+              </div>
+            </li>
+            <li id="proveedor3" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Electrónica Avanzada Ltda.
+                </div>
+              </div>
+            </li>
+            <li id="proveedor4"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Materiales EcoAmigables Inc.
+                </div>
+              </div>
+            </li>
+            <li id="proveedor5"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Químicos Innovadores S.A.
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal secundario para la edición de proveedores -->
+  <div class="modal fade" id="modalSecundario" tabindex="-1" aria-labelledby="modalSecundarioLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalSecundarioLabel">Editar Proveedor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal secundario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Proveedor</div>
+              <div style="height: 20px;"></div>
+              <div class="mb-3">
+                <label for="nombreProveedor" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="contactoProveedor" class="form-label">Contacto Principal</label>
+                <input type="text" class="form-control" >
+              </div>
+              <div class="mb-3">
+                <label for="direccionProveedor" class="form-label">Dirección</label>
+                <input type="text" class="form-control" >
+              </div>
+              <div class="mb-3">
+                <label for="provinciaProveedor" class="form-label">Provincia</label>
+                <select id="provinciaProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Antártica Chilena</option>
+                  <option>Antofagasta</option>
+                  <option>Arauco</option>
+                  <option>Arica</option>
+                  <option>Aysén</option>
+                  <option>Bio-Bío</option>
+                  <option>Cachapoal</option>
+                  <option>Capitán Prat</option>
+                  <option>Cardenal Caro</option>
+                  <option>Cauquenes</option>
+                  <option>Cautín</option>
+                  <option>Chacabuco</option>
+                  <option>Chañaral</option>
+                  <option>Chiloé</option>
+                  <option>Choapa</option>
+                  <option>Colchagua</option>
+                  <option>Concepción</option>
+                  <option>Copiapó</option>
+                  <option>Cordillera</option>
+                  <option>Cyhaique</option>
+                  <option>Curicó</option>
+                  <option>Diguillín</option>
+                  <option>El Loa</option>
+                  <option>Elqui</option>
+                  <option>General Carrera</option>
+                  <option>Huasco</option>
+                  <option>Iquique</option>
+                  <option>Isla de Pascua</option>
+                  <option>Itata</option>
+                  <option>Limarí</option>
+                  <option>Linares</option>
+                  <option>Llanquihue</option>
+                  <option>Los Andes</option>
+                  <option>Magallanes</option>
+                  <option>Maipo</option>
+                  <option>Malleco</option>
+                  <option>Marga Marga</option>
+                  <option>Melipilla</option>
+                  <option>Osorno</option>
+                  <option>Palena</option>
+                  <option>Parinacota</option>
+                  <option>Petorca</option>
+                  <option>Punilla</option>
+                  <option>Quillota</option>
+                  <option>Ranco</option>
+                  <option>San Antonio</option>
+                  <option>San Felipe de Aconcagua</option>
+                  <option>Santiago</option>
+                  <option>Talagante</option>
+                  <option>Talca</option>
+                  <option>Tamagural</option>
+                  <option>Tierra del Fuego</option>
+                  <option>Tocopilla</option>
+                  <option>Última Esperanza</option>
+                  <option>Valdivia</option>
+                  <option>Valparaíso</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="ciudadProveedor" class="form-label">Ciudad</label>
+                <select id="ciudadProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Arica</option>
+                  <option>Alto Hospicio</option>
+                  <option>Iquique</option>
+                  <option>Pozo Almonte</option>
+                  <option>Tocopilla</option>
+                  <option>Antofagasta</option>
+                  <option>Calama</option>
+                  <option>Chuquicamata</option>
+                  <option>Mejillones</option>
+                  <option>Taltal</option>
+                  <option>Copiapó</option>
+                  <option>Vallenar</option>
+                  <option>Huasco</option>
+                  <option>La Serena</option>
+                  <option>Coquimbo</option>
+                  <option>Illapel</option>
+                  <option>Los Vilos</option>
+                  <option>Salamanca</option>
+                  <option>Ovalle</option>
+                  <option>Monte Patria</option>
+                  <option>Punitaqui</option>
+                  <option>Andacollo</option>
+                  <option>La Ligua</option>
+                  <option>Petorca</option>
+                  <option>Cabildo</option>
+                  <option>Zapallar</option>
+                  <option>Quillota</option>
+                  <option>La Calera</option>
+                  <option>Nogales</option>
+                  <option>Hijuelas</option>
+                  <option>San Antonio</option>
+                  <option>Cartagena</option>
+                  <option>El Tabo</option>
+                  <option>Santo Domingo</option>
+                  <option>San Felipe</option>
+                  <option>Los Andes</option>
+                  <option>Calle Larga</option>
+                  <option>San Esteban</option>
+                  <option>Rinconada</option>
+                  <option>Quilpué</option>
+                  <option>Villa Alemana</option>
+                  <option>Limache</option>
+                  <option>Olmué</option>
+                  <option>La Cruz</option>
+                  <option>Quintero</option>
+                  <option>Puchuncaví</option>
+                  <option>Casablanca</option>
+                  <option>Concón</option>
+                  <option>Valparaíso</option>
+                  <option>Viña del Mar</option>
+                  <option>El Quisco</option>
+                  <option>Algarrobo</option>
+                  <option>Llaillay</option>
+                  <option>Panquehue</option>
+                  <option>Catemu</option>
+                  <option>Putaendo</option>
+                  <option>Santa María</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="paisProveedor" class="form-label">País</label>
+                <select id="paisProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Chile</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="productoProveedor" class="form-label">Producto Princiapl</label>
+                <select id="productoProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Piezas de Metal</option>
+                  <option>Telas</option>
+                  <option>Componentes electrónicos</option>
+                  <option>Plásticos</option>
+                  <option>Productos Químicos</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="webProveedor" class="form-label">Web</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="telefonoProveedor" class="form-label">Teléfono</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="correoProveedor" class="form-label">Correo</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="postalProveedor" class="form-label">Código Postal</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="pagoProveedor" class="form-label">Términos de Pago</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="plazoProveedor" class="form-label">Plazo de Entrega (App)</label>
+                <input type="text" class="form-control" id="webProveedor">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Eliminación de lista de Proveedores -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalEliminarLabel">Eliminar Proveedor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal Eliminar -->
+          <div class="label">Proveedores registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Metalurgia Industrial S.A.">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Metalurgia Industrial S.A.
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Textiles del Sur S.R.L.">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Textiles del Sur S.R.L.
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Electrónica Avanzada Ltda.">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Electrónica Avanzada Ltda.
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Materiales EcoAmigables Inc.">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Materiales EcoAmigables Inc.
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Químicos Innovadores S.A.">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                  Químicos Innovadores S.A.
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Información-->
+  <div class="modal fade" id="proveedorModal" tabindex="-1" aria-labelledby="proveedorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="proveedorModalLabel">Información del Proveedor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>Contacto Adicional</h4>
+          <p><strong>Correo:</strong> info@proveedorejemplo.com</p>
+          <p><strong>Código Postal:</strong> 12345</p>
+          <h4>Términos Adicionales</h4>
+          <p><strong>Términos de Pago:</strong> 30 días netos</p>
+          <p><strong>Plazo de Entrega:</strong> 2 semanas</p>
+          <p><strong>Última Actualización:</strong> 2024-03-19</p>
+          <h4>Ubicación</h4>
+          <p><strong>Provincia:</strong> Biobío</p>
+          <p><strong>Ciudad:</strong> Concepción</p>
+          <p><strong>País:</strong> Chile</p>
+          <div class="card border shadow-xs mb-3">
+            <div class="card-header border-bottom pb-0">
+              <h4 class="card-title">Últimas facturas emitidas</h4>
+            </div>    
+            <div class="card-body">
+              <ul class="list-group list-group-flush" style="max-height: 100px; overflow-y: auto;">
+                  <li class="list-group-item">DEF789 - Producto ej1 &rarr; $300.000 (Emisión el 2024-03-11)</li>
+                  <li class="list-group-item">PQR123 - Producto ej2 &rarr; $300.000 (Emisión el 2024-03-11)</li>
+                  <li class="list-group-item">GHI321 - Producto ej3 &rarr; $300.000 (Emisión el 2024-03-10)</li>
+                  <li class="list-group-item">MNO987 - Producto ej4 &rarr; $300.000 (Emisión el 2024-03-8)</li>
+                  <li class="list-group-item">ABC123 - Producto ej5 &rarr; $300.000 (Emisión el 2024-03-7)</li>
+                  <li class="list-group-item">XYZ456 - Producto ej6 &rarr; $300.000 (Emisión el 2024-03-5)</li>   
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+      <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Editar</button>
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
+    </div>
+  </div>
+  <div class="card border shadow-xs mb-4">
+    <div class="card-header border-bottom pb-0">
+      <div class="d-sm-flex align-items-center mb-3">
+        <div class="col-md-6">
+          <h4>Listado de Proveedores</h4>
+        </div>
+        <div class="col-md-6">
+          <div class="ms-auto d-flex">
+            <div class="input-group input-group-sm ms-auto me-2">
+              <input type="text" class="form-control" placeholder="Buscar...">
+            </div>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">Buscar</button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">Filtrar</button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+              <span class="btn-inner--icon">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                  </svg>
+              </span>
+              <span class="btn-inner--text">Imprimir</span>
+              </button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+              <span class="btn-inner--icon">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                  </svg>
+              </span>
+              <span class="btn-inner--text">Exportar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body px-0 py-0">
+      <div class="table-responsive p-0">
+        <table class="table align-items-center justify-content-center mb-0">
+          <thead  style="background-color: #0f172a;">
+            <tr style="color: white;">
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Representante</th>
+              <th>Dirección</th>
+              <th>Teléfono</th>
+              <th>Categoría Producto</th>
+              <th>Producto Principal</th>
+              <th>Web</th>
+              <th>Info</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+        <tbody style="vertical-align: middle;">
+            <tr>
+              <td>12345</td>
+              <td>Metalurgia Industrial S.A.</td>
+              <td>Juan Pérez</td>
+              <td>Calle Principal 123</td>
+              <td>9-12345689</td>
+              <td>Metales Especiales</td>
+              <td>Barras de Acero Inoxidable</td>
+              <td>www.metalurgiaindustrial.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+              <td class="text-center" style="vertical-align: middle;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                    </svg>
+                </a>
+                <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                    </svg>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>12345</td>
+              <td>Textiles del Sur S.R.L.</td>
+              <td>Maria García</td>
+              <td>Avenida Central 456</td>
+              <td>9-12345689</td>
+              <td>Textiles</td>
+              <td>Telas Antiarrugas</td>
+              <td>www.textilesdelsur.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+              <td class="text-center" style="vertical-align: middle;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                    </svg>
+                </a>
+                <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                    </svg>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>12345</td>
+              <td>Electrónica Avanzada Ltda.</td>
+              <td>Carlos López</td>
+              <td>Plaza Mayor 789</td>
+              <td>9-12345689</td>
+              <td>Dispositivos Electrónicos</td>
+              <td>Auriculares Inalámbricos</td>
+              <td>www.electronicaavanzada.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+              <td class="text-center" style="vertical-align: middle;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                    </svg>
+                </a>
+                <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                    </svg>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>12345</td>
+              <td>Materiales EcoAmigables Inc.</td>
+              <td>Laura Martínez</td>
+              <td>Paseo de las Flores 101</td>
+              <td>9-12345689</td>
+              <td>Materiales Sostenibles</td>
+              <td>Bolsas Reutilizables de Tela</td>
+              <td>www.materialesecoamigables.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+              <td class="text-center" style="vertical-align: middle;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                    </svg>
+                </a>
+                <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                    </svg>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>12345</td>
+              <td>Químicos Innovadores S.A.</td>
+              <td>Ricardo Sánchez</td>
+              <td>Rúa da Praza 987</td>
+              <td>9-12345689</td>
+              <td>Productos Químicos</td>
+              <td>Limpiador Multiusos Eco</td>
+              <td>www.quimicosinnovadores.com</td>
+              <td class="text-center" style="vertical-align: middle;" data-bs-toggle="modal" data-bs-target="#proveedorModal" data-bs-toggle="tooltip" title="Ver detalles">
+                <a href="#" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                  <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#0f172a" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                  </svg>
+                </a>
+              </td>
+              <td class="text-center" style="vertical-align: middle;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                    </svg>
+                </a>
+                <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                    </svg>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     </div>
+    </div>
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination d-flex justify-content-center flex-wrap ">
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Anterior</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-dark text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Siguiente</a></li>
+    </ul>
+  </nav>
+
+</div>
+{% include 'includes/footer.html' %}
+{% endblock content %}
+{% block extrascripts %}
+<script>
+  //LISTA ELIMINAR
+  // Función para manejar la eliminación del proveedor
+  function eliminarProveedor(nombre) {
+    // Mostrar un cuadro de diálogo de confirmación
+    var confirmacion = confirm("¿Estás seguro de que deseas eliminar el proveedor " + nombre + "?");
+
+    // Si el usuario confirma la eliminación
+    if (confirmacion) {
+      // Aquí puedes agregar la lógica para eliminar el proveedor
+      alert("El proveedor " + nombre + " ha sido eliminado.");
+    }
+  }
+
+  // Función para obtener el nombre del proveedor desde el elemento
+  function obtenerNombreProveedor(elemento) {
+    return elemento.getAttribute('data-nombre');
+  }
+
+  // Función para obtener el nombre del proveedor desde la fila de la tabla
+  function obtenerNombreProveedorDesdeFila(fila) {
+    return fila.querySelector('td:nth-child(2)').textContent.trim();
+  }
+
+  // Función de manejo de clic para la lista de proveedores
+  function clicListaProveedor(event) {
+    var nombreProveedor = obtenerNombreProveedor(this);
+    eliminarProveedor(nombreProveedor);
+  }
+
+  // Función de manejo de clic para el botón de eliminar
+  function clicBotonEliminar(event) {
+    event.preventDefault();
+
+    // Obtener la fila padre del botón de eliminar
+    var fila = this.closest('tr');
+
+    // Obtener el nombre del proveedor desde la fila de la tabla
+    var nombreProveedor = obtenerNombreProveedorDesdeFila(fila);
+
+    // Eliminar el proveedor
+    eliminarProveedor(nombreProveedor);
+  }
+
+  // Obtener todos los elementos de la lista y el botón de eliminar
+  var listaProveedores = document.querySelectorAll('#modalEliminar .list-group-item');
+  var botonesEliminar = document.querySelectorAll('.boton-eliminar');
+
+  // Agregar eventos de clic a cada elemento de la lista de proveedores
+  listaProveedores.forEach(function(proveedor) {
+    proveedor.addEventListener('click', clicListaProveedor);
+  });
+
+  // Agregar eventos de clic a cada botón de eliminar
+  botonesEliminar.forEach(function(boton) {
+    boton.addEventListener('click', clicBotonEliminar);
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtener todos los elementos de la lista de productos
+    var proveedores = document.querySelectorAll("#modalPrincipal .list-group-item");
+
+    // Iterar sobre cada elemento de la lista
+    proveedores.forEach(function (proveedor) {
+      // Agregar un event listener para el evento de clic
+      proveedor.addEventListener("click", function () {
+        // Obtener el nombre del producto haciendo referencia a su elemento hijo
+        var nombreProveedor = this.querySelector(".col-auto:nth-child(2)").innerText.trim();
+
+        // Imprimir el nombre del proveedor en la consola
+        console.log("Nombre del proveedor:", nombreProveedor);
+
+        // Actualizar el campo de nombre del producto en el modal secundario
+        document.getElementById("nombreProveedor").value = nombreProveedor;
+      });
+    });
+  });
+
+</script>
+
+{% endblock extrascripts %}

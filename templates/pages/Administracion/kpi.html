@@ -1,0 +1,769 @@
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+
+{% block content %}
+<div class="container-fluid py-4 px-5">
+    <div class="row align-items-end">
+        <div class="col text-left">
+            <h3>KGI / KPI</h3>
+        </div>
+    </div>
+    <hr>
+    <h3>Indicadores Clave de Gestión (KGI)</h3>
+
+    <!-- Modal para Ventas -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header bg-dark">
+              <h5 class="modal-title text-white" id="exampleModalLabel">Indicadores KPI</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>KPI</th>
+                      <th>Porcentaje Obtenido</th>
+                      <th>Porcentaje Meta</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Volumen de ventas mensual</td>
+                      <td class="text-center text-success">17%</td>
+                      <td class="text-center text-info">15% - 25%</td>
+                      <td><span class="badge badge-sm border border-success text-success bg-success">Dentro de parámetros</span></td>
+                    </tr>
+                    <tr>
+                      <td>Tasa de conversión de leads</td>
+                      <td class="text-center text-danger">63%</td>
+                      <td class="text-center text-info">75% - 80%</td>
+                      <td><span class="badge badge-sm border border-danger text-danger bg-danger">Por debajo de parámetros</span></td>
+                    </tr>
+                    <tr>
+                      <td>Ingresos por cliente promedio</td>
+                      <td class="text-center text-success">95%</td>
+                      <td class="text-center text-info">90% - 100%</td>
+                      <td><span class="badge badge-sm border border-success text-success bg-success">Dentro de parámetros</span></td>
+                    </tr>
+                    <tr>
+                      <td>Margen de beneficio</td>
+                      <td class="text-center text-success">20%</td>
+                      <td class="text-center text-info">10% - 22%</td>
+                      <td><span class="badge badge-sm border border-success text-success bg-success">Dentro de parámetros</span></td>
+                    </tr>
+                    <!-- Agrega más KPI para Ventas -->
+                  </tbody>
+                </table>
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin del modal para Ventas -->
+
+    <div class="row">
+        <!-- Repite esta estructura para cada departamento -->
+        <div class="col-md-4 mb-2">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Ventas</h5>
+                <p class="card-text">KGI: Tasa de crecimiento de ingresos anuales.</p>
+                <div class="card shadow-xs border h-100">
+                    <div class="card-header pb-0">
+                      <p class="text-sm">Detalles.</p>
+                      <div
+                        class="btn-group"
+                        role="group"
+                        aria-label="Basic radio toggle button group"
+                      >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioD1"
+                          autocomplete="off"
+                          checked
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioD1"
+                          >12 Meses</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioD2"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioD2"
+                          >30 días</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioD3"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioD3"
+                          >7 días</label
+                        >
+                      </div>
+                    </div>
+                    <div class="card-body py-3">
+                      <div class="chart mb-2">
+                        <canvas class="chart-canvas" height="240"></canvas>
+                      </div>
+                      <div class="ms-auto d-flex">
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Imprimir</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Exportar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal">KPI</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">Finanzas</h5>
+            <p class="card-text">KGI: Ratio de liquidez.</p>
+            <div class="card shadow-xs border h-100">
+                <div class="card-header pb-0">
+                  <p class="text-sm">Detalles.</p>
+                  <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Basic radio toggle button group"
+                  >
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="btnradio"
+                      id="btnradioF1"
+                      autocomplete="off"
+                      checked
+                    />
+                    <label class="btn btn-white px-3 mb-0" for="btnradioF1"
+                      >12 Meses</label
+                    >
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="btnradio"
+                      id="btnradioF2"
+                      autocomplete="off"
+                    />
+                    <label class="btn btn-white px-3 mb-0" for="btnradioF2"
+                      >30 días</label
+                    >
+                    <input
+                      type="radio"
+                      class="btn-check"
+                      name="btnradio"
+                      id="btnradioF3"
+                      autocomplete="off"
+                    />
+                    <label class="btn btn-white px-3 mb-0" for="btnradioF3"
+                      >7 días</label
+                    >
+                  </div>
+                </div>
+                <div class="card-body py-3">
+                  <div class="chart mb-2">
+                    <canvas class="chart-canvas" height="240"></canvas>
+                  </div>
+                  <div class="ms-auto d-flex">
+                    <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                      <span class="btn-inner--icon">
+                          <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                          </svg>
+                      </span>
+                      <span class="btn-inner--text">Imprimir</span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                      <span class="btn-inner--icon">
+                          <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                          </svg>
+                      </span>
+                      <span class="btn-inner--text">Exportar</span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal">KPI</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Producción</h5>
+                <p class="card-text">KGI: Eficiencia de la línea de producción.</p>
+                <div class="card shadow-xs border h-100">
+                    <div class="card-header pb-0">
+                      <p class="text-sm">Detalles.</p>
+                      <div
+                        class="btn-group"
+                        role="group"
+                        aria-label="Basic radio toggle button group"
+                      >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioP1"
+                          autocomplete="off"
+                          checked
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioP1"
+                          >12 Meses</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioP2"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioP2"
+                          >30 días</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioP3"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioP3"
+                          >7 días</label
+                        >
+                      </div>
+                    </div>
+                    <div class="card-body py-3">
+                      <div class="chart mb-2">
+                        <canvas class="chart-canvas" height="240"></canvas>
+                      </div>
+                      <div class="ms-auto d-flex">
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Imprimir</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Exportar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal">KPI</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">RR.HH</h5>
+                <p class="card-text">KGI: Tasa de rotación de empleados.</p>
+                <div class="card shadow-xs border h-100">
+                    <div class="card-header pb-0">
+                      <p class="text-sm">Detalles.</p>
+                      <div
+                        class="btn-group"
+                        role="group"
+                        aria-label="Basic radio toggle button group"
+                      >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioRH1"
+                          autocomplete="off"
+                          checked
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioRH1"
+                          >12 Meses</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioRH2"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioRH2"
+                          >30 días</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioRH3"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioRH3"
+                          >7 días</label
+                        >
+                      </div>
+                    </div>
+                    <div class="card-body py-3">
+                      <div class="chart mb-2">
+                        <canvas class="chart-canvas" height="240"></canvas>
+                      </div>
+                      <div class="ms-auto d-flex">
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Imprimir</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Exportar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal">KPI</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Compras</h5>
+                <p class="card-text">KGI: Ratio de costos de adquisición.</p>
+                <div class="card shadow-xs border h-100">
+                    <div class="card-header pb-0">
+                      <p class="text-sm">Detalles.</p>
+                      <div
+                        class="btn-group"
+                        role="group"
+                        aria-label="Basic radio toggle button group"
+                      >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioC1"
+                          autocomplete="off"
+                          checked
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioC1"
+                          >12 Meses</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioC2"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioC2"
+                          >30 días</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioC3"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioC3"
+                          >7 días</label
+                        >
+                      </div>
+                    </div>
+                    <div class="card-body py-3">
+                      <div class="chart mb-2">
+                        <canvas class="chart-canvas" height="240"></canvas>
+                      </div>
+                      <div class="ms-auto d-flex">
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Imprimir</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Exportar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal">KPI</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Seguridad</h5>
+                <p class="card-text">KGI: Número de incidentes de seguridad reportados.</p>
+                <div class="card shadow-xs border h-100">
+                    <div class="card-header pb-0">
+                      <p class="text-sm">Detalles.</p>
+                      <div
+                        class="btn-group"
+                        role="group"
+                        aria-label="Basic radio toggle button group"
+                      >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioD1"
+                          autocomplete="off"
+                          checked
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioD1"
+                          >12 Meses</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioD2"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioD2"
+                          >30 días</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioD3"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioD3"
+                          >7 días</label
+                        >
+                      </div>
+                    </div>
+                    <div class="card-body py-3">
+                      <div class="chart mb-2">
+                        <canvas class="chart-canvas" height="240"></canvas>
+                      </div>
+                      <div class="ms-auto d-flex">
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Imprimir</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Exportar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal">KPI</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Marketing</h5>
+                <p class="card-text">KGI: Retorno de la inversión publicitaria (ROI).</p>
+                <div class="card shadow-xs border h-100">
+                    <div class="card-header pb-0">
+                      <p class="text-sm">Detalles.</p>
+                      <div
+                        class="btn-group"
+                        role="group"
+                        aria-label="Basic radio toggle button group"
+                      >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioM1"
+                          autocomplete="off"
+                          checked
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioM1"
+                          >12 Meses</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioM2"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioM2"
+                          >30 días</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioM3"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioM3"
+                          >7 días</label
+                        >
+                      </div>
+                    </div>
+                    <div class="card-body py-3">
+                      <div class="chart mb-2">
+                        <canvas class="chart-canvas" height="240"></canvas>
+                      </div>
+                      <div class="ms-auto d-flex">
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Imprimir</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Exportar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal">KPI</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Logística</h5>
+                <p class="card-text">KGI: Tiempo promedio de entrega.</p>
+                <div class="card shadow-xs border h-100">
+                    <div class="card-header pb-0">
+                      <p class="text-sm">Detalles.</p>
+                      <div
+                        class="btn-group"
+                        role="group"
+                        aria-label="Basic radio toggle button group"
+                      >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioL1"
+                          autocomplete="off"
+                          checked
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioL1"
+                          >12 Meses</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioL2"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioL2"
+                          >30 días</label
+                        >
+                        <input
+                          type="radio"
+                          class="btn-check"
+                          name="btnradio"
+                          id="btnradioL3"
+                          autocomplete="off"
+                        />
+                        <label class="btn btn-white px-3 mb-0" for="btnradioL3"
+                          >7 días</label
+                        >
+                      </div>
+                    </div>
+                    <div class="card-body py-3">
+                      <div class="chart mb-2">
+                        <canvas class="chart-canvas" height="240"></canvas>
+                      </div>
+                      <div class="ms-auto d-flex">
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Imprimir</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                          <span class="btn-inner--icon">
+                              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                              </svg>
+                          </span>
+                          <span class="btn-inner--text">Exportar</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal">KPI</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% include 'includes/footer.html' %}
+{% endblock content %}
+{% block extrascripts %}
+
+  <script src="{% static 'assets/js/plugins/chartjs.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/swiper-bundle.min.js' %}" type="text/javascript"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var chartCanvases = document.querySelectorAll('.chart-canvas');
+    chartCanvases.forEach(function(canvas) {
+        var ctx = canvas.getContext('2d');
+
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+                datasets: [{
+                        label: "Sales",
+                        tension: 0.4,
+                        borderWidth: 0,
+                        borderSkipped: false,
+                        backgroundColor: "#2ca8ff",
+                        data: [450, 200, 100, 220, 500, 100, 400, 230, 500, 200],
+                        maxBarThickness: 6
+                    },
+                    {
+                        label: "Sales",
+                        tension: 0.4,
+                        borderWidth: 0,
+                        borderSkipped: false,
+                        backgroundColor: "#7c3aed",
+                        data: [200, 300, 200, 420, 400, 200, 300, 430, 400, 300],
+                        maxBarThickness: 6
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        backgroundColor: '#fff',
+                        titleColor: '#1e293b',
+                        bodyColor: '#1e293b',
+                        borderColor: '#e9ecef',
+                        borderWidth: 1,
+                        usePointStyle: true
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+                scales: {
+                    y: {
+                        stacked: true,
+                        grid: {
+                            drawBorder: false,
+                            display: true,
+                            drawOnChartArea: true,
+                            drawTicks: false,
+                            borderDash: [4, 4],
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            padding: 10,
+                            font: {
+                                size: 12,
+                                family: "Noto Sans",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                            color: "#64748B"
+                        },
+                    },
+                    x: {
+                        stacked: true,
+                        grid: {
+                            drawBorder: false,
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 12,
+                                family: "Noto Sans",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                            color: "#64748B"
+                        },
+                    },
+                },
+            },
+        });
+    });
+});
+</script>
+
+{% endblock extrascripts %}

@@ -1,0 +1,569 @@
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+
+{% block content %}
+<div class="container-fluid mt-4">
+<style>
+  .clamp-2-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+  }
+
+  .col {
+    display: inline-block;
+    vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
+  }
+  .active a {
+    color: rgb(1, 1, 39); /* Color activo para el título seleccionado */
+    text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
+  .inactive a {
+      color: gray; /* Color inactivo para el título no seleccionado */
+      text-decoration: none; /* Eliminar el subrayado de los enlaces */
+  }
+</style>
+
+<div class="row align-items-end">
+    <div class="col text-left">
+      <h3>Proyectos</h3>
+    </div>
+  </div>
+  <hr>
+
+  <!-- Modal Agregar Proveedor -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Generar Nuevo Proyecto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- formulario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Proyecto</div>
+              <div style="height: 20px;"></div>
+              <div class="mb-3">
+                <label for="codigoProveedor" class="form-label">Código</label>
+                <input type="text" class="form-control" id="codigoProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="nombreProyecto" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreProyecto">
+              </div>
+              <div class="mb-3">
+                <label for="departamentoProyecto" class="form-label">Departamento</label>
+                <select id="departamentoProyecto" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Ventas</option>
+                  <option>Finanzas</option>
+                  <option>Producción</option>
+                  <option>RR.HH</option>
+                  <option>Compras</option>
+                  <option>Seguridad</option>
+                  <option>Marketing</option>
+                  <option>Lógistica</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="presupuestoProyecto" class="form-label">Presupuesto</label>
+                <input type="text" class="form-control" value="$00.000.000" readonly>
+              </div>
+              <div class="mb-3">
+                <label for="totalGastoProyecto" class="form-label">Total Gasto</label>
+                <input type="text" class="form-control" >
+              </div>
+              <div class="mb-3">
+                <label for="fechaIniProyecto" class="form-label">Fecha Inicio</label>
+                <input type="text" class="form-control" id="fechaIniProyecto">
+              </div>
+              <div class="mb-3">
+                <label for="fechaTerProyecto" class="form-label">Fecha Término</label>
+                <input type="text" class="form-control" id="fechaTerProyecto">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal principal con lista de Proyecto -->
+  <div class="modal fade" id="modalPrincipal" tabindex="-1" aria-labelledby="modalPrincipalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalPrincipalLabel">Editar Proyecto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal principal -->
+          <div class="label">Proyectos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li id="proveedor1" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "A"
+                </div>
+              </div>
+            </li>
+            <li id="proveedor2" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "B"
+                </div>
+              </div>
+            </li>
+            <li id="proveedor3" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "C"
+                </div>
+              </div>
+            </li>
+            <li id="proveedor4"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "D"
+                </div>
+              </div>
+            </li>
+            <li id="proveedor5"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "E"
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal secundario para la edición de proyecto -->
+  <div class="modal fade" id="modalSecundario" tabindex="-1" aria-labelledby="modalSecundarioLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalSecundarioLabel">Editar Proyecto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal secundario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Proyecto</div>
+              <div style="height: 20px;"></div>
+              <div class="mb-3">
+                <label for="codigoProveedor" class="form-label">Código</label>
+                <input type="text" class="form-control" id="codigoProveedor">
+              </div>
+              <div class="mb-3">
+                <label for="nombreProyecto" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreProyecto">
+              </div>
+              <div class="mb-3">
+                <label for="departamentoProyecto" class="form-label">Departamento</label>
+                <select id="departamentoProyecto" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Ventas</option>
+                  <option>Finanzas</option>
+                  <option>Producción</option>
+                  <option>RR.HH</option>
+                  <option>Compras</option>
+                  <option>Seguridad</option>
+                  <option>Marketing</option>
+                  <option>Lógistica</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="presupuestoProyecto" class="form-label">Presupuesto</label>
+                <input type="text" class="form-control" value="$00.000.000" readonly>
+              </div>
+              <div class="mb-3">
+                <label for="totalGastoProyecto" class="form-label">Total Gasto</label>
+                <input type="text" class="form-control" >
+              </div>
+              <div class="mb-3">
+                <label for="fechaIniProyecto" class="form-label">Fecha Inicio</label>
+                <input type="text" class="form-control" id="fechaIniProyecto">
+              </div>
+              <div class="mb-3">
+                <label for="fechaTerProyecto" class="form-label">Fecha Término</label>
+                <input type="text" class="form-control" id="fechaTerProyecto">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Eliminación de lista de Proyecto -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalEliminarLabel">Eliminar Proyecto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal Eliminar -->
+          <div class="label">Proyectos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Proyecto Industria 'A'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "A"
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Proyecto Industria 'B'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "B"
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Proyecto Industria 'C'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "C"
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Proyecto Industria 'D'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "D"
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Proyecto Industria 'E'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #123456
+                </div>
+                <div class="col-auto">
+                    Proyecto Industria "E"
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Generar Proyecto</button>
+        <button type="button" class="btn btn-dark btn-md me-1" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Editar</button>
+        <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
+    </div>
+  </div>
+  <div class="card border shadow-xs mb-4">
+    <div class="card-header border-bottom pb-0">
+      <div class="d-sm-flex align-items-center mb-3">
+        <div class="col-md-6">
+          <h4>Listado de Proyectos</h4>
+        </div>
+        <div class="col-md-6">
+          <div class="ms-auto d-flex">
+            <div class="input-group input-group-sm ms-auto me-2">
+              <input type="text" class="form-control" placeholder="Buscar...">
+            </div>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">Buscar</button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">Filtrar</button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+              <span class="btn-inner--icon">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                  </svg>
+              </span>
+              <span class="btn-inner--text">Imprimir</span>
+              </button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+              <span class="btn-inner--icon">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                  </svg>
+              </span>
+              <span class="btn-inner--text">Exportar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body px-0 py-0">
+      <div class="table-responsive p-0">
+        <table class="table align-items-center justify-content-center mb-0">
+          <thead  style="background-color: #0f172a;">
+            <tr style="color: white;">
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Departamento</th>
+              <th>Presupuesto</th>
+              <th>Total Gasto</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Término</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+        <tbody style="vertical-align: middle;">
+            <tr>
+                <td>12345</td>
+                <td>Proyecto Industria "A"</td>
+                <td>Deparamento "A"</td>
+                <td>$00.000.000</td>
+                <td>$00.000.000</td>
+                <td>01/01/2024</td>
+                <td>01/04/2024</td>
+                <td class="text-center" style="vertical-align: middle;">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+            <td>12345</td>
+                <td>Proyecto Industria "B"</td>
+                <td>Deparamento "B"</td>
+                <td>$00.000.000</td>
+                <td>$00.000.000</td>
+                <td>01/01/2024</td>
+                <td>01/04/2024</td>
+                <td class="text-center" style="vertical-align: middle;">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>12345</td>
+                <td>Proyecto Industria "C"</td>
+                <td>Deparamento "C"</td>
+                <td>$00.000.000</td>
+                <td>$00.000.000</td>
+                <td>01/01/2024</td>
+                <td>01/04/2024</td>
+                <td class="text-center" style="vertical-align: middle;">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>12345</td>
+                <td>Proyecto Industria "D"</td>
+                <td>Deparamento "D"</td>
+                <td>$00.000.000</td>
+                <td>$00.000.000</td>
+                <td>01/01/2024</td>
+                <td>01/04/2024</td>
+                <td class="text-center" style="vertical-align: middle;">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>12345</td>
+                <td>Proyecto Industria "E"</td>
+                <td>Deparamento "E"</td>
+                <td>$00.000.000</td>
+                <td>$00.000.000</td>
+                <td>01/01/2024</td>
+                <td>01/04/2024</td>
+                <td class="text-center" style="vertical-align: middle;">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalSecundario" class="text-secondary font-weight-bold text-xs mb-3" data-bs-toggle="tooltip" data-bs-title="Editar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="#0f172a" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="boton-eliminar text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                        <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path fill="#0f172a" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+     </div>
+    </div>
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination d-flex justify-content-center flex-wrap ">
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Anterior</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-dark text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Siguiente</a></li>
+    </ul>
+  </nav>
+
+</div>
+{% include 'includes/footer.html' %}
+{% endblock content %}
+{% block extrascripts %}
+<script>
+  //LISTA ELIMINAR
+  //SCRIPT REUTILIZADO DESDE PROVEEDORES **REQUIERE CORRECIÓN DE NOMBRES PROPIOS O ADAPTAR A UNO GENERAL**
+  // Función para manejar la eliminación del proveedor
+  function eliminarProveedor(nombre) {
+    // Mostrar un cuadro de diálogo de confirmación
+    var confirmacion = confirm("¿Estás seguro de que deseas eliminar el proyecto " + nombre + "?");
+
+    // Si el usuario confirma la eliminación
+    if (confirmacion) {
+      // Aquí puedes agregar la lógica para eliminar el proveedor
+      alert("El proyecto " + nombre + " ha sido eliminado.");
+    }
+  }
+
+  // Función para obtener el nombre del proveedor desde el elemento
+  function obtenerNombreProveedor(elemento) {
+    return elemento.getAttribute('data-nombre');
+  }
+
+  // Función para obtener el nombre del proveedor desde la fila de la tabla
+  function obtenerNombreProveedorDesdeFila(fila) {
+    return fila.querySelector('td:nth-child(2)').textContent.trim();
+  }
+
+  // Función de manejo de clic para la lista de proveedores
+  function clicListaProveedor(event) {
+    var nombreProveedor = obtenerNombreProveedor(this);
+    eliminarProveedor(nombreProveedor);
+  }
+
+  // Función de manejo de clic para el botón de eliminar
+  function clicBotonEliminar(event) {
+    event.preventDefault();
+
+    // Obtener la fila padre del botón de eliminar
+    var fila = this.closest('tr');
+
+    // Obtener el nombre del proveedor desde la fila de la tabla
+    var nombreProveedor = obtenerNombreProveedorDesdeFila(fila);
+
+    // Eliminar el proveedor
+    eliminarProveedor(nombreProveedor);
+  }
+
+  // Obtener todos los elementos de la lista y el botón de eliminar
+  var listaProveedores = document.querySelectorAll('#modalEliminar .list-group-item');
+  var botonesEliminar = document.querySelectorAll('.boton-eliminar');
+
+  // Agregar eventos de clic a cada elemento de la lista de proveedores
+  listaProveedores.forEach(function(proveedor) {
+    proveedor.addEventListener('click', clicListaProveedor);
+  });
+
+  // Agregar eventos de clic a cada botón de eliminar
+  botonesEliminar.forEach(function(boton) {
+    boton.addEventListener('click', clicBotonEliminar);
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtener todos los elementos de la lista de productos
+    var proyectos = document.querySelectorAll("#modalPrincipal .list-group-item");
+
+    // Iterar sobre cada elemento de la lista
+    proyectos.forEach(function (proyecto) {
+      // Agregar un event listener para el evento de clic
+      proyecto.addEventListener("click", function () {
+        // Obtener el nombre del producto haciendo referencia a su elemento hijo
+        var nombreProyecto = this.querySelector(".col-auto:nth-child(2)").innerText.trim();
+
+        // Imprimir el nombre del proveedor en la consola
+        console.log("Nombre del proyecto:", nombreProyecto);
+
+        // Actualizar el campo de nombre del producto en el modal secundario
+        document.getElementById("nombreProyecto").value = nombreProyecto;
+      });
+    });
+  });
+
+</script>
+
+{% endblock extrascripts %}

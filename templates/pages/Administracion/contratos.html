@@ -1,0 +1,657 @@
+{% extends 'layouts/base.html' %} 
+{% load static %} 
+
+{% block content %}
+<style>
+  .clamp-2-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+  }
+
+  .col {
+    display: inline-block;
+    vertical-align: top; /* Esto ayuda a alinear los elementos si tienen diferentes alturas */
+  }
+  /* Estilos para las pestañas */
+  #clientes-tab, #proveedores-tab {
+      text-decoration: none !important;
+      cursor: pointer;
+      color: white !important; /* Cambia el color del texto a blanco */
+      background-color: #777777; /* Color de fondo azul para las pestañas */
+      width: 100%; /* Ocupa todo el ancho disponible */
+      text-align: center; /* Centra el texto */
+      border: none; /* Quita el borde */
+      border-radius: 0; /* Quita la esquina redondeada */
+      margin: 0; /* Quita el margen */
+      padding: 8px 0; /* Añade relleno arriba y abajo */
+  }
+
+  /* Estilos para la pestaña activa */
+  #clientes-tab.active, #proveedores-tab.active {
+      background-color: #0f172a; /* Mantiene el mismo color de fondo cuando la pestaña está activa */
+  }
+</style>
+<div class="container-fluid mt-4">
+
+  <!-- Modal Agregar contrato -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Agregar Nuevo Contrato</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- formulario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Contrato</div>
+              <div style="height: 20px;"></div>
+              <div class="mb-3">
+                <label for="codigoContrato" class="form-label">Código</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="nombreContrato" class="form-label">Nombre</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="clienteContrato" class="form-label">Cliente</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="proveedorContrato" class="form-label">Proveedor</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="montoContrato" class="form-label">Monto</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="fechainiContrato" class="form-label">Fecha Inicio</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="fechaterContrato" class="form-label">Fecha Término</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="responsableContrato" class="form-label">Responsable</label>
+                <select id="ciudadProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Juan Pérez</option>
+                  <option>María Gómez</option>
+                  <option>Carlos Martínez</option>
+                  <option>Pozo Almonte</option>
+                  <option>Ana López</option>
+                  <option>Luis Rodríguez</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="archivoContrato" class="form-label">Archivo del Contrato (Referencia)</label>
+                <input type="file" class="form-control" id="archivoContrato" name="archivoContrato">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal principal con lista de contratos -->
+  <div class="modal fade" id="modalPrincipal" tabindex="-1" aria-labelledby="modalPrincipalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalPrincipalLabel">Editar Contrato</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal principal -->
+          <div class="label">Contratos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li id="contrato1" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #001
+                </div>
+                <div class="col-auto">
+                  Producción de materiales promocionales
+                </div>
+                <div class="col-auto">
+                  Acme Corporation
+                </div>
+              </div>
+            </li>
+            <li id="contrato2" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #002
+                </div>
+                <div class="col-auto">
+                  Suministro de materias primas
+                </div>
+                <div class="col-auto">
+                  Nuestra Empresa S.A.
+                </div>
+              </div>
+            </li>
+            <li id="contrato3" class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #003
+                </div>
+                <div class="col-auto">
+                  Servicios de consultoría
+                </div>
+                <div class="col-auto">
+                  BigCorp
+                </div>
+              </div>
+            </li>
+            <li id="contrato4"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #004
+                </div>
+                <div class="col-auto">
+                  Alquiler de maquinaria
+                </div>
+                <div class="col-auto">
+                  Regional Logistics
+                </div>
+              </div>
+            </li>
+            <li id="contrato5"class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalSecundario" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #005
+                </div>
+                <div class="col-auto">
+                  Distribución de productos
+                </div>
+                <div class="col-auto">
+                  Global Distribution Inc.
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal secundario para la edición de contratos -->
+  <div class="modal fade" id="modalSecundario" tabindex="-1" aria-labelledby="modalSecundarioLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalSecundarioLabel">Editar Contrato</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal secundario -->
+          <form>
+            <div class="row">
+              <div class="label">Detalles Contrato</div>
+              <div style="height: 20px;"></div>
+              <div class="mb-3">
+                <label for="codigoContrato" class="form-label">Código</label>
+                <input type="text" class="form-control"id="codigoContrato">
+              </div>
+              <div class="mb-3">
+                <label for="nombreContrato" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreContrato">
+              </div>
+              <div class="mb-3">
+                <label for="clienteContrato" class="form-label">Cliente</label>
+                <input type="text" class="form-control" id="clienteContrato">
+              </div>
+              <div class="mb-3">
+                <label for="proveedorContrato" class="form-label">Proveedor</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="montoContrato" class="form-label">Monto</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="fechainiContrato" class="form-label">Fecha Inicio</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="fechaterContrato" class="form-label">Fecha Término</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="responsableContrato" class="form-label">Responsable</label>
+                <select id="ciudadProveedor" class="form-select">
+                  <option value="Select">Seleccionar</option>
+                  <option>Juan Pérez</option>
+                  <option>María Gómez</option>
+                  <option>Carlos Martínez</option>
+                  <option>Pozo Almonte</option>
+                  <option>Ana López</option>
+                  <option>Luis Rodríguez</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="archivoContrato" class="form-label">Archivo del Contrato (Referencia)</label>
+                <input type="file" class="form-control" id="archivoContrato" name="archivoContrato">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Eliminación de lista de contratos -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="modalEliminarLabel">Eliminar Contrato</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del modal Eliminar -->
+          <div class="label">Contratos registrados</div>
+              <div style="height: 20px;"></div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar por ID o Nombre...">      
+          </div>
+          <button type="button" class="btn btn-dark">Buscar</button>
+          <ul class="list-group">
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Producción de materiales promocionales">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #001
+                </div>
+                <div class="col-auto">
+                  Producción de materiales promocionales
+                </div>
+                <div class="col-auto">
+                  Acme Corporation
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Suministro de materias primas">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #002
+                </div>
+                <div class="col-auto">
+                  Suministro de materias primas
+                </div>
+                <div class="col-auto">
+                  Nuestra Empresa S.A.
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Servicios de consultoría">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #003
+                </div>
+                <div class="col-auto">
+                  Servicios de consultoría
+                </div>
+                <div class="col-auto">
+                  BigCorp
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Alquiler de maquinaria">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #004
+                </div>
+                <div class="col-auto">
+                  Alquiler de maquinaria
+                </div>
+                <div class="col-auto">
+                  Regional Logistics
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-bs-dismiss="modal" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#f8f9fa'" onmouseout="this.style.backgroundColor='transparent'" data-id="123456" data-nombre="Distribución de productos">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  #005
+                </div>
+                <div class="col-auto">
+                  Distribución de productos
+                </div>
+                <div class="col-auto">
+                  Global Distribution Inc.
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row align-items-end">
+    <div class="col text-left">
+      <h3>Contratos</h3>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col text-end justify-content-end">
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalPrincipal">Editar</button>
+      <button type="button" class="btn btn-dark btn-md" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
+    </div>
+  </div>
+  <div class="card border shadow-xs mb-4">
+    <div class="card-header border-bottom pb-0">
+      <div class="d-sm-flex align-items-center mb-3">
+        <div class="col-md-6">
+          <h4>Listado de Contratos</h4>
+        </div>
+        <div class="col-md-6">
+          <div class="ms-auto d-flex">
+            <div class="input-group input-group-sm ms-auto me-2">
+              <input type="text" class="form-control" placeholder="Buscar...">
+            </div>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">Buscar</button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">Filtrar</button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+              <span class="btn-inner--icon">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                  </svg>
+              </span>
+              <span class="btn-inner--text">Imprimir</span>
+              </button>
+            <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+              <span class="btn-inner--icon">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+                  </svg>
+              </span>
+              <span class="btn-inner--text">Exportar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-end">
+      <div class="col text-left">
+        <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+          <li class="nav-item flex-grow-1" role="presentation">
+            <button class="nav-link active" id="clientes-tab" data-bs-toggle="tab" data-bs-target="#clientes" type="button" role="tab" aria-controls="clientes" aria-selected="true">Clientes</button>
+          </li>
+          <li class="nav-item flex-grow-1" role="presentation">
+            <button class="nav-link" id="proveedores-tab" data-bs-toggle="tab" data-bs-target="#proveedores" type="button" role="tab" aria-controls="proveedores" aria-selected="false">Proveedores</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="clientes" role="tabpanel" aria-labelledby="clientes-tab">
+        <!-- Aquí va el contenido de la tabla de Clientes -->
+        <div class="card-body px-0 py-0">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center justify-content-center mb-0">
+              <thead  style="background-color: #0f172a;">
+                <tr style="color: white;">
+                  <th>Código</th>
+                  <th>Nombre</th>
+                  <th>Cliente</th>
+                  <th>Proveedor</th>
+                  <th>Monto</th>
+                  <th>Fecha Inicio</th>
+                  <th>Fecha Termino</th>
+                  <th>Responsable</th>
+                  <th>Ref</th>
+                </tr>
+              </thead>
+            <tbody style="vertical-align: middle;">
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">001</a></td>
+                  <td>Producción de materiales promocionales</td>
+                  <td>Acme Corporation</td>
+                  <td>Proveedora XYZ</td>
+                  <td>$5000</td>
+                  <td>2024-01-15</td>
+                  <td>2024-07-15</td>
+                  <td>Juan Pérez</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">002</a></td>
+                  <td>Suministro de materias primas</td>
+                  <td>Nuestra Empresa S.A.</td>
+                  <td>Suministros Industriales S.L.</td>
+                  <td>$10000</td>
+                  <td>2024-03-10</td>
+                  <td>2024-09-10</td>
+                  <td>María Gómez</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">003</a></td>
+                  <td>Servicios de consultoría</td>
+                  <td>BigCorp</td>
+                  <td>N/A</td>
+                  <td>$8000</td>
+                  <td>2024-02-20</td>
+                  <td>2024-08-20</td>
+                  <td>Carlos Martínez</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">004</a></td>
+                  <td>Alquiler de maquinaria</td>
+                  <td>Regional Logistics</td>
+                  <td>Alquileres Industriales S.A.</td>
+                  <td>$12000</td>
+                  <td>2024-04-05</td>
+                  <td>2024-10-05</td>
+                  <td>Ana López</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">005</a></td>
+                  <td>Distribución de productos</td>
+                  <td>Global Distribution Inc.</td>
+                  <td>N/A</td>
+                  <td>$7000</td>
+                  <td>2024-06-15</td>
+                  <td>2024-12-15</td>
+                  <td>Luis Rodríguez</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+         </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="proveedores" role="tabpanel" aria-labelledby="proveedores-tab">
+        <!-- Aquí va el contenido de la tabla de Proveedores -->
+        <div class="card-body px-0 py-0">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center justify-content-center mb-0">
+              <thead  style="background-color: #0f172a;">
+                <tr style="color: white;">
+                  <th>Código</th>
+                  <th>Nombre</th>
+                  <th>Proveedor</th>
+                  <th>Monto</th>
+                  <th>Fecha Inicio</th>
+                  <th>Fecha Termino</th>
+                  <th>Responsable</th>
+                  <th>Ref</th>
+                </tr>
+              </thead>
+            <tbody style="vertical-align: middle;">
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">001</a></td>
+                  <td>Producción de materiales promocionales</td>
+                  <td>Proveedora XYZ</td>
+                  <td>$5000</td>
+                  <td>2024-01-15</td>
+                  <td>2024-07-15</td>
+                  <td>Juan Pérez</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">002</a></td>
+                  <td>Suministro de materias primas</td>
+                  <td>Suministros Industriales S.L.</td>
+                  <td>$10000</td>
+                  <td>2024-03-10</td>
+                  <td>2024-09-10</td>
+                  <td>María Gómez</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">003</a></td>
+                  <td>Servicios de consultoría</td>
+                  <td>Consultoria S.A</td>
+                  <td>$8000</td>
+                  <td>2024-02-20</td>
+                  <td>2024-08-20</td>
+                  <td>Carlos Martínez</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">004</a></td>
+                  <td>Alquiler de maquinaria</td>
+                  <td>Alquileres Industriales S.A.</td>
+                  <td>$12000</td>
+                  <td>2024-04-05</td>
+                  <td>2024-10-05</td>
+                  <td>Ana López</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center"><a href="{% url 'app_administracion:contrato' %}" class="title-link">005</a></td>
+                  <td>Distribución de productos</td>
+                  <td>Distribuidora S.A.</td>
+                  <td>$7000</td>
+                  <td>2024-06-15</td>
+                  <td>2024-12-15</td>
+                  <td>Luis Rodríguez</td>
+                  <td class="text-center" style="vertical-align: middle; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Descargar">
+                    <svg height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M64 464l48 0 0 48-48 0c-35.3 0-64-28.7-64-64L0 64C0 28.7 28.7 0 64 0L229.5 0c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3L384 304l-48 0 0-144-80 0c-17.7 0-32-14.3-32-32l0-80L64 48c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/>
+                    </svg>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'includes/footer.html' %}
+{% endblock content %} 
+{% block extrascripts %}
+<script>
+  // Obtener todos los elementos de la lista
+  var listaProductos = document.querySelectorAll('#modalEliminar .list-group-item');
+
+  // Iterar sobre cada elemento de la lista y agregar un evento de clic
+  listaProductos.forEach(function(producto) {
+    producto.addEventListener('click', function() {
+      // Obtener el ID y el nombre del producto seleccionado
+      var id = producto.getAttribute('data-id');
+      var nombre = producto.getAttribute('data-nombre');
+
+      // Mostrar un cuadro de diálogo de confirmación
+      var confirmacion = confirm("¿Estás seguro de que deseas eliminar el contrato " + nombre + "?");
+
+      // Si el usuario confirma la eliminación
+      if (confirmacion) {
+        // Aquí puedes agregar la lógica para eliminar el producto
+        alert("El contrato " + nombre + " ha sido eliminado.");
+      }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtener todos los elementos de la lista de productos
+    var contratos = document.querySelectorAll("#modalPrincipal .list-group-item");
+
+    // Iterar sobre cada elemento de la lista
+    contratos.forEach(function (contrato) {
+      // Agregar un event listener para el evento de clic
+      contrato.addEventListener("click", function () {
+        // Obtener el nombre del contrato haciendo referencia a su elemento hijo
+        var codigoContrato = this.querySelector(".col-auto:nth-child(1)").innerText.trim();
+        var nombreContrato = this.querySelector(".col-auto:nth-child(2)").innerText.trim();
+        var clienteContrato = this.querySelector(".col-auto:nth-child(3)").innerText.trim();
+
+        // Imprimir el nombre del contrato en la consola
+        console.log("Nombre del contrato:", nombreContrato);
+
+        // Actualizar el campo de nombre del contrato en el modal secundario
+        document.getElementById("codigoContrato").value = codigoContrato;
+        document.getElementById("nombreContrato").value = nombreContrato;
+        document.getElementById("clienteContrato").value = clienteContrato;
+      });
+    });
+  });
+
+</script>
+{% endblock extrascripts %}
