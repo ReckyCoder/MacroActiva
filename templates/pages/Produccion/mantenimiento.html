@@ -1,4 +1,7 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+
+{% extends 'layouts/base.html' %} {% load static %}
+{% block content %}
+
 <div class="container-fluid py-4 px-5">
   <div class="row">
     <div class="col-12">
@@ -11,7 +14,7 @@
               <h6 class="font-weight-semibold text-lg mb-0">Detenciones de planta</h6>
               <p class="text-sm mb-sm-0">Listado las detenciones necesarias de planta.</p>
             </div>
-            <div class="ms-auto d-flex">
+            <div class="ms-auto d-flex flex-md-row flex-column">
               <div class="input-group input-group-sm ms-auto me-2">
                 <span class="input-group-text text-body">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -20,12 +23,37 @@
                 </span>
                 <input type="text" class="form-control form-control-sm" placeholder="Buscar">
               </div>
+              <a data-bs-toggle="modal" data-bs-target="#modalAgregarDT" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 16 16">
+                    <title>Agregar Categoría</title>
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Crear</span>
+              </a>
+              <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                    <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Exportar</span>
+              </a>
+              <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                    <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Imprimir</span>
+              </a>
             </div>
           </div>
         </div>
         <div class="card-body px-0 py-0">
           <div class="table-responsive p-0">
-            <table class="table align-items-center justify-content-center mb-0">
+            <table class="table align-items-center table-bordered table-hover justify-content-center mb-0">
               <thead class="bg-gray-100">
                 <tr>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7">ID </th>
@@ -35,6 +63,7 @@
                   <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Departamento</th>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha detencion</th>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Estado</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Accion</th>
                 </tr>
               </thead>
               <tbody>
@@ -71,10 +100,132 @@
                     <span class="text-sm font-weight-normal">20-06-2024</span>
                   </td>
                   <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
                     <span class="badge badge-sm border border-danger text-danger bg-danger">Detenido</span>
+                    </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Detencion">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Detencion">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
                 </td>
                 </tr>
-                
+                <tr>
+                  <td>
+                    <div class="d-flex px-2">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">M-02052</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-sm">Miniexcavadoras
+                        300.9D VPS y HPU300</h6>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">Administración</span>
+                      </div>  
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">Juan Alvarez Pino</span>
+                    </div>  
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">Construcción</span>
+                    </div>  
+                  </td>
+                  <td>
+                    <span class="text-sm font-weight-normal">20-06-2024</span>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <span class="badge badge-sm border border-warning text-warning bg-warning">Pendiente</span>
+                    </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Detencion">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Detencion">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex px-2">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">M-02052</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-sm">Miniexcavadoras
+                        300.9D VPS y HPU300</h6>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">Administración</span>
+                      </div>  
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">Juan Alvarez Pino</span>
+                    </div>  
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">Construcción</span>
+                    </div>  
+                  </td>
+                  <td>
+                    <span class="text-sm font-weight-normal">20-06-2024</span>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <span class="badge badge-sm border border-success text-success bg-success">Activa</span>
+                    </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Detencion">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Detencion">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+                </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -105,7 +256,7 @@
               <h6 class="font-weight-semibold text-lg mb-0">Ordenes de Trabajo</h6>
               <p class="text-sm mb-sm-0">Listado de ordenes de trabajos (OT)</p>
             </div>
-            <div class="ms-auto d-flex">
+            <div class="ms-auto d-flex flex-md-row flex-column">
               <div class="input-group input-group-sm ms-auto me-2">
                 <span class="input-group-text text-body">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -114,21 +265,37 @@
                 </span>
                 <input type="text" class="form-control form-control-sm" placeholder="Buscar">
               </div>
-              <a data-bs-toggle="modal" data-bs-target="#modalAgregarMC" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+              <a data-bs-toggle="modal" data-bs-target="#modalAgregarOT" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
                 <span class="btn-inner--icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 16 16">
                     <title>Agregar Categoría</title>
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                   </svg>
                 </span>
-                <span class="btn-inner--text">Crear Orden de Trabajo</span>
+                <span class="btn-inner--text">Crear</span>
+              </a>
+              <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                    <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Exportar</span>
+              </a>
+              <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                    <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Imprimir</span>
               </a>
             </div>
           </div>
         </div>
         <div class="card-body px-0 py-0">
           <div class="table-responsive p-0">
-            <table class="table align-items-center justify-content-center mb-0">
+            <table class="table align-items-center table-bordered table-hover justify-content-center mb-0">
               <thead class="bg-gray-100">
                 <tr>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7">ID OT</th>
@@ -139,7 +306,7 @@
                   <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Departamento</th>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Responsable</th>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Estado OT</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha Inicio / Final</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Fecha</th>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Recursos Asignados</th>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Accion</th>
                 </tr>
@@ -154,12 +321,11 @@
                     </div>
                   </td>
                   <td class="align-middle">
-                    <div class="d-flex px-4">
-                    <span>
-                      <button  type="button" data-bs-toggle="tooltip" data-bs-title="La lubricación regular de los componentes es fundamental para garantizar el rendimiento óptimo y la vida útil prolongada de una miniexcavadora. Esta tarea de mantenimiento implica la aplicación de lubricante adecuado en varios puntos clave de la máquina para reducir la fricción y el desgaste entre las partes móviles. Los componentes que deben lubricarse pueden incluir los puntos de pivote de los brazos y la pluma, los pasadores de los cucharones, los cilindros hidráulicos, las juntas universales, entre otros." class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
-                        Ver 
-                      </button>
-                  </span>
+                    <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="La lubricación regular de los componentes es fundamental para garantizar el rendimiento óptimo y la vida útil prolongada de una miniexcavadora. Esta tarea de mantenimiento implica la aplicación de lubricante adecuado en varios puntos clave de la máquina para reducir la fricción y el desgaste entre las partes móviles. Los componentes que deben lubricarse pueden incluir los puntos de pivote de los brazos y la pluma, los pasadores de los cucharones, los cilindros hidráulicos, las juntas universales, entre otros.">
+                        <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                      </a>
                     </div>
                   </td>
                   <td>
@@ -168,10 +334,12 @@
                         300.9D VPS y HPU300</h6>
                     </div>
                   </td>
-                  <td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
                     <span class="badge badge-sm border border-success text-success bg-success border-radius-sm">
                       Alta
                     </span>
+                  </div>
                   </td>
                   <td class="align-middle">
                       <div class="my-auto">
@@ -190,13 +358,16 @@
                   </td>
                   
                   <td class="align-middle">
-                    <span class="badge badge-sm border border-danger text-danger bg-danger">Detenido</span>
+                    <div class="d-flex justify-content-center px-4">
+                    <span class="badge badge-sm border border-warning text-warning bg-warning">Pendiente</span>
+                    </div>
                 </td>
                 <td>
                   <span class="text-sm font-weight-normal">20-06-2024</span>
                 </td>
-                <td>
-                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
+                <td class="align-middle">
+                  <div class="d-flex justify-content-center px-4">
+                  <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
 
                   1 Pantalla LCD /
                   
@@ -205,8 +376,11 @@
                   2 Baterias /
                   
                   1 Sensor">
-                    Materiales
-                  </button>
+                  <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path   d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                  </a>
+                </div>
+              </div>
                 </td>
                 <td class="align-middle">
                   <div class="d-flex px-4">
@@ -224,7 +398,174 @@
                 </div>
                 </td>
                 </tr>
-                
+                <tr>
+                  <td>
+                    <div class="d-flex px-2">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">OT-5295</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="La lubricación regular de los componentes es fundamental para garantizar el rendimiento óptimo y la vida útil prolongada de una miniexcavadora. Esta tarea de mantenimiento implica la aplicación de lubricante adecuado en varios puntos clave de la máquina para reducir la fricción y el desgaste entre las partes móviles. Los componentes que deben lubricarse pueden incluir los puntos de pivote de los brazos y la pluma, los pasadores de los cucharones, los cilindros hidráulicos, las juntas universales, entre otros.">
+                        <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                      </a>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-sm">Miniexcavadoras
+                        300.9D VPS y HPU300</h6>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <span class="badge badge-sm border border-warning text-warning bg-warning">Medio</span>
+                    </div>
+                </td>
+                  <td class="align-middle">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">Administración</span>
+                      </div>  
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">Construcción</span>
+                    </div>  
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">Juan Alvarez Pino</span>
+                    </div>  
+                  </td>
+                  
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <span class="badge badge-sm border border-success text-success bg-success">Activa</span>
+                    </div>
+                </td>
+                <td>
+                  <span class="text-sm font-weight-normal">20-06-2024</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex justify-content-center px-4">
+                  <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
+
+                  1 Pantalla LCD /
+                  
+                  1 Placas de cobre /
+                  
+                  2 Baterias /
+                  
+                  1 Sensor">
+                  <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                  </a>
+                </div>
+              </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Orden de Trabajo">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Orden de Trabajo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex px-2">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">OT-5295</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                      <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="La lubricación regular de los componentes es fundamental para garantizar el rendimiento óptimo y la vida útil prolongada de una miniexcavadora. Esta tarea de mantenimiento implica la aplicación de lubricante adecuado en varios puntos clave de la máquina para reducir la fricción y el desgaste entre las partes móviles. Los componentes que deben lubricarse pueden incluir los puntos de pivote de los brazos y la pluma, los pasadores de los cucharones, los cilindros hidráulicos, las juntas universales, entre otros.">
+                        <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                      </a>
+                    </div>
+                  </td>
+                  
+                  <td>
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-sm">Miniexcavadoras
+                        300.9D VPS y HPU300</h6>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <span class="badge badge-sm border border-danger text-danger bg-danger">Baja</span>
+                    </div>
+                </td>
+                  <td class="align-middle">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">Administración</span>
+                      </div>  
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">Construcción</span>
+                    </div>  
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <span class="mb-0 text-sm">Juan Alvarez Pino</span>
+                    </div>  
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <span class="badge badge-sm border border-danger text-danger bg-danger">Detenido</span>
+                    </div>
+                </td>
+                <td>
+                  <span class="text-sm font-weight-normal">20-06-2024</span>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex justify-content-center px-4">
+                  <a class="text-secondary font-weight-bold text-xs" href="javascript:;" data-bs-toggle="tooltip" data-bs-title="200g Plastico /
+
+                  1 Pantalla LCD /
+                  
+                  1 Placas de cobre /
+                  
+                  2 Baterias /
+                  
+                  1 Sensor">
+                  <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM72 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm104-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zM72 368a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm88 0c0-8.8 7.2-16 16-16H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16z"/></svg>
+                  </a>
+                </div>
+              </div>
+                </td>
+                <td class="align-middle">
+                  <div class="d-flex px-4">
+                  <a href="" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Orden de Trabajo">
+                    <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                    </svg>
+                  </a>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Orden de Trabajo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+                </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -247,6 +588,164 @@
           </div>
         </div>
       </div>
+      <div class="modal fade" id="modalDetallePro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modal1Label">Información sobre Inventario</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-12">
+                    <div class="bg-dark rounded">
+                        <p class="ps-3 py-1 text-light font-weight-bold">Descripción</p>
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label" for="">Detalles generales:</label>
+                        <Label  disabled  class="form-control  form-control-lg" type="text" >
+                          Un tornillo es un dispositivo mecánico simple utilizado para sujetar objetos juntos. Consiste en una varilla cilíndrica con una rosca en espiral a lo largo de su longitud, que se enrosca en una rosca correspondiente en un agujero o en una tuerca. Los tornillos pueden tener una variedad de formas y tamaños, pero generalmente constan de una cabeza, un vástago y una rosca.</Label>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalAgregarDT" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalAgregarMPLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="modalAgregarMPLabel">Agregar una Detención</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="mb-3">
+                      <label>Nombre Activo:</label>
+                      <input class="form-control">
+                    </div>
+
+                  <div class="mb-3">
+                    <label>Departamento:</label>
+                    <Select class="form-control">
+                      <option>Departamento 1</option>
+                      <option>Departamento 2</option>
+                      <option>Departamento 3</option>
+                      <option>Departamento 4</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label>Fecha Detención:</label>
+                    <input class="form-control" type="date">
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="mb-3">
+                    <label>Centro Costo:</label>
+                    <Select class="form-control">
+                      <option>Centro Costo 1</option>
+                      <option>Centro Costo 2</option>
+                      <option>Centro Costo 3</option>
+                      <option>Centro Costo 4</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label>Responsable:</label>
+                    <input class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label>Estado:</label>
+                    <Select class="form-control">
+                      <option>Activa</option>
+                      <option>Pendiente</option>
+                      <option>Detenido</option>
+                    </select>
+                  </div>
+                  </div>
+                </div>
+                  </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <a type="button" class="btn btn-primary" href="{% url 'app_produccion:inventario' %}">Confirmar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalAgregarOT" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalAgregarMCLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalAgregarMCLabel">Agregar Orden de trabajo</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="mb-3">
+                  <label>Descripción de Tarea:</label>
+                  <textarea class="form-control" ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label>Departamento:</label>
+                  <Select class="form-control">
+                    <option>Departamento 1</option>
+                    <option>Departamento 2</option>
+                    <option>Departamento 3</option>
+                    <option>Departamento 4</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label>Centro Costo:</label>
+                  <Select class="form-control">
+                    <option>Centro Costo 1</option>
+                    <option>Centro Costo 2</option>
+                    <option>Centro Costo 3</option>
+                    <option>Centro Costo 4</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label>Activo Asociado:</label>
+                  <input class="form-control">
+                </div> 
+                <div class="mb-3">
+                  <label>Prioridad:</label>
+                  <Select class="form-control">
+                    <option>Alta</option>
+                    <option>Media</option>
+                    <option>Baja</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label>Responsable:</label>
+                  <input class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label>Estado:</label>
+                  <Select class="form-control">
+                    <option>Activa</option>
+                    <option>Pendiente</option>
+                    <option>Detenido</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label>Fecha:</label>
+                  <input class="form-control" type="date">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <a type="button" class="btn btn-primary" href="{% url 'app_produccion:inventario' %}">Confirmar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
   {% include 'includes/footer.html' %}
 </div>
 {% endblock content %}
