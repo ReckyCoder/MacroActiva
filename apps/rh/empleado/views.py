@@ -155,3 +155,32 @@ def gestionarEmpleados(request):
     }
 
     return JsonResponse(content)
+
+
+def listarEmpleados(request):
+    
+    if request.method == 'GET':
+        
+        if request.GET.get('element_id'):
+            
+            tipoSolicitud = (request.GET.get('element_id'))
+            
+            context = {
+                'mainModuleName': 'recursos_humanos',
+                'modulos': [
+                    {'parentModuleName': 'empleados'},
+                    {'childModuleName': 'listar_empleados'}
+                ],
+                'defaultUrl': 'menuempleado',
+                'defaultChildUrl': 'rhListarEmpleados'
+            }
+            
+
+            rendered = render_to_string(
+                'pages/rh/empleados/listar-empleados.html')
+
+            content = {'HTMLData': rendered,
+                    'MetaData': context
+            }
+
+            return JsonResponse(content)

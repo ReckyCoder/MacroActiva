@@ -7,4 +7,5 @@ urlpatterns = [
     path('menu/agregarEmpleadoView/', views.gestionarEmpleados, name='rhAgregarEmpleado'),
     path('menu/modificarEmpleadoView/', views.gestionarEmpleados, name='rhModificarEmpleado'),
     path('menu/eliminarEmpleadoView/', views.gestionarEmpleados, name='rhEliminarEmpleado'),
+    path('menu/listarEmpleados/', views.listarEmpleados, name='rhListarEmpleado'),
 ]
