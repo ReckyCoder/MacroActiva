@@ -1000,39 +1000,67 @@
   </div>
 </aside> 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      // Verificar si los submenús estaban abiertos previamente
-      const url = window.location.pathname;
-      const links = document.querySelectorAll('.link');
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener todos los submenús de la segunda capa (ul)
+    let secondLevelSubmenus = document.querySelectorAll('[data-bs-parent]');
 
-      var submenus = document.querySelectorAll('.collapse');
+    // Manejar el evento de colapso mostrado para guardar el estado
+    secondLevelSubmenus.forEach(function(second) {
+        second.addEventListener('shown.bs.collapse', function () {
+            localStorage.setItem(second.id + '_open', 'true');
+        });
+    });
 
-      submenus.forEach(function(submenu) {
-          var submenuOpen = localStorage.getItem(submenu.id + '_open');
-          if (submenuOpen === 'true') {
-              // Simular clic en el enlace del submenu con un retraso
-              setTimeout(function() {
-                    var link = document.querySelector('a[href="#' + submenu.id + '"]');
-                    
-                    if (link) {
-                        link.click();
-                    }
-                }, 200); // ms de retraso
-            }
-      });
+    // Manejar el evento de colapso ocultado para guardar el estado y cerrar los submenús de la tercera capa
+    secondLevelSubmenus.forEach(function(second) {
+        second.addEventListener('hidden.bs.collapse', function () {
+            // Obtener todos los submenús de la tercera capa que son hijos de este submenú de segunda capa
+            let thirdLevelSubmenus = document.querySelectorAll('[data-bs-parent="#'+ second.id +'"]');
+            thirdLevelSubmenus.forEach(function(third) {
+                // Ocultar y guardar en localStorage que está cerrado
+                third.classList.remove('show');
+                localStorage.setItem(third.id + '_open', 'false');
+            });
+            // Guardar en localStorage que este submenú de segunda capa está cerrado
+            localStorage.setItem(second.id + '_open', 'false');
+        });
+    });
 
-      // Manejar el evento de colapso mostrado para guardar el estado
-      submenus.forEach(function(submenu) {
-          submenu.addEventListener('shown.bs.collapse', function () {
-              localStorage.setItem(submenu.id + '_open', 'true');
+    // Validar si hay algún submenú que deba abrirse según el estado guardado en localStorage
+    let anySubMenuOpen = Array.from(secondLevelSubmenus).some(function(submenu) {
+        return localStorage.getItem(submenu.id + '_open') === 'true';
+    });
+
+    // Abrir los submenús de acuerdo al estado guardado en localStorage, solo si hay alguno guardado como abierto
+    if(window.location.pathname === '/'){
+      // Si no hay ningún submenú guardado como abierto, limpiar el localStorage
+      localStorage.clear();
+    } else {
+
+      if (anySubMenuOpen) {
+          secondLevelSubmenus.forEach(function(submenu) {
+              var submenuOpen = localStorage.getItem(submenu.id + '_open');
+              if (submenuOpen === 'true') {
+                  setTimeout(function() {
+                      var link = document.querySelector('a[href="#' + submenu.id + '"]');
+                      if (link) {
+                          link.click();
+                      }
+                  }, 200);
+              } else {
+                  // Si está cerrado, asegúrate de que todos los submenús de tercera capa también estén cerrados
+                  let thirdLevelSubmenus = document.querySelectorAll('[data-bs-parent="#'+ submenu.id +'"]');
+                  thirdLevelSubmenus.forEach(function(third) {
+                      third.classList.remove('show');
+                      localStorage.setItem(third.id + '_open', 'false');
+                  });
+              }
           });
-      });
+      } else {
+          // Si no hay ningún submenú guardado como abierto, limpiar el localStorage
+          localStorage.clear();
+      }
+    }
 
-      // Manejar el evento de colapso ocultado para guardar el estado
-      submenus.forEach(function(submenu) {
-          submenu.addEventListener('hidden.bs.collapse', function () {
-              localStorage.setItem(submenu.id + '_open', 'false');
-          });
-      });
-  });
+});
 </script>
