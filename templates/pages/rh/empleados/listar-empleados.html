@@ -1,0 +1,1219 @@
+{% extends 'layouts/rh/subcard-content.html' %}
+{% load static %}
+
+{% block extrastyle %}
+    <style>
+        .row>.col>.btn-group.btn-dark-menu>input+.btn:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>input+.btn:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:first-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 4px;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:last-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 4px;
+    }
+
+    .modal-dialog {
+        margin: 0;
+    }
+
+    .modal-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: #1e293b;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 250ms ease;
+        border: 0;
+    }
+
+    .modal {
+        margin: 10px auto;
+        right: 0;
+        width: 100%;
+        max-width: 40rem;
+        background-color: #1e293b;
+        border-radius: 1.5rem;
+        background: linear-gradient(155deg, #1e293b, #0d1625);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0;
+    }
+
+    .modal-title {
+        margin: 0;
+        color: white;
+    }
+
+    .modal-content {
+        color: white;
+        background-color: transparent;
+    }
+
+    .modal-close {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: transparent;
+        display: block;
+        height: 1.5rem;
+        width: 1.5rem;
+        overflow: hidden;
+        background-image:
+            linear-gradient(to top right,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%),
+            linear-gradient(to top left,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%);
+    }
+
+
+    .modal-footer {
+        border-top: 0 !important;
+    }
+
+    .modal-body .form-group>.col-form-label {
+        color: white;
+    }
+
+    .modal-header,
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .modal-header>.modal-title {
+        color: whitesmoke;
+    }
+
+    .modal-content {
+        height: 100%;
+        border: 0;
+    }
+
+    .modal-container:target {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .table-responsive,
+    .bootstrap-table.bootstrap5 {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .dropdown-menu.dropdown-menu-end.show {
+        overflow: hidden !important;
+    }
+
+    .table-bordered> :not(caption)>*>* {
+        border-width: 0 !important;
+        height: 100%;
+    }
+
+    .bootstrap-table .fixed-table-toolbar .columns .dropdown-menu {
+        max-height: 500px !important;
+    }
+
+    .fixed-table-body {
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+    }
+
+    .bootstrap-table .fixed-table-pagination>.pagination,
+    .bootstrap-table .fixed-table-pagination>.pagination-detail {
+        margin-left: 10px !important;
+    }
+
+    .card .card-body {
+        padding-top: 0;
+    }
+
+    .btn-group.btn-dark-menu.options {
+        width: 100%;
+    }
+
+    .page-item .page-link,
+    .page-item span {
+        color: whitesmoke !important;
+        background-color: #28374e;
+    }
+
+    .page-item.active .page-link,
+    .page-item span {
+        color: whitesmoke !important;
+        background-color: #1e293b;
+    }
+
+    .page-list>.btn-group.dropdown.dropup>button.btn.btn-secondary.dropdown-toggle{
+        padding: 2px 10px !important;
+        margin: 0 10px 3px 0;
+    }
+    </style>
+{% endblock extrastyle %}
+
+{% block card-body %}
+<div class="col-12 mb-4">
+    <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+            <h6 class="font-weight-semibold text-lg mb-0">Empleados activos</h6>
+            <p class="text-sm">Aquí encontrarás todos los empleados activos.</p>
+        </div>
+        <div class="card-body py-3">
+            <table class="table table-striped align-items-center justify-content-center mb-0" id="tablaEmpleados"
+                data-search="true" data-show-columns="true" data-pagination="true" data-reorderable-columns="true"
+                data-toggle="table" data-show-toggle="true" data-show-export="true" data-click-to-select="true" data-page-list="[10, 25, 50, 100, 200, All]">
+                <thead class="bg-dark">
+                    <tr>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">Ficha empleado</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Nombre</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Cargo</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Departamento</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Turno</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">DRH001</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-3.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Jorge Manriquez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Gerente CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TUROPCRM001</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRD001</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/marie.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">María López</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Supervisora de Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Produccion</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRODSUP001</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADM002</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-1.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Ana García</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Jefa de Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADMJEFA002</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FIN003</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-5.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Carlos Martínez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista Financiero</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FINANA003</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRO004</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Luisa Ramírez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Operadora de Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRODOP004</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VEN005</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-6.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Diego Sánchez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Asistente de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VENASI005</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADM006</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person3.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Laura Pérez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Asistente Administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADMASI006</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RH007</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person1.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Pedro Rodríguez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista de Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RHANA007</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VEN008</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person4.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">María González</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Ejecutivo de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VENEJE008</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRO009</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person2.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">José Hernández</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Operador de Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRODOP009</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADM010</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person5.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Manuel Gómez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Asistente Administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADMASI010</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FIN011</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person6.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Ana María Pérez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista Financiero</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FINANA011</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RH012</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person8.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Laura Sánchez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especialista en RRHH</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RHEESPE012</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VEN013</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person7.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Juan Torres</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Representante de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VENREP013</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRO014</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person9.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Andrea López</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Supervisor de Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PROSUP014</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM015</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person11.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Sofía Rodríguez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Ejecutiva de CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRMEJE015</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FIN016</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person10.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Alejandro Gutiérrez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista de Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FINANA016</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADM017</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/marie.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Marta Fernández</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Asistente Administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADMASI017</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RH018</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person12.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Ricardo Molina</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista de Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RHANA018</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VEN019</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-1.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Ana Belén Gómez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Representante de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VENREP019</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRO020</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-3.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Roberto Soto</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Operador de Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRODOP020</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADM021</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-4.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Mario Ruiz</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Asistente Administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADMASI021</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RH022</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Daniela Pérez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especialista en RRHH</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RHEESPE022</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VEN023</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person3.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Elena Martínez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Ejecutiva de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VENEJE023</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FIN024</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person4.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Carolina Fernández</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista Financiero</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FINANA024</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADM025</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-5.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Roberto Martínez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Asistente Administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADMASI025</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RH026</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/assets/img/team-6.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Eduardo López</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista de Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RHANA026</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VEN027</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person4.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Isabel Ramírez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Representante de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VENREP027</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PRO028</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person6.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">María González</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Supervisor de Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">PROSUP028</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM029</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person8.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Luisa Sánchez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Ejecutiva de CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRMEJE029</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FIN030</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person1.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Pedro Martínez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Analista Financiero</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">FINANA030</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADM031</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person9.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Laura Martínez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Asistente Administrativo</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">ADMASI031</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RH032</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person11.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Mónica Soto</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Especialista en RRHH</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">RHEESPE032</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VEN033</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2">
+                                <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                    <img src="/static/img/rh/person2.jpg" class="avatar avatar-sm" alt="avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h6 class="mb-0 text-sm">Francisco Gómez</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Ejecutivo de Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">VENEJE033</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock card-body %}
+
+
+{% block extrascript %}
+ <script>
+    const TipTrigger = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const toolList = [...TipTrigger].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+    $(function () {
+
+        $('#tablaEmpleados').bootstrapTable({
+            exportDataType: $(this).val(),
+            exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
+            exportOptions: {
+                fileName: 'Empleados'
+            }
+        });
+    });
+ </script>
+{% endblock extrascript %}
+    
