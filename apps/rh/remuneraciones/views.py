@@ -71,13 +71,14 @@ def fichasEmpleados(request):
                         ],
                         'defaultUrl': 'menuremuneraciones',
                         'defaultChildUrl': 'rhFichaEmpleados',
-                        'defaultSubChildUrl': 'rhFichaPersonalView'
+                        'defaultSubChildUrl': ''
                     },
                 }
 
                 if tipoSolicitud == 'FichaPersonal':
 
                     context.update(user_context)
+                    context['meta'].update({'defaultSubChildUrl': 'rhFichaPersonalView'})
 
                     rendered = render_to_string(
                         'pages/rh/remuneraciones/fichas/personal.html')
@@ -141,6 +142,51 @@ def fichasEmpleados(request):
                     
                     rendered = render_to_string(
                         'pages/rh/remuneraciones/fichas/competencias.html')
+
+                    content = {
+                        'HTMLData': rendered,
+                        'MetaData': context
+                    }
+
+                    return JsonResponse(content)
+                
+                elif tipoSolicitud == 'FichaCargas':
+
+                    context.update(user_context)
+                    
+                    
+                    rendered = render_to_string(
+                        'pages/rh/remuneraciones/fichas/cargas.html')
+
+                    content = {
+                        'HTMLData': rendered,
+                        'MetaData': context
+                    }
+
+                    return JsonResponse(content)
+                
+                elif tipoSolicitud == 'FichaDocumentos':
+
+                    context.update(user_context)
+                    
+                    
+                    rendered = render_to_string(
+                        'pages/rh/remuneraciones/fichas/documentos.html')
+
+                    content = {
+                        'HTMLData': rendered,
+                        'MetaData': context
+                    }
+
+                    return JsonResponse(content)
+                
+                elif tipoSolicitud == 'FichaHorario':
+
+                    context.update(user_context)
+                    
+                    
+                    rendered = render_to_string(
+                        'pages/rh/remuneraciones/fichas/horario.html')
 
                     content = {
                         'HTMLData': rendered,
@@ -239,7 +285,7 @@ user_context = {
                 'id_isapre': '16521',
                 'porc_cotizacion': '11',
                 'ley_18566': {
-                    'porc_contizacion': '3.54',
+                    'porc_cotizacion': '3.54',
                     'tipo_monto_cotizacion': 'pesos',
                     'monto_contizacion': '8462',
                 }
@@ -251,7 +297,20 @@ user_context = {
             'APVC': {},
         },
         'competencias': {
-            'nombre': ['puntualidad', 'trabajador_mes'],
+            1: {
+                'Nombre':'Responsabilidad',
+                'Descripcion':'Preimiado/a por cumplimiento de reglamentos y tareas',
+                'Valor':'20',
+                'Fecha vencimiento':'01-01-2024',
+                'Estado': 'Caducado'
+            },
+            2: {
+                'Nombre':'Puntualidad',
+                'Descripcion':'Premiado/a por no atrasos mensuales',
+                'Valor':'50',
+                'Fecha vencimiento':'01-04-2024',
+                'Estado' : 'Vigente'
+            },
         },
         'cargas': {
             1: {
@@ -260,30 +319,44 @@ user_context = {
                 'apmaterno': 'Contreras',
                 'rut': '24824652',
                 'dv': 'K',
-                'fecha_nacimiento': '05/09/2015',
-                'sexo': 'masculino',
-                'tipo_carga': 'simple',
+                'fecha_nacimiento': '05-09-2015',
+                'genero': 'Masculino',
+                'tipo_carga': 'Simple',
                 'tipo_vinculo': 'Hijo(a) directo'
             }
+        },
+        'documentos': {
+        1: {
+            "nombre": "curriculum",
+            'id': 'YWJjZGVmZ2hpamtsbW5vcA=='
+        },
+        2:{
+            "nombre": "certificado de cargas",
+            'id':'YWJjZGVmZ2hasd123assg'
+        },
+        3:{
+            'nombre' : 'antecedentes',
+            'id' : 'dHJhaW5lX3N0b3JlMjMz'
+        },
+        4:{
+            'nombre': 'carta de presentacion',
+            'id': 'aW50ZXJhY3Rpb25fbWFuYWdlcg==' 
+        },
+        5:{
+            'nombre' : 'organigrama',
+            'id' : 'YmFzZTY0X2V4Y2x1c2l2ZQ=='
+        },
+        },
+        'horario': {
+            'id_reloj': '681321',
+            'nombre_reloj' : '1321-45hrs',
+            'ubicacion': 'Entrada principal',
+            'fec_inicio': '01-01-2020',
+            'fec_termino': '01-01-3000',
+            'hora_entrada': '08:00',
+            'hora_colacion': '13:00',
+            'hora_salida': '17:00',
+            'estado': 'Vigente',
         }
-    },
-    'documentos': {
-        'nombres': {
-            "YXV0aW9uX2Jhc2U2NFA=": "curriculum",
-            "YWJjZGVmZ2hpamtsbW5vcA==": "certificado de cargas",
-            "dHJhaW5lX3N0b3JlMjMz": "antecedentes",
-            "aW50ZXJhY3Rpb25fbWFuYWdlcg==": "carta de presentacion",
-            "YmFzZTY0X2V4Y2x1c2l2ZQ==": "organigrama"
-        }
-    },
-    'horario': {
-        'id_reloj': '681321',
-        'ubicacion': 'Entrada principal',
-        'fec_inicio': '01/01/2020',
-        'fec_termino': '01/01/3000',
-        'hora_entrada': '08:00',
-        'hora_colacion': '13:00',
-        'hora_salida': '17:00',
-        'estado': 'vigente',
     }
 }

@@ -1,0 +1,738 @@
+{% extends 'layouts/rh/full-content.html'%}
+{% load static %}
+
+
+{% block opt-tittle %}
+<h6>Gestor de Desvinculaciones</h6>
+{% endblock opt-tittle %}
+
+{% block opt-info %}
+<p class="mx-5 px-2 text-center">Aquí podrás administrar todo lo relevante a las postulaciones de tus candidatos. Te
+    entega
+    herramientas para analizar estadísticamente el actual estado de todas las solicitudes. Podrás agendar entrevistas,
+    esteblecer grupos de reclutamiento, calificar postulaciones para su posteior integración a la empresa y mucho más.
+</p>
+{% endblock opt-info %}
+
+{% block card-option1-1 %}
+<div class="col-12 mb-md-0 mb-4">
+    <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+            <h6 class="font-weight-semibold text-lg mb-0">Desvinculaciones</h6>
+            <p class="text-sm">Aquí encontrarás todas las desvinculaciones activas, en proceso o finalizadas. Podrás ver
+                la información relevante de cada una de ellas.</p>
+        </div>
+        <div class="card-body py-3">
+            <div class="row mb-2">
+                <div class="col-12 d-flex align-items-center pe-3 mt-3">
+                    <div class="col d-flex align-items-end justify-content-end gap-1 ">
+                        <p class="p-0 m-0">Activos: </p>
+                        <i class="fa-solid fa-circle-check pb-1"></i>
+                        <p class="p-0 m-0"> Entregado</p>
+                        <i class="fa-solid fa-circle-xmark pb-1"></i>
+                        <p class="p-0 m-0"> No entregado</p>
+                        <p class="p-0 m-0"><b>|</b></p>
+                        <p class="p-0 m-0">Estado desvinculación: </p>
+                        <i class="fa-solid fa-circle-check pb-1"></i>
+                        <p class="p-0 m-0"> Realizado</p>
+                        <i class="fa-solid fa-triangle-exclamation pb-1"></i>
+                        <p class="p-0 m-0"> Pendiente</p>
+                        <i class="fa-solid fa-circle-xmark pb-1"></i>
+                        <p class="p-0 m-0"> No realizado</p>
+                    </div>
+                </div>
+            </div>
+                <div class="table-responsive p-0">
+                    <table class="table table-striped align-items-center justify-content-center mb-0">
+                        <thead class="bg-dark">
+                            <tr>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Nombre
+                                </th>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Cargo</th>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Departamento</th>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Aviso</th>
+                                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Fecha aviso</th>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Fecha legal desvinculación</th>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Activos</th>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Articulo</th>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Causal</th>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Accesos</th>
+                                <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Estado desvinculación</th>
+                                <th
+                                    class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 text-start">
+                                        <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                            <img src="/static/img/rh/person5.jpg" class="avatar avatar-sm" alt="avatar">
+                                        </div>
+                                        <div class="my-auto">
+                                            <h6 class="mb-0 text-sm">Ricardo Castillo</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Gerente producción</p>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Producción</p>
+                                </td>
+                                <td class="text-center">
+                                    <a data-bs-toggle="tooltip" data-bs-title="Notificado correctamente">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">01/02/2024</p>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">01/03/2024</p>
+                                </td>
+                                <td class="text-center">
+                                    <a data-bs-toggle="tooltip" data-bs-title="Activos entregados">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">N 159
+                                        <i class="fa-solid fa-file" data-bs-toggle="modal"
+                                        data-bs-target="#modalArticuloCausal"></i>
+                                    </p>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Renuncia del trabajador</p>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Sin acceso</p>
+                                </td>
+                                <td class="text-center">
+                                    <a data-bs-toggle="tooltip" data-bs-title="Desvinculado correctamente">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </a>
+                                </td>
+                                <td class="align-middle text-start">
+                                    <div class="btn-group btn-group-sm text-center" role="group"
+                                        aria-label="Basic example">
+                                        <button type="button"
+                                            class="btn btn-sm btn-dark btn-icon  align-items-center mb-0"
+                                            id="btnProcesarDesvinculacion" disabled>Procesar</button>
+                                        <button type="button"
+                                            class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver documentos</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 text-start">
+                                        <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                            <img src="/static/img/rh/person1.jpg" class="avatar avatar-sm" alt="avatar">
+                                        </div>
+                                        <div class="my-auto">
+                                            <h6 class="mb-0 text-sm">Pascual Toledo</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Analista CRM</p>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Administración</p>
+                                </td>
+                                <td class="text-center">
+                                    <a data-bs-toggle="tooltip" data-bs-title="Notificado correctamente">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">10/03/2024</p>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">09/04/2024</p>
+                                </td>
+                                <td class="text-center">
+                                    <a data-bs-toggle="tooltip" data-bs-title="Aún no hace entrega de activos.">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">N 159
+                                        <i class="fa-solid fa-file" data-bs-toggle="modal"
+                                        data-bs-target="#modalArticuloCausal"></i>
+                                    </p>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Renuncia del trabajador</p>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Con acceso</p>
+                                </td>
+                                <td class="text-center">
+                                    <a data-bs-toggle="tooltip"
+                                        data-bs-title="Se debe completar la fecha legal para completar la desvinculación.">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                    </a>
+                                </td>
+                                <td class="align-middle text-start">
+                                    <div class="btn-group btn-group-sm text-center" role="group"
+                                        aria-label="Basic example">
+                                        <button type="button"
+                                            class="btn btn-sm btn-dark btn-icon  align-items-center mb-0"
+                                            id="btnProcesarDesvinculacion" disabled>Procesar</button>
+                                        <button type="button"
+                                            class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver documentos</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 text-start">
+                                        <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                                            <img src="/static/img/rh/person2.jpg" class="avatar avatar-sm" alt="avatar">
+                                        </div>
+                                        <div class="my-auto">
+                                            <h6 class="mb-0 text-sm">Joaquín Hidalgo</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Representante Ventas</p>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">CRM y ventas</p>
+                                </td>
+                                <td class="text-center">
+                                    <a data-bs-toggle="tooltip"
+                                        data-bs-title="Aún no se da aviso. Se recomienda realizar aviso.">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">Pendiente</p>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">Pendiente</p>
+                                </td>
+                                <td class="text-center">
+                                    <a data-bs-toggle="tooltip" data-bs-title="Aún no hace entrega de activos.">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <p class="text-sm font-weight-normal mb-0">N 159
+                                        <i class="fa-solid fa-file" data-bs-toggle="modal"
+                                        data-bs-target="#modalArticuloCausal"></i>
+                                    </p>
+                                    
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Vencimiento del plazo convenido</p>
+                                </td>
+                                <td class="text-start">
+                                    <p class="text-sm font-weight-normal mb-0">Con acceso</p>
+                                </td>
+                                <td class="text-center">
+                                    <a data-bs-toggle="tooltip"
+                                        data-bs-title="Se debe notificar para comenzar el proceso de desvinculación.">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                    </a>
+                                </td>
+                                <td class="align-middle text-start">
+                                    <div class="btn-group btn-group-sm text-center" role="group"
+                                        aria-label="Basic example">
+                                        <button type="button"
+                                            class="btn btn-sm btn-dark btn-icon  align-items-center mb-0"
+                                            id="btnProcesarDesvinculacion" disabled>Procesar</button>
+                                        <button type="button"
+                                            class="btn btn-sm btn-dark btn-icon  align-items-center mb-0" disabled>Ver documentos</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock card-option1-1 %}
+
+
+{% block card-option2-1 %}
+<div class="col-lg-3 col-md-6 col-sm-12 mb-md-0 mb-4 ps-0">
+    <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+            <h6 class="font-weight-semibold text-lg mb-0">Desvinculaciones programadas</h6>
+            <p class="text-sm">Cantidad de desvinculaciones progamadas por departamento</p>
+        </div>
+        <div class="card-body py-3">
+            <div class="chart mb-2">
+                <canvas id="chart-bars" class="chart-canvas" height="320"></canvas>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col d-flex justify-content-center">
+                <div class="btn-group btn-dark-menu">
+                    <button type="button" class="btn btn-dark mb-0" data-bs-toggle="modal"
+                        data-bs-target="#modalContratosActivos" data-bs-contrato="Indefinido"
+                        id="btnInforme">Informe</button>
+                    <button type="button" class="btn btn-dark mb-0">Exportar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock card-option2-1 %}
+
+{% block card-option2-2 %}
+<div class="col-lg-9 mb-4 pe-0">
+    <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+            <h6 class="font-weight-semibold text-lg mb-0">Librería de desvinculaciones</h6>
+            <p class="text-sm">Aquí encontrarás todos los tipos de documentos referidos a desvinculaciones que se emplean. Podrás visualizarlos y
+                modificarlos.</p>
+        </div>
+        <div class="card-body py-3">
+            <div class="container-fluid m-0 p-0">
+                <div class="row">
+                    <div class="col align-self-end text-end">
+                        <button class="btn btn-small btn-icon btn-success">Agregar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive p-0">
+                <table class="table teble-striped align-items-center justify-content-center mb-0">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th class="text-start text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                Nombre documento
+                            </th>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                Fecha añadido</th>
+                            <th
+                                class="text-center  text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                                Formato</th>
+                            <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="d-flex px-2">
+                                    <div class="my-auto">
+                                        <h6 class="mb-0 text-sm">Carta despido</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <p class="text-sm font-weight-normal mb-0">01/02/2024</p>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">PDF</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                    <button type="button"
+                                        class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver</button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Actualizar</button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-flex px-2">
+                                    <div class="my-auto">
+                                        <h6 class="mb-0 text-sm">Finiquito</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <p class="text-sm font-weight-normal mb-0">01/02/2024</p>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-sm font-weight-normal">PDF</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                    <button type="button"
+                                        class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver</button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Actualizar</button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-dark btn-icon align-items-center mb-0">Eliminar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination mt-3 d-flex justify-content-center flex-wrap ">
+                        <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3"
+                                href="#">Previous</a></li>
+                        <li class="page-item mx-1 my-2 my-sm-0"><a
+                                class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a>
+                        </li>
+                        <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold"
+                                href="#">2</a></li>
+                        <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold"
+                                href="#">3</a></li>
+                        <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock card-option2-2 %}
+
+
+
+
+{% block modals %}
+
+<div class="modal fade" id="modalContratosActivos" tabindex="-1" role="dialog"
+    aria-labelledby="modalContratosActivosLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalContratosActivosLabel">Nuevo informe</h5>
+                <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="slctDepartamento" class="col-form-label">Departamento</label>
+                        <select id="cargos" class="form-control">
+                            <option value="Administrador">CRM y Ventas</option>
+                            <option value="Asistente Administrativo">Finanzas</option>
+                            <option value="Contador">Producción</option>
+                            <option value="Secretaria">Recursos humanos</option>
+                            <option value="Gerente de Ventas">Administracion</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="slctCargo" class="col-form-label">Cargo</label>
+                        <select id="slctCargo" class="form-control">
+                            <option value="Administrador">Administrador</option>
+                            <option value="Asistente Administrativo">Asistente Administrativo</option>
+                            <option value="Contador">Contador</option>
+                            <option value="Secretaria">Secretaria</option>
+                            <option value="Gerente de Ventas">Gerente de Ventas</option>
+                            <option value="Ejecutivo de Ventas">Ejecutivo de Ventas</option>
+                            <option value="Analista de CRM">Analista de CRM</option>
+                            <option value="Representante de Ventas">Representante de Ventas</option>
+                            <option value="Director Financiero">Director Financiero</option>
+                            <option value="Analista Financiero">Analista Financiero</option>
+                            <option value="Contador Senior">Contador Senior</option>
+                            <option value="Tesorero">Tesorero</option>
+                            <option value="Gerente de Producción">Gerente de Producción</option>
+                            <option value="Supervisor de Línea">Supervisor de Línea</option>
+                            <option value="Ingeniero de Producción">Ingeniero de Producción</option>
+                            <option value="Operario">Operario</option>
+                            <option value="Director de Recursos Humanos">Director de Recursos Humanos</option>
+                            <option value="Especialista en Selección de Personal">Especialista en Selección de
+                                Personal</option>
+                            <option value="Analista de Nómina">Analista de Nómina</option>
+                            <option value="Entrenador">Entrenador</option>
+                            <option value="Gerente General">Gerente General</option>
+                            <option value="Director Administrativo">Director Administrativo</option>
+                            <option value="Coordinador de Proyectos">Coordinador de Proyectos</option>
+                            <option value="Oficinista">Oficinista</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Generar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalArticuloCausal" tabindex="-1" role="dialog" aria-labelledby="modalArticuloCausalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalArticuloCausalLabel">Detalle Articulo</h5>
+                <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="txtaPerfilPuesto" class="col-form-label">Descripción</label>
+                        <textarea class="form-control" id="txtaPerfilPuesto" disabled>
+                            Las causales de terminación del contrato de trabajo se encuentran en los artículos 159, 160, 161 y 163 bis del Código del Trabajo, siendo éstas las siguientes:
+Causales del artículo 159: 1.- Mutuo acuerdo de las partes. 2.- Renuncia del trabajador. 3.- Muerte del trabajador. 4.- Vencimiento del plazo convenido en el contrato. 5.- Conclusión del trabajo o servicio que dio origen al contrato. 6.- Caso fortuito o fuerza mayor, es decir, una situación ajena a las partes, que no es posible de prevenir y que hace imposible realizar el trabajo convenido, como un terremoto, un incendio o una inundación que destruyen el local de la empresa.
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock modals %}
+
+{% block extrascripts %}
+
+
+
+<style>
+
+    .h100{
+        height: 100%;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>input+.btn:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>input+.btn:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:first-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 4px;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:last-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 4px;
+    }
+
+    .modal-dialog {
+        margin: 0;
+    }
+
+    .modal-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: #1e293b;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 250ms ease;
+        border: 0;
+    }
+
+    .modal {
+        margin: 10px auto;
+        right: 0;
+        width: 100%;
+        max-width: 40rem;
+        background-color: #1e293b;
+        border-radius: 1.5rem;
+        background: linear-gradient(155deg, #1e293b, #0d1625);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0;
+    }
+
+    .modal-title {
+        margin: 0;
+        color: white;
+    }
+
+    .modal-content {
+        color: white;
+        background-color: transparent;
+    }
+
+    .modal-close {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: transparent;
+        display: block;
+        height: 1.5rem;
+        width: 1.5rem;
+        overflow: hidden;
+        background-image:
+            linear-gradient(to top right,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%),
+            linear-gradient(to top left,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%);
+    }
+
+
+    .modal-footer {
+        border-top: 0 !important;
+    }
+
+    .modal-body .form-group>.col-form-label {
+        color: white;
+    }
+
+    .modal-header,
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .modal-header>.modal-title {
+        color: whitesmoke;
+    }
+
+    .modal-content {
+        height: 100%;
+        border: 0;
+    }
+
+    .modal-container:target {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .table-responsive {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    i>.fa-file {
+        height: 25px;
+        width: 25px;
+    }
+
+    
+    .fa-solid {
+        color: #0d1625;
+    }
+
+    .fa-file{
+        cursor: pointer;
+    }
+
+    .fa-circle-check {
+        color: #67c23a;
+    }
+
+    .fa-circle-xmark {
+        color: #ea4e3d;
+    }
+
+    .fa-triangle-exclamation {
+        color: #f19937;
+    }
+
+    textarea {
+        height: 210px;
+    }
+
+    #txtaPerfilPuesto {
+        background-color: transparent;
+        color: whitesmoke;
+        border: 0;
+    }
+
+    #txtaPerfilPuesto::-webkit-resizer {
+        display: none;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+
+    const TipTrigger = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const toolList = [...TipTrigger].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    var ctx = document.getElementById("chart-bars").getContext("2d");
+
+    function formato(value, context) {
+        const valores = context.chart.data.datasets[0].data;
+        function totalSum(total, valor) {
+            return total + valor
+        }
+        const valorTotal = valores.reduce(totalSum, 0);
+        const valorPorcentaje = (value / valorTotal * 100).toFixed(1);
+        const mostrar = [`${value}`, `${valorPorcentaje}%`]
+        return mostrar;
+    }
+
+    new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: ["CRM y ventas", "Finanzas", "Producción", "Recursos humanos", "Administración"],
+            datasets: [{
+                label: "Desvinculaciones",
+                backgroundColor: ["#FF5733", "#DAF7A6", "#6C3483", "#A569BD", "#F1948A"],
+                data: [2, 3, 1, 5, 2],
+                hoverOffset: 4
+            },
+            ],
+        },
+        options: {
+            plugins: {
+                tooltip: {
+                    enabled: false
+                },
+                datalabels: {
+                    align: 'center',
+                    color: '#fff',
+                    formatter: formato,
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+
+    $('.fa-file').hover(function () {
+        $(this).toggleClass("fa-bounce");
+    });
+
+</script>
+
+{% endblock extrascripts %}

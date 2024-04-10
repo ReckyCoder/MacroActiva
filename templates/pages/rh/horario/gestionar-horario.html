@@ -1,0 +1,878 @@
+{% extends 'layouts/rh/full-content.html'%}
+{% load static %}
+
+
+{% block opt-tittle %}
+<h6>Gestor de turnos</h6>
+{% endblock opt-tittle %}
+
+{% block opt-info %}
+<p class="mx-5 px-2 text-center">El módulo de gestión de turnos facilita la administración eficiente de horarios laborales, permitiendo asignar y modificar turnos, controlar la asistencia y cumplir con regulaciones laborales, optimizando así la productividad y minimizando conflictos de programación.</p>
+{% endblock opt-info %}
+
+{% block card-option1-1 %}
+<div class="col-12 mb-4">
+    <div class="card shadow-xs border h-100">
+        <div class="card-header pb-0">
+            <h6 class="font-weight-semibold text-lg mb-0">Turnos activos</h6>
+            <p class="text-sm">Aquí encontrarás todos los turnos relevantes a los cargos y departamentos disponibles.</p>
+        </div>
+        <div class="card-body py-3">
+            <table class="table table-striped align-items-center justify-content-center mb-0" id="tablaTurnos"
+                data-search="true" data-show-columns="true" data-pagination="true" data-reorderable-columns="true"
+                data-toggle="table" data-show-toggle="true" data-show-export="true" data-click-to-select="true">
+                <thead class="bg-dark">
+                    <tr>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 text-white">ID
+                            Turno</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Nombre</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Sucursal</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Departamento</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Jornada</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Cantidad horas</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Horas semanales</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Hora entrada</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Hora colación</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Hora salida</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Cantidad de empleados</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Tasa de cumplimiento</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Tasa de atrasos</th>
+                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2 text-white">
+                            Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TUROPCRM001</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Operario CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Diurno</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">9 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">40 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">07:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">12:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">16:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">57</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">89%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">25%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TUROPCRM002</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Operario II CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Diurno</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">9 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">40 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">07:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">12:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">16:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">35</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">94%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">10%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TUROPCRM003</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Operario CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Nocturno</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">9 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">40 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">23:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">03:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">07:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">5</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">100%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">12%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TUROPCRM004</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Operario CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Vespertino</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">6 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">30 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">16:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">20:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">23:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">25</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">98%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">5%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TUROPCRM005</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Operario II CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Vespertino</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">6 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">30 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">16:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">20:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">23:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">5</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">100%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">4%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TURADCRM001</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Administrativo CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Diurno</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">9 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">40 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">08:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">13:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">17:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">50</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">92%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">4%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TURADCRM002</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Administrativo II CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Diurno</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">9 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">40 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">08:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">13:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">17:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">22</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">100%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">2%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TURGECRM003</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Gerencial CRM</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">CRM y Ventas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Diurno</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">9 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">40 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">09:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">14:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">18:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">2</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">100%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">1%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TUROPCRM006</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Operario Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Finanzas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Diurno</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">9 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">40 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">07:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">12:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">16:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">85</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">89%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">15%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TURPRODCRM007</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Operario Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Producción</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Vespertino</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">6 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">30 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">16:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">20:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">23:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">45</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">95%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">8%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TURRESCRM008</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Operario Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Recursos Humanos</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Diurno</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">9 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">40 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">08:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">13:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">17:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">60</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">98%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">3%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">TURADCRM009</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Turno Administrativo Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Casa matriz</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Administración</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">Diurno</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">9 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">40 Horas</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">08:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">13:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">17:00</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">30</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">100%</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="text-sm font-weight-normal mb-0">2%</p>
+                        </td>
+                        <td class="align-middle text-center">
+                            <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver
+                                    detalles</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container-fluid p-0 m-0">
+            <div class="row">
+                <div class="col">
+                    <div class="btn-group btn-dark-menu options p-0 m-0">
+                        <button type="button" class="btn btn-dark mb-0">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock card-option1-1 %}
+
+
+{% include 'includes/scripts.html' %}
+
+{% block extrascripts %}
+
+<style>
+    .row>.col>.btn-group.btn-dark-menu>input+.btn:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>input+.btn:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 0;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:first-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 4px;
+    }
+
+    .row>.col>.btn-group.btn-dark-menu>.btn:last-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 4px;
+    }
+
+    .modal-dialog {
+        margin: 0;
+    }
+
+    .modal-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        background-color: #1e293b;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 250ms ease;
+        border: 0;
+    }
+
+    .modal {
+        margin: 10px auto;
+        right: 0;
+        width: 100%;
+        max-width: 40rem;
+        background-color: #1e293b;
+        border-radius: 1.5rem;
+        background: linear-gradient(155deg, #1e293b, #0d1625);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0;
+    }
+
+    .modal-title {
+        margin: 0;
+        color: white;
+    }
+
+    .modal-content {
+        color: white;
+        background-color: transparent;
+    }
+
+    .modal-close {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: transparent;
+        display: block;
+        height: 1.5rem;
+        width: 1.5rem;
+        overflow: hidden;
+        background-image:
+            linear-gradient(to top right,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%),
+            linear-gradient(to top left,
+                transparent 48%,
+                white 48%,
+                white 52%,
+                transparent 52%);
+    }
+
+
+    .modal-footer {
+        border-top: 0 !important;
+    }
+
+    .modal-body .form-group>.col-form-label {
+        color: white;
+    }
+
+    .modal-header,
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .modal-header>.modal-title {
+        color: whitesmoke;
+    }
+
+    .modal-content {
+        height: 100%;
+        border: 0;
+    }
+
+    .modal-container:target {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .table-responsive,
+    .bootstrap-table.bootstrap5 {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .dropdown-menu.dropdown-menu-end.show {
+        overflow: hidden !important;
+    }
+
+    .table-bordered> :not(caption)>*>* {
+        border-width: 0 !important;
+        height: 100%;
+    }
+
+    .bootstrap-table .fixed-table-toolbar .columns .dropdown-menu {
+        max-height: 500px !important;
+    }
+
+    .fixed-table-body {
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+    }
+
+    .bootstrap-table .fixed-table-pagination>.pagination,
+    .bootstrap-table .fixed-table-pagination>.pagination-detail {
+        margin-left: 10px !important;
+    }
+
+    .card .card-body {
+        padding-top: 0;
+    }
+
+    .btn-group.btn-dark-menu.options {
+        width: 100%;
+    }
+
+    .page-item .page-link,
+    .page-item span {
+        color: whitesmoke !important;
+        background-color: #28374e;
+    }
+
+    .page-item.active .page-link,
+    .page-item span {
+        color: whitesmoke !important;
+        background-color: #1e293b;
+    }
+
+    .page-list>.btn-group.dropdown.dropup>button.btn.btn-secondary.dropdown-toggle{
+        padding: 2px 10px !important;
+        margin: 0 10px 3px 0;
+    }
+</style>
+
+<script>
+
+    const TipTrigger = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const toolList = [...TipTrigger].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+    $(function () {
+
+        // $('[data-bs-toggle="tooltip"]').each(function() {
+        //     $(this).tooltip();
+        // });
+
+        $('#tablaTurnos').bootstrapTable({
+            exportDataType: $(this).val(),
+            exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel', 'pdf'],
+            exportOptions: {
+                fileName: 'Evaluaciones'
+            }
+        });
+    });
+
+    // var ctx = document.getElementById("chart-bars").getContext("2d");
+
+    // function formato(value, context) {
+    //     const valores = context.chart.data.datasets[0].data;
+    //     function totalSum(total, valor) {
+    //         return total + valor
+    //     }
+    //     const valorTotal = valores.reduce(totalSum, 0);
+    //     const valorPorcentaje = (value / valorTotal * 100).toFixed(1);
+    //     const mostrar = [`${value}`, `${valorPorcentaje}%`]
+    //     return mostrar;
+    // }
+
+    // new Chart(ctx, {
+    //     type: "doughnut",
+    //     data: {
+    //         labels: ["CRM y ventas", "Finanzas", "Producción", "Recursos humanos", "Administración"],
+    //         datasets: [{
+    //             label: "Total de contratos indefinidos",
+    //             backgroundColor: ["#2ca8ff", "#7c3aed", "#F49B1A", "#80F41A", "#F41A4D"],
+    //             data: [65, 15, 10, 56, 43],
+    //             hoverOffset: 4
+    //         },
+    //         ],
+    //     },
+    //     options: {
+    //         plugins: {
+    //             tooltip: {
+    //                 enabled: false
+    //             },
+    //             datalabels: {
+    //                 align: 'center',
+    //                 color: '#fff',
+    //                 formatter: formato,
+    //             }
+    //         }
+    //     },
+    //     plugins: [ChartDataLabels]
+    // });
+
+
+</script>
+
+{% endblock extrascripts %}

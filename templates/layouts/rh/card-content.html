@@ -1,6 +1,6 @@
 <div class="card-header-content p-sm-2 p-md-3 ">
     <div class="row">
-        <div class="col-8 text-start" >
+        <div class="col-4 text-start" >
             <div class="row">
                 <div class="opt-tittle1">
                     {% block opt-tittle1 %}{% endblock opt-tittle1 %}   
@@ -12,20 +12,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 text-end">
-            <div class="row">
-                <div class="col-10 opt-tittle3 text-start p-0">{% block opt-tittle3 %}{% endblock opt-tittle3 %}</div>
-                <div class="col text-center ps-0">
-                    <a href="javascript:;" class="nav-link text-body p-0">
-                    <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar"></a>
+        <div class="col text-center opt-tittle5">
+            {% block opt-tittle5 %}{% endblock opt-tittle5 %}
+        </div>
+        <div class="col-4 text-end me-sm-3">
+            <div class="row d-md-flex gap-1 pr-1">
+                <div class="col text-end p-0 opt-tittle3">
+                    {% block opt-tittle3 %}{% endblock opt-tittle3 %}
+                </div>
+                <div class="col-2 text-start mt-1 opt-tittle5">
+                    {% block opt-tittle4 %}{% endblock opt-tittle4 %}
                 </div>
             </div>
         </div>
     </div>                       
 </div>
 <div class="container-fluid px-0">
-    <div class="card-body-content py-3 m-0">
-
+    <div class="card-body-content py-3 m-0 sub-card-content">
         {% block card-body %}{% endblock card-body %}
     </div>
 </div>
@@ -50,14 +53,8 @@
         margin: 0 0 2px 0;
     }
 
-    .opt-tittle3{
-        padding: 4px 0 0 5px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .opt-tittle3 p{
-        font-size: small;
+    .opt-tittle1 p, .opt-tittle2 p, .opt-tittle3 p{
+        font-size: smaller;
     }
 
     .opt-tittle3 div .nav-link{
@@ -65,7 +62,6 @@
     } 
 
     .opt-tittle1 p, .opt-tittle2 p{
-        font-size: smaller;
         margin: 0;
     }
 
@@ -73,6 +69,10 @@
         margin: 3px 0 0 0;
         padding-top: 6px;
         justify-content: center;
+    }
+    
+    .sub-card-content{
+        height: 100%;
     }
 
 </style>

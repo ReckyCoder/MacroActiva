@@ -1,0 +1,385 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+{% endblock extrastyle %}
+    
+
+{% block content %}
+
+<div class="container-fluid my-2">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-xs border h-100 w-100 d-md-flex align-items-center position-sticky blur">
+                <div class="row">
+                    <div class="col">
+                        <div class="card-header text-center pt-3 pb-2">
+                            <h3 class="font-weight-semibold text-lg mb-0">Menú de desvinculaciones</h3>
+                            <p class="text-sm text-center">
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid row pb-0 px-0">
+                    <div class="col px-0">
+                        <div id="radiobuttons">
+                            <div id="first">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrGestionarDesvinculaciones"
+                                        autocomplete="off" checked>
+                                    <label class="btn btn-dark-menu px-3 mb-0"
+                                        for="R01btnrGestionarDesvinculaciones">Gestor de
+                                        desvinculaciones</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrContratoIndefinido"
+                                        autocomplete="off">
+                                    <label class="btn btn-dark-menu px-3 mb-0"
+                                        for="R01btnrContratoIndefinido">Coordinar Cita</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrContratoDefinido"
+                                        autocomplete="off">
+                                    <label class="btn btn-dark-menu px-3 mb-0"
+                                        for="R01btnrContratoDefinido">Remover accesos</label>
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrAnexos"
+                                        autocomplete="off">
+                                    <label class="btn btn-dark-menu px-3 mb-0" for="R01btnrAnexos">Carpeta de desvinculación</label>
+                                </div>
+                            </div>
+                            <div id="second">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="btnradio" id="R01btnrContratosPorFirmar"
+                                        autocomplete="off">
+                                    <label class="btn btn-dark-menu px-3 mb-0 as"
+                                        for="R01btnrContratosPorFirmar">Notificaciones</label>
+                                    <input type="radio" class="btn-check" name="btnradio"
+                                        id="R01btnrContratosPendientes" autocomplete="off">
+                                    <label class="btn btn-dark-menu px-3 mb-0"
+                                        for="R01btnrSoliciR01btnrContratosPendientestudes">Plan de desvinculación</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container" id="contentloadermain">
+            <div class="container-loader" style="display: none;">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+            </div>
+            <div class="container-fluid mx-2 px-0" id="maincontentload">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block extrascripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+<script src="{% static 'js/plugins/bootstrap-datepicker.js' %}"></script>
+
+
+
+
+<style>
+    .btn-group>.btn:not(:last-child):not(.dropdown-toggle),
+    .btn-group>.btn.dropdown-toggle-split:first-child,
+    .btn-group>.btn-group:not(:last-child)>.btn {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .btn-group>.btn:nth-child(n + 3),
+    .btn-group> :not(.btn-check)+.btn,
+    .btn-group>.btn-group:not(:first-child)>.btn {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    #second>.btn-group>.btn:last-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 4px;
+    }
+
+    .as {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 4px !important;
+    }
+
+    .btn-group {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .btn-dark-menu {
+        --bs-btn-color: #fff;
+        --bs-btn-bg: #28374e;
+        --bs-btn-border-color: #28374e;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #1a2332;
+        --bs-btn-hover-border-color: #28374e;
+        --bs-btn-focus-shadow-rgb: 64, 73, 88;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #18212f;
+        --bs-btn-active-border-color: #171f2c;
+        --bs-btn-active-shadow: none;
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #1e293b;
+        --bs-btn-disabled-border-color: #1e293b;
+    }
+
+    .btn-check:checked+.btn {
+        border: 1px solid #18212f;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    #contentloadermain {
+        display: flex;
+        width: 100vw;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 15px 0 15px 0;
+    }
+
+    #contentloadermain::before{
+        margin: 15px 0 15px 0;
+    }
+
+    #contentloadermain::after{
+        margin: 25% 0 15px 0;
+    }
+
+    #maincontentload {
+        height: auto;
+    }
+
+    .container-loader {
+        position: relative;
+        width: 112px;
+        height: 112px;
+        margin-bottom: 15px;
+    }
+
+    .box1,
+    .box2,
+    .box3 {
+        border: 16px solid #18212f;
+        box-sizing: border-box;
+        position: absolute;
+        display: block;
+    }
+
+    .box1 {
+        width: 112px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 0px;
+        animation: anime1 4s 0s forwards ease-in-out infinite;
+    }
+
+    .box2 {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 0px;
+        animation: anime2 4s 0s forwards ease-in-out infinite;
+    }
+
+    .box3 {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 64px;
+        animation: anime3 4s 0s forwards ease-in-out infinite;
+    }
+
+    @keyframes anime1 {
+        0% {
+            width: 112px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 0px;
+        }
+
+        12.5%,
+        25%,
+        37.5%,
+        50%,
+        62.5%,
+        75%,
+        87.5%,
+        100% {
+            width: 48px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 0px;
+        }
+
+        75% {
+            width: 48px;
+            height: 112px;
+            margin-top: 0px;
+            margin-left: 0px;
+        }
+    }
+
+    @keyframes anime2 {
+
+        0%,
+        12.5%,
+        25%,
+        37.5%,
+        50% {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 0px;
+        }
+
+        62.5% {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 64px;
+        }
+
+        75%,
+        87.5%,
+        100% {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 64px;
+        }
+    }
+
+    @keyframes anime3 {
+
+        0%,
+        12.5% {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 64px;
+        }
+
+        25% {
+            width: 48px;
+            height: 112px;
+            margin-top: 0px;
+            margin-left: 64px;
+        }
+
+        37.5%,
+        50%,
+        62.5%,
+        75%,
+        87.5%,
+        100% {
+            width: 48px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 64px;
+        }
+
+        75% {
+            width: 48px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 0px;
+        }
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+
+        $('input[type="radio"]').change(function () {
+            if ($(this).is(":checked")) {
+                // Show loading spinner
+                $('.container-loader').show();
+                $('#maincontentload').hide();
+                $('#subChildModule').text('');
+
+
+                var radioID = $(this).attr('id');
+                var radioURL = IdParser(radioID);
+
+
+                // Checkbox is checked, load content
+                $.ajax({
+                    url: radioURL,
+                    type: 'GET',
+                    data: { element_id: radioID },
+                    success: function (data) {
+
+                        $('#maincontentload').html(data.HTMLData);
+                        $('#childModule').text(capitalizeAndRemoveUnderscore(data.MetaData.modulos[1].childModuleName))
+                        // Hide loading spinner after 2 seconds (adjust time as needed)
+                        setTimeout(function () {
+                            $('.container-loader').hide();
+                            $('#maincontentload').show();
+
+                        }, 2300);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                        // Hide loading spinner on error
+                        $('.container-loader').hide();
+                    }
+                });
+            } else {
+                // Checkbox is unchecked, clear content
+                $('#maincontentload').html('');
+            }
+        }).change();
+
+    });
+
+    function capitalizeAndRemoveUnderscore(str) {
+        return str.split('_')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    }
+
+
+    function IdParser(str) {
+        if (str === "R01btnrGestionarDesvinculaciones") {
+            return 'gestionarDesvinculaciones/'
+        } else if (str === 'R01btnrContratoIndefinido') {
+            return 'contratoIndefinido/'
+        } else if (str === 'R01btnrContratoDefinido') {
+            return 'contratoDefinido/'
+        } else if (str === 'R01btnrAnexos') {
+            return 'anexos/'
+        } else if (str === 'R01btnrContratosPorFirmar') {
+            return 'contratosPorFirmar/'
+        } else if (str === 'R01btnrContratosPendientes') {
+            return 'contratosPendientes/'
+        } else if (str === 'R01btnrHerramientas') {
+            return 'herramientas/'
+        } else {
+            return ''
+        }
+    }
+
+</script>
+
+{% endblock extrascripts %}

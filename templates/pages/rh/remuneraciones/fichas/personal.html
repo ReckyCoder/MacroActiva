@@ -116,6 +116,8 @@
 <script>
     $(document).ready(function () {
 
+        $('#subChildModule').hide();
+
         $('.datepicker').datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
@@ -128,6 +130,9 @@
             method: 'GET',
             data: { element_id: 'R02FichaPersonalView' },
             success: function (data) {
+
+                $('#subChildModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[2].subChildModuleName))
+                $('#subChildModule').show();
 
                 $("#txtNombre").val(data.MetaData.user.personal.nombre);
                 $("#txtApPaterno").val(data.MetaData.user.personal.appaterno);
@@ -150,8 +155,15 @@
             },
             error: function (xhr, status, error) {
                 console.error(error);
+                $('#subChildModule').hide();
             }
         });
+
+        function capitalizeAndRemoveUnderscore(str) {
+            return str.split('_')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        }
 
     });
 </script>

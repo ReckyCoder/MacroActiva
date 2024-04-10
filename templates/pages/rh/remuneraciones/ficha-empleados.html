@@ -13,6 +13,15 @@
 <p id="nombreEmpleado">Nombre empleado: Daniela Contreras</p>
 {% endblock opt-tittle3 %}
 
+{% block opt-tittle4 %}
+<a href="javascript:;" class="nav-link text-body p-0">
+    <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar"></a>
+{% endblock opt-tittle4 %}
+
+{% block opt-tittle5 %}
+<h6>Ficha empleados</h6>
+{% endblock opt-tittle5 %}
+
 {% block card-body %}
 <div class="container-fluid" id="main-content">
 
@@ -212,23 +221,23 @@
             height: 540px;
         }
 
-        #subcontentload{
+        #subcontentload {
             height: 100%;
         }
 
-        #no-content{
+        #no-content {
             margin-top: 175px;
             border: 1px dashed rgba(33, 44, 63, 0.4);
             border-radius: 5px;
         }
 
-        #no-content>.m-5.p-1{
+        #no-content>.m-5.p-1 {
             display: flex;
             justify-content: center;
             opacity: 0.6;
         }
 
-        #no-content>.m-5.p-1>p{
+        #no-content>.m-5.p-1>p {
             margin: 0;
         }
 
@@ -395,8 +404,6 @@
                     method: "GET",
                     data: { element_id: buttonID },
                     success: function (data) {
-                        // Extraer las datas
-                        var MetaData = data.MetaData.meta;
 
                         $('#subcontentload').html(data.HTMLData);
                         $('#childModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[1].childModuleName))
@@ -404,8 +411,6 @@
                         setTimeout(function () {
                             $('.subcontainer-loader').hide();
                             $('#subcontentload').show();
-                            
-
                         }, 1500);
 
 
@@ -431,7 +436,7 @@
                     return "CargasView/"
                 } else if (buttonID === "R02FichaDocumentosView") {
                     return "DocumentosView/"
-                } else if (buttonID === "R02FichaLaboralView") {
+                } else if (buttonID === "R02FichaHorarioView") {
                     return "HorarioView/"
                 }
             }
@@ -464,8 +469,8 @@
                 handleButtonClick("R02FichaDocumentosView");
             });
 
-            $("#R02FichaLaboralView").click(function () {
-                handleButtonClick("R02FichaLaboralView");
+            $("#R02FichaHorarioView").click(function () {
+                handleButtonClick("R02FichaHorarioView");
             });
 
 

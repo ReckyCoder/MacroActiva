@@ -1,0 +1,91 @@
+{% extends 'layouts/rh/subcard-content.html' %}
+{% load static %}
+
+
+
+{% block card-body %}
+
+
+<div class="card-body px-0 py-0 mb-3" id="comtable">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center justify-content-center mb-0" id="tablaCargas">
+            <thead class="bg-dark rounded-table">
+                <tr>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Nombre
+                    </th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2">Rut</th>
+                    <th class="text-center  text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                        Fecha nacimiento</th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7 ps-2">
+                        Genero</th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Tipo carga
+                    </th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Tipo vinculo
+                    </th>
+                    <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#subChildModule').hide();
+
+        $.ajax({
+            url: 'CargasView/',
+            type: 'GET',
+            data: { element_id: 'R02FichaCargasView' },
+            success: function (data) {
+
+                $('#subChildModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[2].subChildModuleName))
+                $('#subChildModule').show();
+
+                var cargas = data.MetaData.user.cargas;
+
+                for (var llave in cargas) {
+                    if (cargas.hasOwnProperty(llave)) {
+                        carga = cargas[llave];
+
+                        var nombre = carga.nombre + " " + carga.appaterno + " " + carga.apmaterno;
+                        var rut = carga.rut + "-"+ carga.dv;
+                        var fechaNacimiento = carga.fecha_nacimiento;
+                        var genero = carga.genero;
+                        var tipoCarga = carga.tipo_carga;
+                        var tipoVinculo = carga.tipo_vinculo;
+
+                        var nuevaFila = $('<tr>')
+
+                        nuevaFila.append('<td>' + nombre + '</td>');
+                        nuevaFila.append('<td>' + rut + '</td>');
+                        nuevaFila.append('<td>' + fechaNacimiento + '</td>');
+                        nuevaFila.append('<td>' + genero + '</td>');
+                        nuevaFila.append('<td>' + tipoCarga + '</td>');
+                        nuevaFila.append('<td>' + tipoVinculo + '</td>');
+                        nuevaFila.append('<td class="align-middle text-center"> <div class="btn-group btn-group-sm text-center" role="group" aria-label="Basic example"><button type="button"class="btn btn-sm btn-dark btn-icon  align-items-center mb-0">Ver</button></td>')
+
+                        $('#tablaCargas tbody').append(nuevaFila);
+
+                    }
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('AJAX Error: ' + textStatus, errorThrown);
+            }
+        });
+
+        function capitalizeAndRemoveUnderscore(str) {
+            return str.split('_')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        }
+
+    });
+</script>
+{% endblock card-body %}

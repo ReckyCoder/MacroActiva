@@ -1,0 +1,44 @@
+{% load static %}
+
+
+<div class="row px-1 mb-3">
+
+    <div class="col-12 px-1 my-3">
+        <div class="card shadow-xs border">
+            <div class="row my-2">
+                <div class="col"></div>
+                <div class="col-sm-12 col-md-6 d-flex justify-content-center">
+                    {% block opt-tittle %}{% endblock opt-tittle %}
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col-12 align-items-center">
+                    {% block opt-info %}{% endblock opt-info %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid m-0 p-0">
+        <div class="row px-1 mb-3">
+            {% block card-option1-1 %}{% endblock card-option1-1 %}
+            {% block card-option1-2 %}{% endblock card-option1-2 %}
+            {% block card-option1-3 %}{% endblock card-option1-3 %}
+        </div>
+    </div>
+
+</div>
+
+<div class="row px-1 mb-3">
+    
+        {% block card-option2-1 %}{% endblock card-option2-1 %}
+        {% block card-option2-2 %}{% endblock card-option2-2 %}
+        {% block card-option2-3 %}{% endblock card-option2-3 %}
+
+</div>
+
+{% block modals %}{% endblock modals %}
+
+
+{% block extrascripts %}{% endblock extrascripts %}

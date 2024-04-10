@@ -1,0 +1,308 @@
+{% extends 'layouts/rh/card-content.html'%}
+{% load static %}
+
+
+{% block opt-tittle1 %}
+<p id="fechaActual">Fecha actual: 07/03/2024</p>
+{% endblock opt-tittle1 %}
+
+{% block opt-tittle3 %}
+<p id="nombreEmpleado">Usuario: Daniela Contreras</p>
+{% endblock opt-tittle3 %}
+
+{% block opt-tittle4 %}
+<a href="javascript:;" class="nav-link text-body p-0">
+    <img src="/static/assets/img/team-2.jpg" class="avatar avatar-sm" alt="avatar"></a>
+{% endblock opt-tittle4 %}
+
+{% block opt-tittle5 %}
+<h6>Gestionar empleados</h6>
+{% endblock opt-tittle5 %}
+
+
+{% block card-body %}
+<div class="container-fluid" id="main-content">
+    <div class="row">
+        <div class="col">
+            <div class="container-fluid p-0" id="listButtons">
+                <div class="row">
+                    <div class="col text-center px-0">
+                        <div class="btn-group text-center" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-sm btn-dark btn-icon  align-items-center mb-0"
+                                id="R02AgregarEmpleadoView">Agregar</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02ModificarEmpleadoView">Modificar</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02EliminarEmpleadoView">Eliminar</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02ReasignarEmpleadoView">Reasignar</button>
+                            <button type="button" class="btn btn-sm btn-dark btn-icon align-items-center mb-0"
+                                id="R02ActivarEmpleadoView">Activar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col px-0">
+            <div class="container-fluid px-0">
+                <div class="card shadow-xs border align-items-center blur bg-gray-500 py-3" id="contentloadersub">
+                    <div id="no-content">
+                        <div class="m-5 p-1">
+                            <p>Aun no seleccionado una ficha a visualizar.</p>
+                        </div>
+                    </div>
+                    <div class="subcontainer-loader pt-5" style="display: none;">
+                        <div class="subbox1"></div>
+                        <div class="subbox2"></div>
+                        <div class="subbox3"></div>
+                    </div>
+                    <div class="container-fluid mx-0 px-0" id="subcontentload" style="display: none;">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .btn-group>.btn:not(:last-child):not(.dropdown-toggle),
+        .btn-group>.btn.dropdown-toggle-split:first-child,
+        .btn-group>.btn-group:not(:last-child)>.btn {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .btn-group>.btn:nth-child(n + 3),
+        .btn-group> :not(.btn-check)+.btn,
+        .btn-group>.btn-group:not(:first-child)>.btn {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        #contentloadersub {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            position: relative;
+            height: auto;
+        }
+
+        #subcontentload {
+            height: 100%;
+        }
+
+        #no-content {
+            border: 1px dashed rgba(33, 44, 63, 0.4);
+            border-radius: 5px;
+            height: 50%;
+        }
+
+        #no-content>.m-5.p-1 {
+            display: flex;
+            justify-content: center;
+            opacity: 0.6;
+        }
+
+        #no-content>.m-5.p-1>p {
+            margin: 0;
+        }
+
+        .subcontainer-loader {
+            position: relative;
+            bottom: 50px;
+            width: 112px;
+            height: 112px;
+        }
+
+        .subbox1,
+        .subbox2,
+        .subbox3 {
+            border: 16px solid #18212f;
+            box-sizing: border-box;
+            position: absolute;
+            display: block;
+        }
+
+        .subbox1 {
+            width: 112px;
+            height: 48px;
+            margin-top: 64px;
+            margin-left: 0px;
+            animation: anime1 4s 0s forwards ease-in-out infinite;
+        }
+
+        .subbox2 {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 0px;
+            animation: anime2 4s 0s forwards ease-in-out infinite;
+        }
+
+        .subbox3 {
+            width: 48px;
+            height: 48px;
+            margin-top: 0px;
+            margin-left: 64px;
+            animation: anime3 4s 0s forwards ease-in-out infinite;
+        }
+
+        @keyframes anime1 {
+            0% {
+                width: 112px;
+                height: 48px;
+                margin-top: 64px;
+                margin-left: 0px;
+            }
+
+            12.5%,
+            25%,
+            37.5%,
+            50%,
+            62.5%,
+            75%,
+            87.5%,
+            100% {
+                width: 48px;
+                height: 48px;
+                margin-top: 64px;
+                margin-left: 0px;
+            }
+
+            75% {
+                width: 48px;
+                height: 112px;
+                margin-top: 0px;
+                margin-left: 0px;
+            }
+        }
+
+        @keyframes anime2 {
+
+            0%,
+            12.5%,
+            25%,
+            37.5%,
+            50% {
+                width: 48px;
+                height: 48px;
+                margin-top: 0px;
+                margin-left: 0px;
+            }
+
+            62.5% {
+                width: 48px;
+                height: 48px;
+                margin-top: 0px;
+                margin-left: 64px;
+            }
+
+            75%,
+            87.5%,
+            100% {
+                width: 48px;
+                height: 48px;
+                margin-top: 0px;
+                margin-left: 64px;
+            }
+        }
+
+        @keyframes anime3 {
+
+            0%,
+            12.5% {
+                width: 48px;
+                height: 48px;
+                margin-top: 0px;
+                margin-left: 64px;
+            }
+
+            25% {
+                width: 48px;
+                height: 112px;
+                margin-top: 0px;
+                margin-left: 64px;
+            }
+
+            37.5%,
+            50%,
+            62.5%,
+            75%,
+            87.5%,
+            100% {
+                width: 48px;
+                height: 48px;
+                margin-top: 64px;
+                margin-left: 64px;
+            }
+
+            75% {
+                width: 48px;
+                height: 48px;
+                margin-top: 64px;
+                margin-left: 0px;
+            }
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+
+            function handleButtonClick(buttonID) {
+
+                buttonURL = IdParser(buttonID);
+
+                $('.subcontainer-loader').show();
+                $('#no-content').hide();
+                $('#subcontentload').hide();
+
+                $.ajax({
+                    url: buttonURL,
+                    method: 'GET',
+                    data: { element_id: buttonID },
+                    success: function (data) {
+
+                        $('#subcontentload').html(data.HTMLData);
+                        $('#childModule').text(capitalizeAndRemoveUnderscore(data.MetaData.meta.modulos[1].childModuleName));
+
+                        setTimeout(function () {
+                            $('.subcontainer-loader').hide();
+                            $('#subcontentload').show();
+                        }, 1500);
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                })
+
+            }
+
+            function IdParser(str) {
+                if (str === "R02AgregarEmpleadoView") {
+                    return "agregarEmpleadoView/"
+                } else if (str === "R02ModificarEmpleadoView") {
+                    return "modificarEmpleadoView/"
+                } else if (str === "R02EliminarEmpleadoView") {
+                    return "eliminarEmpleadoView/"
+                }
+            }
+
+            $("#R02AgregarEmpleadoView").click(function () {
+                handleButtonClick("R02AgregarEmpleadoView");
+            });
+
+            $("#R02ModificarEmpleadoView").click(function () {
+                handleButtonClick("R02ModificarEmpleadoView");
+            });
+
+            $("#R02EliminarEmpleadoView").click(function () {
+                handleButtonClick("R02EliminarEmpleadoView");
+            });
+        });
+    </script>
+    {% endblock card-body %}
