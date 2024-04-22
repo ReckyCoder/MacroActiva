@@ -38,21 +38,55 @@ def clientes_leads(request):
     return render(request, 'pages/CLIENTES-VENTAS/leads-clientes.html', context=context)
 
 def cotizaciones(request):
-    #AGREGAR EN CADA VIEW PARA NAVIGATION
-    modulo = "Clientes Ventas"
-    nombre_vista = request.resolver_match.url_name
-    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+    context = {
+        'mainModuleName': 'Clientes Ventas',
+        'modulos': [
+            {'parentModuleName': 'Cotizaciones'},
+            #{'childModuleName': 'Editar Proceso'}  
+        ],
+        #'defaultUrl': 'menucapacitaciones',
+        #'defaultChildUrl': 'rhGestionarCapacitaciones',
+    }
 
-  
+    # Add context data here
+    # context['test'] = 'OK'
+
+    # Page from the theme
     return render(request, 'pages/CLIENTES-VENTAS/cotizaciones.html', context=context)
 
-def ventas(request):
-    #AGREGAR EN CADA VIEW PARA NAVIGATION
-    modulo = "Clientes Ventas"
-    nombre_vista = request.resolver_match.url_name
-    context = {'modulo': modulo, 'nombre_vista': nombre_vista}
+def cotizacionCrear(request):
+    context = {
+        'mainModuleName': 'Clientes Ventas',
+        'modulos': [
+            {'parentModuleName': 'Cotizaciones'},
+            {'childModuleName': 'Crear Cotización'}  
+        ],
+        #'defaultUrl': 'menucapacitaciones',
+        #'defaultChildUrl': 'rhGestionarCapacitaciones',
+    }
 
-  
+    # Add context data here
+    # context['test'] = 'OK'
+
+    # Page from the theme
+    return render(request, 'pages/CLIENTES-VENTAS/cotizacionesCrear.html', context=context)
+
+
+def ventas(request):
+    context = {
+        'mainModuleName': 'Clientes Ventas',
+        'modulos': [
+            {'parentModuleName': 'Ventas'},
+            #{'childModuleName': 'Editar Proceso'}  
+        ],
+        #'defaultUrl': 'menucapacitaciones',
+        #'defaultChildUrl': 'rhGestionarCapacitaciones',
+    }
+
+    # Add context data here
+    # context['test'] = 'OK'
+
+    # Page from the theme
     return render(request, 'pages/CLIENTES-VENTAS/ventas.html', context=context)
 
 def contratoscv(request):

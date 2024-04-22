@@ -7768,7 +7768,7 @@ textarea.form-control-lg {
   background-color: #1e293b !important; }
 
 .bg-slate-900 {
-  background-color: #0f172a !important; }
+  background-color: #0f172a; }
 
 .bg-opacity-10 {
   --bs-bg-opacity: 0.1; }

@@ -1,12 +1,22 @@
 {% load i18n static admin_corporate %}
-
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start" id="sidenav-main">
+<style id="customStyles">
+  .bg-slate-900 {
+    background-color: color !important;
+  }
+  .btn-dark {
+    bs-btn-color: color4 !important;
+    bs-btn-border-color: color4 !important;
+  }
+</style>
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start"  id="sidenav-main">
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand d-flex align-items-center m-0" href="/">
       <span class="font-weight-bold text-lg">ActivaERP</span>
     </a>
+    
   </div>
+  
   <div class="collapse h-auto navbar-collapse px-4  " id="sidenav-collapse-main" style="overflow-x: hidden; position: relative;">
 
     <!--Menu de funciones de personal-->
@@ -967,14 +977,76 @@
         <!--{ if request.user.is_autenticated }-->
         <a href="#" class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
           <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-            <svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <title>empresa</title>
-              <path fill="#ffffff" d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"></path>
+            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+              <title>configuracion</title>
+              <path fill="#ffffff" d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h89.9c-6.3-10.2-9.9-22.2-9.9-35.1c0-46.9 25.8-87.8 64-109.2V271.8 48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zM576 272a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM352 477.1c0 19.3 15.6 34.9 34.9 34.9H605.1c19.3 0 34.9-15.6 34.9-34.9c0-51.4-41.7-93.1-93.1-93.1H445.1c-51.4 0-93.1 41.7-93.1 93.1z"/>
             </svg>
           </div>
           <span class="nav-link ">Empresa</span>
         </a>
         
+      </li>
+      <li class="nav-item">
+        <div>
+            <!-- Si es usuario con privilegios inicio sesion podra ver-->
+          <!-- Para recursos humanos el cliente debe ser del departamento correspondiente para visualizar-->
+          {% if request.user.is_superuser %} <!-- Aqui iria la condicionante -->
+          <a class="nav-link enlace {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuConfiguracion" data-bs-toggle="collapse" aria-expanded="false" aria-controls="submenuadmini">
+          {% else %}
+          <a class="nav-link enlace {% if 'dashboard' in segment %}active{% endif %} collapsed"  href="#submenuConfiguracion" data-bs-toggle="collapse" aria-expanded="false" aria-controls="submenuadmini">
+          {% endif %}
+            <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+              <svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>empresa</title>
+                <path fill="#ffffff" d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"></path>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1">Configuración</span>
+          </a>
+          <ul class="navbar-nav collapse" id="submenuConfiguracion" data-bs-parent="#mainmenu">
+            
+            <li class="nav-item border-start my-0">
+              <a href="#submenuColor" data-bs-toggle="collapse" aria-expanded="false" class="nav-link enlace collapsed"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
+                <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                  <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <title>Temas</title>
+                    <path fill="#ffffff" d="M512 256c0 .9 0 1.8 0 2.7c-.4 36.5-33.6 61.3-70.1 61.3H344c-26.5 0-48 21.5-48 48c0 3.4 .4 6.7 1 9.9c2.1 10.2 6.5 20 10.8 29.9c6.1 13.8 12.1 27.5 12.1 42c0 31.8-21.6 60.7-53.4 62c-3.5 .1-7 .2-10.6 .2C114.6 512 0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/>
+                  </svg>
+                </div>
+                <span class="nav-link ">Temas</span>
+              </a>
+              <ul class="navbar-nav collapse" id="submenuColor" data-bs-parent="#submenufinanzas">
+                <li class="nav-item ms-3 my-0">
+                  <!--{ if request.user.is_autenticated }-->
+                  <div  class="nav-link py-1"> <!--Aqui iria la condicionante para acceder 'login required, etc'-->
+                    <div class="row" style="justify-content: center;align-items: center;">
+                      <ul style="list-style: none;
+                      padding: 0;
+                      text-align: right;"> 
+                        <li>
+                          <span style="color:white">Menu :</span>
+                        <input type="color" class="" value="#0f172a" title="Seleccionar color para el Menu." style="cursor: pointer;height:40px;margin-bottom: 10px;vertical-align: middle;" id="colorPicker">
+                        </li>
+                        <li>
+                          <span style="color:white">Activo :</span>
+                        <input type="color" class="" value="#0f172a" title="Seleccionar color para el botón que está activo." style="cursor: pointer;height:40px;margin-bottom: 10px;vertical-align: middle;" id="colorPicker2">
+                      </li>
+                        <li>
+                          <span style="color:white">Hover :</span>
+                        <input type="color" class="" value="#00346D" title="Seleccionar color para cuando el puntero este sobre un botón." style="cursor: pointer;height:40px;margin-bottom: 10px;vertical-align: middle;" id="colorPicker3">
+                      </li>
+                        <li>
+                          <span style="color:white">Botones :</span>
+                        <input type="color" class="" value="#0f172a" title="Seleccionar color para los botones." style="cursor: pointer;height:40px;margin-bottom: 10px;vertical-align: middle;" id="colorPicker4">
+                      </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
 
@@ -1063,4 +1135,46 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+</script>
+<script>
+  const colorPicker = document.getElementById('colorPicker');
+  const colorPicker2 = document.getElementById('colorPicker2');
+  const colorPicker3 = document.getElementById('colorPicker3');
+  const colorPicker4 = document.getElementById('colorPicker4');
+  const customStyles = document.getElementById('customStyles');
+
+  // Agregar el evento 'input' a los tres elementos colorPicker
+  colorPicker.addEventListener('input', updateStyles);
+  colorPicker2.addEventListener('input', updateStyles);
+  colorPicker3.addEventListener('input', updateStyles);
+  colorPicker4.addEventListener('input', updateStyles);
+
+  // Establecer el color inicial
+  const initialColor = colorPicker.value;
+  const initialColor2 = colorPicker2.value;
+  const initialColor3 = colorPicker3.value;
+  const initialColor4 = colorPicker4.value;
+
+  const initialCss = `
+   
+  `;
+  customStyles.textContent = initialCss;
+
+  function updateStyles(event) {
+    const color = colorPicker.value;
+    const color2 = colorPicker2.value;
+    const color3 = colorPicker3.value;
+    const color4 = colorPicker4.value;
+
+    const css = `
+     .bg-slate-900 { background-color: ${color}!important; }
+     .enlace { background-color: ${color}!important; }
+     .activo { background-color: ${color2}!important; }
+     .enlace:hover { background-color: ${color3}!important; }
+     .button { background-color: ${color4}!important; }
+     .btn-dark { background-color: ${color4}; border-color: ${color4};}
+     
+    `;
+    customStyles.textContent = css;
+  }
 </script>

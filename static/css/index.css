@@ -8,10 +8,17 @@
 .enlace:hover{
     transform: translateY(-5px);
     transition: transform .3s ease;
-    background-color: #122451;
+    background-color: #2764a5;
 
 }
 
 .activo{
-    background-color: #122451;
+    background-color: #1d2d52;
 }
+
+    
+.box{
+    width: 200px;
+    height: 200px;
+}
+

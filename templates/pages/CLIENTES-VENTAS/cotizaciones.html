@@ -1,164 +1,137 @@
-{% extends 'layouts/base-clientesventas.html' %}
-{% load static %}
-
-
-{% block content %}
-{% block extrastyle %}
-    <link rel="stylesheet" href="../../../static/css/crmventas/crm.css">
-    <link rel="stylesheet" href="../../../static/css/crmventas/cotizaciones.css">  
-{% endblock extrastyle %}
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
 <div class="container-fluid py-4 px-5">
-    <div class="row">
-        <div class="col-md-12">
-        <div class="d-md-flex align-items-center mb-3 mx-2">
-            <div class="mb-md-0 mb-3">
-            <h3 class="font-weight-bold mb-0">Cotizaciones</h3>
-            <p class="mb-0">por cliente</p>
+  <div class="row">
+    <div class="col-12">
+      <h3 >Cotizaciones</h3>
+      <hr>
+      <br>
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header border-bottom pb-0">
+          <div class="d-sm-flex align-items-center mb-3">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Materias Primas</h6>
+              <p class="text-sm mb-sm-0">Listado de productos sobre materias primas.</p>
             </div>
-        </div>
-        </div>
-    </div>
-
-    <hr class="my-0">
-    <div class="row my-4">  
-        <!-- info empresa -->
-            <div class="card shadow-xs border h-100">
-              <div class="card-header pb-0  ">
-                <form action="">
-                    <div class=" bg-dark rounded text-center ">
-                        <p class="py-1 text-light font-weight-bold ">Informacion del cliente</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-8">
-                            <div class="mb-3">
-                                <label for="formInput" class="form-label">Razon social empresa:</label>
-                                <input id="inputcanalesmark" class="form-control" type="text" placeholder="Ingresa el nombre">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <div class="mb-3">
-                                <label for="formInput" class="form-label">RUT:</label>
-                                <input id="rut" class="form-control" type="text" placeholder="99.999.999-9">
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-12 col-md-8">
-                            <div class="mb-3">
-                                <label for="direccion" class="form-label">Direccion:</label>
-                            <input type="text" id="encargado" name="direccion" class="form-control" placeholder="Escribe aqui!.">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <div class="mb-3">
-                                <label for="formInput" class="form-label">Numero:</label>
-                                <input id="rut" class="form-control" type="text" placeholder="2123">
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-12 col-md-3">
-                            <div class="mb-3">
-                                <label for="formInput" class="form-label" for="">Telefono celular:</label>
-                                <input id="numero" class="form-control" name="numero" rows="5" cols="30" placeholder="+56999999999">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <div class="mb-3">
-                                <label for="formInput" class="form-label" for="">Correo:</label>
-                                <input type="mail" id="mail" class="form-control" name="mail" rows="5" cols="30" placeholder="hola@mail.com">
-                            </div>
-                        </div>
-                    </div> 
-                               
-                </form>
+            <div class="ms-auto d-flex flex-md-row flex-column">
+              <div class="input-group input-group-sm ms-auto me-2">
+                <span class="input-group-text text-body">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                  </svg>
+                </span>
+                <input type="text" class="form-control form-control-sm" placeholder="Buscar">
               </div>
-        </div> 
-        <!-- cotizaciones -->
-        <div class="card shadow-xs border">
-            <div class="card-header border-bottom pb-0">
-                <div class="d-sm-flex align-items-center mb-3">
-                <div>
-                    <h6 class="font-weight-semibold text-lg mb-0">Cotizacion</h6>
-                    <p class="text-sm mb-sm-0 mb-2">nro_cotizacion: 0000001</p>
-                </div>
-                <div class="ms-auto d-flex">
-                    <label for="fechacotizacion" class="form-label">Fecha de cotización:</label>
-                    <input id="fechacotizacion" class="form-control d-inline" type="date">  
-                </div>
-                </div>
+              
+              <a href="{% url 'app_crmventas:cotizacionCrear' %}"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 16 16">
+                    <title>Agregar cotización</title>
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Cotización</span>
+              </a>
+              <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                    <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Exportar</span>
+              </a>
+              <a data-bs-toggle="modal" data-bs-target="#" type="button"  class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                <span class="btn-inner--icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill d-block me-2" viewBox="0 0 512 512">
+                    <path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                  </svg>
+                </span>
+                <span class="btn-inner--text">Imprimir</span>
+              </a>
             </div>
-            <div class="card-body px-0 py-0">
-                <div class="table-responsive p-0">
-                <table class="table align-items-center justify-content-center mb-0">
-                    <thead class="bg-gray-100">
-                    <tr>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7">Nro</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Categoria</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Producto</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-3 w-10">Cantidad</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2 w-20">Precio unitario</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Subtotal</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Descuento %</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">V_descuento</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Total</th>
-                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Eliminar</th>
-                    </tr>
-                    </thead>
-                    <tbody id="cotizacion-body">
-                        <!-- aqui            -->
-                    </tbody>
-                </table>
-                <div class="d-sm-flex  mb-3">
-                    <div class="agregar ms-sm-2 mt-4">
-                        <button type="button" class="btn btn-secondary"> <!-- No necesitas el atributo onclick aquí -->
-                            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
-                            </svg>
-                        </button>
+          </div>
+        </div>
+        <div class="card-body px-0 py-0">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center  table-bordered table-hover justify-content-center mb-0">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">ID</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">N°Cotización</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Estado</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Recibidas</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Presentadas</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Acción</th>
+                </tr>
+              </thead>
+              <tbody> 
+                <tr>
+                  <td>
+                    <div class="d-flex px-2">
+                      <div class="my-auto">
+                        <span class="mb-0 text-sm">251</span>
+                      </div>
                     </div>
-                    <div class="ms-auto mt-3 me-sm-4 ">
-                        <p id="valor-neto">Valor neto: $0</p>
-                        <p id="iva">IVA (19%): $0</p>
-                        <p id="total-final">Total: $0</p>
+                  </td>
+                  <td>
+                    <div class="my-auto">
+                      <h6 class="mb-0 text-sm">N°C-502</h6>
                     </div>
-                </div>
-                <div class="button-zona  d-flex align-items-center  mt-3 mt-4 justify-content-end d-flex ms-md-auto pe-md-3">
-                    <a href="{% url 'app_crmventas:clientes_leads' %}"><button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-sm-2">
-                        <span class="btn-inner--icon">
-                            
-                        </span>
-                        <span class="btn-inner--text">Guardar</span>
-                    </button></a>
-                    <a href="{% url 'app_crmventas:ventas' %}"><button type="button bn20 mt-2" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 ">
-                        <span class="btn-inner--icon">
-                        <svg width="16px" heigth="16px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 512 512"  stroke-width="1.5" stroke="currentColor" class="d-block me-2">
-                            <path fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/>
-                        </svg>
-                        </span>
-                        <span class="btn-inner--text">enviar</span>
-                    </button>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                      <span class="badge badge-sm border border-success text-success bg-success">Activo</span>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                      <span class="badge badge-sm border border-success text-success bg-success">Si</span>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                      <span class="badge badge-sm border border-success text-success bg-success">No</span>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="d-flex justify-content-center px-4">
+                    <a href="{% url 'app_produccion:Editarproducto'%}" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Editar Producto">
+                      <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                      </svg>
                     </a>
-                </div>
-                <!-- navegacion -->
-                <nav aria-label="Page navigation example ">
-                    <ul class="pagination mt-3 d-flex justify-content-center flex-wrap ">
-                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
-                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
-                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
-                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
-                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
-                    </ul>
-                </nav>
-                </div>
-            </div>
+                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Eliminar Producto">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                      </svg>
+                    </a>
+                  </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="border-top py-3 px-3 d-flex align-items-center">
+            <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Anterior</button>
+            <nav aria-label="..." class="ms-auto">
+              <ul class="pagination pagination-light mb-0">
+                <li class="page-item active" aria-current="page">
+                  <span class="page-link font-weight-bold">1</span>
+                </li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">2</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">3</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">...</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold d-sm-inline-flex d-none" href="javascript:;">8</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">9</a></li>
+                <li class="page-item"><a class="page-link border-0 font-weight-bold" href="javascript:;">10</a></li>
+              </ul>
+            </nav>
+            <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Siguiente</button>
+          </div>
+        </div>
+      </div>
     </div>
-    </div> 
-
-
-
+  </div>
+  {% include 'includes/footer.html' %}
 </div>
 {% endblock content %}
-{% block extrascripts %}
-    <script src="../../../static/js/crmventas/calculocotizacion.js"></script>
-{% endblock extrascripts %}
