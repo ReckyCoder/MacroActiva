@@ -1,0 +1,164 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container-fluid py-4 px-5">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="d-md-flex align-items-center mb-3 mx-2">
+            <div class="mb-md-0 mb-3">
+            <h3 class="font-weight-bold mb-0">Cotizaciones</h3>
+            <p class="mb-0">por cliente</p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <hr class="my-0">
+    <div class="row my-4">  
+        <!-- info empresa -->
+            <div class="card shadow-xs border h-100">
+              <div class="card-header pb-0  ">
+                <form action="">
+                    <div class=" bg-dark rounded text-center ">
+                        <p class="py-1 text-light font-weight-bold ">Informacion del cliente</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            <div class="mb-3">
+                                <label for="formInput" class="form-label">Razon social empresa:</label>
+                                <input id="inputcanalesmark" class="form-control" type="text" placeholder="Ingresa el nombre">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="mb-3">
+                                <label for="formInput" class="form-label">RUT:</label>
+                                <input id="rut" class="form-control" type="text" placeholder="99.999.999-9">
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Direccion:</label>
+                            <input type="text" id="encargado" name="direccion" class="form-control" placeholder="Escribe aqui!.">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="mb-3">
+                                <label for="formInput" class="form-label">Numero:</label>
+                                <input id="rut" class="form-control" type="text" placeholder="2123">
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            <div class="mb-3">
+                                <label for="formInput" class="form-label" for="">Telefono celular:</label>
+                                <input id="numero" class="form-control" name="numero" rows="5" cols="30" placeholder="+56999999999">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <div class="mb-3">
+                                <label for="formInput" class="form-label" for="">Correo:</label>
+                                <input type="mail" id="mail" class="form-control" name="mail" rows="5" cols="30" placeholder="hola@mail.com">
+                            </div>
+                        </div>
+                    </div> 
+                               
+                </form>
+              </div>
+        </div> 
+        <!-- cotizaciones -->
+        <div class="card shadow-xs border">
+            <div class="card-header border-bottom pb-0">
+                <div class="d-sm-flex align-items-center mb-3">
+                <div>
+                    <h6 class="font-weight-semibold text-lg mb-0">Cotizacion</h6>
+                    <p class="text-sm mb-sm-0 mb-2">nro_cotizacion: 0000001</p>
+                </div>
+                <div class="ms-auto d-flex">
+                    <label for="fechacotizacion" class="form-label">Fecha de cotización:</label>
+                    <input id="fechacotizacion" class="form-control d-inline" type="date">  
+                </div>
+                </div>
+            </div>
+            <div class="card-body px-0 py-0">
+                <div class="table-responsive p-0">
+                <table class="table align-items-center justify-content-center mb-0">
+                    <thead class="bg-gray-100">
+                    <tr>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7">Nro</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Categoria</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Producto</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-3 w-10">Cantidad</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2 w-20">Precio unitario</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Subtotal</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Descuento %</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">V_descuento</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Total</th>
+                        <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tbody id="cotizacion-body">
+                        <!-- aqui            -->
+                    </tbody>
+                </table>
+                <div class="d-sm-flex  mb-3">
+                    <div class="agregar ms-sm-2 mt-4">
+                        <button type="button" class="btn btn-secondary"> <!-- No necesitas el atributo onclick aquí -->
+                            <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="ms-auto mt-3 me-sm-4 ">
+                        <p id="valor-neto">Valor neto: $0</p>
+                        <p id="iva">IVA (19%): $0</p>
+                        <p id="total-final">Total: $0</p>
+                    </div>
+                </div>
+                <div class="button-zona  d-flex align-items-center  mt-3 mt-4 justify-content-end d-flex ms-md-auto pe-md-3">
+                    <a href="{% url 'app_crmventas:clientes_leads' %}"><button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-sm-2">
+                        <span class="btn-inner--icon">
+                            
+                        </span>
+                        <span class="btn-inner--text">Guardar</span>
+                    </button></a>
+                    <a href="{% url 'app_crmventas:ventas' %}"><button type="button bn20 mt-2" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 ">
+                        <span class="btn-inner--icon">
+                        <svg width="16px" heigth="16px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 512 512"  stroke-width="1.5" stroke="currentColor" class="d-block me-2">
+                            <path fill="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/>
+                        </svg>
+                        </span>
+                        <span class="btn-inner--text">enviar</span>
+                    </button>
+                    </a>
+                    <a type="button bn20 mt-2" class="btn btn-sm btn-secondary btn-icon d-flex align-items-center mb-0 "  style="margin-left:10px" href="{% url 'app_crmventas:cotizaciones'%}">
+                        Volver
+                    </a>
+                </div>
+                <!-- navegacion -->
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination mt-3 d-flex justify-content-center flex-wrap ">
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Previous</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn bg-secondary text-light w-100 px-3 font-weight-bold" href="#">1</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">2</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3 font-weight-bold" href="#">3</a></li>
+                      <li class="page-item mx-1 my-2 my-sm-0"><a class="page-link btn w-100 px-3" href="#">Next</a></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+    </div>
+    </div> 
+
+
+
+</div>
+{% endblock content %}
+{% block extrascripts %}
+    <script src="../../../static/js/crmventas/calculocotizacion.js"></script>
+{% endblock extrascripts %}
